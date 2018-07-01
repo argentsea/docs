@@ -1,0 +1,1727 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Git/ArgentSea/ArgentSea.DocFx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.DataProviderServiceFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.DataProviderServiceFactory.html",
+          "hash": "mUnO1R4Qq1zAjS72oB/bVg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgArrayAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgArrayAttribute.html",
+          "hash": "22T/UdLg7aUF33rw4B5eDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgBigintAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgBigintAttribute.html",
+          "hash": "CwP+H7JOCrChTPEpjVx0lw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgBooleanAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgBooleanAttribute.html",
+          "hash": "2oW4WQ/9oCPyj4pCvfMXyw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgByteaAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgByteaAttribute.html",
+          "hash": "c/zQts/NORv1FmOEHyVuQw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgCharAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgCharAttribute.html",
+          "hash": "GglRoI8Ml6BRClgQCQ3uXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgDateAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgDateAttribute.html",
+          "hash": "ZM76kxGsIoGIm6cckAIPog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgDoubleAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgDoubleAttribute.html",
+          "hash": "aAIyBxXLrVmOC2GzWQNqMg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgHstoreAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgHstoreAttribute.html",
+          "hash": "RCHjm7dbM5e6eD7TQqZLCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgIntegerAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgIntegerAttribute.html",
+          "hash": "2wMnMXrEpLXGbYKSSrjeNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgInternalCharAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgInternalCharAttribute.html",
+          "hash": "h4yTSUw6bFXwRql8RciCxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgIntervalAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgIntervalAttribute.html",
+          "hash": "MRCzMbK72p4zo4wUev/3DA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgMoneyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgMoneyAttribute.html",
+          "hash": "wy4aYstQRxtQ+M6u2t5qhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgNumericAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgNumericAttribute.html",
+          "hash": "+d1Co1oYnUfHFvhLaAxYdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgRealAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgRealAttribute.html",
+          "hash": "F5bSkG0JftFnyrSivh+GBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgSmallintAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgSmallintAttribute.html",
+          "hash": "x2R+zTwQ/i1gVRwZ0FtQ8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgTextAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgTextAttribute.html",
+          "hash": "sRYfVCr3iS4RaeLWcO79iQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgTimeAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgTimeAttribute.html",
+          "hash": "xGH0VyHZe9JyH/2JL84+7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgTimeTzAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgTimeTzAttribute.html",
+          "hash": "kx7Avdm/R3hfzM1wu9fr0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgTimestampAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgTimestampAttribute.html",
+          "hash": "AR3TATIt5kI78QP5++hWng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgTimestampTzAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgTimestampTzAttribute.html",
+          "hash": "1bIdKgkKJJ1LSgNm+VoEhw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgUuidAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgUuidAttribute.html",
+          "hash": "R26bp/Fi/XL5s5svqY7Y4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.MapToPgVarCharAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.MapToPgVarCharAttribute.html",
+          "hash": "gNCvqedlxgS/TRcQbivhqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgConnectionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgConnectionConfiguration.html",
+          "hash": "K40cZl2Na9ffAKUOt3MRoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgDatabases.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgDatabases.html",
+          "hash": "AghbxrpK/mY3V9b5ap5PZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgDbConnectionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgDbConnectionConfiguration.html",
+          "hash": "C1EMDyd7rSsjz5hLmX+RDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgDbConnectionOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgDbConnectionOptions.html",
+          "hash": "vBjohTgAMCfTkvRQLoFu3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgParameterCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgParameterCollectionExtensions.html",
+          "hash": "vhd1vyBTRhkhZh0NBH9KaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgParameterMapAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgParameterMapAttribute.html",
+          "hash": "5MJyaDjYUwnQlr6thAwAKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionConfiguration.html",
+          "hash": "xItPB7qavqF1OqdblUJe4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html",
+          "hash": "9MPUiNbr+uBkO9oBqNvSzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.html",
+          "hash": "20ch8B33ZVedus/fQRsdXg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.PgShardSets-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.PgShardSets-1.html",
+          "hash": "3SaWDQ26KyhnFeOrgY5kXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.Test.UnitTest1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.Test.UnitTest1.html",
+          "hash": "VxowepSrTXCsb22/9YTkDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.Test.html",
+          "hash": "nGBGzfAuMJTX54pX374pEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/ArgentSea.Pg.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/ArgentSea.Pg.html",
+          "hash": "Zy1d9yBuNl36BvalgpUFwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/Microsoft.Extensions.DependencyInjection.PgServiceBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/Microsoft.Extensions.DependencyInjection.PgServiceBuilderExtensions.html",
+          "hash": "dK1Qu/+FMI99BZeecdMKaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-pg/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/Microsoft.Extensions.DependencyInjection.html",
+          "hash": "cmuSqavHCEIh2cWfeprmrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api-pg/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-pg/toc.html",
+          "hash": "6Givi2i7gkJKJgOdHLfFwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.DataProviderServiceFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.DataProviderServiceFactory.html",
+          "hash": "NxbpkDMQaVSx1QI1+LBbaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlBigIntAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlBigIntAttribute.html",
+          "hash": "BsCton1DnWBBueV+Co+RQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlBinaryAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlBinaryAttribute.html",
+          "hash": "IofpZR81AYvDaioxBzhcnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlBitAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlBitAttribute.html",
+          "hash": "uWW9+fpADE4DpJkYm7Ynxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlCharAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlCharAttribute.html",
+          "hash": "yPFv15m44ZZgoX5fzYkbdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlDateAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlDateAttribute.html",
+          "hash": "D0Kya4CYek0gFa1MBzeZAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlDateTime2Attribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlDateTime2Attribute.html",
+          "hash": "HLpVNpX8iTfi5YRn9vC1AA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlDateTimeAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlDateTimeAttribute.html",
+          "hash": "S94nmX6RCc2s9w2u+H2nNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlDateTimeOffsetAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlDateTimeOffsetAttribute.html",
+          "hash": "/MRz+slcijzhE0IYCfPr4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlDecimalAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlDecimalAttribute.html",
+          "hash": "ovUPINkWZLgoY8B7VwnciA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlFloatAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlFloatAttribute.html",
+          "hash": "fZbpGp7utmliwyHgldeQ2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlIntAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlIntAttribute.html",
+          "hash": "zyUMuZnz6bTMXm21NmDcJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlMoneyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlMoneyAttribute.html",
+          "hash": "a9m6nd06ugdGsbegWiaTeQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlNCharAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlNCharAttribute.html",
+          "hash": "/vHhSv/IGo7RXtDde46EyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlNVarCharAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlNVarCharAttribute.html",
+          "hash": "Zc+LLbp5r/MXObllzbt/Uw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlRealAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlRealAttribute.html",
+          "hash": "8iE8Q5SH+Lx0GMCPf8rxcg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlSmallIntAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlSmallIntAttribute.html",
+          "hash": "1bVSydKEchpc3FtgcdW+2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlSmallMoneyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlSmallMoneyAttribute.html",
+          "hash": "RpE4Cj4F7PcFK6RimCup/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlTimeAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlTimeAttribute.html",
+          "hash": "BmmHIm0r6r651vlu/eXR9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlTinyIntAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlTinyIntAttribute.html",
+          "hash": "AM7C0gLQPMSuyM3HnpB9Vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlUniqueIdentifierAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlUniqueIdentifierAttribute.html",
+          "hash": "mZwoiqaA9thzmjTus4Ybsw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlVarBinaryAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlVarBinaryAttribute.html",
+          "hash": "qEtBxgZcFss1nU+Sre7xvQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.MapToSqlVarCharAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.MapToSqlVarCharAttribute.html",
+          "hash": "vA105gO8C86kPpd9HoNYYw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlConnectionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlConnectionConfiguration.html",
+          "hash": "flPUf3BeBMHHTYwGcn08mA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlDatabases.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlDatabases.html",
+          "hash": "pblkh5r1/u9BlohEbVnX5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlDbConnectionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlDbConnectionConfiguration.html",
+          "hash": "7NORsDQS8Zt35S7nXLKSWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlDbConnectionOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlDbConnectionOptions.html",
+          "hash": "daNPPGiWWA57x8i1I+Lbng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlLoggingExtensions.SqlEventIdentifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlLoggingExtensions.SqlEventIdentifier.html",
+          "hash": "dtbytJ4d4JuYf6ny3bVdXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlLoggingExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlLoggingExtensions.html",
+          "hash": "BHUFvESk4x8a48hEsOsorw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlParameterCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlParameterCollectionExtensions.html",
+          "hash": "UZwgnHLxhJ2Q5PoPSRhGwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlParameterMapAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlParameterMapAttribute.html",
+          "hash": "8aWUcLjIyyJJ0W+rPpfY7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionConfiguration.html",
+          "hash": "6O+0jmRK5ZXaNWQl0kqOsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html",
+          "hash": "rIbd4wJgDhg1bcH5GvsevQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.html",
+          "hash": "L2BbbcPTyLGQ5ABjKKBUNA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.SqlShardSets-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.SqlShardSets-1.html",
+          "hash": "Q9trrgZ3T+xQpQ2PycT05A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.Test.ConfigurationTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.Test.ConfigurationTests.html",
+          "hash": "+uCHVRQjg+rT9kasFpP2zg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.Test.MappingTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.Test.MappingTests.html",
+          "hash": "IPz9Ab/oBKMWRCja/DAU7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.Test.html",
+          "hash": "jbOCDkZiSyNW8F4Pcp8cOw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.TvpMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.TvpMapper.html",
+          "hash": "Iai3FEjXXNCMdmcHlTJ3/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/ArgentSea.Sql.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/ArgentSea.Sql.html",
+          "hash": "2yB5KTOE+WD3BZcdMzbSzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/Microsoft.Extensions.DependencyInjection.SqlServiceBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/Microsoft.Extensions.DependencyInjection.SqlServiceBuilderExtensions.html",
+          "hash": "1tUWXydOl13i6/O5ZYLO7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "DuplicateUids"
+      ],
+      "type": "ManagedReference",
+      "source_relative_path": "api-sql/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/Microsoft.Extensions.DependencyInjection.html",
+          "hash": "LVV50e55H0I0yuhQr9K07g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api-sql/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api-sql/toc.html",
+          "hash": "HvDielpQYel9llvC14uASA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DataOrigin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DataOrigin.html",
+          "hash": "hoMTobGMT/eH4Xqsr2pvPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.html",
+          "hash": "xxWKs5ZPBR6Z4WmtQIhv0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DataResilienceConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DataResilienceConfiguration.html",
+          "hash": "45ytplNTT0x7pzegukbypQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DataResilienceOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DataResilienceOptions.html",
+          "hash": "inTIZP2JG81yqHs11ANKbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DataSecurityOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DataSecurityOptions.html",
+          "hash": "1IKVTmyGudf5rSCX1BUPmA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DbDataStores-1.DataConnection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DbDataStores-1.DataConnection.html",
+          "hash": "d4AUL5DzgKlbWVwUfcjtpg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DbDataStores-1.DbDataSets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DbDataStores-1.DbDataSets.html",
+          "hash": "kQJl39bsSxuvcL2gvMZPxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DbDataStores-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DbDataStores-1.html",
+          "hash": "51GPzSpyOY46IOpP8v/IKw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.DbParameterCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.DbParameterCollectionExtensions.html",
+          "hash": "trq0Hs2dip5CCqgIFoa/NQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ExpressionHelpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ExpressionHelpers.html",
+          "hash": "/f0MoPHacm6yZGO4EY71Yw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.IConnectionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.IConnectionConfiguration.html",
+          "hash": "csN/drP8Omy/i8pe7kmyiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.IDataProviderServiceFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.IDataProviderServiceFactory.html",
+          "hash": "AJEJKhKdZEDmmcsEXs4TmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.IDbConnectionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.IDbConnectionConfiguration.html",
+          "hash": "wb+71WcoxmIiGc5RDBfJRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.IDbDataConfigurationOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.IDbDataConfigurationOptions.html",
+          "hash": "qV6cq03mYuO3BGbT+X50ig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.IShardConnectionConfiguration-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.IShardConnectionConfiguration-1.html",
+          "hash": "rSPQO/QXUdjztQ0roA5+FQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.IShardConnectionsConfiguration-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.IShardConnectionsConfiguration-1.html",
+          "hash": "9hLUMpK1ZP24pkypcehjcw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.IShardDataConfigurationOptions-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.IShardDataConfigurationOptions-1.html",
+          "hash": "E4ToJS0vH8eA+w9U9HeE5g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.InvalidMapTypeException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.InvalidMapTypeException.html",
+          "hash": "KOzC103Wk+ltT5x4iGKAzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.InvalidShardArgumentsException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.InvalidShardArgumentsException.html",
+          "hash": "Gdpgmiat9323SxCRnrspng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.LoggingExtensions.EventIdentifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.LoggingExtensions.EventIdentifier.html",
+          "hash": "zH1fGqR5ZAZAPCRESYjfpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.LoggingExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.LoggingExtensions.html",
+          "hash": "KNo+fA4S7+6cUCH2DEnsTw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.MapShardChildAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.MapShardChildAttribute.html",
+          "hash": "Sg7SdtRC2psCHM8fAUChxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.MapShardKeyAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.MapShardKeyAttribute.html",
+          "hash": "gcyWamUaJ+2p3X2Mo6y9nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.MapToModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.MapToModel.html",
+          "hash": "103igvN+Y0eCr40+7IVKpA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.Mapper.DummyType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.Mapper.DummyType.html",
+          "hash": "4F3FEIHlK2Cg8wQdLfPL0w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.Mapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.Mapper.html",
+          "hash": "Qe+VpT9PH9FVMhLXeKYQhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.MultipleMapAttributesException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.MultipleMapAttributesException.html",
+          "hash": "vMHfWe4YUe77+Pe6NCCv6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ParameterMapAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ParameterMapAttribute.html",
+          "hash": "rnbredi9Wcp9A//rqD+fRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.QueryParameterCollection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.QueryParameterCollection.html",
+          "hash": "UaEgJm/kaLt6nhoAjcY/Vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.QueryResultModelHandler-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.QueryResultModelHandler-3.html",
+          "hash": "Vg7LFlCG7QcVEj/EyCvmPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.RetryLimitExceededException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.RetryLimitExceededException.html",
+          "hash": "UfPKQRNKGzarjZgVhzz+5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.SecurityConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.SecurityConfiguration.html",
+          "hash": "+TXjBIR3jY47mG8G15z3ww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ShardChild-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ShardChild-3.html",
+          "hash": "RvYC4wJjyJJucs1NGCqX+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ShardDataStores-2.DataConnection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ShardDataStores-2.DataConnection.html",
+          "hash": "JGCXOnThNEjN7VmTYDfSSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ShardDataStores-2.ShardDataSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ShardDataStores-2.ShardDataSet.html",
+          "hash": "B9BKpxicfsRYZZ214ol65A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ShardDataStores-2.ShardDataSets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ShardDataStores-2.ShardDataSets.html",
+          "hash": "4CcN7suLIZ+aWW/Ja1k6Fw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ShardDataStores-2.ShardInstance.DataAccess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ShardDataStores-2.ShardInstance.DataAccess.html",
+          "hash": "E2Ep5XyTVila/YuHPaZQsg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ShardDataStores-2.ShardInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ShardDataStores-2.ShardInstance.html",
+          "hash": "BeTyRNS0TLfAENfdjVfzuw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ShardDataStores-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ShardDataStores-2.html",
+          "hash": "mcYjRZ+rUpNNmh3Hc7I8yw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.ShardKey-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.ShardKey-2.html",
+          "hash": "yBA2NgRKVaPTc9G4wZelDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.StringExtensions.InputCleaningOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.StringExtensions.InputCleaningOptions.html",
+          "hash": "wbkKRmlXVSNEgu8ISrZ2WQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.StringExtensions.html",
+          "hash": "pphMz69P5xZSn2Gyt1aApA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.Test.ShardSerializationTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.Test.ShardSerializationTests.html",
+          "hash": "QmQjBoTVf2gk+CMJvwmSaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.Test.StringExtensionTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.Test.StringExtensionTests.html",
+          "hash": "t4QvR0UMSUa3gfxwQ3JIXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.Test.html",
+          "hash": "Zc3Vb+DadBhmM+z05bgpTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.UnexpectedSqlResultException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.UnexpectedSqlResultException.html",
+          "hash": "VHdxyV9kaNoLCtAW0ucyOg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ArgentSea.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ArgentSea.html",
+          "hash": "6Huq2vdgdU9AfNFMIJvj8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "6An1gbfcAy0qBOtef7Jolw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "hntygLWDypaxNMslGMBh5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "xVlQaX7Tk85omoiWv3O+Ag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "oiLY7ZX7a0ZTNRc9LOjYjQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "EmptyTocItemNode"
+      ],
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "Xc7l2GbEWf1jMgvt5pivZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/configuration.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/configuration.html",
+          "hash": "Wb721WtvAwzVp4Ykjp5Trg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/index.html",
+          "hash": "zo7YhvkMTeHuBeaVWiwLNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/mapping.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/mapping.html",
+          "hash": "17G+lg/G5z2V9F7p8oVfzg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "tutorials/sharding.md",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/sharding.html",
+          "hash": "Rtqje0snINAlaJN2teqdHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "tutorials/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "tutorials/toc.html",
+          "hash": "2bDwoO9XVBYvBpbQgGrrWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
