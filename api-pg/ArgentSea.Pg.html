@@ -158,8 +158,8 @@
 </section>
       <h4><a class="xref" href="ArgentSea.Pg.PgConnectionConfiguration.html">PgConnectionConfiguration</a></h4>
       <section><p>This class represents is a (non-sharded) database connection.
-Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a DataResilienceKey (if defined) must match as key in the DataResilienceOptions array.
-If the DataResilienceKey is not defined, a default data resilience strategy will be used.</p>
+Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match as key in the DataResilienceOptions array.
+If the ResilienceKey is not defined, a default data resilience strategy will be used.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Pg.PgDatabases.html">PgDatabases</a></h4>
       <section><p>This class manages the non-sharded SQL database connections.</p>
@@ -167,7 +167,22 @@ If the DataResilienceKey is not defined, a default data resilience strategy will
       <h4><a class="xref" href="ArgentSea.Pg.PgDbConnectionConfiguration.html">PgDbConnectionConfiguration</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.PgDbConnectionOptions.html">PgDbConnectionOptions</a></h4>
-      <section></section>
+      <section><p>This configuration class defines an array of database <see cref="!:SqlConnectionConfiguration">connection configurations</see>.
+<example>
+For example, you might configure your appsettings.json like this:<p>
+<pre><code>&quot;PgDbConnections&quot;: [
+  {
+    &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
+    &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
+      &quot;DataConnection&quot;: {
+        &quot;Host&quot;: &quot;localhost&quot;,
+        &quot;Database&quot;: &quot;MyDb&quot;
+    }
+  }
+]</code></pre>
+<p>Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match a key in the DataResilienceOptions array.
+</example></p>
+</section>
       <h4><a class="xref" href="ArgentSea.Pg.PgParameterCollectionExtensions.html">PgParameterCollectionExtensions</a></h4>
       <section><p>This class adds extension methods which simplify setting PostgreSQL parameter values from .NET types.</p>
 </section>

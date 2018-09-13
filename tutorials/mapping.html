@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Mapping | ArgentSea Docs </title>
+    <title>Mapping Deep-Dive | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Mapping | ArgentSea Docs ">
+    <meta name="title" content="Mapping Deep-Dive | ArgentSea Docs ">
     <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -77,9 +77,457 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="mapping">Mapping</h1>
+<h1 id="mapping-deep-dive">Mapping Deep-Dive</h1>
 
-<p>(documentation coming soon)</p>
+<p>The Mapper make data-access coding simpler and more productive by using  property attributes to map a model class’s properties to data values — parameters, reader columns, and (in the case of SQL Server) table-value parameters. This reduces and simplifies the amount of code required.</p>
+<h2 id="overview">Overview</h2>
+<p>Using the Mapper consists of two steps:</p>
+<ul>
+<li>Define how each property in your model class should be mapped to a data store (if at all) using property attributes</li>
+<li>Call a Mapper method to automatically create data parameters, DataReader handler, etc.</li>
+</ul>
+<h3 id="property-attributes">Property Attributes</h3>
+<p>You use properties attributes to define the metadata that the Mapper requires. For example, given this very simple model class:</p>
+<pre><code class="lang-C#">using System;
+
+public class Subscriber
+{
+    public int SubscriberId { get; set; }
+
+    public string Name { get; set; }
+
+    public DateTime Expiration { get; set; }
+}
+</code></pre>
+<p>Adding mapping attributes to this class provides the metadata to automatically map these properties to stored procedures:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-C#">using System;
+using ArgentSea.Sql;
+
+public class Subscriber
+{
+    [MapToSqlInt(&quot;@SubID&quot;, true)]
+    public int SubscriberId { get; set; }
+
+    [MapToSqlNVarChar(&quot;@SubscriberName&quot;, 255)]
+    public string Name { get; set; }
+
+    [MapToSqlDateTime2(&quot;@EndDate&quot;)]
+    public DateTime Expiration { get; set; }
+}
+</code></pre>
+<p>The “@” parameter prefix is optional — ArgentSea will add the “@” automatically for parameters and remove it automatically when reading data reader rows.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-C#">using System;
+using ArgentSea.Pg;
+
+public class Subscriber
+{
+    [MapToPgInteger(&quot;SubId&quot;, true)]
+    public int SubscriberId { get; set; }
+
+    [MapToPgVarChar(&quot;SubscriberName&quot;, 255)]
+    public string Name { get; set; }
+
+    [MapToPgTimestamp(&quot;EndDate&quot;)]
+    public DateTime Expiration { get; set; }
+}
+</code></pre>
+</section>
+</div>
+
+<p>Often, due to different naming conventions or development drift, database column names and the corresponding .NET properties names do not match. That is why every attribute requires a “name” argument — which should largly correspond to the database name. The Mapper will create query parameters based on this name and reference DataReader columns with this name.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Database parameters and columns should be named as consistently as possible. In most cases, this means the parameters have the same name as the columns they reference. If you like to alias columns or abbreviate parameters, you will find the Mapper largely unhelpful.</p>
+</div>
+<h2 id="attribute-types">Attribute Types</h2>
+<p>There is a mapping attribute defined for most common database types. Spatial data types, CLR types, XML, and JSON types are examples of missing attributes. These are absent because there is not a straightforward mapping between the core .NET base types and these database types. It is very possible to write custom handlers to render this from your database; indeed it is not much harder than writing the necessary custom code without this framework.</p>
+<p>The attribute itself defines the underlying database type. Naturally, the attribute type and the property type must match. For example, a <code>long</code> (Int64) property <em>must</em> map to a <code>bigint</code> database type. The Mapper will throw an error if these types do not match. There is no attempt to cast data to a different type, even if the cast would be successful.</p>
+<p>Many data attribute types have an additional parameters. The <em>length</em> argument, for example, helps optimize data access performance by ensuring that buffers are sized appropriately.</p>
+<p>Here is catalog of the current attributes, along with their arguments and corresponding .NET types:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Arguments</th>
+<th>.NET types</th>
+<th>SqlType</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MapToSqlNVarCharAttribute</td>
+<td>length¹</td>
+<td>String, Enum², Nullable&lt;Enum&gt;</td>
+<td>NVarChar</td>
+</tr>
+<tr>
+<td>MapToSqlNCharAttribute</td>
+<td>length</td>
+<td>String, Enum², Nullable&lt;Enum&gt;</td>
+<td>NChar</td>
+</tr>
+<tr>
+<td>MapToSqlVarCharAttribute</td>
+<td>length¹, localeid³</td>
+<td>String, Enum², Nullable&lt;Enum&gt;</td>
+<td>VarChar</td>
+</tr>
+<tr>
+<td>MapToSqlCharAttribute</td>
+<td>length, localeid³</td>
+<td>String, Enum², Nullable&lt;Enum&gt;</td>
+<td>Char</td>
+</tr>
+<tr>
+<td>MapToSqlBigIntAttribute</td>
+<td></td>
+<td>Int64, Enum⁴, Nullable&lt;Int64&gt;, Nullable&lt;Enum&gt;</td>
+<td>BigInt</td>
+</tr>
+<tr>
+<td>MapToSqlIntAttribute</td>
+<td></td>
+<td>Int32, Enum⁴, Nullable&lt;Int32&gt;, Nullable&lt;Enum&gt;</td>
+<td>Int</td>
+</tr>
+<tr>
+<td>MapToSqlSmallIntAttribute</td>
+<td></td>
+<td>Int16, Enum⁴, Nullable&lt;Int16&gt;, Nullable&lt;Enum&gt;</td>
+<td>SmallInt</td>
+</tr>
+<tr>
+<td>MapToSqlTinyIntAttribute</td>
+<td></td>
+<td>Byte, Enum⁴, Nullable&lt;Byte&gt;, Nullable&lt;Enum&gt;</td>
+<td>TinyInt</td>
+</tr>
+<tr>
+<td>MapToSqlBitAttribute</td>
+<td></td>
+<td>Boolean, Nullable&lt;Boolean&gt;</td>
+<td>Bit</td>
+</tr>
+<tr>
+<td>MapToSqlDecimalAttribute</td>
+<td>precision, scale</td>
+<td>Decimal, Nullable&lt;Decimal&gt;</td>
+<td>Decimal</td>
+</tr>
+<tr>
+<td>MapToSqlMoneyAttribute</td>
+<td></td>
+<td>Decimal, Nullable&lt;Decimal&gt;</td>
+<td>Money</td>
+</tr>
+<tr>
+<td>MapToSqlSmallMoneyAttribute</td>
+<td></td>
+<td>Decimal, Nullable&lt;Decimal&gt;</td>
+<td>SmallMoney</td>
+</tr>
+<tr>
+<td>MapToSqlFloatAttribute</td>
+<td></td>
+<td>Double, Nullable&lt;Double&gt;</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>MapToSqlRealAttribute</td>
+<td></td>
+<td>Float, Nullable&lt;Float&gt;</td>
+<td>Real</td>
+</tr>
+<tr>
+<td>MapToSqlDateTimeAttribute</td>
+<td></td>
+<td>DateTime, Nullable&lt;DateTime&gt;</td>
+<td>DateTime</td>
+</tr>
+<tr>
+<td>MapToSqlDateTime2Attribute</td>
+<td>precision</td>
+<td>DateTime, Nullable&lt;DateTime&gt;</td>
+<td>DateTime2</td>
+</tr>
+<tr>
+<td>MapToSqlDateAttribute</td>
+<td></td>
+<td>DateTime, Nullable&lt;DateTime&gt;</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>MapToSqlTimeAttribute</td>
+<td></td>
+<td>TimeSpan, Nullable&lt;TimeSpan&gt;</td>
+<td>Time</td>
+</tr>
+<tr>
+<td>MapToSqlDateTimeOffsetAttribute</td>
+<td></td>
+<td>DateTimeOffset, Nullable&lt;DateTimeOffset&gt;</td>
+<td>DateTimeOffset</td>
+</tr>
+<tr>
+<td>MapToSqlVarBinaryAttribute</td>
+<td>length¹</td>
+<td>byte[]</td>
+<td>VarBinary</td>
+</tr>
+<tr>
+<td>MapToSqlBinaryAttribute</td>
+<td>length</td>
+<td>byte[]</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>MapToSqlUniqueIdentifierAttribute</td>
+<td></td>
+<td>Guid, Nullable&lt;Guid&gt;</td>
+<td>UniqueIdentifier</td>
+</tr>
+</tbody>
+</table>
+<p>¹ For “max” values (nvarchar(max), varbinary(max), etc.) use length of -1.</p>
+<p>² The Enum name is saved as string.</p>
+<p>³ Locale Id is the Ansi code page to use for Unicode conversion. For en-US locale, for example, use 1033.</p>
+<p>⁴ The Enum value is saved based on its underlying numeric value. The Enum integer <em>base type</em> (int, short, byte, etc.) must match the attribute type.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Arguments</th>
+<th>.NET types</th>
+<th>SQL Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MapToPgVarCharAttribute</td>
+<td>length</td>
+<td>String, Enum¹, Nullable&lt;Enum&gt;</td>
+<td>VarChar</td>
+</tr>
+<tr>
+<td>MapToPgCharAttribute</td>
+<td>length</td>
+<td>String, Enum¹, Nullable&lt;Enum&gt;</td>
+<td>Char</td>
+</tr>
+<tr>
+<td>MapToPgTextAttribute</td>
+<td></td>
+<td>String, Enum¹, Nullable&lt;Enum&gt;</td>
+<td>VarChar</td>
+</tr>
+<tr>
+<td>MapToPgBigintAttribute</td>
+<td></td>
+<td>Int64, Enum², Nullable&lt;Int64&gt;, Nullable&lt;Enum&gt;</td>
+<td>Bigint</td>
+</tr>
+<tr>
+<td>MapToPgIntegerAttribute</td>
+<td></td>
+<td>Int32, Enum², Nullable&lt;Int32&gt;, Nullable&lt;Enum&gt;</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>MapToPgSmallintAttribute</td>
+<td></td>
+<td>Int16, Enum², Nullable&lt;Int16&gt;, Nullable&lt;Enum&gt;</td>
+<td>Smallint</td>
+</tr>
+<tr>
+<td>MapToPgInternalCharAttribute</td>
+<td></td>
+<td>Byte, Enum², Nullable&lt;Byte&gt;, Nullable&lt;Enum&gt;</td>
+<td>InternalChar</td>
+</tr>
+<tr>
+<td>MapToPgBooleanAttribute</td>
+<td></td>
+<td>Boolean, Nullable&lt;Boolean&gt;</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>MapToPgNumericAttribute</td>
+<td>precision, scale</td>
+<td>Decimal, Nullable&lt;Decimal&gt;</td>
+<td>Numeric</td>
+</tr>
+<tr>
+<td>MapToPgMoneyAttribute</td>
+<td></td>
+<td>Decimal, Nullable&lt;Decimal&gt;</td>
+<td>Money</td>
+</tr>
+<tr>
+<td>MapToPgDoubleAttribute</td>
+<td></td>
+<td>Double, Nullable&lt;Double&gt;</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>MapToPgRealAttribute</td>
+<td></td>
+<td>Float, Nullable&lt;Float&gt;</td>
+<td>Real</td>
+</tr>
+<tr>
+<td>MapToPgTimestampAttribute</td>
+<td></td>
+<td>DateTime, DateTimeOffset, Nullable&lt;DateTime&gt;, Nullable&lt;DateTimeOffset&gt;</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>MapToPgTimestampTzAttribute</td>
+<td></td>
+<td>DateTimeOffset, Nullable&lt;DateTimeOffset&gt;</td>
+<td>TimestampTz</td>
+</tr>
+<tr>
+<td>MapToPgDateAttribute</td>
+<td></td>
+<td>DateTime, Nullable&lt;DateTime&gt;</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>MapToPgTimeAttribute</td>
+<td></td>
+<td>TimeSpan, Nullable&lt;TimeSpan&gt;</td>
+<td>Time</td>
+</tr>
+<tr>
+<td>MapToPgIntervalAttribute</td>
+<td></td>
+<td>TimeSpan, Nullable&lt;TimeSpan&gt;</td>
+<td>Interval</td>
+</tr>
+<tr>
+<td>MapToPgTimeTzAttribute</td>
+<td></td>
+<td>TimeSpan, DateTimeOffset, Nullable&lt;TimeSpan&gt;, Nullable&lt;DateTimeOffset&gt;</td>
+<td>TimeTz</td>
+</tr>
+<tr>
+<td>MapToPgArrayAttribute</td>
+<td></td>
+<td>Array</td>
+<td>Array</td>
+</tr>
+<tr>
+<td>MapToPgByteaAttribute</td>
+<td>length</td>
+<td>byte[]</td>
+<td>Bytea</td>
+</tr>
+<tr>
+<td>MapToPgHstoreAttribute</td>
+<td>length</td>
+<td>IDictionary&lt;string, string&gt;</td>
+<td>Hstore</td>
+</tr>
+<tr>
+<td>MapToPgUuidAttribute</td>
+<td></td>
+<td>Guid, Nullable&lt;Guid&gt;</td>
+<td>UniqueIdentifier</td>
+</tr>
+</tbody>
+</table>
+<p>¹ The Enum name is saved as string.</p>
+<p>² The Enum value is saved based on its underlying numeric value. The Enum integer <em>base type</em> (int, short, byte, etc.) must match the attribute type.</p>
+</section>
+</div>
+<h3 id="required">Required</h3>
+<p>Finally, the the data attributes have an <em>optional</em> <code>required</code> parameter. It defaults to false. Generally, you might set a key value to “required”; this tell the Mapper that if the value is null, then the entire record is missing and the object result should be null.</p>
+<p>For example, suppose you are using a query’s output parameters to fetch a record. A null value in the key field means that the record doesn’t exist. Returning a valid new object with a null properties isn’t the correct behavior; the Mapper should return a null object.</p>
+<p>When using replicated or mirrored data, there can be latency between the primary and cloned databases. In high-performance scenarios, you may split your reads and writes and your application can attempt reads that <em>should</em> be successful but fail because of this latency. In this case, the <code>required</code> parameter enables the system to detect an unexpectedly missing record on a clone or mirror and retry on the master or primary.</p>
+<p>When <code>required</code> is set to true, then:</p>
+<ul>
+<li>The Mapper will return a null object if this parameter or column is null.</li>
+<li>The shard set will retry a data fetch on the a Write connection.</li>
+</ul>
+<h3 id="enum-types">Enum Types</h3>
+<p>.NET enum values can be stored with their base integer data type (int, short, etc.), or as their string name, or (PostgreSQL only) as an Enum database type.</p>
+<ul>
+<li>If the mapping attribute database type is a numeric database type, then the base number type is stored</li>
+<li>If the mapping attribute database type is a text-type field, the Mapper stores the name of the enum value</li>
+<li>If the mapping attribute database type is Enum (PostgreSQL only), then the Enum value is set</li>
+</ul>
+<h3 id="nullable">Nullable</h3>
+<h3 id="shardkey-and-shardchild">ShardKey and ShardChild</h3>
+<h2 id="mapping-attributes">Mapping Attributes</h2>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<h3 id="sql-server-mapping-attributes">SQL Server Mapping Attributes</h3>
+<p>To map a property</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<h3 id="postgresql-mapping-attributes">PostgreSQL Mapping Attributes</h3>
+<p>There is a mapping attribute defined for most SQL Server data types. The principals exceptions are the CLR types and complex types, like hierarchyid, geometry, geography, variant, and xml. The property type must correspond</p>
+</section>
+</div>
+<h2 id="mapping-targets">Mapping Targets</h2>
+<p>The ArgentSea Mapper maps to:</p>
+<ul>
+<li>Query input parameters</li>
+<li>Query output parameters</li>
+<li>Data reader columns</li>
+<li>Table-value parameters (SQL Server only)</li>
+</ul>
+<p>The mapper does not generate dynamic SQL statements. The Mapper may be useful in situations where dynamic SQL is used, but philosophically this is not encouraged. Stored procedures are generally more secure, more performant, and offer a less tightly-coupled architecture.</p>
+<h3 id="mapping-to-input-parameters">Mapping to Input Parameters</h3>
+<h3 id="mapping-to-output-parameters">Mapping to Output Parameters</h3>
+<h3 id="the-datareader">The DataReader</h3>
+<h2 id="the-implicit-use-of-the-mapper">The Implicit use of the Mapper</h2>
+<h2 id="required-attributes">Required Attributes</h2>
+<h2 id="performance">Performance</h2>
+<p>The ArgentSea Mapper is written to be as high-performance as optimized hand-coded data access code. However, there is a hitch.</p>
+<p>Property attributes can only be retrieved using <em>reflection</em>, which is relatively slow .NET code. To avoid this type of performance penalty on every data access, ArgentSea uses reflection only the first time the mapping is performed; using that metadata it then creates and compiles an “Expression Tree”to build an optimized, compiled mapping. The compiled code is cached in memory and reused for all subsequent calls.</p>
+<blockquote>
+<p>[!INFORMATION]
+The Mapper will be relatively slow (and CPU intensive) the <em>first time</em> each model class is mapped to parameters or data. The initial compilation usually takes about a second or less. Subsequent calls will execute the data to property mapping at native machine-code speeds. When the application is restarted, the memory is cleared and the compilation overhead occurs again.</p>
+</blockquote>
+<h2 id="instrumentation">Instrumentation</h2>
+<p>The Mapper also use</p>
 </article>
           </div>
           

@@ -83,7 +83,7 @@
   
   <h1 id="ArgentSea_DataResilienceOptions" data-uid="ArgentSea.DataResilienceOptions" class="text-break">Class DataResilienceOptions
   </h1>
-  <div class="markdown level0 summary"><p>This options class contains an array of resilience strategies (retry and circuit breaking settings). To specify as particular resilience strategy, a connection can specify a DataResilienceKey.</p>
+  <div class="markdown level0 summary"><p>This options class contains an array of resilience strategies (retry and circuit breaking settings). To specify as particular resilience strategy, a connection can specify a ResilienceKey.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -125,7 +125,7 @@
   <p>For example, you might configure your appsettings.json like this:</p>
 <pre><code>&quot;ResilienceStrategies&quot;: [
 {
-    &quot;DataResilienceKey&quot;: &quot;remote&quot;,
+    &quot;ResilienceKey&quot;: &quot;remote&quot;,
     &quot;RetryCount&quot;: &quot;6&quot;,
     &quot;RetryInterval&quot;: &quot;250&quot;,
     &quot;RetryLengthening&quot;: &quot;Finonacci&quot;,
@@ -133,7 +133,7 @@
     &quot;CircuitBreakerTestInterval&quot;: &quot;5000&quot;
 },
 {
-    &quot;DataResilienceKey&quot;: &quot;local&quot;,
+    &quot;ResilienceKey&quot;: &quot;local&quot;,
     &quot;RetryCount&quot;: &quot;6&quot;,
     &quot;RetryInterval&quot;: &quot;150&quot;,
     &quot;RetryLengthening&quot;: &quot;Linear&quot;,

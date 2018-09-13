@@ -7,6 +7,109 @@ references:
   commentId: N:ArgentSea
   fullName: ArgentSea
   nameWithType: ArgentSea
+- uid: ArgentSea.DataConnectionConfiguration
+  name: DataConnectionConfiguration
+  href: api/ArgentSea.DataConnectionConfiguration.html
+  commentId: T:ArgentSea.DataConnectionConfiguration
+  fullName: ArgentSea.DataConnectionConfiguration
+  nameWithType: DataConnectionConfiguration
+- uid: ArgentSea.DataConnectionConfiguration.ConnectionDescription
+  name: ConnectionDescription
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_ConnectionDescription
+  commentId: P:ArgentSea.DataConnectionConfiguration.ConnectionDescription
+  fullName: ArgentSea.DataConnectionConfiguration.ConnectionDescription
+  nameWithType: DataConnectionConfiguration.ConnectionDescription
+- uid: ArgentSea.DataConnectionConfiguration.ConnectionDescription*
+  name: ConnectionDescription
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_ConnectionDescription_
+  commentId: Overload:ArgentSea.DataConnectionConfiguration.ConnectionDescription
+  isSpec: "True"
+  fullName: ArgentSea.DataConnectionConfiguration.ConnectionDescription
+  nameWithType: DataConnectionConfiguration.ConnectionDescription
+- uid: ArgentSea.DataConnectionConfiguration.GetConnectionString
+  name: GetConnectionString()
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetConnectionString
+  commentId: M:ArgentSea.DataConnectionConfiguration.GetConnectionString
+  fullName: ArgentSea.DataConnectionConfiguration.GetConnectionString()
+  nameWithType: DataConnectionConfiguration.GetConnectionString()
+- uid: ArgentSea.DataConnectionConfiguration.GetConnectionString*
+  name: GetConnectionString
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetConnectionString_
+  commentId: Overload:ArgentSea.DataConnectionConfiguration.GetConnectionString
+  isSpec: "True"
+  fullName: ArgentSea.DataConnectionConfiguration.GetConnectionString
+  nameWithType: DataConnectionConfiguration.GetConnectionString
+- uid: ArgentSea.DataConnectionConfiguration.GetResilienceStrategy(Microsoft.Extensions.Logging.ILogger)
+  name: GetResilienceStrategy(ILogger)
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetResilienceStrategy_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.DataConnectionConfiguration.GetResilienceStrategy(Microsoft.Extensions.Logging.ILogger)
+  fullName: ArgentSea.DataConnectionConfiguration.GetResilienceStrategy(Microsoft.Extensions.Logging.ILogger)
+  nameWithType: DataConnectionConfiguration.GetResilienceStrategy(ILogger)
+- uid: ArgentSea.DataConnectionConfiguration.GetResilienceStrategy*
+  name: GetResilienceStrategy
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetResilienceStrategy_
+  commentId: Overload:ArgentSea.DataConnectionConfiguration.GetResilienceStrategy
+  isSpec: "True"
+  fullName: ArgentSea.DataConnectionConfiguration.GetResilienceStrategy
+  nameWithType: DataConnectionConfiguration.GetResilienceStrategy
+- uid: ArgentSea.DataConnectionConfiguration.GetSecurityConfiguration
+  name: GetSecurityConfiguration()
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetSecurityConfiguration
+  commentId: M:ArgentSea.DataConnectionConfiguration.GetSecurityConfiguration
+  fullName: ArgentSea.DataConnectionConfiguration.GetSecurityConfiguration()
+  nameWithType: DataConnectionConfiguration.GetSecurityConfiguration()
+- uid: ArgentSea.DataConnectionConfiguration.GetSecurityConfiguration*
+  name: GetSecurityConfiguration
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetSecurityConfiguration_
+  commentId: Overload:ArgentSea.DataConnectionConfiguration.GetSecurityConfiguration
+  isSpec: "True"
+  fullName: ArgentSea.DataConnectionConfiguration.GetSecurityConfiguration
+  nameWithType: DataConnectionConfiguration.GetSecurityConfiguration
+- uid: ArgentSea.DataConnectionConfiguration.hasConnectionPropertyChanged
+  name: hasConnectionPropertyChanged
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_hasConnectionPropertyChanged
+  commentId: F:ArgentSea.DataConnectionConfiguration.hasConnectionPropertyChanged
+  fullName: ArgentSea.DataConnectionConfiguration.hasConnectionPropertyChanged
+  nameWithType: DataConnectionConfiguration.hasConnectionPropertyChanged
+- uid: ArgentSea.DataConnectionConfiguration.ResilienceKey
+  name: ResilienceKey
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_ResilienceKey
+  commentId: P:ArgentSea.DataConnectionConfiguration.ResilienceKey
+  fullName: ArgentSea.DataConnectionConfiguration.ResilienceKey
+  nameWithType: DataConnectionConfiguration.ResilienceKey
+- uid: ArgentSea.DataConnectionConfiguration.ResilienceKey*
+  name: ResilienceKey
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_ResilienceKey_
+  commentId: Overload:ArgentSea.DataConnectionConfiguration.ResilienceKey
+  isSpec: "True"
+  fullName: ArgentSea.DataConnectionConfiguration.ResilienceKey
+  nameWithType: DataConnectionConfiguration.ResilienceKey
+- uid: ArgentSea.DataConnectionConfiguration.SecurityKey
+  name: SecurityKey
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_SecurityKey
+  commentId: P:ArgentSea.DataConnectionConfiguration.SecurityKey
+  fullName: ArgentSea.DataConnectionConfiguration.SecurityKey
+  nameWithType: DataConnectionConfiguration.SecurityKey
+- uid: ArgentSea.DataConnectionConfiguration.SecurityKey*
+  name: SecurityKey
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_SecurityKey_
+  commentId: Overload:ArgentSea.DataConnectionConfiguration.SecurityKey
+  isSpec: "True"
+  fullName: ArgentSea.DataConnectionConfiguration.SecurityKey
+  nameWithType: DataConnectionConfiguration.SecurityKey
+- uid: ArgentSea.DataConnectionConfiguration.SetConfigurationOptions(ArgentSea.DataSecurityOptions,ArgentSea.DataResilienceOptions)
+  name: SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_SetConfigurationOptions_ArgentSea_DataSecurityOptions_ArgentSea_DataResilienceOptions_
+  commentId: M:ArgentSea.DataConnectionConfiguration.SetConfigurationOptions(ArgentSea.DataSecurityOptions,ArgentSea.DataResilienceOptions)
+  fullName: ArgentSea.DataConnectionConfiguration.SetConfigurationOptions(ArgentSea.DataSecurityOptions, ArgentSea.DataResilienceOptions)
+  nameWithType: DataConnectionConfiguration.SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)
+- uid: ArgentSea.DataConnectionConfiguration.SetConfigurationOptions*
+  name: SetConfigurationOptions
+  href: api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_SetConfigurationOptions_
+  commentId: Overload:ArgentSea.DataConnectionConfiguration.SetConfigurationOptions
+  isSpec: "True"
+  fullName: ArgentSea.DataConnectionConfiguration.SetConfigurationOptions
+  nameWithType: DataConnectionConfiguration.SetConfigurationOptions
 - uid: ArgentSea.DataOrigin
   name: DataOrigin
   href: api/ArgentSea.DataOrigin.html
@@ -123,19 +226,6 @@ references:
   isSpec: "True"
   fullName: ArgentSea.DataResilienceConfiguration.CircuitBreakerTestInterval
   nameWithType: DataResilienceConfiguration.CircuitBreakerTestInterval
-- uid: ArgentSea.DataResilienceConfiguration.DataResilienceKey
-  name: DataResilienceKey
-  href: api/ArgentSea.DataResilienceConfiguration.html#ArgentSea_DataResilienceConfiguration_DataResilienceKey
-  commentId: P:ArgentSea.DataResilienceConfiguration.DataResilienceKey
-  fullName: ArgentSea.DataResilienceConfiguration.DataResilienceKey
-  nameWithType: DataResilienceConfiguration.DataResilienceKey
-- uid: ArgentSea.DataResilienceConfiguration.DataResilienceKey*
-  name: DataResilienceKey
-  href: api/ArgentSea.DataResilienceConfiguration.html#ArgentSea_DataResilienceConfiguration_DataResilienceKey_
-  commentId: Overload:ArgentSea.DataResilienceConfiguration.DataResilienceKey
-  isSpec: "True"
-  fullName: ArgentSea.DataResilienceConfiguration.DataResilienceKey
-  nameWithType: DataResilienceConfiguration.DataResilienceKey
 - uid: ArgentSea.DataResilienceConfiguration.HandleRetryTimespan(System.Int32)
   name: HandleRetryTimespan(Int32)
   href: api/ArgentSea.DataResilienceConfiguration.html#ArgentSea_DataResilienceConfiguration_HandleRetryTimespan_System_Int32_
@@ -149,6 +239,19 @@ references:
   isSpec: "True"
   fullName: ArgentSea.DataResilienceConfiguration.HandleRetryTimespan
   nameWithType: DataResilienceConfiguration.HandleRetryTimespan
+- uid: ArgentSea.DataResilienceConfiguration.ResilienceKey
+  name: ResilienceKey
+  href: api/ArgentSea.DataResilienceConfiguration.html#ArgentSea_DataResilienceConfiguration_ResilienceKey
+  commentId: P:ArgentSea.DataResilienceConfiguration.ResilienceKey
+  fullName: ArgentSea.DataResilienceConfiguration.ResilienceKey
+  nameWithType: DataResilienceConfiguration.ResilienceKey
+- uid: ArgentSea.DataResilienceConfiguration.ResilienceKey*
+  name: ResilienceKey
+  href: api/ArgentSea.DataResilienceConfiguration.html#ArgentSea_DataResilienceConfiguration_ResilienceKey_
+  commentId: Overload:ArgentSea.DataResilienceConfiguration.ResilienceKey
+  isSpec: "True"
+  fullName: ArgentSea.DataResilienceConfiguration.ResilienceKey
+  nameWithType: DataResilienceConfiguration.ResilienceKey
 - uid: ArgentSea.DataResilienceConfiguration.RetryCount
   name: RetryCount
   href: api/ArgentSea.DataResilienceConfiguration.html#ArgentSea_DataResilienceConfiguration_RetryCount
@@ -194,24 +297,18 @@ references:
   commentId: T:ArgentSea.DataResilienceConfiguration.SequenceLengthening
   fullName: ArgentSea.DataResilienceConfiguration.SequenceLengthening
   nameWithType: DataResilienceConfiguration.SequenceLengthening
-- uid: ArgentSea.DataResilienceConfiguration.SequenceLengthening.Cumulative
-  name: Cumulative
-  href: api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.html#ArgentSea_DataResilienceConfiguration_SequenceLengthening_Cumulative
-  commentId: F:ArgentSea.DataResilienceConfiguration.SequenceLengthening.Cumulative
-  fullName: ArgentSea.DataResilienceConfiguration.SequenceLengthening.Cumulative
-  nameWithType: DataResilienceConfiguration.SequenceLengthening.Cumulative
-- uid: ArgentSea.DataResilienceConfiguration.SequenceLengthening.Doubling
-  name: Doubling
-  href: api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.html#ArgentSea_DataResilienceConfiguration_SequenceLengthening_Doubling
-  commentId: F:ArgentSea.DataResilienceConfiguration.SequenceLengthening.Doubling
-  fullName: ArgentSea.DataResilienceConfiguration.SequenceLengthening.Doubling
-  nameWithType: DataResilienceConfiguration.SequenceLengthening.Doubling
 - uid: ArgentSea.DataResilienceConfiguration.SequenceLengthening.Fibonacci
   name: Fibonacci
   href: api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.html#ArgentSea_DataResilienceConfiguration_SequenceLengthening_Fibonacci
   commentId: F:ArgentSea.DataResilienceConfiguration.SequenceLengthening.Fibonacci
   fullName: ArgentSea.DataResilienceConfiguration.SequenceLengthening.Fibonacci
   nameWithType: DataResilienceConfiguration.SequenceLengthening.Fibonacci
+- uid: ArgentSea.DataResilienceConfiguration.SequenceLengthening.HalfSquare
+  name: HalfSquare
+  href: api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.html#ArgentSea_DataResilienceConfiguration_SequenceLengthening_HalfSquare
+  commentId: F:ArgentSea.DataResilienceConfiguration.SequenceLengthening.HalfSquare
+  fullName: ArgentSea.DataResilienceConfiguration.SequenceLengthening.HalfSquare
+  nameWithType: DataResilienceConfiguration.SequenceLengthening.HalfSquare
 - uid: ArgentSea.DataResilienceConfiguration.SequenceLengthening.Linear
   name: Linear
   href: api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.html#ArgentSea_DataResilienceConfiguration_SequenceLengthening_Linear
@@ -493,14 +590,6 @@ references:
   fullName.vb: ArgentSea.DbDataStores(Of TConfiguration).DbDataSets
   nameWithType: DbDataStores<TConfiguration>.DbDataSets
   nameWithType.vb: DbDataStores(Of TConfiguration).DbDataSets
-- uid: ArgentSea.DbDataStores`1.DbDataSets.#ctor
-  name: DbDataSets()
-  href: api/ArgentSea.DbDataStores-1.DbDataSets.html#ArgentSea_DbDataStores_1_DbDataSets__ctor
-  commentId: M:ArgentSea.DbDataStores`1.DbDataSets.#ctor
-  fullName: ArgentSea.DbDataStores<TConfiguration>.DbDataSets.DbDataSets()
-  fullName.vb: ArgentSea.DbDataStores(Of TConfiguration).DbDataSets.DbDataSets()
-  nameWithType: DbDataStores<TConfiguration>.DbDataSets.DbDataSets()
-  nameWithType.vb: DbDataStores(Of TConfiguration).DbDataSets.DbDataSets()
 - uid: ArgentSea.DbDataStores`1.DbDataSets.#ctor(ArgentSea.DbDataStores{`0},ArgentSea.IDbConnectionConfiguration[])
   name: DbDataSets(DbDataStores<TConfiguration>, IDbConnectionConfiguration[])
   href: api/ArgentSea.DbDataStores-1.DbDataSets.html#ArgentSea_DbDataStores_1_DbDataSets__ctor_ArgentSea_DbDataStores__0__ArgentSea_IDbConnectionConfiguration___
@@ -1209,19 +1298,32 @@ references:
   isSpec: "True"
   fullName: ArgentSea.IConnectionConfiguration.GetConnectionString
   nameWithType: IConnectionConfiguration.GetConnectionString
-- uid: ArgentSea.IConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  name: SetSecurity(SecurityConfiguration)
-  href: api/ArgentSea.IConnectionConfiguration.html#ArgentSea_IConnectionConfiguration_SetSecurity_ArgentSea_SecurityConfiguration_
-  commentId: M:ArgentSea.IConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  fullName: ArgentSea.IConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  nameWithType: IConnectionConfiguration.SetSecurity(SecurityConfiguration)
-- uid: ArgentSea.IConnectionConfiguration.SetSecurity*
-  name: SetSecurity
-  href: api/ArgentSea.IConnectionConfiguration.html#ArgentSea_IConnectionConfiguration_SetSecurity_
-  commentId: Overload:ArgentSea.IConnectionConfiguration.SetSecurity
+- uid: ArgentSea.IConnectionConfiguration.ResilienceKey
+  name: ResilienceKey
+  href: api/ArgentSea.IConnectionConfiguration.html#ArgentSea_IConnectionConfiguration_ResilienceKey
+  commentId: P:ArgentSea.IConnectionConfiguration.ResilienceKey
+  fullName: ArgentSea.IConnectionConfiguration.ResilienceKey
+  nameWithType: IConnectionConfiguration.ResilienceKey
+- uid: ArgentSea.IConnectionConfiguration.ResilienceKey*
+  name: ResilienceKey
+  href: api/ArgentSea.IConnectionConfiguration.html#ArgentSea_IConnectionConfiguration_ResilienceKey_
+  commentId: Overload:ArgentSea.IConnectionConfiguration.ResilienceKey
   isSpec: "True"
-  fullName: ArgentSea.IConnectionConfiguration.SetSecurity
-  nameWithType: IConnectionConfiguration.SetSecurity
+  fullName: ArgentSea.IConnectionConfiguration.ResilienceKey
+  nameWithType: IConnectionConfiguration.ResilienceKey
+- uid: ArgentSea.IConnectionConfiguration.SetConfigurationOptions(ArgentSea.DataSecurityOptions,ArgentSea.DataResilienceOptions)
+  name: SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)
+  href: api/ArgentSea.IConnectionConfiguration.html#ArgentSea_IConnectionConfiguration_SetConfigurationOptions_ArgentSea_DataSecurityOptions_ArgentSea_DataResilienceOptions_
+  commentId: M:ArgentSea.IConnectionConfiguration.SetConfigurationOptions(ArgentSea.DataSecurityOptions,ArgentSea.DataResilienceOptions)
+  fullName: ArgentSea.IConnectionConfiguration.SetConfigurationOptions(ArgentSea.DataSecurityOptions, ArgentSea.DataResilienceOptions)
+  nameWithType: IConnectionConfiguration.SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)
+- uid: ArgentSea.IConnectionConfiguration.SetConfigurationOptions*
+  name: SetConfigurationOptions
+  href: api/ArgentSea.IConnectionConfiguration.html#ArgentSea_IConnectionConfiguration_SetConfigurationOptions_
+  commentId: Overload:ArgentSea.IConnectionConfiguration.SetConfigurationOptions
+  isSpec: "True"
+  fullName: ArgentSea.IConnectionConfiguration.SetConfigurationOptions
+  nameWithType: IConnectionConfiguration.SetConfigurationOptions
 - uid: ArgentSea.IDataProviderServiceFactory
   name: IDataProviderServiceFactory
   href: api/ArgentSea.IDataProviderServiceFactory.html
@@ -1312,32 +1414,6 @@ references:
   isSpec: "True"
   fullName: ArgentSea.IDbConnectionConfiguration.DataConnectionInternal
   nameWithType: IDbConnectionConfiguration.DataConnectionInternal
-- uid: ArgentSea.IDbConnectionConfiguration.DataResilienceKey
-  name: DataResilienceKey
-  href: api/ArgentSea.IDbConnectionConfiguration.html#ArgentSea_IDbConnectionConfiguration_DataResilienceKey
-  commentId: P:ArgentSea.IDbConnectionConfiguration.DataResilienceKey
-  fullName: ArgentSea.IDbConnectionConfiguration.DataResilienceKey
-  nameWithType: IDbConnectionConfiguration.DataResilienceKey
-- uid: ArgentSea.IDbConnectionConfiguration.DataResilienceKey*
-  name: DataResilienceKey
-  href: api/ArgentSea.IDbConnectionConfiguration.html#ArgentSea_IDbConnectionConfiguration_DataResilienceKey_
-  commentId: Overload:ArgentSea.IDbConnectionConfiguration.DataResilienceKey
-  isSpec: "True"
-  fullName: ArgentSea.IDbConnectionConfiguration.DataResilienceKey
-  nameWithType: IDbConnectionConfiguration.DataResilienceKey
-- uid: ArgentSea.IDbConnectionConfiguration.SecurityKey
-  name: SecurityKey
-  href: api/ArgentSea.IDbConnectionConfiguration.html#ArgentSea_IDbConnectionConfiguration_SecurityKey
-  commentId: P:ArgentSea.IDbConnectionConfiguration.SecurityKey
-  fullName: ArgentSea.IDbConnectionConfiguration.SecurityKey
-  nameWithType: IDbConnectionConfiguration.SecurityKey
-- uid: ArgentSea.IDbConnectionConfiguration.SecurityKey*
-  name: SecurityKey
-  href: api/ArgentSea.IDbConnectionConfiguration.html#ArgentSea_IDbConnectionConfiguration_SecurityKey_
-  commentId: Overload:ArgentSea.IDbConnectionConfiguration.SecurityKey
-  isSpec: "True"
-  fullName: ArgentSea.IDbConnectionConfiguration.SecurityKey
-  nameWithType: IDbConnectionConfiguration.SecurityKey
 - uid: ArgentSea.IDbDataConfigurationOptions
   name: IDbDataConfigurationOptions
   href: api/ArgentSea.IDbDataConfigurationOptions.html
@@ -1500,57 +1576,23 @@ references:
   fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard)
   nameWithType: IShardConnectionsConfiguration<TShard>
   nameWithType.vb: IShardConnectionsConfiguration(Of TShard)
-- uid: ArgentSea.IShardConnectionsConfiguration`1.DataResilienceKey
-  name: DataResilienceKey
-  href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_DataResilienceKey
-  commentId: P:ArgentSea.IShardConnectionsConfiguration`1.DataResilienceKey
-  fullName: ArgentSea.IShardConnectionsConfiguration<TShard>.DataResilienceKey
-  fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard).DataResilienceKey
-  nameWithType: IShardConnectionsConfiguration<TShard>.DataResilienceKey
-  nameWithType.vb: IShardConnectionsConfiguration(Of TShard).DataResilienceKey
-- uid: ArgentSea.IShardConnectionsConfiguration`1.DataResilienceKey*
-  name: DataResilienceKey
-  href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_DataResilienceKey_
-  commentId: Overload:ArgentSea.IShardConnectionsConfiguration`1.DataResilienceKey
+- uid: ArgentSea.IShardConnectionsConfiguration`1.ShardSetName
+  name: ShardSetName
+  href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_ShardSetName
+  commentId: P:ArgentSea.IShardConnectionsConfiguration`1.ShardSetName
+  fullName: ArgentSea.IShardConnectionsConfiguration<TShard>.ShardSetName
+  fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard).ShardSetName
+  nameWithType: IShardConnectionsConfiguration<TShard>.ShardSetName
+  nameWithType.vb: IShardConnectionsConfiguration(Of TShard).ShardSetName
+- uid: ArgentSea.IShardConnectionsConfiguration`1.ShardSetName*
+  name: ShardSetName
+  href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_ShardSetName_
+  commentId: Overload:ArgentSea.IShardConnectionsConfiguration`1.ShardSetName
   isSpec: "True"
-  fullName: ArgentSea.IShardConnectionsConfiguration<TShard>.DataResilienceKey
-  fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard).DataResilienceKey
-  nameWithType: IShardConnectionsConfiguration<TShard>.DataResilienceKey
-  nameWithType.vb: IShardConnectionsConfiguration(Of TShard).DataResilienceKey
-- uid: ArgentSea.IShardConnectionsConfiguration`1.SecurityKey
-  name: SecurityKey
-  href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_SecurityKey
-  commentId: P:ArgentSea.IShardConnectionsConfiguration`1.SecurityKey
-  fullName: ArgentSea.IShardConnectionsConfiguration<TShard>.SecurityKey
-  fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard).SecurityKey
-  nameWithType: IShardConnectionsConfiguration<TShard>.SecurityKey
-  nameWithType.vb: IShardConnectionsConfiguration(Of TShard).SecurityKey
-- uid: ArgentSea.IShardConnectionsConfiguration`1.SecurityKey*
-  name: SecurityKey
-  href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_SecurityKey_
-  commentId: Overload:ArgentSea.IShardConnectionsConfiguration`1.SecurityKey
-  isSpec: "True"
-  fullName: ArgentSea.IShardConnectionsConfiguration<TShard>.SecurityKey
-  fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard).SecurityKey
-  nameWithType: IShardConnectionsConfiguration<TShard>.SecurityKey
-  nameWithType.vb: IShardConnectionsConfiguration(Of TShard).SecurityKey
-- uid: ArgentSea.IShardConnectionsConfiguration`1.ShardSetKey
-  name: ShardSetKey
-  href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_ShardSetKey
-  commentId: P:ArgentSea.IShardConnectionsConfiguration`1.ShardSetKey
-  fullName: ArgentSea.IShardConnectionsConfiguration<TShard>.ShardSetKey
-  fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard).ShardSetKey
-  nameWithType: IShardConnectionsConfiguration<TShard>.ShardSetKey
-  nameWithType.vb: IShardConnectionsConfiguration(Of TShard).ShardSetKey
-- uid: ArgentSea.IShardConnectionsConfiguration`1.ShardSetKey*
-  name: ShardSetKey
-  href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_ShardSetKey_
-  commentId: Overload:ArgentSea.IShardConnectionsConfiguration`1.ShardSetKey
-  isSpec: "True"
-  fullName: ArgentSea.IShardConnectionsConfiguration<TShard>.ShardSetKey
-  fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard).ShardSetKey
-  nameWithType: IShardConnectionsConfiguration<TShard>.ShardSetKey
-  nameWithType.vb: IShardConnectionsConfiguration(Of TShard).ShardSetKey
+  fullName: ArgentSea.IShardConnectionsConfiguration<TShard>.ShardSetName
+  fullName.vb: ArgentSea.IShardConnectionsConfiguration(Of TShard).ShardSetName
+  nameWithType: IShardConnectionsConfiguration<TShard>.ShardSetName
+  nameWithType.vb: IShardConnectionsConfiguration(Of TShard).ShardSetName
 - uid: ArgentSea.IShardConnectionsConfiguration`1.ShardsInternal
   name: ShardsInternal
   href: api/ArgentSea.IShardConnectionsConfiguration-1.html#ArgentSea_IShardConnectionsConfiguration_1_ShardsInternal
@@ -5619,19 +5661,6 @@ references:
   isSpec: "True"
   fullName: ArgentSea.Pg.PgConnectionConfiguration.ServerCompatibilityMode
   nameWithType: PgConnectionConfiguration.ServerCompatibilityMode
-- uid: ArgentSea.Pg.PgConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  name: SetSecurity(SecurityConfiguration)
-  href: api-pg/ArgentSea.Pg.PgConnectionConfiguration.html#ArgentSea_Pg_PgConnectionConfiguration_SetSecurity_ArgentSea_SecurityConfiguration_
-  commentId: M:ArgentSea.Pg.PgConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  fullName: ArgentSea.Pg.PgConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  nameWithType: PgConnectionConfiguration.SetSecurity(SecurityConfiguration)
-- uid: ArgentSea.Pg.PgConnectionConfiguration.SetSecurity*
-  name: SetSecurity
-  href: api-pg/ArgentSea.Pg.PgConnectionConfiguration.html#ArgentSea_Pg_PgConnectionConfiguration_SetSecurity_
-  commentId: Overload:ArgentSea.Pg.PgConnectionConfiguration.SetSecurity
-  isSpec: "True"
-  fullName: ArgentSea.Pg.PgConnectionConfiguration.SetSecurity
-  nameWithType: PgConnectionConfiguration.SetSecurity
 - uid: ArgentSea.Pg.PgConnectionConfiguration.SocketReceiveBufferSize
   name: SocketReceiveBufferSize
   href: api-pg/ArgentSea.Pg.PgConnectionConfiguration.html#ArgentSea_Pg_PgConnectionConfiguration_SocketReceiveBufferSize
@@ -5845,32 +5874,6 @@ references:
   isSpec: "True"
   fullName: ArgentSea.Pg.PgDbConnectionConfiguration.DataConnectionInternal
   nameWithType: PgDbConnectionConfiguration.DataConnectionInternal
-- uid: ArgentSea.Pg.PgDbConnectionConfiguration.DataResilienceKey
-  name: DataResilienceKey
-  href: api-pg/ArgentSea.Pg.PgDbConnectionConfiguration.html#ArgentSea_Pg_PgDbConnectionConfiguration_DataResilienceKey
-  commentId: P:ArgentSea.Pg.PgDbConnectionConfiguration.DataResilienceKey
-  fullName: ArgentSea.Pg.PgDbConnectionConfiguration.DataResilienceKey
-  nameWithType: PgDbConnectionConfiguration.DataResilienceKey
-- uid: ArgentSea.Pg.PgDbConnectionConfiguration.DataResilienceKey*
-  name: DataResilienceKey
-  href: api-pg/ArgentSea.Pg.PgDbConnectionConfiguration.html#ArgentSea_Pg_PgDbConnectionConfiguration_DataResilienceKey_
-  commentId: Overload:ArgentSea.Pg.PgDbConnectionConfiguration.DataResilienceKey
-  isSpec: "True"
-  fullName: ArgentSea.Pg.PgDbConnectionConfiguration.DataResilienceKey
-  nameWithType: PgDbConnectionConfiguration.DataResilienceKey
-- uid: ArgentSea.Pg.PgDbConnectionConfiguration.SecurityKey
-  name: SecurityKey
-  href: api-pg/ArgentSea.Pg.PgDbConnectionConfiguration.html#ArgentSea_Pg_PgDbConnectionConfiguration_SecurityKey
-  commentId: P:ArgentSea.Pg.PgDbConnectionConfiguration.SecurityKey
-  fullName: ArgentSea.Pg.PgDbConnectionConfiguration.SecurityKey
-  nameWithType: PgDbConnectionConfiguration.SecurityKey
-- uid: ArgentSea.Pg.PgDbConnectionConfiguration.SecurityKey*
-  name: SecurityKey
-  href: api-pg/ArgentSea.Pg.PgDbConnectionConfiguration.html#ArgentSea_Pg_PgDbConnectionConfiguration_SecurityKey_
-  commentId: Overload:ArgentSea.Pg.PgDbConnectionConfiguration.SecurityKey
-  isSpec: "True"
-  fullName: ArgentSea.Pg.PgDbConnectionConfiguration.SecurityKey
-  nameWithType: PgDbConnectionConfiguration.SecurityKey
 - uid: ArgentSea.Pg.PgDbConnectionOptions
   name: PgDbConnectionOptions
   href: api-pg/ArgentSea.Pg.PgDbConnectionOptions.html
@@ -6793,40 +6796,6 @@ references:
   fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration
   nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration
   nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration
-- uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.DataResilienceKey
-  name: DataResilienceKey
-  href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_DataResilienceKey
-  commentId: P:ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.DataResilienceKey
-  fullName: ArgentSea.Pg.PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.DataResilienceKey
-  fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.DataResilienceKey
-  nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.DataResilienceKey
-  nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.DataResilienceKey
-- uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.DataResilienceKey*
-  name: DataResilienceKey
-  href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_DataResilienceKey_
-  commentId: Overload:ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.DataResilienceKey
-  isSpec: "True"
-  fullName: ArgentSea.Pg.PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.DataResilienceKey
-  fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.DataResilienceKey
-  nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.DataResilienceKey
-  nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.DataResilienceKey
-- uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.SecurityKey
-  name: SecurityKey
-  href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_SecurityKey
-  commentId: P:ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.SecurityKey
-  fullName: ArgentSea.Pg.PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.SecurityKey
-  fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.SecurityKey
-  nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.SecurityKey
-  nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.SecurityKey
-- uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.SecurityKey*
-  name: SecurityKey
-  href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_SecurityKey_
-  commentId: Overload:ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.SecurityKey
-  isSpec: "True"
-  fullName: ArgentSea.Pg.PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.SecurityKey
-  fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.SecurityKey
-  nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.SecurityKey
-  nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.SecurityKey
 - uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.Shards
   name: Shards
   href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_Shards
@@ -6844,23 +6813,23 @@ references:
   fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.Shards
   nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.Shards
   nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.Shards
-- uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardSetKey
-  name: ShardSetKey
-  href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_ShardSetKey
-  commentId: P:ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardSetKey
-  fullName: ArgentSea.Pg.PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.ShardSetKey
-  fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.ShardSetKey
-  nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.ShardSetKey
-  nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.ShardSetKey
-- uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardSetKey*
-  name: ShardSetKey
-  href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_ShardSetKey_
-  commentId: Overload:ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardSetKey
+- uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardSetName
+  name: ShardSetName
+  href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_ShardSetName
+  commentId: P:ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardSetName
+  fullName: ArgentSea.Pg.PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.ShardSetName
+  fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.ShardSetName
+  nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.ShardSetName
+  nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.ShardSetName
+- uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardSetName*
+  name: ShardSetName
+  href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_ShardSetName_
+  commentId: Overload:ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardSetName
   isSpec: "True"
-  fullName: ArgentSea.Pg.PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.ShardSetKey
-  fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.ShardSetKey
-  nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.ShardSetKey
-  nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.ShardSetKey
+  fullName: ArgentSea.Pg.PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.ShardSetName
+  fullName.vb: ArgentSea.Pg.PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.ShardSetName
+  nameWithType: PgShardConnectionOptions<TShard>.PgShardConnectionsConfiguration.ShardSetName
+  nameWithType.vb: PgShardConnectionOptions(Of TShard).PgShardConnectionsConfiguration.ShardSetName
 - uid: ArgentSea.Pg.PgShardConnectionOptions`1.PgShardConnectionsConfiguration.ShardsInternal
   name: ShardsInternal
   href: api-pg/ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html#ArgentSea_Pg_PgShardConnectionOptions_1_PgShardConnectionsConfiguration_ShardsInternal
@@ -8006,6 +7975,23 @@ references:
   fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardDataSet.Item
   nameWithType: ShardDataStores<TShard, TConfiguration>.ShardDataSet.Item
   nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardDataSet.Item
+- uid: ArgentSea.ShardDataStores`2.ShardDataSet.Key
+  name: Key
+  href: api/ArgentSea.ShardDataStores-2.ShardDataSet.html#ArgentSea_ShardDataStores_2_ShardDataSet_Key
+  commentId: P:ArgentSea.ShardDataStores`2.ShardDataSet.Key
+  fullName: ArgentSea.ShardDataStores<TShard, TConfiguration>.ShardDataSet.Key
+  fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardDataSet.Key
+  nameWithType: ShardDataStores<TShard, TConfiguration>.ShardDataSet.Key
+  nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardDataSet.Key
+- uid: ArgentSea.ShardDataStores`2.ShardDataSet.Key*
+  name: Key
+  href: api/ArgentSea.ShardDataStores-2.ShardDataSet.html#ArgentSea_ShardDataStores_2_ShardDataSet_Key_
+  commentId: Overload:ArgentSea.ShardDataStores`2.ShardDataSet.Key
+  isSpec: "True"
+  fullName: ArgentSea.ShardDataStores<TShard, TConfiguration>.ShardDataSet.Key
+  fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardDataSet.Key
+  nameWithType: ShardDataStores<TShard, TConfiguration>.ShardDataSet.Key
+  nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardDataSet.Key
 - uid: ArgentSea.ShardDataStores`2.ShardDataSet.QueryAllAsync*
   name: QueryAllAsync
   href: api/ArgentSea.ShardDataStores-2.ShardDataSet.html#ArgentSea_ShardDataStores_2_ShardDataSet_QueryAllAsync_
@@ -8051,23 +8037,6 @@ references:
   fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardDataSet.QueryFirstAsync(Of TArg, TResult)(System.String, TShard(), System.Data.Common.DbParameterCollection, System.Int32, ArgentSea.QueryResultModelHandler(Of TShard, TArg, TResult), TArg, System.Threading.CancellationToken)
   nameWithType: ShardDataStores<TShard, TConfiguration>.ShardDataSet.QueryFirstAsync<TArg, TResult>(String, TShard[], DbParameterCollection, Int32, QueryResultModelHandler<TShard, TArg, TResult>, TArg, CancellationToken)
   nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardDataSet.QueryFirstAsync(Of TArg, TResult)(String, TShard(), DbParameterCollection, Int32, QueryResultModelHandler(Of TShard, TArg, TResult), TArg, CancellationToken)
-- uid: ArgentSea.ShardDataStores`2.ShardDataSet.ShardId
-  name: ShardId
-  href: api/ArgentSea.ShardDataStores-2.ShardDataSet.html#ArgentSea_ShardDataStores_2_ShardDataSet_ShardId
-  commentId: P:ArgentSea.ShardDataStores`2.ShardDataSet.ShardId
-  fullName: ArgentSea.ShardDataStores<TShard, TConfiguration>.ShardDataSet.ShardId
-  fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardDataSet.ShardId
-  nameWithType: ShardDataStores<TShard, TConfiguration>.ShardDataSet.ShardId
-  nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardDataSet.ShardId
-- uid: ArgentSea.ShardDataStores`2.ShardDataSet.ShardId*
-  name: ShardId
-  href: api/ArgentSea.ShardDataStores-2.ShardDataSet.html#ArgentSea_ShardDataStores_2_ShardDataSet_ShardId_
-  commentId: Overload:ArgentSea.ShardDataStores`2.ShardDataSet.ShardId
-  isSpec: "True"
-  fullName: ArgentSea.ShardDataStores<TShard, TConfiguration>.ShardDataSet.ShardId
-  fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardDataSet.ShardId
-  nameWithType: ShardDataStores<TShard, TConfiguration>.ShardDataSet.ShardId
-  nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardDataSet.ShardId
 - uid: ArgentSea.ShardDataStores`2.ShardDataSet.SyncRoot
   name: SyncRoot
   href: api/ArgentSea.ShardDataStores-2.ShardDataSet.html#ArgentSea_ShardDataStores_2_ShardDataSet_SyncRoot
@@ -8224,15 +8193,15 @@ references:
   fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardInstance
   nameWithType: ShardDataStores<TShard, TConfiguration>.ShardInstance
   nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardInstance
-- uid: ArgentSea.ShardDataStores`2.ShardInstance.#ctor(ArgentSea.ShardDataStores{`0,`1},`0,System.String,ArgentSea.IConnectionConfiguration,ArgentSea.IConnectionConfiguration)
-  name: ShardInstance(ShardDataStores<TShard, TConfiguration>, TShard, String, IConnectionConfiguration, IConnectionConfiguration)
-  href: api/ArgentSea.ShardDataStores-2.ShardInstance.html#ArgentSea_ShardDataStores_2_ShardInstance__ctor_ArgentSea_ShardDataStores__0__1___0_System_String_ArgentSea_IConnectionConfiguration_ArgentSea_IConnectionConfiguration_
-  commentId: M:ArgentSea.ShardDataStores`2.ShardInstance.#ctor(ArgentSea.ShardDataStores{`0,`1},`0,System.String,ArgentSea.IConnectionConfiguration,ArgentSea.IConnectionConfiguration)
-  name.vb: ShardInstance(ShardDataStores(Of TShard, TConfiguration), TShard, String, IConnectionConfiguration, IConnectionConfiguration)
-  fullName: ArgentSea.ShardDataStores<TShard, TConfiguration>.ShardInstance.ShardInstance(ArgentSea.ShardDataStores<TShard, TConfiguration>, TShard, System.String, ArgentSea.IConnectionConfiguration, ArgentSea.IConnectionConfiguration)
-  fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardInstance.ShardInstance(ArgentSea.ShardDataStores(Of TShard, TConfiguration), TShard, System.String, ArgentSea.IConnectionConfiguration, ArgentSea.IConnectionConfiguration)
-  nameWithType: ShardDataStores<TShard, TConfiguration>.ShardInstance.ShardInstance(ShardDataStores<TShard, TConfiguration>, TShard, String, IConnectionConfiguration, IConnectionConfiguration)
-  nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardInstance.ShardInstance(ShardDataStores(Of TShard, TConfiguration), TShard, String, IConnectionConfiguration, IConnectionConfiguration)
+- uid: ArgentSea.ShardDataStores`2.ShardInstance.#ctor(ArgentSea.ShardDataStores{`0,`1},`0,ArgentSea.IConnectionConfiguration,ArgentSea.IConnectionConfiguration)
+  name: ShardInstance(ShardDataStores<TShard, TConfiguration>, TShard, IConnectionConfiguration, IConnectionConfiguration)
+  href: api/ArgentSea.ShardDataStores-2.ShardInstance.html#ArgentSea_ShardDataStores_2_ShardInstance__ctor_ArgentSea_ShardDataStores__0__1___0_ArgentSea_IConnectionConfiguration_ArgentSea_IConnectionConfiguration_
+  commentId: M:ArgentSea.ShardDataStores`2.ShardInstance.#ctor(ArgentSea.ShardDataStores{`0,`1},`0,ArgentSea.IConnectionConfiguration,ArgentSea.IConnectionConfiguration)
+  name.vb: ShardInstance(ShardDataStores(Of TShard, TConfiguration), TShard, IConnectionConfiguration, IConnectionConfiguration)
+  fullName: ArgentSea.ShardDataStores<TShard, TConfiguration>.ShardInstance.ShardInstance(ArgentSea.ShardDataStores<TShard, TConfiguration>, TShard, ArgentSea.IConnectionConfiguration, ArgentSea.IConnectionConfiguration)
+  fullName.vb: ArgentSea.ShardDataStores(Of TShard, TConfiguration).ShardInstance.ShardInstance(ArgentSea.ShardDataStores(Of TShard, TConfiguration), TShard, ArgentSea.IConnectionConfiguration, ArgentSea.IConnectionConfiguration)
+  nameWithType: ShardDataStores<TShard, TConfiguration>.ShardInstance.ShardInstance(ShardDataStores<TShard, TConfiguration>, TShard, IConnectionConfiguration, IConnectionConfiguration)
+  nameWithType.vb: ShardDataStores(Of TShard, TConfiguration).ShardInstance.ShardInstance(ShardDataStores(Of TShard, TConfiguration), TShard, IConnectionConfiguration, IConnectionConfiguration)
 - uid: ArgentSea.ShardDataStores`2.ShardInstance.#ctor*
   name: ShardInstance
   href: api/ArgentSea.ShardDataStores-2.ShardInstance.html#ArgentSea_ShardDataStores_2_ShardInstance__ctor_
@@ -12276,19 +12245,6 @@ references:
   isSpec: "True"
   fullName: ArgentSea.Sql.SqlConnectionConfiguration.Replication
   nameWithType: SqlConnectionConfiguration.Replication
-- uid: ArgentSea.Sql.SqlConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  name: SetSecurity(SecurityConfiguration)
-  href: api-sql/ArgentSea.Sql.SqlConnectionConfiguration.html#ArgentSea_Sql_SqlConnectionConfiguration_SetSecurity_ArgentSea_SecurityConfiguration_
-  commentId: M:ArgentSea.Sql.SqlConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  fullName: ArgentSea.Sql.SqlConnectionConfiguration.SetSecurity(ArgentSea.SecurityConfiguration)
-  nameWithType: SqlConnectionConfiguration.SetSecurity(SecurityConfiguration)
-- uid: ArgentSea.Sql.SqlConnectionConfiguration.SetSecurity*
-  name: SetSecurity
-  href: api-sql/ArgentSea.Sql.SqlConnectionConfiguration.html#ArgentSea_Sql_SqlConnectionConfiguration_SetSecurity_
-  commentId: Overload:ArgentSea.Sql.SqlConnectionConfiguration.SetSecurity
-  isSpec: "True"
-  fullName: ArgentSea.Sql.SqlConnectionConfiguration.SetSecurity
-  nameWithType: SqlConnectionConfiguration.SetSecurity
 - uid: ArgentSea.Sql.SqlConnectionConfiguration.TrustServerCertificate
   name: TrustServerCertificate
   href: api-sql/ArgentSea.Sql.SqlConnectionConfiguration.html#ArgentSea_Sql_SqlConnectionConfiguration_TrustServerCertificate
@@ -12411,32 +12367,6 @@ references:
   isSpec: "True"
   fullName: ArgentSea.Sql.SqlDbConnectionConfiguration.DataConnectionInternal
   nameWithType: SqlDbConnectionConfiguration.DataConnectionInternal
-- uid: ArgentSea.Sql.SqlDbConnectionConfiguration.DataResilienceKey
-  name: DataResilienceKey
-  href: api-sql/ArgentSea.Sql.SqlDbConnectionConfiguration.html#ArgentSea_Sql_SqlDbConnectionConfiguration_DataResilienceKey
-  commentId: P:ArgentSea.Sql.SqlDbConnectionConfiguration.DataResilienceKey
-  fullName: ArgentSea.Sql.SqlDbConnectionConfiguration.DataResilienceKey
-  nameWithType: SqlDbConnectionConfiguration.DataResilienceKey
-- uid: ArgentSea.Sql.SqlDbConnectionConfiguration.DataResilienceKey*
-  name: DataResilienceKey
-  href: api-sql/ArgentSea.Sql.SqlDbConnectionConfiguration.html#ArgentSea_Sql_SqlDbConnectionConfiguration_DataResilienceKey_
-  commentId: Overload:ArgentSea.Sql.SqlDbConnectionConfiguration.DataResilienceKey
-  isSpec: "True"
-  fullName: ArgentSea.Sql.SqlDbConnectionConfiguration.DataResilienceKey
-  nameWithType: SqlDbConnectionConfiguration.DataResilienceKey
-- uid: ArgentSea.Sql.SqlDbConnectionConfiguration.SecurityKey
-  name: SecurityKey
-  href: api-sql/ArgentSea.Sql.SqlDbConnectionConfiguration.html#ArgentSea_Sql_SqlDbConnectionConfiguration_SecurityKey
-  commentId: P:ArgentSea.Sql.SqlDbConnectionConfiguration.SecurityKey
-  fullName: ArgentSea.Sql.SqlDbConnectionConfiguration.SecurityKey
-  nameWithType: SqlDbConnectionConfiguration.SecurityKey
-- uid: ArgentSea.Sql.SqlDbConnectionConfiguration.SecurityKey*
-  name: SecurityKey
-  href: api-sql/ArgentSea.Sql.SqlDbConnectionConfiguration.html#ArgentSea_Sql_SqlDbConnectionConfiguration_SecurityKey_
-  commentId: Overload:ArgentSea.Sql.SqlDbConnectionConfiguration.SecurityKey
-  isSpec: "True"
-  fullName: ArgentSea.Sql.SqlDbConnectionConfiguration.SecurityKey
-  nameWithType: SqlDbConnectionConfiguration.SecurityKey
 - uid: ArgentSea.Sql.SqlDbConnectionOptions
   name: SqlDbConnectionOptions
   href: api-sql/ArgentSea.Sql.SqlDbConnectionOptions.html
@@ -13459,40 +13389,6 @@ references:
   fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration
   nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration
   nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration
-- uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.DataResilienceKey
-  name: DataResilienceKey
-  href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_DataResilienceKey
-  commentId: P:ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.DataResilienceKey
-  fullName: ArgentSea.Sql.SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.DataResilienceKey
-  fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.DataResilienceKey
-  nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.DataResilienceKey
-  nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.DataResilienceKey
-- uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.DataResilienceKey*
-  name: DataResilienceKey
-  href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_DataResilienceKey_
-  commentId: Overload:ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.DataResilienceKey
-  isSpec: "True"
-  fullName: ArgentSea.Sql.SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.DataResilienceKey
-  fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.DataResilienceKey
-  nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.DataResilienceKey
-  nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.DataResilienceKey
-- uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.SecurityKey
-  name: SecurityKey
-  href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_SecurityKey
-  commentId: P:ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.SecurityKey
-  fullName: ArgentSea.Sql.SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.SecurityKey
-  fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.SecurityKey
-  nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.SecurityKey
-  nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.SecurityKey
-- uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.SecurityKey*
-  name: SecurityKey
-  href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_SecurityKey_
-  commentId: Overload:ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.SecurityKey
-  isSpec: "True"
-  fullName: ArgentSea.Sql.SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.SecurityKey
-  fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.SecurityKey
-  nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.SecurityKey
-  nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.SecurityKey
 - uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.Shards
   name: Shards
   href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_Shards
@@ -13510,23 +13406,23 @@ references:
   fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.Shards
   nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.Shards
   nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.Shards
-- uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardSetKey
-  name: ShardSetKey
-  href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_ShardSetKey
-  commentId: P:ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardSetKey
-  fullName: ArgentSea.Sql.SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.ShardSetKey
-  fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.ShardSetKey
-  nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.ShardSetKey
-  nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.ShardSetKey
-- uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardSetKey*
-  name: ShardSetKey
-  href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_ShardSetKey_
-  commentId: Overload:ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardSetKey
+- uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardSetName
+  name: ShardSetName
+  href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_ShardSetName
+  commentId: P:ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardSetName
+  fullName: ArgentSea.Sql.SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.ShardSetName
+  fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.ShardSetName
+  nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.ShardSetName
+  nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.ShardSetName
+- uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardSetName*
+  name: ShardSetName
+  href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_ShardSetName_
+  commentId: Overload:ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardSetName
   isSpec: "True"
-  fullName: ArgentSea.Sql.SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.ShardSetKey
-  fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.ShardSetKey
-  nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.ShardSetKey
-  nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.ShardSetKey
+  fullName: ArgentSea.Sql.SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.ShardSetName
+  fullName.vb: ArgentSea.Sql.SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.ShardSetName
+  nameWithType: SqlShardConnectionOptions<TShard>.SqlShardConnectionsConfiguration.ShardSetName
+  nameWithType.vb: SqlShardConnectionOptions(Of TShard).SqlShardConnectionsConfiguration.ShardSetName
 - uid: ArgentSea.Sql.SqlShardConnectionOptions`1.SqlShardConnectionsConfiguration.ShardsInternal
   name: ShardsInternal
   href: api-sql/ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html#ArgentSea_Sql_SqlShardConnectionOptions_1_SqlShardConnectionsConfiguration_ShardsInternal

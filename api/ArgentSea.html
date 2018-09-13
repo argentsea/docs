@@ -87,12 +87,15 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="ArgentSea.DataConnectionConfiguration.html">DataConnectionConfiguration</a></h4>
+      <section><p>Abstract class implementing the data connection functionality shared by PostgreSQL and SQL Server implementations.</p>
+</section>
       <h4><a class="xref" href="ArgentSea.DataResilienceConfiguration.html">DataResilienceConfiguration</a></h4>
       <section><p>This class contains the definition for a data resiliance strategy. Specifically: when to retry and when to circuit break.
 This class is created as a configuration entry in an array in the DataResilienceStrategies property of the <see cref="!:DataConfigurationOptions">DataConfigurationOptions</see> class.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.DataResilienceOptions.html">DataResilienceOptions</a></h4>
-      <section><p>This options class contains an array of resilience strategies (retry and circuit breaking settings). To specify as particular resilience strategy, a connection can specify a DataResilienceKey.</p>
+      <section><p>This options class contains an array of resilience strategies (retry and circuit breaking settings). To specify as particular resilience strategy, a connection can specify a ResilienceKey.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.DataSecurityOptions.html">DataSecurityOptions</a></h4>
       <section><p>This options class contains an array of <a class="xref" href="ArgentSea.SecurityConfiguration.html">SecurityConfiguration</a> (login information).

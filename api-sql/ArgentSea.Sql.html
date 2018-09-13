@@ -158,8 +158,8 @@
 </section>
       <h4><a class="xref" href="ArgentSea.Sql.SqlConnectionConfiguration.html">SqlConnectionConfiguration</a></h4>
       <section><p>This class represents is a (non-sharded) database connection.
-Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a DataResilienceKey (if defined) must match as key in the DataResilienceOptions array.
-If the DataResilienceKey is not defined, a default data resilience strategy will be used.</p>
+Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match as key in the DataResilienceOptions array.
+If the ResilienceKey is not defined, a default data resilience strategy will be used.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Sql.SqlDatabases.html">SqlDatabases</a></h4>
       <section><p>This class manages the non-sharded SQL database connections.</p>
@@ -167,7 +167,22 @@ If the DataResilienceKey is not defined, a default data resilience strategy will
       <h4><a class="xref" href="ArgentSea.Sql.SqlDbConnectionConfiguration.html">SqlDbConnectionConfiguration</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.Sql.SqlDbConnectionOptions.html">SqlDbConnectionOptions</a></h4>
-      <section></section>
+      <section><p>This configuration class defines an array of database <a class="xref" href="ArgentSea.Sql.SqlConnectionConfiguration.html">SqlConnectionConfiguration</a>.
+<example>
+For example, you might configure your appsettings.json like this:<p>
+<pre><code>  &quot;SqlDbConnections&quot;: [
+  {
+    &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
+    &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
+    &quot;DataConnection&quot;: {
+      &quot;DataSource&quot;: &quot;localhost&quot;,
+      &quot;InitialCatalog&quot;: &quot;MyDb&quot;
+      }
+    }
+  ]</code></pre>
+<p>Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match a key in the DataResilienceOptions array.
+</example></p>
+</section>
       <h4><a class="xref" href="ArgentSea.Sql.SqlLoggingExtensions.html">SqlLoggingExtensions</a></h4>
       <section><p>This static class provides the logging extension methods for handling table-valued parameter (TVP) mapping.</p>
 </section>
