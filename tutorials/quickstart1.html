@@ -99,8 +99,8 @@
 set up (preferred), add the json below to your User Secrets file (right-click
 on the project and select <em>Manage User Secrets</em>).</p>
 <p>If you are not using User Secrets, you can simply one of the json sections to your appsettings.json configuration file.</p>
-<div class="WARNING">
-<h5>Warning</h5>
+<div class="TIP">
+<h5>Tip</h5>
 <p>The sample application <em>does</em> use User Secrets, so if you are following along at home you will need to manually copy the credentials section below into the secrets.json file in the sample app.</p>
 </div>
 <p>For a connection using username and password authentication, use:</p>
@@ -122,8 +122,8 @@ on the project and select <em>Manage User Secrets</em>).</p>
   ],
 </code></pre>
 <p>Storing passwords more securely is an incidental benefit of having a separate Credentials section. The principal purpose is to simplify login management when the system has many connections across multiple shard sets.</p>
-<div class="WARNING">
-<h5>Warning</h5>
+<div class="CAUTION">
+<h5>Caution</h5>
 <p>In a production deployment, the Credential section could be hosted in Azure Key Vault, AWS Secrets Manager, or some other secure resource.</p>
 </div>
 <h2 id="4-define-your-database-settings">4. Define Your Database Settings</h2>
@@ -172,12 +172,12 @@ on the project and select <em>Manage User Secrets</em>).</p>
 
 <p>A deep-dive into configuration settings, including a complete list of configuration attributes,
 is available <a href="/tutorials/configuration.html">here</a>.</p>
-<div class="NOTE">
-<h5>Note</h5>
+<div class="TIP">
+<h5>Tip</h5>
 <p>In a production deployment, environment-specific connection information might be stored in server environment variables rather than configuration files. This make deployments much easier to manage.</p>
 </div>
 <h2 id="6-load-argentsea-on-application-start">6. Load ArgentSea on Application Start</h2>
-<p>Open your project’s <em>Startup</em> class. At the top, add the following <em>using</em> statement:</p>
+<p>ArgentSea is an injectable service, so it needs to be registered on application startup.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
 <ul role="tablist">
 <li role="presentation">
@@ -189,6 +189,7 @@ is available <a href="/tutorials/configuration.html">here</a>.</p>
 </ul>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
+<p>Open your project’s <em>Startup</em> class. At the top, add the following <em>using</em> statement:</p>
 <pre><code class="lang-C#">using ArgentSea.Sql;
 </code></pre>
 <p>Then, in the <code>Startup</code> class’ <code>ConfigureServices</code> method, add:</p>
@@ -199,6 +200,7 @@ of our data access clients.</p>
 </section>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
+<p>Open your project’s <em>Startup</em> class. At the top, add the following <em>using</em> statement:</p>
 <pre><code class="lang-C#">using ArgentSea.Pg;
 </code></pre>
 <p>Then, in the <code>Startup</code> class’ <code>ConfigureServices</code> method, add:</p>
@@ -274,7 +276,7 @@ public class Subscriber
 <p>Note that the property name <em>does not</em> need to match the parameter or column name. It is not uncommon for database naming conventions to differ from .NET property naming conventions.</p>
 <div class="WARNING">
 <h5>Warning</h5>
-<p>ArgentSea assumes consistent naming in your data parameters and results. A project with consistently inconsistent parameters or column names will find the ArgentSea Mapper of little practical use.</p>
+<p>ArgentSea assumes consistent naming in your data parameters and results. A project with “consistently inconsistent” parameters or column names will find the ArgentSea Mapper of little practical use.</p>
 </div>
 <h2 id="5-call-a-stored-procedure-or-function">5. Call a Stored Procedure or Function</h2>
 <p>Create one more class, called <em>SubscriberStore</em>. This is the class that will call the database stored procedure or function and return the specified subscriber.</p>

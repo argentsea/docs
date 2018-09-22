@@ -79,7 +79,237 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="sharding">Sharding</h1>
 
-<p>(documentation coming soon)</p>
+<h2 id="about-sharding">About Sharding</h2>
+<p>Sharding is the technique of spreading your data across multiple database servers. It is difficult to add sharding to an existing application because it requires careful thought about the data model and data access. However, the benefits of sharding are substantial, especially if you need to scale cost effectively.</p>
+<h3 id="scalability">Scalability</h3>
+<p>For large data sets, sharding has the advantage of being more cost effective and more predictably scalable than a single massive server. It is hard to justify a massive database server purchase <em>today</em> to accommodate an unreliable growth forecast. Incrementally adding new database servers as demand grows is much a sounder financial approach. Virtualization and cloud technologies help alleviate this problem by making it easier to scale instances, but if you reach the limits of their instance scalability then you have the same problem.</p>
+<h3 id="disaster-recovery">Disaster Recovery</h3>
+<p>Business continuity plans often specify a disaster recovery datacenter that can resume processing if the primary data center goes offline (usually due to a natural disaster like fire, earthquakes, flooding, etc.). Although this approach is common, it is usually plagued by two issues:</p>
+<ul>
+<li>The business must buy a complete data center that is nearly always idle</li>
+<li>Unless testing is unusually robust and frequent, there will always be doubt about whether the failover datacenter would be really able to assume a primary role</li>
+</ul>
+<p>It would be immeasurably better to simply have both the primary <em>and</em> secondary datacenters actively processing transactions, each with enough reserve capacity to handle the load of the other in the event of failure. This negates both the waste of buying an idle datacenter and also any concerns about whether the failover site is truly ready to handle live transactions. In order for both datacenters to be simultaneously active, each one must “own” a segment of the data — which means data sharding.</p>
+<h3 id="global-availability">Global Availability</h3>
+<p>Your foreign customers will have a better, more responsive experience with your application if they access their data from a regionally nearby datacenter. Users accessing a single datacenter across the globe will experience noticeably slower connections. Using sharding with geo-replication can optimize regional access and still allow local queries across all the data.</p>
+<p>Data privacy laws — particularly in China, Europe, and Russia — are also driving data storage to regional datacenters. A data sharding approach can be a useful way to consolidate the legally exportable subset of the data collected in these jurisdictions.</p>
+<h2 id="switching-to-shards">Switching to Shards</h2>
+<p>If you are familiar with relational databases, you will discover that the database engine enforced some standard functionality that is no longer automatically available. For example, unique keys may not be unique across servers and foreign keys may refer to records that do not exist on that server. Thinking carefully through these issues will likely lead to successful workarounds.</p>
+<p>ArgentSea offers essentially two services for managing sharded data:</p>
+<ul>
+<li>The <a href="/api/ArgentSea.ShardDataStores-2.ShardDataSet.html">ShardSet</a> unifies the many shard connections and directs queries to the correct shard and allows concurrent queries across all of them</li>
+<li>The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> (and related <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a>) are a “virtual compound key” that uniquely identifies a record using the shard Id and the record key.</li>
+</ul>
+<h2 id="the-shardkey-and-shardchild">The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a></h2>
+<p>All databases need a way to uniquely identify a record — a record key. With sharded data sets, a record key need to be unique across all the shards. Within a single database, uniqueness is easily managed; across a shard set, database engines can no longer enforce uniqueness for data they don’t know about. Additionally, on the client side, the query dispatcher needs to be able to use the record key in order to know to which shard connection to use.</p>
+<p>There are two approaches to maintaining a unique key across multiple databases:</p>
+<ul>
+<li><strong>Use distinct identity ranges for each database in the shard set.</strong> The upside of this approach is that it is possible to combine data sets without conflicts; the downside is that configuration is complicated — on both the client and database servers — so mistakes are more likely, and some mistakes can be <em>very</em> hard to fix. The query dispatcher must know the various identity ranges hosted by each server in order to select the right connection.</li>
+<li><strong>Combine the <em>shard connection key</em> and the <em>record key</em> into a larger “compound key”.</strong> With this approach, finding the right shard connection is easy because the value is embedded in the compound record key. The database servers do not need to be configured with separate identity ranges, which in some case may allow smaller, more efficient key sizes (i.e. int vs bigint). Combining or splitting shards could be more complicated, however.</li>
+</ul>
+<p>ArgentSea will work with either design. The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> objects offer support for the second approach.</p>
+<h3 id="components">Components</h3>
+<p>A <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> consists of three components: a <em><a href="/api/ArgentSea.DataOrigin.html">DataOrgin</a></em>, a <em>ShardId</em>, and a <em>RecordId</em>. A <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> has the same values plus an additional <em>ChildId</em>.</p>
+<h4 id="the-dataorgin">The <a href="/api/ArgentSea.DataOrigin.html">DataOrgin</a></h4>
+<p>Both the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> have a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> value. The purpose of this value is to represent a data source. It is little more than a character value that you can choose to differentiate the data source.</p>
+<p>For example, keys representing a <em>Customer</em> record might have a <a href="/api/ArgentSea.DataOrigin.html">DataOrgin</a> of “c”, whereas keys representing a <em>Product</em> record might have a <a href="/api/ArgentSea.DataOrigin.html">DataOrgin</a> of “p”. Because this simple tag identifies the data source, two different <a href="/api/ArgentSea.ShardKey-2.html">ShardKeys</a> from the same shard and with the same record number will still not be equal because they represent different source data.</p>
+<p>This capability is useful for helping prevent data from being accessed with the wrong type of key — like an inventory key inadvertently passed to fetch an account record. Also, this may be helpful for caching data, since you can use the same dictionary to cache objects of different types without key collision.</p>
+<h4 id="the-shardid">The ShardId</h4>
+<p>ArgentSea uses a generic type for the ShardId because the ideal data type will depend upon your requirements. Technically, the ShardId can be any of the types available to a RecordId (see below). Practically, however, it makes sense to avoid types without a corresponding SQL type and also avoid unnecessarily large data sizes. This leaves <em>byte</em>, <em>short</em>, <em>char</em> as the most storage-efficient choices; <em>int</em>, <em>string</em> are viable choices if your ShardId has other requirements — like needing to integrate with external systems.</p>
+<p>If you really can’t decide and have no particular requirements, a simple starting place is to use <em>byte</em> if you have confidence that you will never need more than 256 shards in a <a href="/api/ArgentSea.ShardDataStores-2.ShardDataSet.html">ShardSet</a>, otherwise use <em>short</em>.</p>
+<p>Because the ShardId value is used for the ShardSet configuration, for queries, and also for saving foreign shard references in your databases, this value cannot be easily changed once your project is established. The same ShardId type is used across all <a href="/api/ArgentSea.ShardDataStores-2.ShardDataSet.html">ShardSets</a>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The database itself may not know what its own <em>ShardId</em> is. This sounds absurd until you realize that it is genuinely difficult to keep scores or hundreds of database schemas and procedures in sync while preserving a programmatic ShardId value. Your continuous delivery tooling will keep detecting any differences and trying to overwrite them. Fortunately, your connection <em>does</em> know this and can set the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values correctly.</p>
+</div>
+<h4 id="the-recordid">The RecordId</h4>
+<p>Like the ShardId, the RecordId is also an generic type, which can be one of the following:</p>
+<table>
+<thead>
+<tr>
+<th>Possible Types</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>byte</em></td>
+</tr>
+<tr>
+<td><em>char</em></td>
+</tr>
+<tr>
+<td><em>DateTime</em>,</td>
+</tr>
+<tr>
+<td><em>DateTimeOffset</em></td>
+</tr>
+<tr>
+<td><em>decimal</em></td>
+</tr>
+<tr>
+<td><em>double</em>,</td>
+</tr>
+<tr>
+<td><em>float</em></td>
+</tr>
+<tr>
+<td><em>Guid</em>,</td>
+</tr>
+<tr>
+<td><em>int</em></td>
+</tr>
+<tr>
+<td><em>long</em></td>
+</tr>
+<tr>
+<td><em>sbyte</em></td>
+</tr>
+<tr>
+<td><em>short</em></td>
+</tr>
+<tr>
+<td><em>string</em></td>
+</tr>
+<tr>
+<td><em>TimeSpan</em></td>
+</tr>
+<tr>
+<td><em>uint</em></td>
+</tr>
+<tr>
+<td><em>ulong</em></td>
+</tr>
+<tr>
+<td><em>ushort</em></td>
+</tr>
+</tbody>
+</table>
+<p>If you have a data key that is not one of these types, the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> objects will not know how to serialize the values. Unlike the ShardId, the data type of the RecordId can be diffeented for any table.</p>
+<h4 id="the-childid">The ChildId</h4>
+<p>The <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> type gets its name from the parent-child relationship that is typical of a two-column compound key. The <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> includes the <em>RecordId</em> of the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> along with a new generic <em>ChildId</em> value. A <em>ShardGrandChild</em> could also be created to support three-level compound record keys, but, so far, there hasn’t been demand for that.</p>
+<p>The ChildId can be any of the types listed in the previous section and the data type can vary from table to table.</p>
+<h3 id="using-the-shardkey-and-shardchild">Using The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a></h3>
+<p>Having a single object represent a compound record key adds only a little convenience. The real value comes from three capabilities: The shard Mapping attributes and the External key string.</p>
+<h4 id="tostring-toexternalstring-and-fromexternalstring">ToString(), ToExternalString(), and FromExternalString()</h4>
+<p>Calling <code>ToString()</code> on a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> returns a list of the constituent values.</p>
+<p>The <code>ToExternalKey()</code> function serializes the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values into a URL-safe string. This string also has a small amount of tampering protection.</p>
+<p>As you would expect, the <code>FromExternalString()</code> function reverses the operation, returning a ShardKey or ShardChild instance from a valid string.</p>
+<p>The <em>External String</em> value can be used with REST endpoints and the like to specify a sharded record using a single argument.</p>
+<h4 id="the-mapshardkey-and-mapshardchild-attributes">The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> Attributes</h4>
+<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attributes map the shard information, record key, and (as appropriate) the child record value to a new <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> instance respectively.</p>
+<p>The simplest implementation is to simply add the <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> or <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attribute and the type-appropriate <em>MapTo</em> attribute(s).</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-C#">[MapShardKey('c', &quot;@CustomerId&quot;)]
+[MapToSqlInt(&quot;@CustomerId&quot;)]
+public ShardKey&lt;byte, int&gt; CustomerKey { get; set; }
+
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-C#">[MapShardKey('c', &quot;CustomerId&quot;)]
+[MapToPgInteger(&quot;CustomerId&quot;)]
+public ShardKey&lt;byte, int&gt; CustomerKey { get; set; }
+</code></pre>
+</section>
+</div>
+
+<p>This example sets the property to a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> instance with a <em><a href="/api/ArgentSea.DataOrigin.html">DataOrgin</a></em> of “c”, the <em>ShardId</em> to the value of the data connection, and the <em>RecordId</em> the “CustomerId” column or parameter value.</p>
+<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> attribute’s first argument can be either a <a href="/api/ArgentSea.DataOrigin.html">DataOrgin</a> instance or a char from which a <a href="/api/ArgentSea.DataOrigin.html">DataOrgin</a> will be created.</p>
+<p>The second argument is the name of the data parameter or column. This name must <em>exactly</em> match the name in the data <em>MapTo</em> attribute.</p>
+<p>The <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attribute is nearly identical, except for the additional <em>ChildId</em> parameter:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-C#">[MapShardChild('O', &quot;@OrderId&quot;, &quot;@OrderItemId&quot;)]
+[MapToSqlBigInt(&quot;@OrderId&quot;)]
+[MapToSqlSmallInt(&quot;@OrderItemId&quot;)]
+public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
+
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-C#">[MapShardChild('O', &quot;OrderId&quot;, &quot;OrderItemId&quot;)]
+[MapToPgBigint(&quot;OrderId&quot;)]
+[MapToPgSmallint(&quot;OrderItemId&quot;)]
+public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
+</code></pre>
+</section>
+</div>
+
+<p>In both previous examples, the ShardId will be implicitly obtained from the connection’s ShardId. Occasionally, however, particularly when a data record refers to a record in a foreign shard, the <em>ShardId</em> must come from the database record. To do this, just add a <em>ShardID</em> parameter and <em>MapTo</em> attribute:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-C#">[MapShardChild('O', &quot;@OrderShardId&quot;, &quot;@OrderId&quot;, &quot;@OrderItemId&quot;)]
+[MapToSqlTinyInt(&quot;@OrderShardId&quot;)]
+[MapToSqlBigInt(&quot;@OrderId&quot;)]
+[MapToSqlSmallInt(&quot;@OrderItemId&quot;)]
+public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
+
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-C#">[MapShardChild('O', &quot;OrderShardId&quot;, &quot;OrderId&quot;, &quot;OrderItemId&quot;)]
+[MapToPgTinyint(&quot;OrderShardId&quot;)]
+[MapToPgBigint(&quot;OrderId&quot;)]
+[MapToPgSmallint(&quot;OrderItemId&quot;)]
+public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
+</code></pre>
+</section>
+</div>
+<h4 id="equals">Equals</h4>
+<h4 id="empty">Empty</h4>
+<h2 id="shardsets">ShardSets</h2>
+<p>The root injectable service is a <code>ShardSets</code> object, which is simply a collection of ShardSets. You can reference any ShardSet by name. Many (probably most) applications will have only one ShardSet, but this supports circumstances where different data is sharded differently. Your user information, for example, might be distributed across global datacenters, while product availability information might be sharded for business process reasons.</p>
+<p>You can access a ShardSet by name:</p>
+<pre><code class="lang-C#">    public class SubscriberStore
+    {
+        private readonly SqlDatabases _dbs;
+        private readonly SqlShardSets&lt;byte&gt;.ShardDataSet _shardSet;
+
+        private readonly ILogger&lt;SubscriberStore&gt; _logger;
+        public SubscriberStore(SqlShardSets&lt;byte&gt; shardSets, ILogger&lt;SubscriberStore&gt; logger)
+        {
+            _shardSet = shardSets.ShardSets[&quot;Subscribers&quot;];
+            _logger = logger;
+        }
+
+</code></pre>
+<p>might be For example, you could have a</p>
+<p>A ShardSet is a collection</p>
+<h2 id="virtual-compound-keys">Virtual Compound Keys</h2>
+<h3 id="data-origin">Data Origin</h3>
+<h3 id="mapshardkey-attribute-and-mapshardchild-attribute">MapShardKey attribute and MapShardChild attribute</h3>
+<p>Parameter copying</p>
 </article>
           </div>
           

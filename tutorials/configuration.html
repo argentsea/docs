@@ -147,7 +147,7 @@ default one will be used. If it is defined, the corresponding connection(s) must
       &quot;CircuitBreakerTestInterval&quot;: &quot;5000&quot;
     }
 </code></pre>
-<h5 id="retries">Retries</h5>
+<p><strong>Retries</strong></p>
 <p>Not that retries only occur on errors that are defined as <em>transient</em>.
 A permissions error or invalid object reference would be pointless to retry.
 (The list of errors defined as <em>transient</em> is in the provider-specific implementation
@@ -172,10 +172,32 @@ on subsequent retries before giving up.</p>
 <p><img src="../images/retrygraphs/halfsquare.jpg" alt="HalfSquare"></p>
 <p><img src="../images/retrygraphs/fibonacci.jpg" alt="Fibonacci"></p>
 <p><img src="../images/retrygraphs/doubling.jpg" alt="Doubling"></p>
-<p>If a Resilience Strategy is not defined, ArgentSea will use a default strategy. Currently, this a is <code>RetryCount</code> of 6, <code>RetryInterval</code> of 250 milliseconds, and a
-<code>RetryLengthening</code> of Fibonacci. With these values, the default resilience strategy would take a total of five seconds to finally fail.</p>
+<p>If a Resilience Strategy is not defined, ArgentSea will use a default strategy. Currently, this is:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RetryCount</td>
+<td>6 tries</td>
+</tr>
+<tr>
+<td>RetryInterval</td>
+<td>256 milliseconds</td>
+</tr>
+<tr>
+<td>Lengthening</td>
+<td>Fibonacci</td>
+</tr>
+</tbody>
+</table>
+<p>With these values, the default resilience strategy would take a total of five seconds to finally fail.</p>
 <p>Note that a high <code>RetryCount</code> could create a very long delay before a connection is allowed to ultimately fail.</p>
-<h5 id="circuit-breaking">Circuit Breaking</h5>
+<p><strong>Circuit Breaking</strong></p>
 <p>When a database connection is unavailable, this can cause serious downstream problems. Processes may pile-on further requests even while earlier requests are simply waiting
 to time out. As this continues, the queue of backlogged requests becomes so large that the caller itself can manage no more. This bottleneck can block other systems too. What started as a broken connection to a single database eventually becomes fatal to the calling system too!</p>
 <p>This is the reason to add a “circuit breaker” — a fail-fast mechanism to ensure that callers do not wait needlessly for queued connections that are unlikely to succeed, and which are blocking other processes too.</p>
@@ -230,7 +252,7 @@ how often (in milliseconds) the circuit breaker will allow a single transaction 
   }
 ]
 </code></pre>
-<p>You do <em>not</em> need include all of these attributes in your connection! Any value not included in your configuration will be set to the provider default — except as described in the next paragraphs.</p>
+<p>You do <em>not</em> need include all of these attributes in your connection! Any value not included in your configuration will be set to the provider default — except as described in the next paragraphs.</p>
 <p>The <code>ConnectRetryCount</code>, <code>ConnectRetryInterval</code> values default to 0 because the ArgentSea retry logic duplicates this functionality. If you prefer to use the SqlClient retry functionality instead, set these to their desired values and specify a <code>ResilienceStrategy</code> with no retries. If you use both connection retries <em>and</em> ArgentSea retries, no harm will come, other than a lot of retries.</p>
 <p>The other exception to the provider default values is the <code>ConnectTimeout</code> value. The provider default is 15 seconds, but with the ArgentSea’s retry logic, this could create
 unnecessarily long connection timeouts. The ArgentSea default is 2 seconds because datacenter connections are easily resolved in that time unless something is wrong.
@@ -326,13 +348,13 @@ If you have a WAN or high-latency connection (or are using ConnectRetryCount), y
 <li>Because sharded records often need to refer to related records hosted in other shards, the shard identifier become part of the record key.</li>
 </ul>
 <h3 id="managing-database-connections">Managing Database Connections</h3>
-<p>Sharded data sets may run to hundreds of servers. ArgentSea manages any number of distinct shard sets and any number of connections in each shard set.</p>
+<p>Sharded data sets may run to hundreds of servers (or more). ArgentSea manages any number of distinct shard sets and any number of connections in each shard set.</p>
 <p>You could have a distinct shard set for, say, all of your subscriber information and a separate shard set for all of your operational data. You define the shard set name in your configuration; when you query a shard set, you simply specify the shard set name.</p>
 <h3 id="distinct-read-and-write-endpoints">Distinct Read and Write Endpoints</h3>
 <p>If you are scaling-out your data access by sharding your data, you are likely also scaling-out by separating read activity from write operations. Examples of this includes SQL Availability Groups, RDS Read Replicas, Azure SQL geo-replication, Aurora reader endpoints, etc.</p>
-<p>ArgentSea shard sets have both read connections and write connections. Only one of these <em>must</em> be defined. If only one is defined, it will be used for both.</p>
+<p>An ArgentSea <code>ShardSet</code> has both read connections and write connections. Only one of these <em>must</em> be defined. If only one is defined, it will be used for both reads and writes.</p>
 <p>Complicating this is the replication latency between the write/read servers. A read immediately following a write might fail because the expected data has not yet been copied to the read server.</p>
-<p>To accommodate replication latency when an expected read-only result is not retrieved, ArgentSea will immediately retry the query on the read-write connection under the following conditions:</p>
+<p>To accommodate replication latency when an expected read-only result is not retrieved, ArgentSea will immediately retry the query on the write connection under the following conditions:</p>
 <ul>
 <li>The query arguments indicate that it is read-only data fetch.</li>
 <li>The read connection is different than the write connection.</li>
@@ -340,19 +362,17 @@ If you have a WAN or high-latency connection (or are using ConnectRetryCount), y
 </ul>
 <h3 id="the-shard-identifier-type">The Shard Identifier Type</h3>
 <p>Each database in a shard set has a shard identifier <em>(shardId)</em>. The shardId is used in combination with the record key to uniquely identify a record. In other words, records in the shard set are identified with a sort of virtual compound key, consisting of the shard identifier and the record key.</p>
-<blockquote>
-<p>[!INFORMATION]
-Records within a shard set are uniquely identified with a sort of virtual compound key — a ShardKey — consisting of the shardId and the record identifier.</p>
-</blockquote>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Records within a shard set are uniquely identified with a sort of virtual compound key — a ShardKey — consisting of the shardId and the record identifier.</p>
+</div>
 <p>The data type of the ShardId is important because a record in a data shard may refer to records in <em>other</em> shards. Persisting the remote shard reference means saving the shard identifier too.</p>
-<p>In other words, the ShardId <em>type</em> is used in configuration, throughout your code, in the database, and across all shard sets.</p>
-<div class="WARNING">
-<h5>Warning</h5>
+<p>In other words, the ShardId <em>type</em> is used in configuration, throughout your code, in the database, and across all shard sets. Your configuration must also be aware of the nature of this shard key; the ShardId value in your json configuration file must be cast to your ShardId type.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
 <p>Once established, the ShardId <em>type</em> cannot be easily changed.</p>
 </div>
-<p>Technically, the ShardId can be one of the following types: byte, char, DateTime, DateTimeOffset, decimal, double, float, Guid, int, long, sbyte, short, string, TimeSpan, uint, ulong, or ushort. Practically, realistic candidates are much fewer. Avoid types without a corresponding SQL type and unnecessarily large data sizes.</p>
-<p>Essentially, this leaves <em>byte</em>, <em>short</em>, <em>char</em> as efficient choices; and <em>int</em> or <em>string</em> as choices if your ShardId needs to integrate with some external system with previously defined data.</p>
-<p>Your configuration must also be aware of the nature of this shard key; the ShardId value in your json configuration file must be cast to your ShardId type.</p>
+<p>More details about the sharId type is in the <a href="sharding.html">Sharding</a> section</p>
 <h2 id="shardset-json">ShardSet JSON</h2>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
 <ul role="tablist">
@@ -503,6 +523,7 @@ Records within a shard set are uniquely identified with a sort of virtual compou
 </section>
 </div>
 
+<p>If the <em>shardid</em> were a string you should enclose the value in quotes (<code>ShardId: &quot;0&quot;</code>).</p>
 <p>The configuration file can repeat the ShardSet section (the object with ShardSetKey and Shards entries) for each shard set. Likewise, the entries in the Shards array can repeat for every data shard in the shard set. As illustrated by Shard 1’s Write Connection, any connection can include a any number of provider-specific connection attributes.</p>
 <h2 id="loading-the-configuration">Loading the Configuration</h2>
 <p>ArgentSea uses the built-in Options configuration and dependency injection architecture in .NET Core. The complexity of turning a JSON configuration file into a connection object is as simple as adding the <code>services.AddSqlServices&lt;TShard&gt;(Configuration)</code> extension method to the <code>ConfigureServices</code> method in your <code>Startup</code> class.</p>

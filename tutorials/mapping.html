@@ -86,7 +86,14 @@
 <li>Define how each property in your model class should be mapped to a data store (if at all) using property attributes</li>
 <li>Call a Mapper method to automatically create data parameters, DataReader handler, etc.</li>
 </ul>
-<h3 id="property-attributes">Property Attributes</h3>
+<p>In outline, retrieving data using ArgentSea follows the same steps as in ADO.NET:</p>
+<ul>
+<li>Set parameters</li>
+<li>Call a procedure or function in the database</li>
+<li>Capture the data results in a set of objects</li>
+</ul>
+<p>The Mapper helps simplify the first and last of these steps. By defining metadata about the names of parameters or result columns, the Mapper can automatically map properties to columns or parameters. To make things even simpler, the query methods on both Connections and ShardSets implicitly use the Mapper, combining the second and third steps.</p>
+<h2 id="property-attributes">Property Attributes</h2>
 <p>You use properties attributes to define the metadata that the Mapper requires. For example, given this very simple model class:</p>
 <pre><code class="lang-C#">using System;
 
@@ -149,11 +156,11 @@ public class Subscriber
 </div>
 
 <p>Often, due to different naming conventions or development drift, database column names and the corresponding .NET properties names do not match. That is why every attribute requires a “name” argument — which should largly correspond to the database name. The Mapper will create query parameters based on this name and reference DataReader columns with this name.</p>
-<div class="WARNING">
-<h5>Warning</h5>
-<p>Database parameters and columns should be named as consistently as possible. In most cases, this means the parameters have the same name as the columns they reference. If you like to alias columns or abbreviate parameters, you will find the Mapper largely unhelpful.</p>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Database parameters and columns should be named as consistently as possible. In most cases, this means the parameters have the same name as the columns they reference. If you like to use varying parameter names or alias columns in your result, you may find the Mapper somewhat unhelpful.</p>
 </div>
-<h2 id="attribute-types">Attribute Types</h2>
+<h3 id="attribute-types">Attribute Types</h3>
 <p>There is a mapping attribute defined for most common database types. Spatial data types, CLR types, XML, and JSON types are examples of missing attributes. These are absent because there is not a straightforward mapping between the core .NET base types and these database types. It is very possible to write custom handlers to render this from your database; indeed it is not much harder than writing the necessary custom code without this framework.</p>
 <p>The attribute itself defines the underlying database type. Naturally, the attribute type and the property type must match. For example, a <code>long</code> (Int64) property <em>must</em> map to a <code>bigint</code> database type. The Mapper will throw an error if these types do not match. There is no attempt to cast data to a different type, even if the cast would be successful.</p>
 <p>Many data attribute types have an additional parameters. The <em>length</em> argument, for example, helps optimize data access performance by ensuring that buffers are sized appropriately.</p>
@@ -477,16 +484,37 @@ public class Subscriber
 <li>The Mapper will return a null object if this parameter or column is null.</li>
 <li>The shard set will retry a data fetch on the a Write connection.</li>
 </ul>
-<h3 id="enum-types">Enum Types</h3>
-<p>.NET enum values can be stored with their base integer data type (int, short, etc.), or as their string name, or (PostgreSQL only) as an Enum database type.</p>
+<h3 id="nullable-types-and-empty-types">Nullable Types and Empty Types</h3>
+<p>Because database columns often contain Null values, nullable .NET types are extremely helpful in representing this. All of the “MapTo...” attributes support nullable .NET types that correspond to their value types.</p>
+<h4 id="strings-and-arrays">Strings and Arrays</h4>
+<p>A .NET string with a value of <em>null</em> or a null array will be saved as a database null. Empty strings will save as a zero-length string.</p>
+<h4 id="integers">Integers</h4>
+<p>Integers cannot be null, so the advent of nullable types is a godsend for mapping to database storage. To save or retrieve an integer (byte, Int16, Int32, or Int64) database value from a column that allows null, you should declare a nullable value type.</p>
+<h4 id="floating-point-numbers">Floating Point Numbers</h4>
+<p>Like integer types, floating point types (Double and Float) can be wrapped in a nullable value. However, ArgentSea also handles <em>NaN</em> as a database Null. If the floating point value is presented as a nullable type, then ArgentSea will read or write NaN; if plain floating point type is presented, then NaN will be converted to a data Null.</p>
+<h4 id="guids">Guids</h4>
+<p>Rather like floating point types, Guid.Empty (00000000-0000-0000-0000-000000000000) will be converted to a data Null when read from or written to the database. If you need to write an empty Guid, wrap it in a nullable type.</p>
+<h4 id="enum-types">Enum Types</h4>
+<p>.NET enum values can be stored as either numbers or strings. Writing to a text column will automatically save the <em>name</em> of the enum; writing to a numeric column saves the <em>number</em> value.</p>
+<p>Note that Enums can inherit from several base types (byte, short, int, etc.). The base type should correctly correspond to the database data type.</p>
+<p>Nullable Enum types will save or read as a database Null when the value is null.</p>
+<h4 id="shardkey-and-shardchild">ShardKey and ShardChild</h4>
+<p>These are special types and will be discussed in detail in the sharding section.</p>
+<h2 id="mapping-targets">Mapping Targets</h2>
+<p>The ArgentSea Mapper maps to:</p>
 <ul>
-<li>If the mapping attribute database type is a numeric database type, then the base number type is stored</li>
-<li>If the mapping attribute database type is a text-type field, the Mapper stores the name of the enum value</li>
-<li>If the mapping attribute database type is Enum (PostgreSQL only), then the Enum value is set</li>
+<li>Query input parameters</li>
+<li>Query output parameters</li>
+<li>Data reader columns</li>
+<li>Table-value parameters (SQL Server only)</li>
 </ul>
-<h3 id="nullable">Nullable</h3>
-<h3 id="shardkey-and-shardchild">ShardKey and ShardChild</h3>
-<h2 id="mapping-attributes">Mapping Attributes</h2>
+<p>The mapper does <em>not</em> generate dynamic SQL statements. The Mapper may be useful in situations where dynamic SQL is used, but, philosophically, this is not encouraged. Stored procedures are generally more secure, more performant, and offer a less tightly-coupled architecture.</p>
+<h3 id="the-parameter-collection">The Parameter Collection</h3>
+<p>The Mapper is implemented as an extension method to the (abstract) DbParametersCollection, which is inherited by each provider implementation of the DbCommand.Parameters property. What this means is that you can call the Mapper through the command object of any provider.</p>
+<pre><code class="lang-C#">cmd.Parameters.MapToInParameters&lt;MyDataClass&gt;(myDataClass, logger);
+cmd.Parameters.MapToOutParameters&lt;MyDataClass&gt;(logger);
+</code></pre>
+<p>These extension methods can be combined with the other extension methods for a <em>fluent API</em>, which allows you to build a logical sequence of code that may be more readable.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
 <ul role="tablist">
 <li role="presentation">
@@ -497,37 +525,124 @@ public class Subscriber
 </li>
 </ul>
 <section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-<h3 id="sql-server-mapping-attributes">SQL Server Mapping Attributes</h3>
-<p>To map a property</p>
+
+<p>For example, this code uses the fluent API to to set an output parameter and then the mapper to create and set all the other object properties from a transaction object.</p>
+<pre><code class="lang-C#">cmd.AddSqlIntOutParameter(&quot;@TransactionId&quot;).MapToInParameters&lt;Transaction&gt;(transaction, logger);
+</code></pre>
 </section>
 <section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-<h3 id="postgresql-mapping-attributes">PostgreSQL Mapping Attributes</h3>
-<p>There is a mapping attribute defined for most SQL Server data types. The principals exceptions are the CLR types and complex types, like hierarchyid, geometry, geography, variant, and xml. The property type must correspond</p>
+
+<p>For example, this code uses the fluent API to to set an output parameter and then the mapper to create and set all the other object properties from a transaction object.</p>
+<pre><code class="lang-C#">cmd.AddPgIntegerOutParameter(&quot;TransactionId&quot;).MapToInParameters&lt;Transaction&gt;(transaction, logger);
+</code></pre>
 </section>
 </div>
-<h2 id="mapping-targets">Mapping Targets</h2>
-<p>The ArgentSea Mapper maps to:</p>
-<ul>
-<li>Query input parameters</li>
-<li>Query output parameters</li>
-<li>Data reader columns</li>
-<li>Table-value parameters (SQL Server only)</li>
+
+<p>In ADO.NET, you normally access the data parameters collection (<code>SqlParametersCollection</code>, <code>NpgsqlParametersCollection</code>, etc.) through the Parameters collection of the command object. In ArgentSea, you can still do this; the Mapper and other extension methods work on the parameters collection property. But this is problematic with sharded data sets.</p>
+<p>The parameters collection offered by the database providers are created only by the Command object. This creates a problem when presenting a query with the same parameters to multiple data shards (to search among shards, for example). A multi-shard query cannot execute on a single command object! (Nor can a single output parameter contain the query result from multiple shards).</p>
+<p>When working with sharded data, the parameters collection needs to be thought of as simple list which is copied to the Command object when needed. ArgentSea offers the <code>QueryParameterCollection</code> class to help. It is functionally not much more than a parameter list, but it can be created without a command object. Because it also inherits from the abstract DbParameters collection, the same extension methods — like the Mapper — work on this object too.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
 </ul>
-<p>The mapper does not generate dynamic SQL statements. The Mapper may be useful in situations where dynamic SQL is used, but philosophically this is not encouraged. Stored procedures are generally more secure, more performant, and offer a less tightly-coupled architecture.</p>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>Again, the optional fluent API makes setting an input parameter and a mapped set of output parameters quite simple:</p>
+<pre><code class="lang-C#">var prms = new QueryParameterCollection().AddSqlBigIntInParameter(&quot;@ID&quot;, _id).MapToOutParameters&lt;MyClass&gt;(logger);
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>Again, the optional fluent API makes setting an input parameter and a mapped set of output parameters quite simple:</p>
+<pre><code class="lang-C#">var prms = new QueryParameterCollection().AddPgBigintInParameter(&quot;ID&quot;, _id).MapToOutParameters&lt;MyClass&gt;(logger);
+</code></pre>
+</section>
+</div>
 <h3 id="mapping-to-input-parameters">Mapping to Input Parameters</h3>
+<p>You can create input parameters with the <code>MapToInParameters</code> method. The mapping attributes in your class will be used to:</p>
+<ul>
+<li>Create the set of input parameters</li>
+<li>Set the value of those parameters to the value of the corresponding property.</li>
+</ul>
+<p>That is all the Mapper does. The Mapper simply saved you the time and effort of hand-coding a whole bunch of parameters. You can view the parameters in the debugger and you can add, remove or update any of them. If a particular query needs a parameter that is not presented in a property attribute, just add it to parameter the collection yourself!</p>
+<p>Any parameters already added to the parameter collection will not be recreated (the names must match exactly). This is helpful if you need to treat one or more parameters differently (say, an output parameter in a collection of input parameters).</p>
+<p>If you don’t want the Mapper to create a particular parameter set, you can provide a list of parameter names to suppress.</p>
 <h3 id="mapping-to-output-parameters">Mapping to Output Parameters</h3>
+<p>Working with output parameters is done in two steps:</p>
+<ul>
+<li>Create the output parameters before executing the query</li>
+<li>Read the output parameter values after executing the query</li>
+</ul>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-4">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-4_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-4_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-4_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-4_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-4_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>This example creates and sets the CustomerId parameter and creates all of the output parameters. It then executes the query and reads the output values into a new object.</p>
+<pre><code class="lang-C#">cmd.Parameters.AddSqlIntInParameter(&quot;@CustomerId&quot;, _Id).MapToOutParameters&lt;Customer&gt;(logger);
+await cmd.ExecuteNonQueryAsync();
+var customer = cmd.ReadOutParameters&lt;Customer&gt;(logger);
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-4_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>This example creates and sets the CustomerId parameter and creates all of the output parameters. It then executes the query and reads the output values into a new object.</p>
+<pre><code class="lang-C#">cmd.Parameters.AddPgIntegerInParameter(&quot;CustomerId&quot;, _Id).MapToOutParameters&lt;Customer&gt;(logger);
+await cmd.ExecuteNonQueryAsync();
+var customer = cmd.ReadOutParameters&lt;Customer&gt;(logger);
+</code></pre>
+</section>
+</div>
+
+<p>Of course, it would be quite unusual to have a query that <em>only</em> uses output parameters. Because the input parameter is added to the collection first, the output parameter will be automatically skipped. As with input parameters, you can also provide a list of parameter names that you want to explicitly skip. And also like input parameters, the <code>MapToOutParameters</code> method simply creates output parameters; you can modify the collection as needed.</p>
+<p>Once the parameters are set and the procedure is executed, the Mapper can read the values of the output parameters into the corresponding properties of a new object instance. The <code>ReadOutParameters</code> method returns a new object with the properties set.</p>
 <h3 id="the-datareader">The DataReader</h3>
-<h2 id="the-implicit-use-of-the-mapper">The Implicit use of the Mapper</h2>
-<h2 id="required-attributes">Required Attributes</h2>
+<p>The Mapper also converts the rows presented by a DataReader object into a list of corresponding objects. For example:</p>
+<pre><code class="lang-C#">var customers = Mapper.FromDataReader&lt;Customer&gt;(datareader, logger);
+</code></pre>
+<p>The List result will contain an object instance for each row. If an attribute is marked “required” but the corresponding data field is Null, then a null reference will be that position in the listed results.</p>
 <h2 id="performance">Performance</h2>
 <p>The ArgentSea Mapper is written to be as high-performance as optimized hand-coded data access code. However, there is a hitch.</p>
 <p>Property attributes can only be retrieved using <em>reflection</em>, which is relatively slow .NET code. To avoid this type of performance penalty on every data access, ArgentSea uses reflection only the first time the mapping is performed; using that metadata it then creates and compiles an “Expression Tree”to build an optimized, compiled mapping. The compiled code is cached in memory and reused for all subsequent calls.</p>
-<blockquote>
-<p>[!INFORMATION]
-The Mapper will be relatively slow (and CPU intensive) the <em>first time</em> each model class is mapped to parameters or data. The initial compilation usually takes about a second or less. Subsequent calls will execute the data to property mapping at native machine-code speeds. When the application is restarted, the memory is cleared and the compilation overhead occurs again.</p>
-</blockquote>
-<h2 id="instrumentation">Instrumentation</h2>
-<p>The Mapper also use</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>The Mapper will be relatively slow (and CPU intensive) the <em>first time</em> each model class is mapped to parameters or data. The initial compilation usually takes less than a second. Subsequent calls will execute the data to property mapping at native machine-code speeds. When the application is restarted, the memory is cleared and the compilation overhead occurs again.</p>
+</div>
+<h2 id="logging">Logging</h2>
+<p>You have surely noticed that every Mapper command requires a logger instance — an object that implements the <code>ILogger</code> interface. The .NET Core environment provides objects that log to the console, debug window, Windows event logs, file system, <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net-core">Application Insights</a>, <a href="https://github.com/aws/aws-logging-dotnet#aspnet-core-logging">CloudWatch</a>, and much more. ArgentSea can consume any of these logging providers and provide diagnostic data.</p>
+<p>In production, you will generally want to use log level <em>Information</em>. In development you may find <em>Debug</em> very helpful.</p>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>Be sure to manage the logging level in your configuration. This determines the amount of logging and this can have a strong impact upon performance.</p>
+</div>
+<p>The logging levels are:</p>
+<h3 id="critical">Critical</h3>
+<p>The circuit breaker is triggered on a connection or command. This may generate many downstream errors until the functionality is restored.</p>
+<h4 id="error">Error</h4>
+<p>In most cases, an error condition will throw to the caller so they become the caller’s responsability to handle or log. Because data access may happen on multiple threads, however, a simple throw may lose context. If the data reader passed to the Mapper is closed or null, this is logged as an exception along with the connection description.</p>
+<h4 id="warning">Warning</h4>
+<p>ArgentSea creates a warning log event when starting an automatic retry on a connection or command.</p>
+<h4 id="information">Information</h4>
+<p>When the circuit breaker is triggered, ArgentSea creates a log record each time a test transaction is attempted and again when functionality is restored.</p>
+<h4 id="debug">Debug</h4>
+<p>The logged events in the Debug level are intended to help diagnose internal processes that may not be returning the expected results.</p>
+<p>The first type of event is when a database Null value is presented to an object that then becomes null or empty, which happens with ShardKey, ShardChild, or any object with a Required argument set to true. When this happens unexpectedly, it can be difficult to determine which database value caused the problem (as now <em>no</em> properties exist to determine the culprit). This logging event identifies which database Null caused the result to be null or Empty.</p>
+<p>The second type of event provides full visibility into the generated code used to build the Mapper’s activity. The Expression Tree is walked and the pseudo-code saved to the log before it is compiled. This can be extremely useful in understanding the complexities of the Mapping behavior. The log record will be rather long and the extraction may not be efficient, but it also runs only during the first data access.</p>
+<p>This log level also reports when a parameter attribute was defined but the parameter was not found among the output parameters. This might be by design or it might be a programming oversight.</p>
+<p>Finally, the Mapper logs when it did not find an cached delegate so an Expression Tree is being built and compiled. This is normal at startup because the cache will be empty; if these event occur afterward, there is likely a problem.</p>
+<h4 id="trace">Trace</h4>
+<p>The Mapper creates a trace log record as it iterates over properties. This can provide insight into the current context when other error conditions occur. Also, the logger will report the execution time for commands sent to a database connection or shard sets.</p>
 </article>
           </div>
           

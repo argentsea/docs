@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Introduction | ArgentSea Docs </title>
+    <title>Overview | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Introduction | ArgentSea Docs ">
+    <meta name="title" content="Overview | ArgentSea Docs ">
     <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -77,30 +77,25 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="introduction">Introduction</h1>
+<h1 id="overview">Overview</h1>
 
-<p>In essence, ArgentSea consists of four areas of functionality, which are complementary but still rather independent (i.e. you can use one without the others):</p>
-<ul>
-<li><strong>Configuring connections</strong> - is particularly useful with the large number of connections necessary for sharded data.</li>
-<li><strong>Querying data</strong> - in a way that supports multi-threaded concurrent queries on multiple shards.</li>
-<li><strong>Mapping</strong> - simplifies and dramatically shortens the code required to map data (result sets and/or parameters) to or from objects.</li>
-<li><strong>Tooling</strong> - a simple UI to generate starter model classes and/or CRUD procedures based on a table or view.</li>
-</ul>
-<p>Because ArgentSea enhances the familiar ADO.NET data access classes, you can still use ADO.NET to resolve any capability gaps or distinctive query requirements.</p>
-<h2 id="getting-started">Getting Started</h2>
-<p>If you want to understand everything first, explore the <a href="#deep-dives">deep dives</a>; if you prefer to learn by getting your hands dirty, jump into the <a href="#walkthroughs">walkthroughs</a>.</p>
-<h2 id="deep-dives">Deep Dives</h2>
-<ol>
-<li>Installing ArgentSea.</li>
-<li><a href="configuration.html">Setting up your configuration</a></li>
-<li><a href="mapping.html">Mapping</a></li>
-<li><a href="sharding.html">Using shards</a></li>
-</ol>
-<h2 id="walkthroughs">Walkthroughs</h2>
-<ol>
-<li><a href="quickstart1.html">QuickStart 1</a> - Setting up and configuring an initial project</li>
-<li><a href="quickstart2.html">QuickStart 2</a> - Adding shard handling and queries</li>
-</ol>
+<p>The genesis of ArgentSea was to support the complex requirements of data sharding, but will likely be useful for high-performance data access even if you are not accessing sharded data.</p>
+<p>These deep-dive tutorials explain each area in depth.</p>
+<h2 id="setup"><a href="setup.html">Setup</a></h2>
+<p>The ArgentSea documentation assumes that your project is essentially new. Data sharding is very difficult to retroactively add to an existing project without rewriting it.</p>
+<p>And it you are creating a new project, it certainly makes sense to use .NET Core/Standard (rather than then legacy .NET Framework). ArgentSea would probably work in a .NET Framework application, it is not tested for this purpose, and it uses services — such as dependency injection, configuration, and logging — that are implemented differently in the legacy framework. If you do use the .NET Framework, please help build out our documentation with any guidance you can share.</p>
+<h2 id="configuration"><a href="configuration.html">Configuration</a></h2>
+<p>ArgentSea uses the new configuration infrastructure in .NET Core, including strongly typed Options classes and injectable services. The configuration information can be stored in a JSON file, environment variables, key stores, and more. Registering the ArgentSea services is easy with an extension method.</p>
+<p>The configuration approach is intended to make it easy to manage lots of connections (including separate read and write endpoints), store credential information securely, and also capture resilience preferences (retries and circuit breaking).</p>
+<p>You can configure database connections, shard sets, or both. You may encounter problems, however, if you combine multiple database platforms (SQL Server and PostgreSQL) in a single project; it is not a tested scenario.</p>
+<h2 id="mapping"><a href="mapping.html">Mapping</a></h2>
+<p>Data access can require a lot of boilerplate code, much of which maps properties to data parameters, columns, etc. ArgentSea contains a distinctive ORM (Object Relational Mapper) that is focused on parameters and procedures/functions rather than generating dynamic SQL.</p>
+<p>The mapping metadata is set by property attributes, which sets the SQL data type and name. The ORM compiles the property to data mapping during the first call; afterward, the mapping should as fast as if it had been a hand-coded ADO.NET mapping. The Mapper also allows nullable types to map the database Null values. Enum properties can map to string data fields (containing the Enum name) or numeric fields (containing the base value). The Mapper even handles nullable Enums.</p>
+<h2 id="sharding"><a href="sharding.html">Sharding</a></h2>
+<p>If you are new to sharding, the key issues are:</p>
+<p>Relationships between tables are no longer enforced or even possible. A sharded data model must now cope with related records that may reside on a different server. One helpful practice is to avoid sharding <em>all</em> of the tables, particularly the lookup tables which are essentially static. In some cases, the only solution involves sequential queries (once to get the the original record and then subsequent queries to get related rows). ArgentSea does not plan your data model for you.</p>
+<p>Unique record identifiers can be a challenge because the database engine can no longer enforce uniqueness. A common approach involves setting distinct identity ranges on every server — which can be tricky to manage and hard to re-balance. Also, errors are easy to make and can quickly lead to a catastrophic data cleanup initiative. ArgentSea offers a “virtual compound key” where the shard identifier and the record identity combine as the record key. The problem of which connection should be used for a given record query also becomes elementary with this approach. In the end, ArgentSea can work with either identity approach.</p>
+<p>Simultaneous querying across multiple shards requires querying on multiple threads. Both ADO.NET and Entity Framework require “non-standard” implementations to enable concurrent queries on distinct threads. ArgentSea makes this easy, as you can simply set parameters and get results on a ShardSet.</p>
 </article>
           </div>
           
