@@ -2321,152 +2321,93 @@ references:
   commentId: T:ArgentSea.Mapper
   fullName: ArgentSea.Mapper
   nameWithType: Mapper
+- uid: ArgentSea.Mapper.CreateInputParameters*
+  name: CreateInputParameters
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_CreateInputParameters_
+  commentId: Overload:ArgentSea.Mapper.CreateInputParameters
+  isSpec: "True"
+  fullName: ArgentSea.Mapper.CreateInputParameters
+  nameWithType: Mapper.CreateInputParameters
+- uid: ArgentSea.Mapper.CreateInputParameters``1(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)
+  name: CreateInputParameters<TModel>(DbParameterCollection, TModel, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_CreateInputParameters__1_System_Data_Common_DbParameterCollection___0_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.CreateInputParameters``1(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)
+  name.vb: CreateInputParameters(Of TModel)(DbParameterCollection, TModel, ILogger)
+  fullName: ArgentSea.Mapper.CreateInputParameters<TModel>(System.Data.Common.DbParameterCollection, TModel, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.CreateInputParameters(Of TModel)(System.Data.Common.DbParameterCollection, TModel, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.CreateInputParameters<TModel>(DbParameterCollection, TModel, ILogger)
+  nameWithType.vb: Mapper.CreateInputParameters(Of TModel)(DbParameterCollection, TModel, ILogger)
+- uid: ArgentSea.Mapper.CreateInputParameters``1(System.Data.Common.DbParameterCollection,``0,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
+  name: CreateInputParameters<TModel>(DbParameterCollection, TModel, HashSet<String>, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_CreateInputParameters__1_System_Data_Common_DbParameterCollection___0_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.CreateInputParameters``1(System.Data.Common.DbParameterCollection,``0,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
+  name.vb: CreateInputParameters(Of TModel)(DbParameterCollection, TModel, HashSet(Of String), ILogger)
+  fullName: ArgentSea.Mapper.CreateInputParameters<TModel>(System.Data.Common.DbParameterCollection, TModel, System.Collections.Generic.HashSet<System.String>, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.CreateInputParameters(Of TModel)(System.Data.Common.DbParameterCollection, TModel, System.Collections.Generic.HashSet(Of System.String), Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.CreateInputParameters<TModel>(DbParameterCollection, TModel, HashSet<String>, ILogger)
+  nameWithType.vb: Mapper.CreateInputParameters(Of TModel)(DbParameterCollection, TModel, HashSet(Of String), ILogger)
+- uid: ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,Microsoft.Extensions.Logging.ILogger)
+  name: CreateOutputParameters(DbParameterCollection, Type, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_CreateOutputParameters_System_Data_Common_DbParameterCollection_System_Type_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,Microsoft.Extensions.Logging.ILogger)
+  fullName: ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection, System.Type, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.CreateOutputParameters(DbParameterCollection, Type, ILogger)
+- uid: ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
+  name: CreateOutputParameters(DbParameterCollection, Type, HashSet<String>, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_CreateOutputParameters_System_Data_Common_DbParameterCollection_System_Type_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
+  name.vb: CreateOutputParameters(DbParameterCollection, Type, HashSet(Of String), ILogger)
+  fullName: ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection, System.Type, System.Collections.Generic.HashSet<System.String>, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection, System.Type, System.Collections.Generic.HashSet(Of System.String), Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.CreateOutputParameters(DbParameterCollection, Type, HashSet<String>, ILogger)
+  nameWithType.vb: Mapper.CreateOutputParameters(DbParameterCollection, Type, HashSet(Of String), ILogger)
+- uid: ArgentSea.Mapper.CreateOutputParameters*
+  name: CreateOutputParameters
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_CreateOutputParameters_
+  commentId: Overload:ArgentSea.Mapper.CreateOutputParameters
+  isSpec: "True"
+  fullName: ArgentSea.Mapper.CreateOutputParameters
+  nameWithType: Mapper.CreateOutputParameters
+- uid: ArgentSea.Mapper.CreateOutputParameters``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)
+  name: CreateOutputParameters<TModel>(DbParameterCollection, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_CreateOutputParameters__1_System_Data_Common_DbParameterCollection_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.CreateOutputParameters``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)
+  name.vb: CreateOutputParameters(Of TModel)(DbParameterCollection, ILogger)
+  fullName: ArgentSea.Mapper.CreateOutputParameters<TModel>(System.Data.Common.DbParameterCollection, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.CreateOutputParameters(Of TModel)(System.Data.Common.DbParameterCollection, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.CreateOutputParameters<TModel>(DbParameterCollection, ILogger)
+  nameWithType.vb: Mapper.CreateOutputParameters(Of TModel)(DbParameterCollection, ILogger)
+- uid: ArgentSea.Mapper.CreateOutputParameters``1(System.Data.Common.DbParameterCollection,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
+  name: CreateOutputParameters<TModel>(DbParameterCollection, HashSet<String>, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_CreateOutputParameters__1_System_Data_Common_DbParameterCollection_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.CreateOutputParameters``1(System.Data.Common.DbParameterCollection,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
+  name.vb: CreateOutputParameters(Of TModel)(DbParameterCollection, HashSet(Of String), ILogger)
+  fullName: ArgentSea.Mapper.CreateOutputParameters<TModel>(System.Data.Common.DbParameterCollection, System.Collections.Generic.HashSet<System.String>, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.CreateOutputParameters(Of TModel)(System.Data.Common.DbParameterCollection, System.Collections.Generic.HashSet(Of System.String), Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.CreateOutputParameters<TModel>(DbParameterCollection, HashSet<String>, ILogger)
+  nameWithType.vb: Mapper.CreateOutputParameters(Of TModel)(DbParameterCollection, HashSet(Of String), ILogger)
 - uid: ArgentSea.Mapper.DummyType
   name: Mapper.DummyType
   href: api/ArgentSea.Mapper.DummyType.html
   commentId: T:ArgentSea.Mapper.DummyType
   fullName: ArgentSea.Mapper.DummyType
   nameWithType: Mapper.DummyType
-- uid: ArgentSea.Mapper.MapCreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,Microsoft.Extensions.Logging.ILogger)
-  name: MapCreateOutputParameters(DbParameterCollection, Type, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapCreateOutputParameters_System_Data_Common_DbParameterCollection_System_Type_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapCreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,Microsoft.Extensions.Logging.ILogger)
-  fullName: ArgentSea.Mapper.MapCreateOutputParameters(System.Data.Common.DbParameterCollection, System.Type, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapCreateOutputParameters(DbParameterCollection, Type, ILogger)
-- uid: ArgentSea.Mapper.MapCreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
-  name: MapCreateOutputParameters(DbParameterCollection, Type, HashSet<String>, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapCreateOutputParameters_System_Data_Common_DbParameterCollection_System_Type_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapCreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapCreateOutputParameters(DbParameterCollection, Type, HashSet(Of String), ILogger)
-  fullName: ArgentSea.Mapper.MapCreateOutputParameters(System.Data.Common.DbParameterCollection, System.Type, System.Collections.Generic.HashSet<System.String>, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapCreateOutputParameters(System.Data.Common.DbParameterCollection, System.Type, System.Collections.Generic.HashSet(Of System.String), Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapCreateOutputParameters(DbParameterCollection, Type, HashSet<String>, ILogger)
-  nameWithType.vb: Mapper.MapCreateOutputParameters(DbParameterCollection, Type, HashSet(Of String), ILogger)
-- uid: ArgentSea.Mapper.MapCreateOutputParameters*
-  name: MapCreateOutputParameters
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapCreateOutputParameters_
-  commentId: Overload:ArgentSea.Mapper.MapCreateOutputParameters
+- uid: ArgentSea.Mapper.ListFromReaderResultsHandler*
+  name: ListFromReaderResultsHandler
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ListFromReaderResultsHandler_
+  commentId: Overload:ArgentSea.Mapper.ListFromReaderResultsHandler
   isSpec: "True"
-  fullName: ArgentSea.Mapper.MapCreateOutputParameters
-  nameWithType: Mapper.MapCreateOutputParameters
-- uid: ArgentSea.Mapper.MapCreateOutputParameters``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)
-  name: MapCreateOutputParameters<TModel>(DbParameterCollection, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapCreateOutputParameters__1_System_Data_Common_DbParameterCollection_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapCreateOutputParameters``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapCreateOutputParameters(Of TModel)(DbParameterCollection, ILogger)
-  fullName: ArgentSea.Mapper.MapCreateOutputParameters<TModel>(System.Data.Common.DbParameterCollection, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapCreateOutputParameters(Of TModel)(System.Data.Common.DbParameterCollection, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapCreateOutputParameters<TModel>(DbParameterCollection, ILogger)
-  nameWithType.vb: Mapper.MapCreateOutputParameters(Of TModel)(DbParameterCollection, ILogger)
-- uid: ArgentSea.Mapper.MapCreateOutputParameters``1(System.Data.Common.DbParameterCollection,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
-  name: MapCreateOutputParameters<TModel>(DbParameterCollection, HashSet<String>, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapCreateOutputParameters__1_System_Data_Common_DbParameterCollection_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapCreateOutputParameters``1(System.Data.Common.DbParameterCollection,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapCreateOutputParameters(Of TModel)(DbParameterCollection, HashSet(Of String), ILogger)
-  fullName: ArgentSea.Mapper.MapCreateOutputParameters<TModel>(System.Data.Common.DbParameterCollection, System.Collections.Generic.HashSet<System.String>, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapCreateOutputParameters(Of TModel)(System.Data.Common.DbParameterCollection, System.Collections.Generic.HashSet(Of System.String), Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapCreateOutputParameters<TModel>(DbParameterCollection, HashSet<String>, ILogger)
-  nameWithType.vb: Mapper.MapCreateOutputParameters(Of TModel)(DbParameterCollection, HashSet(Of String), ILogger)
-- uid: ArgentSea.Mapper.MapInputParameters*
-  name: MapInputParameters
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapInputParameters_
-  commentId: Overload:ArgentSea.Mapper.MapInputParameters
-  isSpec: "True"
-  fullName: ArgentSea.Mapper.MapInputParameters
-  nameWithType: Mapper.MapInputParameters
-- uid: ArgentSea.Mapper.MapInputParameters``1(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)
-  name: MapInputParameters<TModel>(DbParameterCollection, TModel, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapInputParameters__1_System_Data_Common_DbParameterCollection___0_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapInputParameters``1(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapInputParameters(Of TModel)(DbParameterCollection, TModel, ILogger)
-  fullName: ArgentSea.Mapper.MapInputParameters<TModel>(System.Data.Common.DbParameterCollection, TModel, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapInputParameters(Of TModel)(System.Data.Common.DbParameterCollection, TModel, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapInputParameters<TModel>(DbParameterCollection, TModel, ILogger)
-  nameWithType.vb: Mapper.MapInputParameters(Of TModel)(DbParameterCollection, TModel, ILogger)
-- uid: ArgentSea.Mapper.MapInputParameters``1(System.Data.Common.DbParameterCollection,``0,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
-  name: MapInputParameters<TModel>(DbParameterCollection, TModel, HashSet<String>, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapInputParameters__1_System_Data_Common_DbParameterCollection___0_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapInputParameters``1(System.Data.Common.DbParameterCollection,``0,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapInputParameters(Of TModel)(DbParameterCollection, TModel, HashSet(Of String), ILogger)
-  fullName: ArgentSea.Mapper.MapInputParameters<TModel>(System.Data.Common.DbParameterCollection, TModel, System.Collections.Generic.HashSet<System.String>, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapInputParameters(Of TModel)(System.Data.Common.DbParameterCollection, TModel, System.Collections.Generic.HashSet(Of System.String), Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapInputParameters<TModel>(DbParameterCollection, TModel, HashSet<String>, ILogger)
-  nameWithType.vb: Mapper.MapInputParameters(Of TModel)(DbParameterCollection, TModel, HashSet(Of String), ILogger)
-- uid: ArgentSea.Mapper.MapReadOutputParameters*
-  name: MapReadOutputParameters
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapReadOutputParameters_
-  commentId: Overload:ArgentSea.Mapper.MapReadOutputParameters
-  isSpec: "True"
-  fullName: ArgentSea.Mapper.MapReadOutputParameters
-  nameWithType: Mapper.MapReadOutputParameters
-- uid: ArgentSea.Mapper.MapReadOutputParameters``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)
-  name: MapReadOutputParameters<TModel>(DbParameterCollection, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapReadOutputParameters__1_System_Data_Common_DbParameterCollection_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapReadOutputParameters``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapReadOutputParameters(Of TModel)(DbParameterCollection, ILogger)
-  fullName: ArgentSea.Mapper.MapReadOutputParameters<TModel>(System.Data.Common.DbParameterCollection, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapReadOutputParameters(Of TModel)(System.Data.Common.DbParameterCollection, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapReadOutputParameters<TModel>(DbParameterCollection, ILogger)
-  nameWithType.vb: Mapper.MapReadOutputParameters(Of TModel)(DbParameterCollection, ILogger)
-- uid: ArgentSea.Mapper.MapReadOutputParameters``2(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)
-  name: MapReadOutputParameters<TShard, TModel>(DbParameterCollection, TShard, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapReadOutputParameters__2_System_Data_Common_DbParameterCollection___0_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapReadOutputParameters``2(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapReadOutputParameters(Of TShard, TModel)(DbParameterCollection, TShard, ILogger)
-  fullName: ArgentSea.Mapper.MapReadOutputParameters<TShard, TModel>(System.Data.Common.DbParameterCollection, TShard, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapReadOutputParameters(Of TShard, TModel)(System.Data.Common.DbParameterCollection, TShard, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapReadOutputParameters<TShard, TModel>(DbParameterCollection, TShard, ILogger)
-  nameWithType.vb: Mapper.MapReadOutputParameters(Of TShard, TModel)(DbParameterCollection, TShard, ILogger)
-- uid: ArgentSea.Mapper.MapToList*
-  name: MapToList
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapToList_
-  commentId: Overload:ArgentSea.Mapper.MapToList
-  isSpec: "True"
-  fullName: ArgentSea.Mapper.MapToList
-  nameWithType: Mapper.MapToList
-- uid: ArgentSea.Mapper.MapToList``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)
-  name: MapToList<TModel>(DbDataReader, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapToList__1_System_Data_Common_DbDataReader_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapToList``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapToList(Of TModel)(DbDataReader, ILogger)
-  fullName: ArgentSea.Mapper.MapToList<TModel>(System.Data.Common.DbDataReader, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapToList(Of TModel)(System.Data.Common.DbDataReader, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapToList<TModel>(DbDataReader, ILogger)
-  nameWithType.vb: Mapper.MapToList(Of TModel)(DbDataReader, ILogger)
-- uid: ArgentSea.Mapper.MapToList``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)
-  name: MapToList<TShard, TModel>(DbDataReader, TShard, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapToList__2_System_Data_Common_DbDataReader___0_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapToList``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapToList(Of TShard, TModel)(DbDataReader, TShard, ILogger)
-  fullName: ArgentSea.Mapper.MapToList<TShard, TModel>(System.Data.Common.DbDataReader, TShard, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapToList(Of TShard, TModel)(System.Data.Common.DbDataReader, TShard, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapToList<TShard, TModel>(DbDataReader, TShard, ILogger)
-  nameWithType.vb: Mapper.MapToList(Of TShard, TModel)(DbDataReader, TShard, ILogger)
-- uid: ArgentSea.Mapper.MapToModel*
-  name: MapToModel
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapToModel_
-  commentId: Overload:ArgentSea.Mapper.MapToModel
-  isSpec: "True"
-  fullName: ArgentSea.Mapper.MapToModel
-  nameWithType: Mapper.MapToModel
-- uid: ArgentSea.Mapper.MapToModel``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)
-  name: MapToModel<TModel>(DbDataReader, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapToModel__1_System_Data_Common_DbDataReader_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapToModel``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapToModel(Of TModel)(DbDataReader, ILogger)
-  fullName: ArgentSea.Mapper.MapToModel<TModel>(System.Data.Common.DbDataReader, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapToModel(Of TModel)(System.Data.Common.DbDataReader, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapToModel<TModel>(DbDataReader, ILogger)
-  nameWithType.vb: Mapper.MapToModel(Of TModel)(DbDataReader, ILogger)
-- uid: ArgentSea.Mapper.MapToModel``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)
-  name: MapToModel<TShard, TModel>(DbDataReader, TShard, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_MapToModel__2_System_Data_Common_DbDataReader___0_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.MapToModel``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)
-  name.vb: MapToModel(Of TShard, TModel)(DbDataReader, TShard, ILogger)
-  fullName: ArgentSea.Mapper.MapToModel<TShard, TModel>(System.Data.Common.DbDataReader, TShard, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.MapToModel(Of TShard, TModel)(System.Data.Common.DbDataReader, TShard, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.MapToModel<TShard, TModel>(DbDataReader, TShard, ILogger)
-  nameWithType.vb: Mapper.MapToModel(Of TShard, TModel)(DbDataReader, TShard, ILogger)
+  fullName: ArgentSea.Mapper.ListFromReaderResultsHandler
+  nameWithType: Mapper.ListFromReaderResultsHandler
+- uid: ArgentSea.Mapper.ListFromReaderResultsHandler``2(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)
+  name: ListFromReaderResultsHandler<TShard, TModel>(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ListFromReaderResultsHandler__2___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.ListFromReaderResultsHandler``2(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)
+  name.vb: ListFromReaderResultsHandler(Of TShard, TModel)(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
+  fullName: ArgentSea.Mapper.ListFromReaderResultsHandler<TShard, TModel>(TShard, System.String, System.Object, System.Data.Common.DbDataReader, System.Data.Common.DbParameterCollection, System.String, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.ListFromReaderResultsHandler(Of TShard, TModel)(TShard, System.String, System.Object, System.Data.Common.DbDataReader, System.Data.Common.DbParameterCollection, System.String, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.ListFromReaderResultsHandler<TShard, TModel>(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
+  nameWithType.vb: Mapper.ListFromReaderResultsHandler(Of TShard, TModel)(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
 - uid: ArgentSea.Mapper.ModelFromOutResultsHandler*
   name: ModelFromOutResultsHandler
   href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ModelFromOutResultsHandler_
@@ -2634,22 +2575,74 @@ references:
   fullName.vb: ArgentSea.Mapper.ModelFromReaderResultsHandler(Of TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6)(TShard, System.String, System.Object, System.Data.Common.DbDataReader, System.Data.Common.DbParameterCollection, System.String, Microsoft.Extensions.Logging.ILogger)
   nameWithType: Mapper.ModelFromReaderResultsHandler<TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6>(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
   nameWithType.vb: Mapper.ModelFromReaderResultsHandler(Of TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6)(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
-- uid: ArgentSea.Mapper.ReaderResultsHandler*
-  name: ReaderResultsHandler
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ReaderResultsHandler_
-  commentId: Overload:ArgentSea.Mapper.ReaderResultsHandler
+- uid: ArgentSea.Mapper.ToList*
+  name: ToList
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ToList_
+  commentId: Overload:ArgentSea.Mapper.ToList
   isSpec: "True"
-  fullName: ArgentSea.Mapper.ReaderResultsHandler
-  nameWithType: Mapper.ReaderResultsHandler
-- uid: ArgentSea.Mapper.ReaderResultsHandler``2(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)
-  name: ReaderResultsHandler<TShard, TModel>(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
-  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ReaderResultsHandler__2___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_
-  commentId: M:ArgentSea.Mapper.ReaderResultsHandler``2(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)
-  name.vb: ReaderResultsHandler(Of TShard, TModel)(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
-  fullName: ArgentSea.Mapper.ReaderResultsHandler<TShard, TModel>(TShard, System.String, System.Object, System.Data.Common.DbDataReader, System.Data.Common.DbParameterCollection, System.String, Microsoft.Extensions.Logging.ILogger)
-  fullName.vb: ArgentSea.Mapper.ReaderResultsHandler(Of TShard, TModel)(TShard, System.String, System.Object, System.Data.Common.DbDataReader, System.Data.Common.DbParameterCollection, System.String, Microsoft.Extensions.Logging.ILogger)
-  nameWithType: Mapper.ReaderResultsHandler<TShard, TModel>(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
-  nameWithType.vb: Mapper.ReaderResultsHandler(Of TShard, TModel)(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)
+  fullName: ArgentSea.Mapper.ToList
+  nameWithType: Mapper.ToList
+- uid: ArgentSea.Mapper.ToList``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)
+  name: ToList<TModel>(DbDataReader, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ToList__1_System_Data_Common_DbDataReader_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.ToList``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)
+  name.vb: ToList(Of TModel)(DbDataReader, ILogger)
+  fullName: ArgentSea.Mapper.ToList<TModel>(System.Data.Common.DbDataReader, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.ToList(Of TModel)(System.Data.Common.DbDataReader, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.ToList<TModel>(DbDataReader, ILogger)
+  nameWithType.vb: Mapper.ToList(Of TModel)(DbDataReader, ILogger)
+- uid: ArgentSea.Mapper.ToList``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)
+  name: ToList<TShard, TModel>(DbDataReader, TShard, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ToList__2_System_Data_Common_DbDataReader___0_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.ToList``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)
+  name.vb: ToList(Of TShard, TModel)(DbDataReader, TShard, ILogger)
+  fullName: ArgentSea.Mapper.ToList<TShard, TModel>(System.Data.Common.DbDataReader, TShard, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.ToList(Of TShard, TModel)(System.Data.Common.DbDataReader, TShard, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.ToList<TShard, TModel>(DbDataReader, TShard, ILogger)
+  nameWithType.vb: Mapper.ToList(Of TShard, TModel)(DbDataReader, TShard, ILogger)
+- uid: ArgentSea.Mapper.ToModel*
+  name: ToModel
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ToModel_
+  commentId: Overload:ArgentSea.Mapper.ToModel
+  isSpec: "True"
+  fullName: ArgentSea.Mapper.ToModel
+  nameWithType: Mapper.ToModel
+- uid: ArgentSea.Mapper.ToModel``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)
+  name: ToModel<TModel>(DbDataReader, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ToModel__1_System_Data_Common_DbDataReader_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.ToModel``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)
+  name.vb: ToModel(Of TModel)(DbDataReader, ILogger)
+  fullName: ArgentSea.Mapper.ToModel<TModel>(System.Data.Common.DbDataReader, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.ToModel(Of TModel)(System.Data.Common.DbDataReader, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.ToModel<TModel>(DbDataReader, ILogger)
+  nameWithType.vb: Mapper.ToModel(Of TModel)(DbDataReader, ILogger)
+- uid: ArgentSea.Mapper.ToModel``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)
+  name: ToModel<TModel>(DbParameterCollection, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ToModel__1_System_Data_Common_DbParameterCollection_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.ToModel``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)
+  name.vb: ToModel(Of TModel)(DbParameterCollection, ILogger)
+  fullName: ArgentSea.Mapper.ToModel<TModel>(System.Data.Common.DbParameterCollection, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.ToModel(Of TModel)(System.Data.Common.DbParameterCollection, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.ToModel<TModel>(DbParameterCollection, ILogger)
+  nameWithType.vb: Mapper.ToModel(Of TModel)(DbParameterCollection, ILogger)
+- uid: ArgentSea.Mapper.ToModel``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)
+  name: ToModel<TShard, TModel>(DbDataReader, TShard, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ToModel__2_System_Data_Common_DbDataReader___0_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.ToModel``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)
+  name.vb: ToModel(Of TShard, TModel)(DbDataReader, TShard, ILogger)
+  fullName: ArgentSea.Mapper.ToModel<TShard, TModel>(System.Data.Common.DbDataReader, TShard, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.ToModel(Of TShard, TModel)(System.Data.Common.DbDataReader, TShard, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.ToModel<TShard, TModel>(DbDataReader, TShard, ILogger)
+  nameWithType.vb: Mapper.ToModel(Of TShard, TModel)(DbDataReader, TShard, ILogger)
+- uid: ArgentSea.Mapper.ToModel``2(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)
+  name: ToModel<TShard, TModel>(DbParameterCollection, TShard, ILogger)
+  href: api/ArgentSea.Mapper.html#ArgentSea_Mapper_ToModel__2_System_Data_Common_DbParameterCollection___0_Microsoft_Extensions_Logging_ILogger_
+  commentId: M:ArgentSea.Mapper.ToModel``2(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)
+  name.vb: ToModel(Of TShard, TModel)(DbParameterCollection, TShard, ILogger)
+  fullName: ArgentSea.Mapper.ToModel<TShard, TModel>(System.Data.Common.DbParameterCollection, TShard, Microsoft.Extensions.Logging.ILogger)
+  fullName.vb: ArgentSea.Mapper.ToModel(Of TShard, TModel)(System.Data.Common.DbParameterCollection, TShard, Microsoft.Extensions.Logging.ILogger)
+  nameWithType: Mapper.ToModel<TShard, TModel>(DbParameterCollection, TShard, ILogger)
+  nameWithType.vb: Mapper.ToModel(Of TShard, TModel)(DbParameterCollection, TShard, ILogger)
 - uid: ArgentSea.MapShardChildAttribute
   name: MapShardChildAttribute
   href: api/ArgentSea.MapShardChildAttribute.html
@@ -8149,33 +8142,6 @@ references:
   fullName.vb: ArgentSea.ShardSetsBase(Of TShard, TConfiguration).DataConnection.ConnectionString
   nameWithType: ShardSetsBase<TShard, TConfiguration>.DataConnection.ConnectionString
   nameWithType.vb: ShardSetsBase(Of TShard, TConfiguration).DataConnection.ConnectionString
-- uid: ArgentSea.ShardSetsBase`2.DataConnection.ListAsync*
-  name: ListAsync
-  href: api/ArgentSea.ShardSetsBase-2.DataConnection.html#ArgentSea_ShardSetsBase_2_DataConnection_ListAsync_
-  commentId: Overload:ArgentSea.ShardSetsBase`2.DataConnection.ListAsync
-  isSpec: "True"
-  fullName: ArgentSea.ShardSetsBase<TShard, TConfiguration>.DataConnection.ListAsync
-  fullName.vb: ArgentSea.ShardSetsBase(Of TShard, TConfiguration).DataConnection.ListAsync
-  nameWithType: ShardSetsBase<TShard, TConfiguration>.DataConnection.ListAsync
-  nameWithType.vb: ShardSetsBase(Of TShard, TConfiguration).DataConnection.ListAsync
-- uid: ArgentSea.ShardSetsBase`2.DataConnection.ListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.String,System.Threading.CancellationToken)
-  name: ListAsync<TModel>(String, DbParameterCollection, String, CancellationToken)
-  href: api/ArgentSea.ShardSetsBase-2.DataConnection.html#ArgentSea_ShardSetsBase_2_DataConnection_ListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_
-  commentId: M:ArgentSea.ShardSetsBase`2.DataConnection.ListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.String,System.Threading.CancellationToken)
-  name.vb: ListAsync(Of TModel)(String, DbParameterCollection, String, CancellationToken)
-  fullName: ArgentSea.ShardSetsBase<TShard, TConfiguration>.DataConnection.ListAsync<TModel>(System.String, System.Data.Common.DbParameterCollection, System.String, System.Threading.CancellationToken)
-  fullName.vb: ArgentSea.ShardSetsBase(Of TShard, TConfiguration).DataConnection.ListAsync(Of TModel)(System.String, System.Data.Common.DbParameterCollection, System.String, System.Threading.CancellationToken)
-  nameWithType: ShardSetsBase<TShard, TConfiguration>.DataConnection.ListAsync<TModel>(String, DbParameterCollection, String, CancellationToken)
-  nameWithType.vb: ShardSetsBase(Of TShard, TConfiguration).DataConnection.ListAsync(Of TModel)(String, DbParameterCollection, String, CancellationToken)
-- uid: ArgentSea.ShardSetsBase`2.DataConnection.ListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)
-  name: ListAsync<TModel>(String, DbParameterCollection, CancellationToken)
-  href: api/ArgentSea.ShardSetsBase-2.DataConnection.html#ArgentSea_ShardSetsBase_2_DataConnection_ListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_
-  commentId: M:ArgentSea.ShardSetsBase`2.DataConnection.ListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)
-  name.vb: ListAsync(Of TModel)(String, DbParameterCollection, CancellationToken)
-  fullName: ArgentSea.ShardSetsBase<TShard, TConfiguration>.DataConnection.ListAsync<TModel>(System.String, System.Data.Common.DbParameterCollection, System.Threading.CancellationToken)
-  fullName.vb: ArgentSea.ShardSetsBase(Of TShard, TConfiguration).DataConnection.ListAsync(Of TModel)(System.String, System.Data.Common.DbParameterCollection, System.Threading.CancellationToken)
-  nameWithType: ShardSetsBase<TShard, TConfiguration>.DataConnection.ListAsync<TModel>(String, DbParameterCollection, CancellationToken)
-  nameWithType.vb: ShardSetsBase(Of TShard, TConfiguration).DataConnection.ListAsync(Of TModel)(String, DbParameterCollection, CancellationToken)
 - uid: ArgentSea.ShardSetsBase`2.DataConnection.LookupAsync*
   name: LookupAsync
   href: api/ArgentSea.ShardSetsBase-2.DataConnection.html#ArgentSea_ShardSetsBase_2_DataConnection_LookupAsync_
@@ -8203,6 +8169,33 @@ references:
   fullName.vb: ArgentSea.ShardSetsBase(Of TShard, TConfiguration).DataConnection.LookupAsync(Of TValue)(System.String, System.Data.Common.DbParameterCollection, System.Threading.CancellationToken)
   nameWithType: ShardSetsBase<TShard, TConfiguration>.DataConnection.LookupAsync<TValue>(String, DbParameterCollection, CancellationToken)
   nameWithType.vb: ShardSetsBase(Of TShard, TConfiguration).DataConnection.LookupAsync(Of TValue)(String, DbParameterCollection, CancellationToken)
+- uid: ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync*
+  name: MapListAsync
+  href: api/ArgentSea.ShardSetsBase-2.DataConnection.html#ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync_
+  commentId: Overload:ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync
+  isSpec: "True"
+  fullName: ArgentSea.ShardSetsBase<TShard, TConfiguration>.DataConnection.MapListAsync
+  fullName.vb: ArgentSea.ShardSetsBase(Of TShard, TConfiguration).DataConnection.MapListAsync
+  nameWithType: ShardSetsBase<TShard, TConfiguration>.DataConnection.MapListAsync
+  nameWithType.vb: ShardSetsBase(Of TShard, TConfiguration).DataConnection.MapListAsync
+- uid: ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.String,System.Threading.CancellationToken)
+  name: MapListAsync<TModel>(String, DbParameterCollection, String, CancellationToken)
+  href: api/ArgentSea.ShardSetsBase-2.DataConnection.html#ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_
+  commentId: M:ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.String,System.Threading.CancellationToken)
+  name.vb: MapListAsync(Of TModel)(String, DbParameterCollection, String, CancellationToken)
+  fullName: ArgentSea.ShardSetsBase<TShard, TConfiguration>.DataConnection.MapListAsync<TModel>(System.String, System.Data.Common.DbParameterCollection, System.String, System.Threading.CancellationToken)
+  fullName.vb: ArgentSea.ShardSetsBase(Of TShard, TConfiguration).DataConnection.MapListAsync(Of TModel)(System.String, System.Data.Common.DbParameterCollection, System.String, System.Threading.CancellationToken)
+  nameWithType: ShardSetsBase<TShard, TConfiguration>.DataConnection.MapListAsync<TModel>(String, DbParameterCollection, String, CancellationToken)
+  nameWithType.vb: ShardSetsBase(Of TShard, TConfiguration).DataConnection.MapListAsync(Of TModel)(String, DbParameterCollection, String, CancellationToken)
+- uid: ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)
+  name: MapListAsync<TModel>(String, DbParameterCollection, CancellationToken)
+  href: api/ArgentSea.ShardSetsBase-2.DataConnection.html#ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_
+  commentId: M:ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)
+  name.vb: MapListAsync(Of TModel)(String, DbParameterCollection, CancellationToken)
+  fullName: ArgentSea.ShardSetsBase<TShard, TConfiguration>.DataConnection.MapListAsync<TModel>(System.String, System.Data.Common.DbParameterCollection, System.Threading.CancellationToken)
+  fullName.vb: ArgentSea.ShardSetsBase(Of TShard, TConfiguration).DataConnection.MapListAsync(Of TModel)(System.String, System.Data.Common.DbParameterCollection, System.Threading.CancellationToken)
+  nameWithType: ShardSetsBase<TShard, TConfiguration>.DataConnection.MapListAsync<TModel>(String, DbParameterCollection, CancellationToken)
+  nameWithType.vb: ShardSetsBase(Of TShard, TConfiguration).DataConnection.MapListAsync(Of TModel)(String, DbParameterCollection, CancellationToken)
 - uid: ArgentSea.ShardSetsBase`2.DataConnection.MapOutputAsync*
   name: MapOutputAsync
   href: api/ArgentSea.ShardSetsBase-2.DataConnection.html#ArgentSea_ShardSetsBase_2_DataConnection_MapOutputAsync_
@@ -15785,7 +15778,7 @@ references:
   nameWithType: UnexpectedSqlResultException.UnexpectedSqlResultException
 - uid: Microsoft.Extensions.DependencyInjection
   name: Microsoft.Extensions.DependencyInjection
-  href: api-sql/Microsoft.Extensions.DependencyInjection.html
+  href: api-pg/Microsoft.Extensions.DependencyInjection.html
   commentId: N:Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection

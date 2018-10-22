@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ShardSetsBase&lt;TShard, TConfiguration&gt;.DataConnection
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.39.1.0">
+    <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -154,170 +154,6 @@
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_DataConnection_ListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.DataConnection.ListAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L3578">View Source</a>
-  </span>
-  <a id="ArgentSea_ShardSetsBase_2_DataConnection_ListAsync_" data-uid="ArgentSea.ShardSetsBase`2.DataConnection.ListAsync*"></a>
-  <h4 id="ArgentSea_ShardSetsBase_2_DataConnection_ListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_" data-uid="ArgentSea.ShardSetsBase`2.DataConnection.ListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.String,System.Threading.CancellationToken)">ListAsync&lt;TModel&gt;(String, DbParameterCollection, String, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Connect to the database and return the values as a list of objects.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;TModel&gt;&gt; ListAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
-    where TModel : class, new()</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
-        <td><span class="parametername">parameters</span></td>
-        <td><p>The query parameters.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">shardParameterName</span></td>
-        <td><p>The ordinal position of a parameter that should be automatically set to the current shard number value. If there is no such parameter, set to -1.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>A token to cancel the asynchronous operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IList</span>&lt;TModel&gt;&gt;</td>
-        <td><p>A list containing an object for each data row.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TModel</span></td>
-        <td><p>The type of object to be listed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_DataConnection_ListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.DataConnection.ListAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L3589">View Source</a>
-  </span>
-  <a id="ArgentSea_ShardSetsBase_2_DataConnection_ListAsync_" data-uid="ArgentSea.ShardSetsBase`2.DataConnection.ListAsync*"></a>
-  <h4 id="ArgentSea_ShardSetsBase_2_DataConnection_ListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.ShardSetsBase`2.DataConnection.ListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">ListAsync&lt;TModel&gt;(String, DbParameterCollection, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Connect to the database and return the values as a list of objects.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;TModel&gt;&gt; ListAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
-    where TModel : class, new()</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
-        <td><span class="parametername">parameters</span></td>
-        <td><p>The query parameters.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>A token to cancel the asynchronous operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IList</span>&lt;TModel&gt;&gt;</td>
-        <td><p>A list containing an object for each data row.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TModel</span></td>
-        <td><p>The type of object to be listed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_DataConnection_LookupAsync__1_System_String_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.DataConnection.LookupAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -476,6 +312,170 @@
       <tr>
         <td><span class="parametername">TValue</span></td>
         <td><p>The expected type of the return value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.DataConnection.MapListAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L3578">View Source</a>
+  </span>
+  <a id="ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync_" data-uid="ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync*"></a>
+  <h4 id="ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_" data-uid="ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.String,System.Threading.CancellationToken)">MapListAsync&lt;TModel&gt;(String, DbParameterCollection, String, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Connect to the database and return the values as a list of objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;TModel&gt;&gt; MapListAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+    where TModel : class, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">sprocName</span></td>
+        <td><p>The stored procedure to call to fetch the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>The query parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">shardParameterName</span></td>
+        <td><p>The ordinal position of a parameter that should be automatically set to the current shard number value. If there is no such parameter, set to -1.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A token to cancel the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IList</span>&lt;TModel&gt;&gt;</td>
+        <td><p>A list containing an object for each data row.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TModel</span></td>
+        <td><p>The type of object to be listed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.DataConnection.MapListAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L3589">View Source</a>
+  </span>
+  <a id="ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync_" data-uid="ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync*"></a>
+  <h4 id="ArgentSea_ShardSetsBase_2_DataConnection_MapListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.ShardSetsBase`2.DataConnection.MapListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapListAsync&lt;TModel&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Connect to the database and return the values as a list of objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;TModel&gt;&gt; MapListAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    where TModel : class, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">sprocName</span></td>
+        <td><p>The stored procedure to call to fetch the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>The query parameters.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A token to cancel the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.IList</span>&lt;TModel&gt;&gt;</td>
+        <td><p>A list containing an object for each data row.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TModel</span></td>
+        <td><p>The type of object to be listed.</p>
 </td>
       </tr>
     </tbody>

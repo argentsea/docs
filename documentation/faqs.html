@@ -8,7 +8,7 @@
     <title>Frequently Asked Questions | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Frequently Asked Questions | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.39.1.0">
+    <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -96,10 +96,10 @@ application. Knowing this allows the database to be refactored and improved much
 <p>Finally, stored procedures allow DBAs (or data access SMEs) to review and approve
 data access code changes, also to ensure that indexes exist to support the new queries.</p>
 <h4 id="q-how-can-i-make-sure-that-my-data-is-secure">Q: How can I make sure that my data is secure?</h4>
-<p>A: Start by hiring an knowledgeable DBA. ArgentSea helps in a few ways:</p>
+<p>A: Start by hiring an knowledgeable DBA. ArgentSea helps in a few additional ways:</p>
 <ul>
 <li>ArgentSea’s configuration design helps protect against unsafe storage of login passwords within connection strings.</li>
-<li>Because it uses stored procedures, users cannot run arbitrary SQL statements. This reduces the opportunity for mistaken SQL statements that corrupt data and SQL injection attacks.</li>
+<li>Because it uses stored procedures, users cannot run arbitrary SQL statements. This reduces the opportunity for mistaken SQL statements that corrupt data, SQL injection attacks, and data operations to which the DBAs do not have visibility.</li>
 <li>Because you can run your application with only EXECUTE permissions, no user would have access  to operations that are not explicitly enabled by a procedure.</li>
 </ul>
 </article>

@@ -8,7 +8,7 @@
     <title>Mapping Deep-Dive | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Mapping Deep-Dive | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.39.1.0">
+    <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -615,9 +615,9 @@ var customer = cmd.Parameters.ReadOutParameters&lt;Customer&gt;(logger);
 <p>Once the parameters are set and the procedure is executed, the Mapper can read the values of the output parameters into the corresponding properties of a new object instance. The <code>ReadOutputParameters</code> method returns a new object with the properties set.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The <code>MapOutput&amp;ast;</code> methods of the Database or ShardSet objects fetch results from the database and implicitly use the Mapper to return a Model based upon output parameters. In most cases, you would use one of those methods rather than <code>ReadOutParameters</code> on the Mapper directly.</p>
+<p>The <code>MapOutput*;</code> methods of the Database or ShardSet objects fetch results from the database and implicitly use the Mapper to return a Model based upon output parameters. In most cases, you would use one of those methods rather than <code>ReadOutParameters</code> on the Mapper directly.</p>
 </div>
-<h3 id="the-datareader">The DataReader</h3>
+<h3 id="mapping-from-datareader-results">Mapping from DataReader Results</h3>
 <p>The Mapper also converts the rows presented by a DataReader object into a list of corresponding objects, or a single row into a Model instance.</p>
 <p>For example, to map to a list of objects:</p>
 <pre><code class="lang-cs">var customers = rdr.MapToList&lt;Customer&gt;(logger);
@@ -628,8 +628,9 @@ var customer = cmd.Parameters.ReadOutParameters&lt;Customer&gt;(logger);
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
-<p>As with output parameters, the <code>MapReader&amp;ast;</code> or <code>MapListAsync</code> methods of the Database or ShardSet objects fetch results from the database and implicitly use the Mapper to return a Model based upon DataReader results. In most cases, you would use one of those methods rather than <code>MapToList</code> or <code>MapToModel</code> on the Mapper.</p>
+<p>As with output parameters, the <code>MapReader*;</code> or <code>MapListAsync</code> methods of the Database or ShardSet objects fetch results from the database and implicitly use the Mapper to return a Model based upon DataReader results. In most cases, you would use one of those methods rather than <code>MapToList</code> or <code>MapToModel</code> on the Mapper.</p>
 </div>
+<p>The DataReader mapping methods allow you to use multiple SELECT result to map both the base object and one or more list properties. The order of the generic objects provided to the Mapper determines the expected order of the result streams in the DataReader.</p>
 <h2 id="performance">Performance</h2>
 <p>The ArgentSea Mapper is written to be as high-performance as optimized hand-coded data access code. However, there is a hitch.</p>
 <p>Property attributes can only be retrieved using <em>reflection</em>, which is relatively slow .NET code. To avoid this type of performance penalty on every data access, ArgentSea uses reflection only the first time the mapping is performed; using that metadata it then creates and compiles an “Expression Tree”to build an optimized, compiled mapping. The compiled code is cached in memory and reused for all subsequent calls.</p>
