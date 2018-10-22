@@ -1,0 +1,502 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Querying Data | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Querying Data | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.39.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="querying-data">Querying Data</h1>
+
+<p>This deep dive assumes that you have your project correctly <a href="configuration.html">configured</a> and it is also helpful if you have some understanding of ArgentSea’s <a href="mapping.html">Mapping</a> capabilities</p>
+<p>ArgentSea was originally built to support application data sharding. Even if you do not use data sharding in your application, a brief discussion of the issues will help explain the architecture behind of ArgentSea’s data access approach. It will not be more difficult than any other ADO.NET query.</p>
+<h2 id="understanding-sharding">Understanding Sharding</h2>
+<p>The best way to understand the query architecture of ArgentSea is to describe a typical ADO.NET query then describe how this must change to account for concurrent multi-threaded queries across a shard set. These changes are not complicated, and they should be helpful even if your project does use sharding.</p>
+<p>A typical ADO.NET data access method follows these steps:</p>
+<ol>
+<li>Start with a <strong>connection</strong> object, created from a connection string.</li>
+<li>Create a <strong>command</strong> object that is associated with the <strong>connection</strong> object.</li>
+<li>Next, the populate the command's <em>Parameters</em> property with the necessary input and output parameters.</li>
+<li>Open the connection and run the command.</li>
+<li>Create a Model object, which represents the data to the application, and use the <strong>DataReader</strong> and/or output parameters to populate its properties.</li>
+</ol>
+<p>In a sharded environment, however:</p>
+<ul>
+<li>The same parameters must be executed on multiple connections — reversing the steps 1 to 3.</li>
+<li>A distinct command object must be executed and the results processed on a separate thread for each connection. The parameters cannot be shared (different threads would overwrite each other’s values) and the result handler must be thread-safe because it could be simultaneously executing on different connections.</li>
+</ul>
+<p>ArgentSea manages the challenges of multi-threaded access access with a four-step approach:</p>
+<ol>
+<li>Declare the parameters and arguments that will be passed to the stored procedures.</li>
+<li>Create a thread for each shard connection, then create the <strong>connection</strong> (and <strong>command</strong>) object for each.</li>
+<li>Copy the parameter values to the parameter collection on each shard’s <strong>command</strong> object.</li>
+<li>Call the stored procedure/function on each shard’s thread. When results are obtained, call (thread-safe) code to create and populate a Model object.</li>
+<li>Merge the results and return them to the caller.</li>
+</ol>
+<p>Ultimately, using ArgentSea on multiple shards is no more difficult than writing simple ADO.NET database access code (and usually much easier), but the code new needs to be grouped and sequenced differently. Previously, you would usually use just one data access procedure, which would set the ADO.NET parameters, run the query, then convert the results to a Model object. Now, because processing results is multi-threaded whereas setting up the query is not, you need to split that process into <em>two</em> procedures:</p>
+<ul>
+<li>The <strong><em>caller</em></strong> method sets the parameters and calls an ArgentSea query method. This executes on a single thread.</li>
+<li>The <strong><em>handler</em></strong> procedure converts the results (<strong>DataReader</strong> and/or output parameters) to a Model object result. This can execute on many threads.</li>
+</ul>
+<p>This ArgentSea query paradigm applies even to non-sharded queries using the Databases collection. This provides some design consistency, but also enables the Mapper for both sharded and non-sharded data.</p>
+<blockquote>
+<p>{!TIP]
+If you use ArgentSea’s optional <a href="mapping.html">Mapping</a> functionality, the multi-threaded results handling procedure is <em>already provided</em> by the Mapper. You do not have to write a handler.</p>
+</blockquote>
+<h2 id="setting-parameters">Setting Parameters</h2>
+<p>With the ArgentSea framework, you need to set parameter values <em>before</em> a connection or command is created. The ADO.NET standard parameter collections cannot be created without a command object host. To fill this need, ArgentSea provides a <a href="/api/ArgentSea.QueryParameterCollection.html">QueryParameterCollection</a> object, which is simply a collection of ADO.NET DbParameters. This object allow you to create an instance with a simple <code>new</code> statement.</p>
+<pre><code class="lang-C#">var parameters = new QueryParameterCollection();
+</code></pre>
+<p>ArgentSea provides a variety of extension methods to work with the parameters collection.</p>
+<ul>
+<li>Methods to easily add parameters to any parameters collection</li>
+<li>Methods to simplify obtaining values from parameters.</li>
+<li>Methods to Map Models properties to parameters.</li>
+</ul>
+<h3 id="creating-parameters-with-extension-methods">Creating Parameters with Extension Methods</h3>
+<p>ArgentSea offers a set of extension methods that simplify the code required to optimally create and populate parameters and also handle database nulls.</p>
+<p>The methods to add parameters to a collection are provider-specific, since they are converting .NET types to database types. This means that the extension methods won’t appear unless you have a <code>using</code> statement referencing the provider.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-C#">using ArgentSea.Sql;
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The QueryParameterCollection and SqlParameterCollection inherit from the same base class. Not only can you use these methods on ArgentSea’s <code>QueryParameterCollection</code>, but you can also use them on the standard ADO.NET <code>SqlCommand.Parameters</code> property.</p>
+</div>
+<p>Here are some code examples:</p>
+<pre><code class="lang-C#">parameters.AddSqlIntInParameter(&quot;@TransactionId&quot;, transactionId);
+parameters.AddSqlDecimalInParameter(&quot;@Amount&quot;, amount, 16, 2);
+parameters.AddSqlNVarCharInParameter(&quot;@Name&quot;, name, 255);
+parameters.AddSqlFloatOutParameter(&quot;@Temperature&quot;);
+// These methods all support a fluent api, so these can be written instead as:
+var parameters = new QueryParameterCollection()
+    .AddSqlIntInParameter(&quot;@TransactionId&quot;, transactionId)
+    .AddSqlDecimalInParameter(&quot;@Amount&quot;, amount, 16, 2)
+    .AddSqlNVarCharInParameter(&quot;@Name&quot;, name, 255)
+    .AddSqlRealOutParameter(&quot;@Temperature&quot;);
+// And these methods also work on the data provider’s command parameters collection.
+cmd.Parameters.AddSqlIntInParameter(&quot;@TransactionId&quot;, transactionId)
+    .AddSqlDecimalInParameter(&quot;@Amount&quot;, amount, 16, 2)
+    .AddSqlNVarCharInParameter(&quot;@Name&quot;, name, 255)
+    .AddSqlRealOutParameter(&quot;@Temperature&quot;);
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-C#">using ArgentSea.Pg;
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The QueryParameterCollection and NpgsqlParameterCollection inherit from the same base class. Not only can you use these methods on ArgentSea’s <code>QueryParameterCollection</code>, but you can also use them on the standard ADO.NET <code>NpgsqlCommand.Parameters</code> property.</p>
+</div>
+<pre><code class="lang-C#">parameters.AddPgIntegerInParameter(&quot;TransactionId&quot;, transactionId);
+parameters.AddPgDecimalInParameter(&quot;Amount&quot;, amount, 16, 4);
+parameters.AddPgVarCharInParameter(&quot;Name&quot;, name, 255);
+parameters.AddPgDoubleOutParameter(&quot;Temperature&quot;);
+// These methods all support a fluent api, so these can be written instead as:
+var parameters = new QueryParameterCollection()
+    .AddPgIntegerInParameter(&quot;TransactionId&quot;, transactionId)
+    .AddPgDecimalInParameter(&quot;Amount&quot;, amount, 16, 2)
+    .AddPgVarCharInParameter(&quot;Name&quot;, name, 255)
+    .AddPgDoubleOutParameter(&quot;Temperature&quot;);
+// And these methods also work on the data provider’s command parameters collection.
+cmd.Parameters..AddPgIntegerInParameter(&quot;TransactionId&quot;, transactionId)
+    .AddPgDecimalInParameter(&quot;Amount&quot;, amount, 16, 2)
+    .AddPgVarCharInParameter(&quot;Name&quot;, name, 255)
+    .AddPgDoubleOutParameter(&quot;Temperature&quot;);
+</code></pre>
+</section>
+</div>
+
+<p>Where appropriate, the methods have overloads that accept nullable value types. When the nullable type is null, the parameter will be set to a database Null value. If you are not using the Nullable overloads, then the values Guid.Empty, double.NaN, and float.NaN will also be saved as database Nulls. Likewise, null strings will be set to database Nulls, but empty strings will save as zero-length strings. The extension methods accepting string values have a max length argument, and those converting to Ansi database values have a code page parameter. The decimal methods have arguments for specifying precision and scale.</p>
+<h3 id="creating-parameters-with-the-mapper">Creating Parameters with the Mapper</h3>
+<p>The Mapper uses Model property attributes to automatically generate code that is much like what would be created in the previous section. Technically, the Mapper procedures are also extension methods, but we are discussing them separately in this section.</p>
+<p>Assuming that the Model (in this example, a “Customer” class) has Mapping attributes associated with each of its properties, you can render all the corresponding input parameters and set their respective values with:</p>
+<pre><code class="lang-C#">parameters.MapInputParameters&lt;Customer&gt;(customer, logger);
+</code></pre>
+<p>You can do something similar with output parameters — though it would be unlikely that you would want to want to create <em>only</em> output parameters. You will probably need at least one input parameter (likely a key). If you create the input parameter first, it will not be duplicated by the Mapper as it generates output parameters.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-C#">parameters.AddSqlIntInParameter(&quot;@TransactionId&quot;, transactionId);
+parameters.MapCreateOutputParameters&lt;Customer&gt;(logger);
+// Again, these methods all support a fluent api, so this can be written instead as:
+var parameters = new QueryParameterCollection()
+    .AddSqlIntInParameter(&quot;@TransactionId&quot;, transactionId)
+    .MapCreateOutputParameters&lt;Customer&gt;(logger);
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-C#">parameters.AddPgIntegerInParameter(&quot;TransactionId&quot;, transactionId);
+parameters.MapCreateOutputParameters&lt;Customer&gt;(logger);
+// Again, these methods all support a fluent api, so this can be written instead as:
+var parameters = new QueryParameterCollection()
+    .AddPgIntegerInParameter(&quot;TransactionId&quot;, transactionId)
+    .MapCreateOutputParameters&lt;Customer&gt;(logger);
+</code></pre>
+</section>
+</div>
+
+<p>Finally, you can always add parameters using standard ADO.NET syntax:</p>
+<pre><code class="lang-C#">var parameter = new System.Data.SqlClient.SqlParameter();
+parameter.SqlDbType = System.Data.SqlDbType.Int;
+parameter.Value = transactionId;
+command.Parameters.Add(parameter);
+</code></pre>
+<h2 id="fetching-data">Fetching Data</h2>
+<p>Retrieving database data consists of running a stored procedure or function on each connection. ArgentSea provides various methods to offer the best approach:</p>
+<h3 id="database-methods">Database methods</h3>
+<p>These methods can be used on Database connections, and on a shard instance (read connection or write connection) within a ShardSet:</p>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th style="text-align: center;">Uses Mapper</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LookupAsync</strong></td>
+<td style="text-align: center;"></td>
+<td>Returns a value from the database. This may be a return value (int) or single output parameter.</td>
+</tr>
+<tr>
+<td><strong>RunAsync</strong></td>
+<td style="text-align: center;"></td>
+<td>Executes a database command. No results are returned.</td>
+</tr>
+<tr>
+<td><strong>QueryAsync</strong></td>
+<td style="text-align: center;"></td>
+<td>Returns the typed object created by a handler delegate.</td>
+</tr>
+<tr>
+<td><strong>MapListAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td>Returns a List of typed objects from the data results.</td>
+</tr>
+<tr>
+<td><strong>MapReaderAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td>Returns a typed object created by the <a href="/api/ArgentSea.Mapper.html">Mapper</a> from <strong>DataReader</strong> results.</td>
+</tr>
+<tr>
+<td><strong>MapOutputAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td>Returns a typed object created by the <a href="/api/ArgentSea.Mapper.html">Mapper</a> from output parameters <em>and</em> <strong>DataReader</strong> results.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shardset-methods">ShardSet methods</h3>
+<p>These methods execute the same command more-or-less concurrently on all the shards in a ShardSet. The ShardSet methods always use the Read connection.</p>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th style="text-align: center;">Uses Mapper</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>QueryAllAsync</strong></td>
+<td style="text-align: center;"></td>
+<td>Returns a List of any non-null objects created by a handler delegate in any shard. The list count will not be larger than the shard count.</td>
+</tr>
+<tr>
+<td><strong>QueryFirstAsync</strong></td>
+<td style="text-align: center;"></td>
+<td>Returns the first non-null object created by a handler delegate in any shard. Use this when you are expecting a single result.</td>
+</tr>
+<tr>
+<td><strong>MapListAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td>Returns a <em>combined</em> List of typed objects from the data results, across all shards. Additional result sets will be discarded.</td>
+</tr>
+<tr>
+<td><strong>MapReaderAllAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td>Returns a List including any non-null objects created from any shard’s data reader results (not using output parameters). The list count will not be larger than the shard count.</td>
+</tr>
+<tr>
+<td><strong>MapReaderFirstAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td>Returns the first non-null object created on any shard where the procedure/function returns data reader results. Use this when you are expecting a single result and not using output parameters.</td>
+</tr>
+<tr>
+<td><strong>MapOutputAllAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td>Returns a List including any non-null objects that were created by invoking a procedure/function that returns results via output parameters <em>and</em> data reader results. The list count will not be larger than the shard count.</td>
+</tr>
+<tr>
+<td><strong>MapOutputFirstAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td>Returns the first non-null object created by invoking a procedure/function that returns results via output parameters <em>and</em> data reader results. Use this when you are expecting a single result and using output parameters.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="method-arguments">Method Arguments</h3>
+<p>The arguments are largely consistent across all of the methods.</p>
+<h4 id="required-argument-string-sprocname">Required Argument: (string) sprocName</h4>
+<p>This is simply the name of the stored procedure or function to be invoked. This string value is required for every data access method.</p>
+<p>The general practice is to provide a stored procedure/function name with string constant, like this:</p>
+<pre><code class="lang-C#">await database.RunAsync(&quot;ws.MyProcedureName&quot;, parameters, cancellationToken);
+</code></pre>
+<p>As larger applications evolve, however, one can lose track of which database procedures are <em>actually being used</em> by the application. It is not unusual for a custom application to have hundreds of data procedures, only a fraction of which are used.</p>
+<p>Pro tip: you might consider consistently referencing procedure names via a static class, like this.</p>
+<pre><code class="lang-C#">internal static class DataProcedures
+{
+    //This should be a COMPREHENSIVE list of stored procedure names.
+    //You can use the reference count to determine what is in use.
+    public static string CustomerAdd { get;  } = &quot;ws.CustomerAdd&quot;;
+    public static string CustomerList { get; } = &quot;ws.CustomerList&quot;;
+    public static string CustomerLocationGet { get; } = &quot;ws.CustomerLocationGet&quot;;
+    public static string CustomerLocationDetailsGet { get;  } = &quot;ws.CustomerLocationDetailsGet&quot;;
+    public static string CustomerLocationsAllByUser { get; } = &quot;ws.CustomerLocationsAllByUser&quot;;
+    public static string CustomerLocationsByGroupIDs { get; } = &quot;ws.CustomerLocationsByGroupIDs&quot;;
+    // ...
+}
+// Now you can reference the procedure name like this:
+await database.RunAsync(DataProcedures.CustomerAdd, parameters, cancellationToken);
+
+</code></pre>
+<p>Centralizing the procedure name list allows reviewers to see which procedures are actually used by the application (and ensure that non are misspelled). Surfacing them using static properties, as in the example, allows Visual Studio to provide a “reference count” for each procedure (constants do not do this). When the method that called this stored procedure/function is removed from the code, the zero “reference count” will make it obvious that, even though the name defined, it is not actually used.</p>
+<p>The reference count popup data even allows you to find all of the methods that invoke that stored procedure/function. This can be helpful as you prune different data procedures that seem to do the same thing.</p>
+<h4 id="required-argument-dbparametercollection-parameters">Required Argument: (DbParameterCollection) parameters</h4>
+<p>The abstract <code>DbParameterCollection</code> is implemented by ArgentSea’s <a href="/api/ArgentSea.QueryParameterCollection.html">QueryParameterCollection</a> object. Because it is also implemented by the provider-specific command.Parameters property, if you have a command with valid parameters defined (for some reason), you can use that too.</p>
+<p>This value can be null if there are no parameters.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>When working with output parameters in standard ADO.NET, you may habitually maintain a variable reference to any output parameters you created before adding it to the collection. This makes it easy to get the output parameter value after the query is executed.<br>
+This approach will not work with sharded data, because ArgentSea will <em>copy</em> the parameter set before executing the stored procedure/function. Any referenced output parameters will <em>not</em> contain a data result.</p>
+</div>
+<h4 id="optional-shardset-argument-ienumerableshardparametervaluetshard-shardparametervalues">Optional ShardSet Argument: (IEnumerable&lt;ShardParameterValue&lt;TShard&gt;&gt;) shardParameterValues</h4>
+<p>Some shard query method overloads accept a <code>ShardParameterValue</code> object. This object allows you to specify which shards should be queried and even provide distinct parameter values to each shard.</p>
+<p>For example, suppose your User record returns a list of “Friends”. The Friend detail data may be hosted on other shards, but not on <em>every</em> shard. Building a list of <code>ShardParameterValue</code> objects from the User results would limit the subsequent queries to just the relevant shards.</p>
+<p>The <code>ShardParameterValue</code> type has a ShardId and an optional parameter name and value. Only shards with at least one listed ShardId will be queried. If a parameter name is also specified, the corresponding parameter will be set to that value on the indicated shard. You can include multiple parameters/values on the same shard by repeating the shardId.</p>
+<h4 id="optional-shardset-argument-string-shardparametername">Optional ShardSet Argument: (string) shardParameterName</h4>
+<p>Some shard query overloads also accept the name of the parameter that represents the name of the parameter that should be set to shardId value. If specified, ArgentSea will set this parameter value to the current shardId value as it executes each query.</p>
+<p>For example, a query for a list of records that spans shards could be enhanced if the query new the value of its own ShardId. Alternatively, because a shard misconfiguration might result in catastrophic data corruption (due to the high likelihood of duplicate record identities between shards), you might require that stored procedures or functions that write to the database also have a ShardId parameter that they validate is correct.</p>
+<h4 id="optional-argument-queryresultmodelhandlertshard-targ-tmodel-resulthandler">Optional Argument: (QueryResultModelHandler&lt;TShard, TArg, TModel&gt;&gt;) resultHandler</h4>
+<p>This is only used in the QueryAsync methods. As described earlier, the data query process is divided into two processes. The resultHandler is a delegate that may be invoked concurrently by distinct, shard-specific threads.</p>
+<p>If you use a data access method prefixed with Map*, this argument is not required because the delegate provided by the Mapper is used. If the Mapper does not suit your purpose, then a custom delegate must be provided to a Query* method.</p>
+<p>Your custom delegate can have an argument that provides additional data or context information. Information on how to build a custom delegate is provided below.</p>
+<h4 id="optional-argument-bool-istopone">Optional Argument: (bool) isTopOne</h4>
+<p>Some overloads expose the isTopOne option, which allows a minor optimization when only a single result is expected. For example, if you are looking up a record by its key, you don’t need to allocate space for multiple results when only a single result can ever be returned.</p>
+<h4 id="optional-argument-targ-optionalargument">Optional Argument: (TArg) optionalArgument</h4>
+<p>If you are creating a custom data handling method, you may need to provide additional data or context information. This argument may be generically typed. The provided object is passed to your result handling delegate.</p>
+<h4 id="required-argument-cancellationtoken-cancellationtoken">Required Argument: (CancellationToken) cancellationToken</h4>
+<p>The cancellation token allow you to cancel asynchronous operations. ASP.NET MVC provides cancellation tokens and these can be passed along. In this way, when a user abandons their session, any uncompleted queries can be cancelled.</p>
+<h3 id="the-mapreader-and-mapoutput-methods">The MapReader* and MapOutput* Methods</h3>
+<p>The <strong>MapReader*</strong> and <strong>MapOutput*</strong> methods are similar. Both use the Mapping attributes to resolve data to Model objects. The <strong>MapOutput*</strong> method uses <em>output parameters</em> to build the root result object; the <strong>MapReader</strong> methods use a (single record) <strong>DataReader</strong> result instead.</p>
+<p>So, if you use output parameters (which is potentially more performant), use <strong>MapOutput*</strong>. If you use standard SELECTs to return your data, use <strong>MapReader*</strong>.</p>
+<p>Both methods support multiple result sets that populate properties that contain Lists of related data. For example, you might have an Order record with a property containing an OrderItem List. The list items come from (additional) DataReader results. You can have up to eight of these List properties.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>The order in which your attribute-mapped class appears in the generic definitions should be the same order as the list data results in the procedure output.</p>
+</div>
+<p>An example of calling each would be:</p>
+<pre><code class="lang-C#">// In this example, ws.GetOrderDetails returns Order data in output parameters:
+_database.MapOutputAsync&lt;Order&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+// Here, ws.GetOrderDetails returns simple Order data in a single-row SELECT:
+_database.MapReaderAsync&lt;Order&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+
+// Now ws.GetOrderDetails returns Order data in output parameters and a list of OrderItem from a SELECT:
+_database.MapOutputAsync&lt;Order, OrderItems&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+// Finally, ws.GetOrderDetails returns Order data in a single-row SELECT, then a list of OrderItems from a 2nd SELECT:
+_database.MapReaderAsync&lt;Order, Order, OrderItems&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+
+// Expanding this, we now have output parameters and three SELECTs:
+_database.MapOutputAsync&lt;Customer, OrderHistory, Locations, Contact&gt;(&quot;ws.GetCustomerDetails&quot;, parameters, cancellation);
+// Likewise, the procedure now returns four SELECTs, and the third one is a single-row SELECT with the base customer data,
+// the remaining select are used to build customer property lists (order history, locations, and contacts):
+_database.MapReaderAsync&lt;Customer, OrderHistory, Customer, Locations, Contact&gt;(&quot;ws.GetCustomerDetails&quot;, parameters, cancellation);
+</code></pre>
+<p>In both methods, the generic type in the <em>first</em> position is the return type. If additional results are included in the result stream, the subsequent types define the order in which they are expected in the DataReader results. You can have up to eight DataReader results streamed to distinct List properties.</p>
+<ul>
+<li>In the <strong>MapOutput*</strong> example, then, the result type is Order and the first DataReader result is a series of OrderItems.</li>
+<li>In the <strong>MapOutput*</strong> example, the result type is Order, and the first DataReader result is the Order data, and the second DataReader result is a series of OrderItems.</li>
+</ul>
+<h3 id="the-query-methods">The Query* Methods</h3>
+<p>The <strong>Query*</strong> methods provide the most control, as you are given raw ADO.NET query results to construct whatever return value you like. You can return a list, a dictionary, or any type of Model object. When you call a <strong>Query*</strong> method, you must provide a handler method whose signature corresponds to the <code>QueryResultModelHandler</code> delegate.</p>
+<p>There are two obvious scenarios for the <strong>Query*</strong> methods:</p>
+<ul>
+<li>The Model class is defined in a library, so Mapping attributes cannot be added.</li>
+<li>The rendering a complex return value is beyond the capabilities of the Mapper.</li>
+</ul>
+<p>The delegate even has a parameter that allows you to provide custom data (through the query method) with which to construct your result object.</p>
+<p>The delegate must be thread-safe.  The <a href="/api/ArgentSea.ShardSetsBase-2.ShardSet.html">ShardSet</a> manages the complexity of initializing multiple queries on multiple connections and multiple results, but it is the delegate that takes the database results (from each connection/thread) and creates an object result.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The Mapper provides several thread-safe, high-performance <code>QueryResultModelHandler</code> delegates. In fact, providing a Mapper delegate to the <strong>Query*</strong> method is exactly how the <strong>MapOutput*</strong> an <strong>MapOutput*</strong> methods are implemented. You can use this yourself to extend the Mapper; just provide your own delegate that calls the Mapper in turn.</p>
+</div>
+<p>Details on implementing the <code>QueryResultModelHandler</code> delegate is in the next section.</p>
+<h2 id="handling-data-results">Handling Data Results</h2>
+<p>If you are using data mapping attributes in your Model classes, the <strong>MapReader*</strong>, <strong>MapOutput*</strong>, and <strong>MapList*</strong> methods make handling data results unnecessary. This section is for queries that use the <strong>Query*</strong> methods, which allow you to return an arbitrary object from the data input.</p>
+<p>If you are familiar with ADO.NET programming, this will be very familiar. The delegate simply receives the standard ADO.NET query results and processes them like it would in most other ADO.NET scenarios.</p>
+<p>As an example, a method with the correct signature for returning a Customer model looks like this:</p>
+<pre><code class="lang-C#">public static Customer MyCustomerHandler (
+    short shardId,
+    string sprocName,
+    Department department, // this is an optional custom argument
+    DbDataReader reader,
+    DbParameterCollection parameters,
+    string connectionDescription,
+    ILogger logger)
+{
+    var result = new Customer();
+    // use the reader argument and/or parameters collection to build your result.
+    return result;
+}
+</code></pre>
+<h3 id="the-arguments">The Arguments</h3>
+<p>Both the return type (“Customer”, in the example) and the optional data argument (“Department”, in the example) are generic, so they can be of any type.</p>
+<h4 id="tshard-shardid">(TShard) shardId</h4>
+<p>The shardId argument will be a default value, like null or zero, when not using a ShardSet; otherwise it will be set to the current ShardId. This value is essential when building ShardKey or ShardChild types, where the shard identity is a component of the record identity.</p>
+<h4 id="string-sprocname">(string) sprocName</h4>
+<p>This is the name of the stored procedure or function that was executed. It is provided to the procedure for logging purposes.</p>
+<h4 id="targ-optionalargument">(TArg) optionalArgument</h4>
+<p>The third argument type is a generic parameter; the type is defined when you declare the delegate. This object provides whatever external data or context that many be necessary or useful in order to create your result.</p>
+<p>If it not needed (i.e. most cases), define the type as <code>object</code>. This allows you to use the <strong>Query*</strong> overloads that do not require this parameter; in those cases, this value will be null.</p>
+<h4 id="dbdatareader-reader">(DbDataReader) reader</h4>
+<p>The reader argument is a standard data reader. You can call <code>reader.MoveNext()</code> to get the next row and <code>reader.NextResult()</code> to get the next result set. You do not need to dispose of it when you are done.</p>
+<h4 id="dbparametercollection-parameters">(DbParameterCollection) parameters</h4>
+<p>The parameters collection contains the input and output parameters for the query. ArgentSea offers a set of extension methods to simplify converting parameter values to .NET types. These are extension methods on the parameter object (not the collection).</p>
+<pre><code class="lang-C#">var transactionId = parameters[&quot;@TransactionId&quot;].GetInteger();
+var amount = parameters[&quot;@Amount&quot;].GetNullableDecimal();
+var name = parameters[&quot;@Name&quot;].GetString();
+</code></pre>
+<h4 id="string-connectiondescription">(string) connectionDescription</h4>
+<p>The connectionDescription argument allows the logger to include the connection that raised the error or event. You should include this (and also the stored/function procedure name) in any logging or errors in your procedures. Because your delegate could run on multiple connections, this can be essential debugging information.</p>
+<h4 id="ilogger-logger">(ILogger) logger</h4>
+<p>Finally, the logger argument allows you to write debugging, warning, and error information to the application logs. This is the same logger instance as is passed in through the various query methods.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/querying.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
