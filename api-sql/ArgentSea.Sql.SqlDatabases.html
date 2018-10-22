@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class SqlDatabases
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.39.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -89,13 +89,33 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="../api/ArgentSea.DbDataStores-1.html">DbDataStores</a>&lt;<a class="xref" href="ArgentSea.Sql.SqlDbConnectionOptions.html">SqlDbConnectionOptions</a>&gt;</div>
+    <div class="level1"><a class="xref" href="../api/ArgentSea.DatabasesBase-1.html">DatabasesBase</a>&lt;<a class="xref" href="ArgentSea.Sql.SqlDbConnectionOptions.html">SqlDbConnectionOptions</a>&gt;</div>
     <div class="level2"><span class="xref">SqlDatabases</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.Collections.ICollection</span></div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="../api/ArgentSea.DbDataStores-1.html#ArgentSea_DbDataStores_1_DbConnections">DbDataStores&lt;SqlDbConnectionOptions&gt;.DbConnections</a>
+      <a class="xref" href="../api/ArgentSea.DatabasesBase-1.html#ArgentSea_DatabasesBase_1_Item_System_String_">DatabasesBase&lt;SqlDbConnectionOptions&gt;.Item[String]</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DatabasesBase-1.html#ArgentSea_DatabasesBase_1_Count">DatabasesBase&lt;SqlDbConnectionOptions&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DatabasesBase-1.html#ArgentSea_DatabasesBase_1_IsSynchronized">DatabasesBase&lt;SqlDbConnectionOptions&gt;.IsSynchronized</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DatabasesBase-1.html#ArgentSea_DatabasesBase_1_SyncRoot">DatabasesBase&lt;SqlDbConnectionOptions&gt;.SyncRoot</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DatabasesBase-1.html#ArgentSea_DatabasesBase_1_CopyTo_System_Array_System_Int32_">DatabasesBase&lt;SqlDbConnectionOptions&gt;.CopyTo(Array, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DatabasesBase-1.html#ArgentSea_DatabasesBase_1_GetEnumerator">DatabasesBase&lt;SqlDbConnectionOptions&gt;.GetEnumerator()</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -123,7 +143,7 @@
   <h6><strong>Assembly</strong>: ArgentSea.Sql.dll</h6>
   <h5 id="ArgentSea_Sql_SqlDatabases_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SqlDatabases : DbDataStores&lt;SqlDbConnectionOptions&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class SqlDatabases : DatabasesBase&lt;SqlDbConnectionOptions&gt;, ICollection, IEnumerable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -174,6 +194,13 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.Collections.ICollection</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
 </article>
           </div>
           

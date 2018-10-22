@@ -8,7 +8,7 @@
     <title>Configuration Deep-Dive | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Configuration Deep-Dive | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.39.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -93,7 +93,6 @@
 <li><strong>A <em>shard set</em></strong>  - a single data set spread over multiple database connections</li>
 </ul>
 <p>ArgentSea configuration supports any number of <em>database connections</em> and any number of <em>shard sets</em>. And of course each <em>shard set</em> can have many database connections.</p>
-<h3 id="limiting-redundancy-across-multiple-connection-definitions">Limiting Redundancy Across Multiple Connection Definitions</h3>
 <p>This creates a potentially large number of database connections. Many of these will likely have similar connection information. In many scenarios, all of the connections in a shard set would use the same login information. Likewise, in a given datacenter environment it only makes sense that all connections use the same resiliency strategy.</p>
 <p>To manage this redundancy, the ArgentSea configuration data is broken into four parts:</p>
 <ul>
@@ -102,7 +101,7 @@
 <li>Database connection information</li>
 <li>Shard set connection information</li>
 </ul>
-<h4 id="credentials">Credentials</h4>
+<h3 id="credentials">Credentials</h3>
 <p>If you are using json configuration files to manage your configuration, the credentials section in your configuration might look like this:</p>
 <pre><code class="lang-json">  &quot;Credentials&quot;: [
     {
@@ -123,8 +122,51 @@
 </code></pre>
 <p>If you prefer to set the properties of an Options class directly, you can use the ArgentSea.DataSecurityOptions class.</p>
 <p>You should put this configuration section into a secure location. In a development environment, you should consider using the <em>UserSecrets</em> functionality, which prevents this information from being checked into your source code repository. In other environments, you might consider using you should use AWS Secrets Manager, Azure Key Vault, or something similar.</p>
+<p>In non-JSON configuration contexts, like environment variables, you can specify these values as key-value pairs. This is the equivalent of the JSON above:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Credentials:0:SecurityKey</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Credentials:0:Password</td>
+<td>webuser</td>
+</tr>
+<tr>
+<td>Credentials:0:UserName</td>
+<td>123456</td>
+</tr>
+<tr>
+<td>Credentials:1:SecurityKey</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Credentials:1:WindowsAuth</td>
+<td>true</td>
+</tr>
+<tr>
+<td>Credentials:2:SecurityKey</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Credentials:2:Password</td>
+<td>admin</td>
+</tr>
+<tr>
+<td>Credentials:2:UserName</td>
+<td>7890</td>
+</tr>
+</tbody>
+</table>
 <p>The <em>SecurityKey</em> property must be unique and exactly match the security string key that you specify on your connection (i.e. both must have the same casing).</p>
-<h4 id="resilience-strategies">Resilience Strategies</h4>
+<h3 id="resilience-strategies">Resilience Strategies</h3>
 <p>Resilience strategies define how ArgentSea recovers from unexpected failures, usually through some combination of retry logic and circuit breaking. Because one typically requires only a few resilience strategies across datacenters (perhaps one for local connections and another for across the WAN), to reduce redundancy we use the same keyed approach as for security.</p>
 <p>A general Resilience Strategy is implicit. If a connection does not specify a Resilience Strategy, this
 default one will be used. If it is defined, the corresponding connection(s) must specify the key (again, casing matters).</p>
@@ -147,8 +189,8 @@ default one will be used. If it is defined, the corresponding connection(s) must
       &quot;CircuitBreakerTestInterval&quot;: &quot;5000&quot;
     }
 </code></pre>
-<p><strong>Retries</strong></p>
-<p>Not that retries only occur on errors that are defined as <em>transient</em>.
+<h4 id="retries">Retries</h4>
+<p>Note that retries only occur on errors that are defined as <em>transient</em>.
 A permissions error or invalid object reference would be pointless to retry.
 (The list of errors defined as <em>transient</em> is in the provider-specific implementation
 of IDataProviderServiceFactory. You can view this in the source code).</p>
@@ -197,14 +239,14 @@ on subsequent retries before giving up.</p>
 </table>
 <p>With these values, the default resilience strategy would take a total of five seconds to finally fail.</p>
 <p>Note that a high <code>RetryCount</code> could create a very long delay before a connection is allowed to ultimately fail.</p>
-<p><strong>Circuit Breaking</strong></p>
+<h4 id="circuit-breaking">Circuit Breaking</h4>
 <p>When a database connection is unavailable, this can cause serious downstream problems. Processes may pile-on further requests even while earlier requests are simply waiting
 to time out. As this continues, the queue of backlogged requests becomes so large that the caller itself can manage no more. This bottleneck can block other systems too. What started as a broken connection to a single database eventually becomes fatal to the calling system too!</p>
 <p>This is the reason to add a “circuit breaker” — a fail-fast mechanism to ensure that callers do not wait needlessly for queued connections that are unlikely to succeed, and which are blocking other processes too.</p>
 <p>When the circuit breaker is tripped, subsequent connections will fail <em>immediately</em>. This prevents queuing, bottleneck blocking, and downstream failures. While tripped, the circuit breaker will periodically allow a single transaction to proceed; if it successful the circuit breaker is reopened. In this way, a system restoration will automatically close the circuit breaker too so that connections can resume.</p>
 <p>The <code>CircuitBreakerFailureCount</code> value determines how many sequential failures will trigger the circuit breaker. The <code>CircuitBreakerTestInterval</code> value determines
 how often (in milliseconds) the circuit breaker will allow a single transaction through.</p>
-<h3 id="database-connections">Database Connections</h3>
+<h2 id="database-connections">Database Connections</h2>
 <p>The database configuration architecure allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code.</p>
 <p>The connection information is specific to the database provider.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q">
@@ -252,7 +294,10 @@ how often (in milliseconds) the circuit breaker will allow a single transaction 
   }
 ]
 </code></pre>
+<div class="CAUTION">
+<h5>Caution</h5>
 <p>You do <em>not</em> need include all of these attributes in your connection! Any value not included in your configuration will be set to the provider default — except as described in the next paragraphs.</p>
+</div>
 <p>The <code>ConnectRetryCount</code>, <code>ConnectRetryInterval</code> values default to 0 because the ArgentSea retry logic duplicates this functionality. If you prefer to use the SqlClient retry functionality instead, set these to their desired values and specify a <code>ResilienceStrategy</code> with no retries. If you use both connection retries <em>and</em> ArgentSea retries, no harm will come, other than a lot of retries.</p>
 <p>The other exception to the provider default values is the <code>ConnectTimeout</code> value. The provider default is 15 seconds, but with the ArgentSea’s retry logic, this could create
 unnecessarily long connection timeouts. The ArgentSea default is 2 seconds because datacenter connections are easily resolved in that time unless something is wrong.
@@ -348,7 +393,7 @@ If you have a WAN or high-latency connection (or are using ConnectRetryCount), y
 <li>Because sharded records often need to refer to related records hosted in other shards, the shard identifier become part of the record key.</li>
 </ul>
 <h3 id="managing-database-connections">Managing Database Connections</h3>
-<p>Sharded data sets may run to hundreds of servers (or more). ArgentSea manages any number of distinct shard sets and any number of connections in each shard set.</p>
+<p>Sharded data sets <em>may</em> run to hundreds of servers (or more). ArgentSea manages any number of distinct shard sets and any number of connections in each shard set.</p>
 <p>You could have a distinct shard set for, say, all of your subscriber information and a separate shard set for all of your operational data. You define the shard set name in your configuration; when you query a shard set, you simply specify the shard set name.</p>
 <h3 id="distinct-read-and-write-endpoints">Distinct Read and Write Endpoints</h3>
 <p>If you are scaling-out your data access by sharding your data, you are likely also scaling-out by separating read activity from write operations. Examples of this includes SQL Availability Groups, RDS Read Replicas, Azure SQL geo-replication, Aurora reader endpoints, etc.</p>
@@ -360,6 +405,10 @@ If you have a WAN or high-latency connection (or are using ConnectRetryCount), y
 <li>The read connection is different than the write connection.</li>
 <li>The query handler returns a null object (i.e. a parameter attribute is marked <em>required</em> but the database value is (db) null or a custom handler returns null).</li>
 </ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>You can easily have distinct Read and Write database connections for your non-sharded database connections too. Simply define two connections, one for read access and the other for write access. In your code, select the Read connection or Write connection as appropriate.</p>
+</div>
 <h3 id="the-shard-identifier-type">The Shard Identifier Type</h3>
 <p>Each database in a shard set has a shard identifier <em>(shardId)</em>. The shardId is used in combination with the record key to uniquely identify a record. In other words, records in the shard set are identified with a sort of virtual compound key, consisting of the shard identifier and the record key.</p>
 <div class="NOTE">
@@ -523,7 +572,7 @@ If you have a WAN or high-latency connection (or are using ConnectRetryCount), y
 </section>
 </div>
 
-<p>If the <em>shardid</em> were a string you should enclose the value in quotes (<code>ShardId: &quot;0&quot;</code>).</p>
+<p>If the <em>shardid</em> is a string you should enclose the value in quotes (<code>ShardId: &quot;0&quot;</code>).</p>
 <p>The configuration file can repeat the ShardSet section (the object with ShardSetKey and Shards entries) for each shard set. Likewise, the entries in the Shards array can repeat for every data shard in the shard set. As illustrated by Shard 1’s Write Connection, any connection can include a any number of provider-specific connection attributes.</p>
 <h2 id="loading-the-configuration">Loading the Configuration</h2>
 <p>ArgentSea uses the built-in Options configuration and dependency injection architecture in .NET Core. The complexity of turning a JSON configuration file into a connection object is as simple as adding the <code>services.AddSqlServices&lt;TShard&gt;(Configuration)</code> extension method to the <code>ConfigureServices</code> method in your <code>Startup</code> class.</p>

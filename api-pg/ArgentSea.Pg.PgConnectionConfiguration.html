@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class PgConnectionConfiguration
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.39.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,7 +91,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html">DataConnectionConfiguration</a></div>
+    <div class="level1"><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></div>
     <div class="level2"><span class="xref">PgConnectionConfiguration</span></div>
   </div>
   <div classs="implements">
@@ -101,22 +101,22 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_hasConnectionPropertyChanged">DataConnectionConfiguration.hasConnectionPropertyChanged</a>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_hasConnectionPropertyChanged">DataConnectionConfigurationBase.hasConnectionPropertyChanged</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_SetConfigurationOptions_ArgentSea_DataSecurityOptions_ArgentSea_DataResilienceOptions_">DataConnectionConfiguration.SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)</a>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_SetConfigurationOptions_ArgentSea_DataSecurityOptions_ArgentSea_DataResilienceOptions_">DataConnectionConfigurationBase.SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetResilienceStrategy_Microsoft_Extensions_Logging_ILogger_">DataConnectionConfiguration.GetResilienceStrategy(ILogger)</a>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetResilienceStrategy_Microsoft_Extensions_Logging_ILogger_">DataConnectionConfigurationBase.GetResilienceStrategy(ILogger)</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetSecurityConfiguration">DataConnectionConfiguration.GetSecurityConfiguration()</a>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetSecurityConfiguration">DataConnectionConfigurationBase.GetSecurityConfiguration()</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_SecurityKey">DataConnectionConfiguration.SecurityKey</a>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_SecurityKey">DataConnectionConfigurationBase.SecurityKey</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_ResilienceKey">DataConnectionConfiguration.ResilienceKey</a>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_ResilienceKey">DataConnectionConfigurationBase.ResilienceKey</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -144,7 +144,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <h6><strong>Assembly</strong>: ArgentSea.Pg.dll</h6>
   <h5 id="ArgentSea_Pg_PgConnectionConfiguration_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PgConnectionConfiguration : DataConnectionConfiguration, IConnectionConfiguration</code></pre>
+    <pre><code class="lang-csharp hljs">public class PgConnectionConfiguration : DataConnectionConfigurationBase, IConnectionConfiguration</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -334,7 +334,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_ConnectionDescription">DataConnectionConfiguration.ConnectionDescription</a></div>
+  <div><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_ConnectionDescription">DataConnectionConfigurationBase.ConnectionDescription</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ConnectionIdleLifetime.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ConnectionIdleLifetime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -1458,7 +1458,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetConnectionString">DataConnectionConfiguration.GetConnectionString()</a></div>
+  <div><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetConnectionString">DataConnectionConfigurationBase.GetConnectionString()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>

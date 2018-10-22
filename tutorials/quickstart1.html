@@ -8,7 +8,7 @@
     <title>QuickStart One | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="QuickStart One | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.39.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -79,31 +79,30 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="quickstart-one">QuickStart One</h1>
 
-<p>This article will breeze you through a simple setup of ArgentSea for non-sharded data access. This presentation introduces concepts which are further elaborated in the <a href="sharding.html">subsequent article</a>. It assumes that you are using <em>.NET Core</em> in some flavor of <em>Visual Studio</em>.</p>
-<p>If you get stuck or have questions, click on one of the links to the other more in-depth articles.</p>
+<p>This article will step you through a simple setup of ArgentSea for non-sharded data access. This presentation introduces concepts which are further elaborated in the <a href="quickstart2.html">subsequent article</a>. It assumes that you are using <em>.NET Core</em> in some flavor of <em>Visual Studio</em>.</p>
+<p>If you get stuck or have questions, click on one of the links to the other, more in-depth, articles.</p>
 <h2 id="1-create-a-project-or-use-an-existing-one">1. Create a Project (or use an existing one)</h2>
 <p>A sample QuickStart project is <a href="https://github.com/argentsea/quickstarts">here</a>. It is based on the ASP.NET API project type.</p>
-<p>If you create an empty project, you will need to ensure that appsettings.json is added.</p>
+<p>If you prefer to start by creating a new, empty project, ensure that appsettings.json is added.</p>
 <h2 id="2-add-argentsea-to-your-project">2. Add ArgentSea to your project</h2>
 <p>Use NuGet to add ArgentSea to your project. Select the package that corresponds to your database platform.</p>
 <p>As of today, you can add one of the following NuGet packages:</p>
 <ul>
-<li>For SQL Server databases, use <strong>ArgentSea.Sql</strong></li>
+<li>For Microsoft SQL Server databases, use <strong>ArgentSea.Sql</strong></li>
 <li>For PostgreSQL, use <strong>ArgentSea.Pg</strong></li>
 </ul>
-<p>Both packages will automatically include the shared ArgentSea package and any other dependencies.</p>
+<p>Both packages will automatically include the shared ArgentSea package and any other dependencies. Using both packages in the same project is not a tested or scenario.</p>
 <p>You can learn more about adding a reference to ArgentSea <a href="https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio">here</a>.</p>
 <h2 id="3-define-your-login-information">3. Define your Login Information</h2>
 <p>There are two required configuration sections. The first of these provides security information.</p>
 <p>If you have <a href="https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets">UserSecrets</a>
 set up (preferred), add the json below to your User Secrets file (right-click
-on the project and select <em>Manage User Secrets</em>).</p>
-<p>If you are not using User Secrets, you can simply one of the json sections to your appsettings.json configuration file.</p>
+on the project and select <em>Manage User Secrets</em>). If you are not using User Secrets, you can simply add the json sections to your appsettings.json configuration file.</p>
 <div class="TIP">
 <h5>Tip</h5>
-<p>The sample application <em>does</em> use User Secrets, so if you are following along at home you will need to manually copy the credentials section below into the secrets.json file in the sample app.</p>
+<p>The sample application <em>does</em> use User Secrets, so if you are following along at home you will need to manually copy the credentials to the User Secrets in the sample app.</p>
 </div>
-<p>For a connection using username and password authentication, use:</p>
+<p>To connect using username and password authentication, use:</p>
 <pre><code class="lang-json">&quot;Credentials&quot;: [
   {
     &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
@@ -121,11 +120,11 @@ on the project and select <em>Manage User Secrets</em>).</p>
     }
   ],
 </code></pre>
-<p>Storing passwords more securely is an incidental benefit of having a separate Credentials section. The principal purpose is to simplify login management when the system has many connections across multiple shard sets.</p>
 <div class="CAUTION">
 <h5>Caution</h5>
-<p>In a production deployment, the Credential section could be hosted in Azure Key Vault, AWS Secrets Manager, or some other secure resource.</p>
+<p>In a production deployment, the Credential section should be hosted in Azure Key Vault, AWS Secrets Manager, or some other secure resource.</p>
 </div>
+<p>Storing passwords more securely is an incidental benefit of having a separate Credentials section. The principal purpose is to simplify login management when the system has many connections across multiple shard sets.</p>
 <h2 id="4-define-your-database-settings">4. Define Your Database Settings</h2>
 <p>The database settings tell ArgentSea how to build the (non-security) part of your connection string. Any attribute not specified will use a default value, so the required information is quite minimal.</p>
 <p>In your appsettings.json file, add the following section:</p>
@@ -174,7 +173,7 @@ on the project and select <em>Manage User Secrets</em>).</p>
 is available <a href="/tutorials/configuration.html">here</a>.</p>
 <div class="TIP">
 <h5>Tip</h5>
-<p>In a production deployment, environment-specific connection information might be stored in server environment variables rather than configuration files. This make deployments much easier to manage.</p>
+<p>In a production deployment, environment-specific connection information could be stored in server environment variables rather than configuration files. This may make deployments easier to manage.</p>
 </div>
 <h2 id="6-load-argentsea-on-application-start">6. Load ArgentSea on Application Start</h2>
 <p>ArgentSea is an injectable service, so it needs to be registered on application startup.</p>
@@ -211,7 +210,7 @@ of our data access clients.</p>
 </section>
 </div>
 <h2 id="7-create-a-model-class">7. Create a Model Class</h2>
-<p>A model class has properties that correspond the the fields of a data entity. ArgentSea can automatically map these properties to input or output parameters, the columns of a datareader object, or (in SQL Server) a table-valued parameter.</p>
+<p>A model class has properties that correspond the the fields of a data entity. ArgentSea can automatically map these properties to input or output parameters, the columns of a DataReader object, or (in SQL Server) a table-valued parameter.</p>
 <p>For example, suppose your subscriber data can be represented by a class like this:</p>
 <pre><code class="lang-C#">using System;
 
@@ -314,11 +313,11 @@ END;
 
   public async Task&lt;Subscriber&gt; GetSubscriber(int subscriberId, CancellationToken cancellation)
   {
-    var db = _dbs.DbConnections[&quot;MyDatabase&quot;];
-    var prms = new QueryParameterCollection()
-      .AddSqlIntInParameter(&quot;@SubId&quot;, subscriberId);
-    Mapper.MapToOutParameters(prms, typeof(Subscriber), _logger);
-    return await db.QueryAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
+    var db = _dbs[&quot;MyDatabase&quot;];
+    var parameters = new QueryParameterCollection()
+        .AddSqlIntInParameter(&quot;@SubId&quot;, subscriberId)
+        .MapToOutParameters&lt;Subscriber&gt;(_logger);
+    return await db.MapOutputAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, parameters, cancellation);
   }
 }
 </code></pre>
@@ -353,11 +352,11 @@ $$ LANGUAGE sql;
 
 public async Task&lt;Subscriber&gt; GetSubscriber(int subscriberId, CancellationToken cancellation)
 {
-  var db = _dbs.DbConnections[&quot;MyDatabase&quot;];
-  var prms = new QueryParameterCollection()
-    .AddPgIntegerInParameter(&quot;_subid&quot;, subscriberId);
-  Mapper.MapToOutParameters(prms, typeof(Subscriber), _logger);
-  return await db.QueryAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
+    var db = _dbs[&quot;MyDatabase&quot;];
+    var parameters = new QueryParameterCollection()
+      .AddPgIntegerInParameter(&quot;_subid&quot;, subscriberId)
+      .MapToOutParameters&lt;Subscriber&gt;(_logger);
+    return await db.MapOutputAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, parameters, cancellation);
 }
 </code></pre>
 </section>
