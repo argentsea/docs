@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ShardSetsBase&lt;TShard, TConfiguration&gt;.DataConnection
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -331,6 +331,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;TModel&gt;&gt; MapListAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -416,6 +417,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;TModel&gt;&gt; MapListAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -495,6 +497,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -579,6 +582,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -657,7 +661,9 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -747,7 +753,9 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -831,8 +839,11 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -927,8 +938,11 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1017,9 +1031,13 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1119,9 +1137,13 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1215,10 +1237,15 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1323,10 +1350,15 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1425,11 +1457,17 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1539,11 +1577,17 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1647,12 +1691,19 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1767,12 +1818,19 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1881,13 +1939,21 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2007,13 +2073,21 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2127,14 +2201,23 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()
+
     where TReaderResult7 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2259,14 +2342,23 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()
+
     where TReaderResult7 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2385,6 +2477,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2469,6 +2562,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2547,8 +2641,11 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2643,8 +2740,11 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2733,9 +2833,13 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2835,9 +2939,13 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2931,10 +3039,15 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3039,10 +3152,15 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3141,11 +3259,17 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3255,11 +3379,17 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3363,12 +3493,19 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3483,12 +3620,19 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3597,13 +3741,21 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3723,14 +3875,23 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, CancellationToken cancellationToken)
+
     where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()
+
     where TReaderResult7 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3855,6 +4016,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; QueryAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, QueryResultModelHandler&lt;TShard, object, TModel&gt; resultHandler, bool isTopOne, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3946,6 +4108,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; QueryAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, QueryResultModelHandler&lt;TShard, object, TModel&gt; resultHandler, bool isTopOne, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -4043,6 +4206,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; QueryAsync&lt;TArg, TModel&gt;(string sprocName, DbParameterCollection parameters, QueryResultModelHandler&lt;TShard, TArg, TModel&gt; resultHandler, bool isTopOne, TArg optionalArgument, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -4144,6 +4308,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; QueryAsync&lt;TArg, TModel&gt;(string sprocName, DbParameterCollection parameters, string shardParameterName, QueryResultModelHandler&lt;TShard, TArg, TModel&gt; resultHandler, bool isTopOne, TArg optionalArgument, CancellationToken cancellationToken)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

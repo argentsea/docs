@@ -8,7 +8,7 @@
     <title>QuickStart One | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="QuickStart One | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -120,9 +120,13 @@ on the project and select <em>Manage User Secrets</em>). If you are not using Us
     }
   ],
 </code></pre>
+<div class="TIP">
+<h5>Tip</h5>
+<p>If you are using Windows authentication <em>exclusively</em>, you can store your credential information within your appsettings.json file. There is no need to secure your credential information.</p>
+</div>
 <div class="CAUTION">
 <h5>Caution</h5>
-<p>In a production deployment, the Credential section should be hosted in Azure Key Vault, AWS Secrets Manager, or some other secure resource.</p>
+<p>In a production deployment, the Credential section should be hosted in <a href="https://aws.amazon.com/secrets-manager/">AWS Secrets Manager</a>, <a href="https://azure.microsoft.com/en-us/services/key-vault/">Azure Key Vault</a>, or some other secure resource.</p>
 </div>
 <p>Storing passwords more securely is an incidental benefit of having a separate Credentials section. The principal purpose is to simplify login management when the system has many connections across multiple shard sets.</p>
 <h2 id="4-define-your-database-settings">4. Define Your Database Settings</h2>
@@ -315,8 +319,8 @@ END;
   {
     var db = _dbs[&quot;MyDatabase&quot;];
     var parameters = new QueryParameterCollection()
-        .AddSqlIntInParameter(&quot;@SubId&quot;, subscriberId)
-        .MapToOutParameters&lt;Subscriber&gt;(_logger);
+        .AddSqlIntInputParameter(&quot;@SubId&quot;, subscriberId)
+        .CreateOutputParameters&lt;Subscriber&gt;(_logger);
     return await db.MapOutputAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, parameters, cancellation);
   }
 }
@@ -354,8 +358,8 @@ public async Task&lt;Subscriber&gt; GetSubscriber(int subscriberId, Cancellation
 {
     var db = _dbs[&quot;MyDatabase&quot;];
     var parameters = new QueryParameterCollection()
-      .AddPgIntegerInParameter(&quot;_subid&quot;, subscriberId)
-      .MapToOutParameters&lt;Subscriber&gt;(_logger);
+      .AddPgIntegerInputParameter(&quot;_subid&quot;, subscriberId)
+      .CreateOutputParameters&lt;Subscriber&gt;(_logger);
     return await db.MapOutputAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, parameters, cancellation);
 }
 </code></pre>

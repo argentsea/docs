@@ -8,7 +8,7 @@
     <title>Sharding | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Sharding | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -127,82 +127,34 @@
 <p>Because the ShardId value is used in configuration, queries, and also for saving foreign shard references in your databases, once your project is established this value cannot be easily changed. The same ShardId type is used across all <a href="/api/ArgentSea.ShardSetsBase-2.html">ShardSets</a>.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The database itself may not know what its own <em>ShardId</em> is. This sounds absurd until you realize that it is genuinely difficult to keep scores or hundreds of database schemas and procedures in sync while preserving a programmatic ShardId value. Your continuous delivery tooling will keep detecting any differences and trying to overwrite them. Fortunately, your connection <em>does</em> know this and can set the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values correctly.</p>
+<p>The database itself may not know what its own <em>ShardId</em> is. This sounds absurd until you realize that it is genuinely difficult to keep scores or even hundreds of database schemas and procedures in sync while preserving a programmatic ShardId value. Your continuous delivery tooling will keep detecting any differences and trying to overwrite them. Fortunately, your connection <em>does</em> know this and can set the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values correctly.</p>
 </div>
 <h4 id="the-recordid">The RecordId</h4>
 <p>Like the ShardId, the RecordId is also an generic type, which can be one of the following:</p>
 <table>
 <thead>
 <tr>
-<th>Possible Types</th>
+<th>RecordId (and ChildId) Possible Data Types</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><em>byte</em></td>
-</tr>
-<tr>
-<td><em>char</em></td>
-</tr>
-<tr>
-<td><em>DateTime</em>,</td>
-</tr>
-<tr>
-<td><em>DateTimeOffset</em></td>
-</tr>
-<tr>
-<td><em>decimal</em></td>
-</tr>
-<tr>
-<td><em>double</em>,</td>
-</tr>
-<tr>
-<td><em>float</em></td>
-</tr>
-<tr>
-<td><em>Guid</em>,</td>
-</tr>
-<tr>
-<td><em>int</em></td>
-</tr>
-<tr>
-<td><em>long</em></td>
-</tr>
-<tr>
-<td><em>sbyte</em></td>
-</tr>
-<tr>
-<td><em>short</em></td>
-</tr>
-<tr>
-<td><em>string</em></td>
-</tr>
-<tr>
-<td><em>TimeSpan</em></td>
-</tr>
-<tr>
-<td><em>uint</em></td>
-</tr>
-<tr>
-<td><em>ulong</em></td>
-</tr>
-<tr>
-<td><em>ushort</em></td>
+<td><em>byte</em>, <em>char</em>, <em>DateTime</em>, <em>DateTimeOffset</em>, <em>decimal</em>, <em>double</em>, <em>float</em>, <em>Guid</em>, <em>int</em>, <em>long</em>, <em>sbyte</em>, <em>short</em>, <em>string</em>, <em>TimeSpan</em>, <em>uint</em>, <em>ulong</em>, <em>ushort</em></td>
 </tr>
 </tbody>
 </table>
 <p>If you have a data key that is not one of these types, the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> objects will not know how to serialize the values.</p>
-<p>Unlike the ShardId, the data type of the RecordId (and/or ChildId) <em>can</em> be different for each table.</p>
+<p>Unlike the ShardId, the data type of the RecordId (and/or ChildId) need not be universal; it <em>can</em> be different for each table.</p>
 <h4 id="the-childid">The ChildId</h4>
 <p>The <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> type gets its name from the parent-child relationship that is typical of a two-column compound key. The <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> includes the <em>RecordId</em> of the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> along with a new generic <em>ChildId</em> value. A <em>ShardGrandChild</em> could also be created to support three-level compound record keys, but, so far, there hasn’t been demand for that.</p>
-<p>The ChildId can be any of the types listed in the previous section and the data type can vary from table to table.</p>
+<p>The ChildId can be any of the types listed in the previous section and the data type can also vary from table to table.</p>
 <h3 id="using-the-shardkey-and-shardchild">Using The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a></h3>
 <p>Having a single object represent a compound record key adds only a little convenience. The real value comes from three capabilities: The shard Mapping attributes and the External key string.</p>
 <h4 id="tostring-toexternalstring-and-fromexternalstring">ToString(), ToExternalString(), and FromExternalString()</h4>
 <p>Calling <code>ToString()</code> on a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> returns a list of the constituent values.</p>
 <p>The <code>ToExternalKey()</code> function serializes the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values into a URL-safe string. This string also has a small amount of tampering protection.</p>
 <p>As you would expect, the <code>FromExternalString()</code> function reverses the operation, returning a ShardKey or ShardChild instance from a valid string.</p>
-<p>The <em>External String</em> value can be used with REST endpoints and the like to specify a sharded record using a single argument.</p>
+<p>The <em>External String</em> value can be used with, say, REST endpoints to specify a sharded record using a single argument.</p>
 <h4 id="the-mapshardkey-and-mapshardchild-attributes">The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> Attributes</h4>
 <p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attributes map the shard information, record key, and (as appropriate) the child record value to a new <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> instance respectively.</p>
 <p>The simplest implementation is to simply add the <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> or <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attribute and the type-appropriate <em>MapTo</em> attribute(s).</p>
@@ -311,28 +263,6 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 <h1 id="shardsets">ShardSets</h1>
 <p>A “shard set” is a collection of databases with essentially identical schemas, each of which contain a segment of the data. Many — probably most — sharded applications will have only one ShardSet, but this supports contexts where multiple sharding plans exist. For example, User information might be sharded globally by datacenter location, while product availability information might be sharded by subsidiary (ok, this specious example might be better served via microservices; the point is that the framework does not preclude multiple ShardSets if you need them).</p>
 <p>The root injectable service is a <a href="/api/ArgentSea.ShardSetsBase-2.html">ShardSets</a> object, which is merely a collection of <code>ShardSet</code> instances.</p>
-<p>There are two versions: the generic version — <code>ShardSet&lt;T&gt;</code> — allows you to specify the ShardId type; the non-generic <code>ShardSets</code> collection has the ShardId type already defined as a likely value based upon the platform:</p>
-<table>
-<thead>
-<tr>
-<th>Platform</th>
-<th>Implicit ShardId Type</th>
-<th>Generic equivalent</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SQL Server</td>
-<td>Byte</td>
-<td><code>SqlShardSets&lt;byte&gt;</code></td>
-</tr>
-<tr>
-<td>PostgreSQL</td>
-<td>Int16</td>
-<td><code>PgShardSets&lt;short&gt;</code></td>
-</tr>
-</tbody>
-</table>
 <h2 id="the-shardsets-class-hierarchy">The ShardSets Class Hierarchy</h2>
 <p>The <a href="/api/ArgentSea.ShardSets-2.html">ShardSets</a> collection is the root of an object hierarchy. The child objects in the hierarchy are implemented as nested classes. This simplifies the implementation, but can also make declarations somewhat verbose.</p>
 <p><img src="../images/shardSetHierarchy.jpg" alt="ShardSetHierarchy"></p>
@@ -357,20 +287,6 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<p>Injection example using the non-generic ShardSet (Byte as ShardId type):</p>
-<pre><code class="lang-C#">    public class SubscriberStore
-    {
-        private readonly SqlShardSets.ShardSet _shardSet;
-        private readonly ILogger&lt;SubscriberStore&gt; _logger;
-
-        public SubscriberStore(SqlShardSets shardSets, ILogger&lt;SubscriberStore&gt; logger)
-        {
-            _shardSet = shardSets[&quot;Subscribers&quot;];
-            _logger = logger;
-        }
-
-</code></pre>
-<p>Example using the generic ShardSet:</p>
 <pre><code class="lang-C#">    public class SubscriberStore
     {
         private readonly SqlShardSets&lt;string&gt;.ShardSet _shardSet;
@@ -386,31 +302,17 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 </section>
 <section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<p>Injection example using the non-generic ShardSet (Int16 as ShardId type):</p>
-<pre><code class="lang-C#">    public class SubscriberStore
+<pre><code class="lang-C#">public class SubscriberStore
+{
+    private readonly PgShardSets&lt;string&gt;.ShardSet _shardSet;
+    private readonly ILogger&lt;SubscriberStore&gt; _logger;
+
+    public SubscriberStore(PgShardSets&lt;string&gt; shardSets, ILogger&lt;SubscriberStore&gt; logger)
     {
-        private readonly PgShardSets.ShardSet _shardSet;
-        private readonly ILogger&lt;SubscriberStore&gt; _logger;
-
-        public SubscriberStore(PgShardSets shardSets, ILogger&lt;SubscriberStore&gt; logger)
-        {
-            _shardSet = shardSets[&quot;Subscribers&quot;];
-            _logger = logger;
-        }
-
-</code></pre>
-<p>Example using the generic ShardSet:</p>
-<pre><code class="lang-C#">    public class SubscriberStore
-    {
-        private readonly PgShardSets&lt;string&gt;.ShardSet _shardSet;
-        private readonly ILogger&lt;SubscriberStore&gt; _logger;
-
-        public SubscriberStore(PgShardSets&lt;string&gt; shardSets, ILogger&lt;SubscriberStore&gt; logger)
-        {
-            _shardSet = shardSets[&quot;Subscribers&quot;];
-            _logger = logger;
-        }
-
+        _shardSet = shardSets[&quot;Subscribers&quot;];
+        _logger = logger;
+    }
+}
 </code></pre>
 </section>
 </div>
@@ -418,7 +320,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 <p>There are two types of ShardSet queries:</p>
 <ul>
 <li><em>Queries on a particular shard</em> - usually to obtain a specific record, like when you have a ShardKey.</li>
-<li><em>Queries across all shards</em> - when you need a list or when don’t know the specific shard to search.</li>
+<li><em>Queries across all shards</em> - when you need a list or when don’t know the specific shard(s) to search.</li>
 </ul>
 <h3 id="querying-a-shard">Querying a Shard</h3>
 <p>Access a shard in the ShardSet collection using a ShardId key, just like you would with any other collection. The ShardId would typically be contained in a ShardKey or ShardChild. If you have implemented a solution using identity ranges, just call your custom resolver to get the shard index.</p>
@@ -437,7 +339,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 <pre><code class="lang-C#">public async Task&lt;Subscriber&gt; GetSubscriber(ShardKey&lt;byte, int&gt; subscriberKey, CancellationToken cancellation)
 {
     var prms = new QueryParameterCollection()
-        .AddSqlIntInParameter(&quot;@SubId&quot;, subscriberKey.RecordId);
+        .AddSqlIntInputParameter(&quot;@SubId&quot;, subscriberKey.RecordId);
     return await _shardSet[subscriberKey.ShardId].Read.MapOutputAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
 }
 </code></pre>
@@ -447,7 +349,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 <pre><code class="lang-C#">public async Task&lt;Subscriber&gt; GetSubscriber(ShardKey&lt;short, int&gt; subscriberKey, CancellationToken cancellation)
 {
     var prms = new QueryParameterCollection()
-        .AddPgIntegerInParameter(&quot;SubId&quot;, subscriberKey.RecordId);
+        .AddPgIntegerInputParameter(&quot;SubId&quot;, subscriberKey.RecordId);
     return await _shardSet[subscriberKey.ShardId].Read.MapOutputAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
 }
 </code></pre>
@@ -460,7 +362,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 <li>There is often some latency between the time that data is saved and when it is available from the read instance. This temporary data inconsistency can cause problems or confusion due to missing data.</li>
 </ul>
 <p>There are several architectural solutions to the latency-driven data inconsistency problem, such as intelligent caching, client observable collections, delayed retries, and retries on the Write connection. Due to the variations in environments, optimal solutions, and the challenge of simple determining when a missing record is really expected, ArgentSea does not attempt an automatic retry on the Write connection.</p>
-<p>To implement your own latency handling, you can easily implement an automatic retry using the write connection. In this example method we retrieve data by key value, so a missing record is unexpected and might be due to replication latency. The code assumes that the subscriber key has the “required” attribute set so that the Mapper returns a null object if the key is null. The resolution is to simply retry on the Write connection.</p>
+<p>To implement your own latency handling, you can easily implement an automatic retry using the Write connection after an unexpectedly missing record on the Read connection. In this example method we retrieve data by key value, so a missing record is unexpected and might be due to replication latency. The code assumes that the subscriber key has the “required” attribute set so that the Mapper returns a null object if the key is null. The resolution is to simply retry on the Write connection.</p>
 <pre><code class="lang-C#">    var sub = await _shardSet[subscriberKey.ShardId].Read.MapReaderAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
     // add automatic retry on write connection if subscriber is not found.
     if (sub is null)

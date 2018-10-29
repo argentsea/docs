@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Delegate QueryResultModelHandler&lt;TShard, TArg, TModel&gt;
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,6 +91,7 @@
   <h5 id="ArgentSea_QueryResultModelHandler_3_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public delegate TModel QueryResultModelHandler&lt;TShard, TArg, TModel&gt;(TShard shardId, string sprocName, TArg optionalArgument, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

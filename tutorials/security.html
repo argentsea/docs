@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ArgentSea Setup | ArgentSea Docs </title>
+    <title>Security | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ArgentSea Setup | ArgentSea Docs ">
+    <meta name="title" content="Security | ArgentSea Docs ">
     <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -77,33 +77,88 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="argentsea-setup">ArgentSea Setup</h1>
+<h1 id="security">Security</h1>
 
-<h2 id="nuget-package">Nuget Package</h2>
-<p>The first, obvious step is to add a reference to the relevant ArgentSea nuget package.
-These are provider-specific. Current there are two:</p>
+<p>ArgentSea encourages better <a href="https://www.owasp.org/index.php/.NET_Security_Cheat_Sheet">security practices</a> in two ways:</p>
 <ul>
-<li>ArgentSea for SQL Server</li>
-<li>ArgentSea for PostgreSQL</li>
+<li>By making it easier to store password information securely.</li>
+<li>By enforcing the use of stored procedures / functions.</li>
 </ul>
-<p>Both packages include a reference to the base ArgentSea shared package,
-so it is not necessary to include that separately, though you may need to referece it
-in your code.</p>
-<p>You <em>may</em> be able to include multiple provider packages in your progress (this is not
-a tested scenario), but you cannot have a single class that includes provider
-attributes from different providers. If you need to reference different database providers
-(i.e. both SQL Server and PostgreSQL), it would be best to use different projects.</p>
-<h2 id="simplifying-object-references">Simplifying Object References</h2>
-<p>Of course, the ArgentSea framework does not know in advance the data types used in your
-architecture. You provide this information using generics when you compile your project.
-Since the ArgentSea objects are used frequently, however, this can be unnecessarily verbose.</p>
-<p>To simplify accessing the ArgentSea objects in your code, we suggest either</p>
+<h2 id="secure-password-storage">Secure Password Storage</h2>
+<p>ArgentSea’s data connection metadata divorces passwords from a legacy “connection string” implementation. Because the new .NET configuration architecture enables configuration data to be distributed among multiple sources, passwords can be stored in secure locations — independently of the rest of the connection metadata.</p>
+<p>For example, passwords can stored in:</p>
 <ul>
-<li>Creating a derived class that declares your data types</li>
-<li>Or adding a <em>using</em> statement in each data access class</li>
+<li><a href="https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets">UserSecrets</a> — in a development context.</li>
+<li><a href="https://aws.amazon.com/secrets-manager/">AWS Secrets Manager</a></li>
+<li><a href="https://azure.microsoft.com/en-us/services/key-vault/">Azure Key Vault</a></li>
+<li>Secure, encrypted file shares</li>
 </ul>
-<h3 id="using-derived-classes">Using Derived classes</h3>
-<h4 id="using-using">Using using</h4>
+<p>Each provider has a NuGet package which simplifies loading their secrets into your application.</p>
+<p>If your password store handles JSON, you can add credentials like this:</p>
+<pre><code class="lang-json">&quot;Credentials&quot;: [
+  {
+    &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
+    &quot;UserName&quot;: &quot;webuser&quot;,
+    &quot;Password&quot;: &quot;D~|Y98N?A9qkEz^u%Dhn&quot;
+  },
+  {
+    &quot;SecurityKey&quot;: &quot;SecKey2&quot;,
+    &quot;UserName&quot;: &quot;adminUser&quot;,
+    &quot;Password&quot;: &quot;A*dNppRZq3-vE@Ci&quot;
+  }
+]
+</code></pre>
+<p>If your password store uses key-value pairs, you can store the same information like this:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Credentials:0:SecurityKey</td>
+<td>SecKey1</td>
+</tr>
+<tr>
+<td>Credentials:0:UserName</td>
+<td>SecKey1</td>
+</tr>
+<tr>
+<td>Credentials:0:Password</td>
+<td>SecKey1</td>
+</tr>
+<tr>
+<td>Credentials:1:SecurityKey</td>
+<td>SecKey2</td>
+</tr>
+<tr>
+<td>Credentials:1:UserName</td>
+<td>adminUser</td>
+</tr>
+<tr>
+<td>Credentials:1:Password</td>
+<td>A*dNppRZq3-vE@Ci</td>
+</tr>
+</tbody>
+</table>
+<p>Connections that use Windows authentication do not need to be stored securely. These entries can be added directly to <em>appsettings.json</em>:</p>
+<pre><code class="lang-json">  &quot;Credentials&quot;: [
+    {
+      &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
+      &quot;WindowsAuth&quot;: true
+    }
+  ],
+</code></pre>
+<h2 id="stored-proceduresfunctions">Stored procedures/functions</h2>
+<p>ArgentSea enforces the use of stored procedures or functions. Besides offering performance advantages, this provides substantial security benefits.</p>
+<h3 id="least-privileged-access">Least Privileged Access</h3>
+<p>When data access is managed by stored procedures or functions exclusively, permissions can be granted exclusively to the procedures and not to the underlying tables. If an attacker were to take ownership of the connection, they would not be able to perform any database activity that was not explicitly enabled by the existing procedures or functions.</p>
+<h3 id="injection-attacks">Injection Attacks</h3>
+<p>A common data hack involves crafting the requests sent to a database server to include additional commands. Stored procedures/functions with parameters are immune to this attack, assuming no dynamic is used SQL within the procedure body.</p>
+<h3 id="dba-validation">DBA Validation</h3>
+<p>When dynamic SQL commands are created by the application, it can be difficult to debug the command sequence, even harder to correct it, and nearly impossible to constrain it to appropriate activity. When using stored procedures or functions, however, DBAs can review the implementation of dangerous commands, and ensure that their explicit use is appropriate.</p>
 </article>
           </div>
           
@@ -112,7 +167,7 @@ Since the ArgentSea objects are used frequently, however, this can be unnecessar
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/setup.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/security.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -8,7 +8,7 @@
     <title>Configuration Deep-Dive | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Configuration Deep-Dive | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -85,14 +85,14 @@
 <li>A configuration dictionary, which can be loaded from multiple sources, one of which is a file called <em>appsettings.json</em></li>
 <li>An “options” architecture, which casts the configuration entries into a strongly-typed configuration object.</li>
 </ul>
-<p>One of the key improvements of the configuration architecture in .NET standard is the dictionary architecture, which allows entries to be loaded from multiple sources. So, for example, you might load the account names from an <em>appsettings.json</em> configuration file, the passwords from a usersecrets.json file (or Key Vault), and the server names from environment variables. Properly managed, this can make deployments both easier and more secure.</p>
+<p>One of the key improvements of the configuration architecture in .NET standard is the dictionary architecture, which allows entries to be loaded from multiple sources. So, for example, you might load the account names from an <em>appsettings.json</em> configuration file, the passwords from a usersecrets.json file (or <a href="https://azure.microsoft.com/en-us/services/key-vault/">Key Vault</a> or <a href="https://aws.amazon.com/secrets-manager/">Secrets Manager</a>), and the server names from environment variables. Properly managed, this can make deployments both easier and more secure.</p>
 <h2 id="argentsea-database-connections">ArgentSea Database Connections</h2>
 <p>There are two types of database connections in ArgentSea:</p>
 <ul>
 <li><strong>A <em>database connection</em></strong> - a data set which is hosted by a single database</li>
 <li><strong>A <em>shard set</em></strong>  - a single data set spread over multiple database connections</li>
 </ul>
-<p>ArgentSea configuration supports any number of <em>database connections</em> and any number of <em>shard sets</em>. And of course each <em>shard set</em> can have many database connections.</p>
+<p>ArgentSea configuration supports any number of <em>database connections</em> and any number of <em>shard sets</em>. And of course each <em>shard set</em> can have many database connections, even separate read and write connections.</p>
 <p>This creates a potentially large number of database connections. Many of these will likely have similar connection information. In many scenarios, all of the connections in a shard set would use the same login information. Likewise, in a given datacenter environment it only makes sense that all connections use the same resiliency strategy.</p>
 <p>To manage this redundancy, the ArgentSea configuration data is broken into four parts:</p>
 <ul>
@@ -120,8 +120,8 @@
     }
   ]
 </code></pre>
-<p>If you prefer to set the properties of an Options class directly, you can use the ArgentSea.DataSecurityOptions class.</p>
-<p>You should put this configuration section into a secure location. In a development environment, you should consider using the <em>UserSecrets</em> functionality, which prevents this information from being checked into your source code repository. In other environments, you might consider using you should use AWS Secrets Manager, Azure Key Vault, or something similar.</p>
+<p>If you prefer to set the properties of an <a href="/api/ArgentSea.DataSecurityOptions.html">Options class</a> directly, you can use the ArgentSea.DataSecurityOptions class.</p>
+<p>You should put this configuration section into a secure location. In a development environment, you should consider using the <em>UserSecrets</em> functionality, which prevents this information from being checked into your source code repository. In other environments, you might consider using <a href="https://aws.amazon.com/secrets-manager/">AWS Secrets Manager</a>, <a href="https://azure.microsoft.com/en-us/services/key-vault/">Azure Key Vault</a>, or something similar.</p>
 <p>In non-JSON configuration contexts, like environment variables, you can specify these values as key-value pairs. This is the equivalent of the JSON above:</p>
 <table>
 <thead>
@@ -167,9 +167,8 @@
 </table>
 <p>The <em>SecurityKey</em> property must be unique and exactly match the security string key that you specify on your connection (i.e. both must have the same casing).</p>
 <h3 id="resilience-strategies">Resilience Strategies</h3>
-<p>Resilience strategies define how ArgentSea recovers from unexpected failures, usually through some combination of retry logic and circuit breaking. Because one typically requires only a few resilience strategies across datacenters (perhaps one for local connections and another for across the WAN), to reduce redundancy we use the same keyed approach as for security.</p>
-<p>A general Resilience Strategy is implicit. If a connection does not specify a Resilience Strategy, this
-default one will be used. If it is defined, the corresponding connection(s) must specify the key (again, casing matters).</p>
+<p><a href="/api/ArgentSea.DataResilienceConfiguration.html">Resilience strategies</a> define how ArgentSea recovers from unexpected failures, usually through some combination of retry logic and circuit breaking. Because one typically requires only a few resilience strategies across datacenters (perhaps one for local connections and another for across the WAN), to reduce redundancy we use the same keyed approach as for security.</p>
+<p>A general Resilience Strategy is implicit. If a connection does not specify a Resilience Strategy, this default one will be used. If it is defined, the corresponding connection(s) must specify the key (again, casing matters).</p>
 <p>An example resiliency configuration section might look like this:</p>
 <pre><code class="lang-json">  &quot;ResilienceStrategies&quot;: [
     {
@@ -202,7 +201,7 @@ The <code>RetryLengthening</code> value can add an additional pause between subs
 Then, if the retry is not successful, it should wait a bit longer for the error to clear before
 retrying again. The `RetryLengthening1 value is what determines how much longer it will pause
 on subsequent retries before giving up.</p>
-<p>The <code>RetryLengthening</code> values are:</p>
+<p>The <a href="/api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.html">Retry Sequence Lengthening</a> values are:</p>
 <ul>
 <li><strong>Linear</strong> - each retry is the same duration as specified in <code>RetryInterval</code></li>
 <li><strong>Fibonacci</strong> - The first retry is at <code>RetryInterval</code>, each subsequent retry interval pauses for the duration of the previous two combined.</li>
@@ -247,7 +246,7 @@ to time out. As this continues, the queue of backlogged requests becomes so larg
 <p>The <code>CircuitBreakerFailureCount</code> value determines how many sequential failures will trigger the circuit breaker. The <code>CircuitBreakerTestInterval</code> value determines
 how often (in milliseconds) the circuit breaker will allow a single transaction through.</p>
 <h2 id="database-connections">Database Connections</h2>
-<p>The database configuration architecure allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code.</p>
+<p>The database configuration architecture allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code.</p>
 <p>The connection information is specific to the database provider.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q">
 <ul role="tablist">
@@ -260,7 +259,7 @@ how often (in milliseconds) the circuit breaker will allow a single transaction 
 </ul>
 <section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 <h3 id="sql-server-database-connections">SQL Server Database Connections</h3>
-<p>For SQL Server, the entire set of attributes would look like this:</p>
+<p>For SQL Server, the [entire set of attributes]/api-sql/ArgentSea.Sql.SqlDbConnectionConfiguration.html) would look like this:</p>
 <pre><code class="lang-json">
 &quot;SqlDbConnections&quot;: [
   {
@@ -318,7 +317,7 @@ If you have a WAN or high-latency connection (or are using ConnectRetryCount), y
 </section>
 <section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 <h3 id="postgresql-database-connections">PostgreSQL Database Connections</h3>
-<p>For SQL Server, the entire set of attributes would look like this:</p>
+<p>For PostgreSQL, the <a href="/api-pg/ArgentSea.Pg.PgDbConnectionConfiguration.html">entire set of attributes</a> would look like this:</p>
 <pre><code class="lang-json">&quot;PgDbConnections&quot;: [
   {
     &quot;DatabaseKey&quot;: &quot;MyDB&quot;,
@@ -607,15 +606,15 @@ If you have a WAN or high-latency connection (or are using ConnectRetryCount), y
 </section>
 <section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<p>This example assumes that your shardId type is <em>byte</em>. If you use any other type, change the generic parameter.</p>
+<p>This example assumes that your shardId type is <em>short</em>. If you use any other type, change the generic parameter.</p>
 <p>If you use ArgentSea database connections <em>without</em> sharding, simply remove the generic declaration altogether (i.e. <code>services.AddPgServices(Configuration);</code> only).</p>
 <pre><code class="lang-C#">        public void ConfigureServices(IServiceCollection services)
         {
             ...
             // add your injectable logging provider
             services.AddLogging();
-            // add the ArgentSea SQL database connections (shardId type: byte)
-            services.AddPgServices&lt;byte&gt;(Configuration);
+            // add the ArgentSea SQL database connections (shardId type: short)
+            services.AddPgServices&lt;short&gt;(Configuration);
             // now add your custom data classes, which use the data components
             services.AddSingleton&lt;MyDataStore&gt;();
             ...
@@ -723,11 +722,11 @@ using ShardSet = ArgentSea.Sql.SqlShardSets&lt;byte&gt;.ShardDataSet;
 </section>
 <section id="tabpanel_CeZOj-G++Q-5_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">using ShardSets = ArgentSea.Pg.PgShardSets&lt;byte&gt;;
+<pre><code class="lang-C#">using ShardSets = ArgentSea.Pg.PgShardSets&lt;short&gt;;
 // and/or
-using ShardSet = ArgentSea.Pg.PgShardSets&lt;byte&gt;.ShardDataSet;
+using ShardSet = ArgentSea.Pg.PgShardSets&lt;short&gt;.ShardDataSet;
 </code></pre>
-<p>Again, the assumes a ShardId type of <em>byte</em>; replace this as appropriate.</p>
+<p>Again, the assumes a ShardId type of <em>short</em>; replace this as appropriate.</p>
 </section>
 </div>
 
@@ -760,10 +759,10 @@ using ShardSet = ArgentSea.Pg.PgShardSets&lt;byte&gt;.ShardDataSet;
 </section>
 <section id="tabpanel_CeZOj-G++Q-6_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">    public class ShardSets : PgShardSets&lt;byte&gt;
+<pre><code class="lang-C#">    public class ShardSets : PgShardSets&lt;short&gt;
     {
         public ShardSets(
-            IOptions&lt;SqlShardConnectionOptions&lt;byte&gt;&gt; configOptions,
+            IOptions&lt;SqlShardConnectionOptions&lt;short&gt;&gt; configOptions,
             IOptions&lt;DataSecurityOptions&gt; securityOptions,
             IOptions&lt;DataResilienceOptions&gt; resilienceStrategiesOptions,
             ILogger&lt;ShardSets&gt; logger

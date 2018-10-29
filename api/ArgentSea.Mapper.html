@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Mapper
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -138,6 +138,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbParameterCollection CreateInputParameters&lt;TModel&gt;(this DbParameterCollection parameters, TModel model, ILogger logger)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -232,6 +233,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbParameterCollection CreateInputParameters&lt;TModel&gt;(this DbParameterCollection parameters, TModel model, HashSet&lt;string&gt; ignoreParameters, ILogger logger)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -492,6 +494,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbParameterCollection CreateOutputParameters&lt;TModel&gt;(this DbParameterCollection parameters, ILogger logger)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -581,6 +584,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbParameterCollection CreateOutputParameters&lt;TModel&gt;(this DbParameterCollection parameters, HashSet&lt;string&gt; ignoreParameters, ILogger logger)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -676,6 +680,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static IList&lt;TModel&gt; ListFromReaderResultsHandler&lt;TShard, TModel&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -784,14 +789,23 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()
+
     where TReaderResult7 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -956,6 +970,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1080,7 +1095,9 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1210,8 +1227,11 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1346,9 +1366,13 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1488,10 +1512,15 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1636,11 +1665,17 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1790,12 +1825,19 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1950,13 +1992,21 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2116,14 +2166,23 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()
+
     where TReaderResult7 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2293,6 +2352,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromReaderResultsHandler&lt;TShard, TModel&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2422,8 +2482,11 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2563,9 +2626,13 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2710,10 +2777,15 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2863,11 +2935,17 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3022,12 +3100,19 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3187,13 +3272,21 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(TShard shardId, string sprocName, object notUsed, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()
+
     where TReaderResult0 : class, new()
+
     where TReaderResult1 : class, new()
+
     where TReaderResult2 : class, new()
+
     where TReaderResult3 : class, new()
+
     where TReaderResult4 : class, new()
+
     where TReaderResult5 : class, new()
+
     where TReaderResult6 : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3358,6 +3451,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static IList&lt;TModel&gt; ToList&lt;TModel&gt;(this DbDataReader rdr, ILogger logger)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3447,6 +3541,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static IList&lt;TModel&gt; ToList&lt;TShard, TModel&gt;(this DbDataReader rdr, TShard shardId, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3547,6 +3642,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ToModel&lt;TModel&gt;(this DbDataReader rdr, ILogger logger)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3636,6 +3732,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ToModel&lt;TModel&gt;(this DbParameterCollection parameters, ILogger logger)
+
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3725,6 +3822,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ToModel&lt;TShard, TModel&gt;(this DbDataReader rdr, TShard shardId, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3825,6 +3923,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TModel ToModel&lt;TShard, TModel&gt;(this DbParameterCollection parameters, TShard shardId, ILogger logger)
+
     where TShard : IComparable where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
