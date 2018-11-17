@@ -77,13 +77,13 @@
 <p>ArgentSea is primarily intended to address two problems: scalability and supportability. ArgentSea optimizes the work of your developers without compromising the performance or security of your infrastructure.</p>
 <h2 id="massive-scalability">Massive Scalability</h2>
 <p>Highly scalable data means data “sharding” — the practice of spreading data across many database servers. <a href="tutorials/sharding.html">Data sharding</a> offers the most cost effective way to scale your data application as demand grows. To scale your application globally, data sharding offers the ability locate copies of your data across regional datacenters, so that data is located closer to your customers.</p>
-<p>High-performance data access means simultaneous queries across shards, data-to-object mapping without the overhead of reflection, and the consistent use of stored procedures/functions to reduce SQL compilation overhead.</p>
+<p>High-performance data access means simultaneous queries across shards, data-to-object mapping without the overhead of reflection, and the consistent use of stored procedures/functions to reduce SQL compilation overhead. Because ArgentSea can handle multiple results from the same query, the number of server round-trips is reduced — a huge performance win.</p>
 <p>While the genesis of ArgentSea was to support the complex requirements of data sharding, it will likely be useful for high-performance data access even if you are not accessing sharded data.</p>
 <h2 id="mission-critical-supportability">Mission Critical Supportability</h2>
 <p>ArgentSea also addresses production concerns with built-in features like monitoring/logging, automatic retries after failures, controlling cascading failures, security best-practices, and managing connection configuration.</p>
 <p>The data framework will attempt to recover from transient errors by automatically retrying the data access; you have control over how long and how often. If repeated failures occur, the system will “circuit break”, so that data failures have less chance of bringing down the whole application. The logging implementation allows you to log to any provider, including <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net-core">Application Insights</a>, <a href="https://github.com/aws/aws-logging-dotnet#aspnet-core-logging">CloudWatch</a>, the file system, Windows event logs, and more. Database passwords can be <a href="tutorials/security.html">secured</a> using <a href="https://azure.microsoft.com/en-us/services/key-vault/">Key Vault</a>, <a href="https://aws.amazon.com/secrets-manager/">Secrets Manager</a>, <a href="https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets">User Secrets</a>, or other secure storage, while connection information can be separately managed per environment.</p>
 <h3 id="code-clarity-and-maintenance">Code Clarity and Maintenance</h3>
-<p>Supportability is about more than operational management. It also includes simplicity in understanding application behavior, ease in extending it with new features and requirements, and a natural path to resolving bugs. When applications must be supported by teams that are not the original authors, this becomes especially critical.</p>
+<p>Supportability is about more than operational management. It also includes simplicity in understanding application behavior, ease in extending it with new features and requirements, and a natural path to resolving bugs. When long-lived applications must be supported by teams that are not the original authors, this becomes especially critical.</p>
 <p>The ArgentSea Mapper helps reduce the burden of code maintenance by simplifying data access code. The logging functionality can also provide substantial insight to developers, including the dynamic code compilation behind the Mapper, misconfigurations, and data errors.</p>
 <p>However, one of the top ways that ArgentSea help with ongoing code maintenance is that it enforces the use of stored procedures or functions.</p>
 <div>
@@ -97,7 +97,7 @@
                         Although it might sound cozy, “tight coupling” isn’t a good thing in software design. It happens when one system’s integration with another system depends on the internal implementation of the other system. Usually the result of haphazard design, it makes it nearly impossible to switch to a different provider.
                     </p>
                     <p>
-                        Like, say, when accessing your database *depends upon how tables and columns are implemented*.
+                        For example, when your database client code <i>depends upon how tables and columns are implemented</i>, you have tightly implemented these layers.
                     </p>
                 </div>
             </div>
@@ -108,7 +108,9 @@
                 <div>
                     <h4>Loose Coupling</h4>
                     <p>
-                    “Loosely coupled” systems have well-defined interfaces. You can change the implementation as long as you maintain the interface contract. These systems are more robust, testable, and manageable — and those are good things.
+                    <i>Loosely coupled</i> systems have well-defined interfaces. Because of this, you can change the <i>implementation</i> as long as you maintain the interface “contract”. These systems are more robust, testable, and manageable.
+                    </p><p>
+                    Such systems are more robust because the services provided by each layer is well-defined, and therefore the systems can be optimized for known requirements.
                     </p><p>
                     Stored procedures or functions allow you to change the underlying database structures, but as long as the same results are returned you will not break the application.
                     </p>

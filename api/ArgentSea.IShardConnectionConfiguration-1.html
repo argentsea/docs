@@ -91,7 +91,6 @@
   <h5 id="ArgentSea_IShardConnectionConfiguration_1_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IShardConnectionConfiguration&lt;TShard&gt;
-
     where TShard : IComparable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -116,7 +115,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_IShardConnectionConfiguration_1_ReadConnectionInternal.md&amp;value=---%0Auid%3A%20ArgentSea.IShardConnectionConfiguration%601.ReadConnectionInternal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/IShardConnectionConfiguration.cs/#L14">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/IShardConnectionConfiguration.cs/#L18">View Source</a>
   </span>
   <a id="ArgentSea_IShardConnectionConfiguration_1_ReadConnectionInternal_" data-uid="ArgentSea.IShardConnectionConfiguration`1.ReadConnectionInternal*"></a>
   <h4 id="ArgentSea_IShardConnectionConfiguration_1_ReadConnectionInternal" data-uid="ArgentSea.IShardConnectionConfiguration`1.ReadConnectionInternal">ReadConnectionInternal</h4>
@@ -124,7 +123,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IConnectionConfiguration ReadConnectionInternal { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">IDataConnection ReadConnectionInternal { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -136,7 +135,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a></td>
+        <td><a class="xref" href="ArgentSea.IDataConnection.html">IDataConnection</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -146,7 +145,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_IShardConnectionConfiguration_1_ShardId.md&amp;value=---%0Auid%3A%20ArgentSea.IShardConnectionConfiguration%601.ShardId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/IShardConnectionConfiguration.cs/#L13">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/IShardConnectionConfiguration.cs/#L16">View Source</a>
   </span>
   <a id="ArgentSea_IShardConnectionConfiguration_1_ShardId_" data-uid="ArgentSea.IShardConnectionConfiguration`1.ShardId*"></a>
   <h4 id="ArgentSea_IShardConnectionConfiguration_1_ShardId" data-uid="ArgentSea.IShardConnectionConfiguration`1.ShardId">ShardId</h4>
@@ -176,7 +175,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_IShardConnectionConfiguration_1_WriteConnectionInternal.md&amp;value=---%0Auid%3A%20ArgentSea.IShardConnectionConfiguration%601.WriteConnectionInternal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/IShardConnectionConfiguration.cs/#L15">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/IShardConnectionConfiguration.cs/#L20">View Source</a>
   </span>
   <a id="ArgentSea_IShardConnectionConfiguration_1_WriteConnectionInternal_" data-uid="ArgentSea.IShardConnectionConfiguration`1.WriteConnectionInternal*"></a>
   <h4 id="ArgentSea_IShardConnectionConfiguration_1_WriteConnectionInternal" data-uid="ArgentSea.IShardConnectionConfiguration`1.WriteConnectionInternal">WriteConnectionInternal</h4>
@@ -184,7 +183,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IConnectionConfiguration WriteConnectionInternal { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">IDataConnection WriteConnectionInternal { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -196,7 +195,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a></td>
+        <td><a class="xref" href="ArgentSea.IDataConnection.html">IDataConnection</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -212,7 +211,7 @@
                     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_IShardConnectionConfiguration_1.md&amp;value=---%0Auid%3A%20ArgentSea.IShardConnectionConfiguration%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/shared/blob/master/src/IShardConnectionConfiguration.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/shared/blob/master/src/IShardConnectionConfiguration.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

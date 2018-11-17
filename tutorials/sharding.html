@@ -169,7 +169,7 @@
 </ul>
 <section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-C#">[MapShardKey('c', &quot;@CustomerId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey('c', &quot;@CustomerId&quot;)]
 [MapToSqlInt(&quot;@CustomerId&quot;)]
 public ShardKey&lt;byte, int&gt; CustomerKey { get; set; }
 
@@ -177,7 +177,7 @@ public ShardKey&lt;byte, int&gt; CustomerKey { get; set; }
 </section>
 <section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">[MapShardKey('c', &quot;CustomerId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey('c', &quot;CustomerId&quot;)]
 [MapToPgInteger(&quot;CustomerId&quot;)]
 public ShardKey&lt;short, int&gt; CustomerKey { get; set; }
 </code></pre>
@@ -199,7 +199,7 @@ public ShardKey&lt;short, int&gt; CustomerKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-C#">[MapShardChild('O', &quot;@OrderId&quot;, &quot;@OrderItemId&quot;)]
+<pre><code class="lang-csharp">[MapShardChild('O', &quot;@OrderId&quot;, &quot;@OrderItemId&quot;)]
 [MapToSqlBigInt(&quot;@OrderId&quot;)]
 [MapToSqlSmallInt(&quot;@OrderItemId&quot;)]
 public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
@@ -208,7 +208,7 @@ public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
 </section>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">[MapShardChild('O', &quot;OrderId&quot;, &quot;OrderItemId&quot;)]
+<pre><code class="lang-csharp">[MapShardChild('O', &quot;OrderId&quot;, &quot;OrderItemId&quot;)]
 [MapToPgBigint(&quot;OrderId&quot;)]
 [MapToPgInteger(&quot;OrderItemId&quot;)]
 public ShardChild&lt;short, long, int&gt; OrderItemKey { get; set; }
@@ -228,7 +228,7 @@ public ShardChild&lt;short, long, int&gt; OrderItemKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-C#">[MapShardKey('c', &quot;@CustomerShardId&quot;, &quot;@CustomerId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey('c', &quot;@CustomerShardId&quot;, &quot;@CustomerId&quot;)]
 [MapToSqlTinyInt(&quot;@CustomerShardId&quot;)]
 [MapToSqlInt(&quot;@CustomerId&quot;)]
 public ShardKey&lt;byte, int&gt; CustomerKey { get; set; }
@@ -243,7 +243,7 @@ public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
 </section>
 <section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">[MapShardKey('c', &quot;CustomerId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey('c', &quot;CustomerId&quot;)]
 [MapToSqlTinyint(&quot;CustomerShardId&quot;)]
 [MapToPgInteger(&quot;CustomerId&quot;)]
 public ShardKey&lt;short, int&gt; CustomerKey { get; set; }
@@ -287,7 +287,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-C#">    public class SubscriberStore
+<pre><code class="lang-csharp">    public class SubscriberStore
     {
         private readonly SqlShardSets&lt;string&gt;.ShardSet _shardSet;
         private readonly ILogger&lt;SubscriberStore&gt; _logger;
@@ -302,7 +302,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 </section>
 <section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">public class SubscriberStore
+<pre><code class="lang-csharp">public class SubscriberStore
 {
     private readonly PgShardSets&lt;string&gt;.ShardSet _shardSet;
     private readonly ILogger&lt;SubscriberStore&gt; _logger;
@@ -336,7 +336,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-4_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-C#">public async Task&lt;Subscriber&gt; GetSubscriber(ShardKey&lt;byte, int&gt; subscriberKey, CancellationToken cancellation)
+<pre><code class="lang-csharp">public async Task&lt;Subscriber&gt; GetSubscriber(ShardKey&lt;byte, int&gt; subscriberKey, CancellationToken cancellation)
 {
     var prms = new QueryParameterCollection()
         .AddSqlIntInputParameter(&quot;@SubId&quot;, subscriberKey.RecordId);
@@ -346,7 +346,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 </section>
 <section id="tabpanel_CeZOj-G++Q-4_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">public async Task&lt;Subscriber&gt; GetSubscriber(ShardKey&lt;short, int&gt; subscriberKey, CancellationToken cancellation)
+<pre><code class="lang-csharp">public async Task&lt;Subscriber&gt; GetSubscriber(ShardKey&lt;short, int&gt; subscriberKey, CancellationToken cancellation)
 {
     var prms = new QueryParameterCollection()
         .AddPgIntegerInputParameter(&quot;SubId&quot;, subscriberKey.RecordId);
@@ -363,7 +363,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 </ul>
 <p>There are several architectural solutions to the latency-driven data inconsistency problem, such as intelligent caching, client observable collections, delayed retries, and retries on the Write connection. Due to the variations in environments, optimal solutions, and the challenge of simple determining when a missing record is really expected, ArgentSea does not attempt an automatic retry on the Write connection.</p>
 <p>To implement your own latency handling, you can easily implement an automatic retry using the Write connection after an unexpectedly missing record on the Read connection. In this example method we retrieve data by key value, so a missing record is unexpected and might be due to replication latency. The code assumes that the subscriber key has the “required” attribute set so that the Mapper returns a null object if the key is null. The resolution is to simply retry on the Write connection.</p>
-<pre><code class="lang-C#">    var sub = await _shardSet[subscriberKey.ShardId].Read.MapReaderAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
+<pre><code class="lang-csharp">    var sub = await _shardSet[subscriberKey.ShardId].Read.MapReaderAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
     // add automatic retry on write connection if subscriber is not found.
     if (sub is null)
     {

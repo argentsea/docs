@@ -116,7 +116,7 @@ If you use ArgentSea’s optional <a href="mapping.html">Mapping</a> functionali
 </blockquote>
 <h2 id="setting-parameters">Setting Parameters</h2>
 <p>With the ArgentSea framework, you need to set parameter values <em>before</em> a connection or command is created. The ADO.NET standard parameter collections cannot be created without a command object host. To fill this need, ArgentSea provides a <a href="/api/ArgentSea.QueryParameterCollection.html">QueryParameterCollection</a> object, which is simply a collection of ADO.NET DbParameters. This object allow you to create an instance with a simple <code>new</code> statement.</p>
-<pre><code class="lang-C#">var parameters = new QueryParameterCollection();
+<pre><code class="lang-csharp">var parameters = new QueryParameterCollection();
 </code></pre>
 <p>ArgentSea provides a variety of extension methods to work with the parameters collection.</p>
 <ul>
@@ -138,14 +138,14 @@ If you use ArgentSea’s optional <a href="mapping.html">Mapping</a> functionali
 </ul>
 <section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-C#">using ArgentSea.Sql;
+<pre><code class="lang-csharp">using ArgentSea.Sql;
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
 <p>The QueryParameterCollection and SqlParameterCollection inherit from the same base class. Not only can you use these methods on ArgentSea’s <code>QueryParameterCollection</code>, but you can also use them on the standard ADO.NET <code>SqlCommand.Parameters</code> property.</p>
 </div>
 <p>Here are some code examples:</p>
-<pre><code class="lang-C#">parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId);
+<pre><code class="lang-csharp">parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId);
 parameters.AddSqlDecimalInputParameter(&quot;@Amount&quot;, amount, 16, 2);
 parameters.AddSqlNVarCharInputParameter(&quot;@Name&quot;, name, 255);
 parameters.AddSqlFloatOutputParameter(&quot;@Temperature&quot;);
@@ -164,13 +164,13 @@ cmd.Parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId
 </section>
 <section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">using ArgentSea.Pg;
+<pre><code class="lang-csharp">using ArgentSea.Pg;
 </code></pre>
 <div class="NOTE">
 <h5>Note</h5>
 <p>The QueryParameterCollection and NpgsqlParameterCollection inherit from the same base class. Not only can you use these methods on ArgentSea’s <code>QueryParameterCollection</code>, but you can also use them on the standard ADO.NET <code>NpgsqlCommand.Parameters</code> property.</p>
 </div>
-<pre><code class="lang-C#">parameters.AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactionId);
+<pre><code class="lang-csharp">parameters.AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactionId);
 parameters.AddPgDecimalInputParameter(&quot;Amount&quot;, amount, 16, 4);
 parameters.AddPgVarCharInputParameter(&quot;Name&quot;, name, 255);
 parameters.AddPgDoubleOutputParameter(&quot;Temperature&quot;);
@@ -193,7 +193,7 @@ cmd.Parameters..AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactio
 <h3 id="creating-parameters-with-the-mapper">Creating Parameters with the Mapper</h3>
 <p>The Mapper uses Model property attributes to automatically generate code that is much like what would be created in the previous section. Technically, the Mapper procedures are also extension methods, but we are discussing them separately in this section.</p>
 <p>Assuming that the Model (in this example, a “Customer” class) has Mapping attributes associated with each of its properties, you can render all the corresponding input parameters and set their respective values with:</p>
-<pre><code class="lang-C#">parameters.CreateInputParameters&lt;Customer&gt;(customer, logger);
+<pre><code class="lang-csharp">parameters.CreateInputParameters&lt;Customer&gt;(customer, logger);
 </code></pre>
 <p>You can do something similar with output parameters — though it would be unlikely that you would want to want to create <em>only</em> output parameters. You will probably need at least one input parameter (likely a key). If you create the input parameter first, it will not be duplicated by the Mapper as it generates output parameters.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
@@ -207,7 +207,7 @@ cmd.Parameters..AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactio
 </ul>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-C#">parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId);
+<pre><code class="lang-csharp">parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId);
 parameters.CreateOutputParameters&lt;Customer&gt;(logger);
 // Again, these methods all support a fluent api, so this can be written instead as:
 var parameters = new QueryParameterCollection()
@@ -217,7 +217,7 @@ var parameters = new QueryParameterCollection()
 </section>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-C#">parameters.AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactionId);
+<pre><code class="lang-csharp">parameters.AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactionId);
 parameters.CreateOutputParameters&lt;Customer&gt;(logger);
 // Again, these methods all support a fluent api, so this can be written instead as:
 var parameters = new QueryParameterCollection()
@@ -228,7 +228,7 @@ var parameters = new QueryParameterCollection()
 </div>
 
 <p>Finally, you can always add parameters using standard ADO.NET syntax:</p>
-<pre><code class="lang-C#">var parameter = new System.Data.SqlClient.SqlParameter();
+<pre><code class="lang-csharp">var parameter = new System.Data.SqlClient.SqlParameter();
 parameter.SqlDbType = System.Data.SqlDbType.Int;
 parameter.Value = transactionId;
 command.Parameters.Add(parameter);
@@ -331,11 +331,11 @@ command.Parameters.Add(parameter);
 <h4 id="required-argument-string-sprocname">Required Argument: (string) sprocName</h4>
 <p>This is simply the name of the stored procedure or function to be invoked. This string value is required for every data access method.</p>
 <p>The general practice is to provide a stored procedure/function name with string constant, like this:</p>
-<pre><code class="lang-C#">await database.RunAsync(&quot;ws.MyProcedureName&quot;, parameters, cancellationToken);
+<pre><code class="lang-csharp">await database.RunAsync(&quot;ws.MyProcedureName&quot;, parameters, cancellationToken);
 </code></pre>
 <p>As larger applications evolve, however, one can lose track of which database procedures are <em>actually being used</em> by the application. It is not unusual for a custom application to have hundreds of data procedures, only a fraction of which are used.</p>
 <p>Pro tip: you might consider consistently referencing procedure names via a static class, like this.</p>
-<pre><code class="lang-C#">internal static class DataProcedures
+<pre><code class="lang-csharp">internal static class DataProcedures
 {
     //This should be a COMPREHENSIVE list of stored procedure names.
     //You can use the reference count to determine what is in use.
@@ -387,7 +387,7 @@ This approach will not work with sharded data, because ArgentSea will <em>copy</
 <p>The order in which your attribute-mapped class appears in the generic definitions should be the same order as the list data results in the procedure output.</p>
 </div>
 <p>An example of calling each would be:</p>
-<pre><code class="lang-C#">// In this example, ws.GetOrderDetails returns Order data in output parameters:
+<pre><code class="lang-csharp">// In this example, ws.GetOrderDetails returns Order data in output parameters:
 _database.MapOutputAsync&lt;Order&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
 // Here, ws.GetOrderDetails returns simple Order data in a single-row SELECT:
 _database.MapReaderAsync&lt;Order&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
@@ -426,7 +426,7 @@ _database.MapReaderAsync&lt;Customer, OrderHistory, Customer, Locations, Contact
 <p>If you are using data mapping attributes in your Model classes, the <strong>MapReader*</strong>, <strong>MapOutput*</strong>, and <strong>MapList*</strong> methods make handling data results unnecessary. This section is for queries that use the <strong>Query*</strong> methods, which allow you to return an arbitrary object from the data input.</p>
 <p>If you are familiar with ADO.NET programming, this will be very familiar. The delegate simply receives the standard ADO.NET query results and processes them like it would in most other ADO.NET scenarios.</p>
 <p>As an example, a method with the correct signature for returning a Customer model looks like this:</p>
-<pre><code class="lang-C#">public static Customer MyCustomerHandler (
+<pre><code class="lang-csharp">public static Customer MyCustomerHandler (
     short shardId,
     string sprocName,
     Department department, // this is an optional custom argument
@@ -453,7 +453,7 @@ _database.MapReaderAsync&lt;Customer, OrderHistory, Customer, Locations, Contact
 <p>The reader argument is a standard data reader. You can call <code>reader.MoveNext()</code> to get the next row and <code>reader.NextResult()</code> to get the next result set. You do not need to dispose of it when you are done.</p>
 <h4 id="dbparametercollection-parameters">(DbParameterCollection) parameters</h4>
 <p>The parameters collection contains the input and output parameters for the query. ArgentSea offers a set of extension methods to simplify converting parameter values to .NET types. These are extension methods on the parameter object (not the collection).</p>
-<pre><code class="lang-C#">var transactionId = parameters[&quot;@TransactionId&quot;].GetInteger();
+<pre><code class="lang-csharp">var transactionId = parameters[&quot;@TransactionId&quot;].GetInteger();
 var amount = parameters[&quot;@Amount&quot;].GetNullableDecimal();
 var name = parameters[&quot;@Name&quot;].GetString();
 </code></pre>

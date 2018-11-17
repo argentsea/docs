@@ -91,21 +91,12 @@
       <section><p>This class is used by provider specific implementations. It is unlikely that you would reference this in consumer code.
 Classes that inherit from this class manage non-sharded database connections.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.DatabasesBase-1.Database.html">DatabasesBase&lt;TConfiguration&gt;.Database</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.DatabasesBase-1.DataConnection.html">DatabasesBase&lt;TConfiguration&gt;.DataConnection</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></h4>
       <section><p>Abstract class implementing the data connection functionality shared by PostgreSQL and SQL Server implementations.</p>
-</section>
-      <h4><a class="xref" href="ArgentSea.DataResilienceConfiguration.html">DataResilienceConfiguration</a></h4>
-      <section><p>This class contains the definition for a data resiliance strategy. Specifically: when to retry and when to circuit break.
-This class is created as a configuration entry in an array in the DataResilienceStrategies property of the <see cref="!:DataConfigurationOptions">DataConfigurationOptions</see> class.</p>
-</section>
-      <h4><a class="xref" href="ArgentSea.DataResilienceOptions.html">DataResilienceOptions</a></h4>
-      <section><p>This options class contains an array of resilience strategies (retry and circuit breaking settings). To specify as particular resilience strategy, a connection can specify a ResilienceKey.</p>
-</section>
-      <h4><a class="xref" href="ArgentSea.DataSecurityOptions.html">DataSecurityOptions</a></h4>
-      <section><p>This options class contains an array of <a class="xref" href="ArgentSea.SecurityConfiguration.html">SecurityConfiguration</a> (login information).
-A connection can specify as particular login account by referencing a SecurityKey.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.DbParameterExtensions.html">DbParameterExtensions</a></h4>
       <section></section>
@@ -145,9 +136,6 @@ This exception is not raised in the case of <see cref="!:ShardKey"> ShardKey</se
       <h4><a class="xref" href="ArgentSea.RetryLimitExceededException.html">RetryLimitExceededException</a></h4>
       <section><p>This exception is raise when a transient failure occurs, but automatic retries were not successful.</p>
 </section>
-      <h4><a class="xref" href="ArgentSea.SecurityConfiguration.html">SecurityConfiguration</a></h4>
-      <section><p>This class represents data security information, with a key that can be reference by any connection(s) that share the security information.</p>
-</section>
       <h4><a class="xref" href="ArgentSea.ShardParameterValue-1.html">ShardParameterValue&lt;TShard&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.html">ShardSetsBase&lt;TShard, TConfiguration&gt;</a></h4>
@@ -159,6 +147,8 @@ Classes that inherit from this class manage sharded database connections.</p>
       <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardInstance.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardInstance</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardSet.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardSet</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.SimpleDbConnection.html">SimpleDbConnection</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.StringExtensions.html">StringExtensions</a></h4>
       <section><p>This static class contains extension methods for cleaning input strings of invalid characters.
@@ -184,16 +174,14 @@ This helps prevent accidentaly comparisions that are not valid and also prevents
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
-      <h4><a class="xref" href="ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a></h4>
-      <section><p>This interface is used by provider specific implementations. It is unlikely that you would reference this in consumer code.
-The interface defines the minimum capability of a connection definition.</p>
-</section>
       <h4><a class="xref" href="ArgentSea.IDatabaseConfigurationOptions.html">IDatabaseConfigurationOptions</a></h4>
       <section><p>This interface is used by provider specific implementations. It is unlikely that you would implement this in consumer code.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.IDatabaseConnectionConfiguration.html">IDatabaseConnectionConfiguration</a></h4>
       <section><p>This interface is used by provider specific implementations. It is unlikely that you would implement this in consumer code.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.IDataConnection.html">IDataConnection</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.IDataProviderServiceFactory.html">IDataProviderServiceFactory</a></h4>
       <section><p>This interface is used by provider specific implementations. It is unlikely that you would reference this in consumer code.
 The interface defines the capabilities of a database providers service.</p>
@@ -201,17 +189,17 @@ The interface defines the capabilities of a database providers service.</p>
       <h4><a class="xref" href="ArgentSea.IShardConnectionConfiguration-1.html">IShardConnectionConfiguration&lt;TShard&gt;</a></h4>
       <section><p>This interface is used by provider specific implementations. It is unlikely that you would implement this in consumer code.</p>
 </section>
-      <h4><a class="xref" href="ArgentSea.IShardConnectionsConfiguration-1.html">IShardConnectionsConfiguration&lt;TShard&gt;</a></h4>
+      <h4><a class="xref" href="ArgentSea.IShardSetConnectionsConfiguration-1.html">IShardSetConnectionsConfiguration&lt;TShard&gt;</a></h4>
       <section><p>This interface is used by provider specific implementations. It is unlikely that you would implement this in consumer code.</p>
 </section>
-      <h4><a class="xref" href="ArgentSea.IShardSetConfigurationOptions-1.html">IShardSetConfigurationOptions&lt;TShard&gt;</a></h4>
+      <h4><a class="xref" href="ArgentSea.IShardSetsConfigurationOptions-1.html">IShardSetsConfigurationOptions&lt;TShard&gt;</a></h4>
       <section><p>This interface is used by provider specific implementations. It is unlikely that you would implement this in consumer code.</p>
 </section>
     <h3 id="enums">Enums
   </h3>
-      <h4><a class="xref" href="ArgentSea.DataResilienceConfiguration.SequenceLengthening.html">DataResilienceConfiguration.SequenceLengthening</a></h4>
-      <section></section>
       <h4><a class="xref" href="ArgentSea.LoggingExtensions.EventIdentifier.html">LoggingExtensions.EventIdentifier</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.SequenceLengthening.html">SequenceLengthening</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.StringExtensions.InputCleaningOptions.html">StringExtensions.InputCleaningOptions</a></h4>
       <section></section>

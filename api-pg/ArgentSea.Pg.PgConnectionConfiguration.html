@@ -92,31 +92,158 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></div>
-    <div class="level2"><span class="xref">PgConnectionConfiguration</span></div>
+    <div class="level2"><a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html">PgConnectionPropertiesBase</a></div>
+    <div class="level3"><span class="xref">PgConnectionConfiguration</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="../api/ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a></div>
+    <div><a class="xref" href="../api/ArgentSea.IDataConnection.html">IDataConnection</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_hasConnectionPropertyChanged">DataConnectionConfigurationBase.hasConnectionPropertyChanged</a>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_ApplicationName">PgConnectionPropertiesBase.ApplicationName</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_SetConfigurationOptions_ArgentSea_DataSecurityOptions_ArgentSea_DataResilienceOptions_">DataConnectionConfigurationBase.SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)</a>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_AutoPrepareMinUsages">PgConnectionPropertiesBase.AutoPrepareMinUsages</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetResilienceStrategy_Microsoft_Extensions_Logging_ILogger_">DataConnectionConfigurationBase.GetResilienceStrategy(ILogger)</a>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_CheckCertificateRevocation">PgConnectionPropertiesBase.CheckCertificateRevocation</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetSecurityConfiguration">DataConnectionConfigurationBase.GetSecurityConfiguration()</a>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_ClientEncoding">PgConnectionPropertiesBase.ClientEncoding</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_SecurityKey">DataConnectionConfigurationBase.SecurityKey</a>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_CommandTimeout">PgConnectionPropertiesBase.CommandTimeout</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_ResilienceKey">DataConnectionConfigurationBase.ResilienceKey</a>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_ConnectionIdleLifetime">PgConnectionPropertiesBase.ConnectionIdleLifetime</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_ConnectionPruningInterval">PgConnectionPropertiesBase.ConnectionPruningInterval</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_ConvertInfinityDateTime">PgConnectionPropertiesBase.ConvertInfinityDateTime</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_Database">PgConnectionPropertiesBase.Database</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_Encoding">PgConnectionPropertiesBase.Encoding</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_Enlist">PgConnectionPropertiesBase.Enlist</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_Host">PgConnectionPropertiesBase.Host</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_IncludeRealm">PgConnectionPropertiesBase.IncludeRealm</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_InternalCommandTimeout">PgConnectionPropertiesBase.InternalCommandTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_KeepAlive">PgConnectionPropertiesBase.KeepAlive</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_KerberosServiceName">PgConnectionPropertiesBase.KerberosServiceName</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_LoadTableComposites">PgConnectionPropertiesBase.LoadTableComposites</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_MaxAutoPrepare">PgConnectionPropertiesBase.MaxAutoPrepare</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_MaxPoolSize">PgConnectionPropertiesBase.MaxPoolSize</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_MinPoolSize">PgConnectionPropertiesBase.MinPoolSize</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_NoResetOnClose">PgConnectionPropertiesBase.NoResetOnClose</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_PersistSecurityInfo">PgConnectionPropertiesBase.PersistSecurityInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_Pooling">PgConnectionPropertiesBase.Pooling</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_Port">PgConnectionPropertiesBase.Port</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_ReadBufferSize">PgConnectionPropertiesBase.ReadBufferSize</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_SearchPath">PgConnectionPropertiesBase.SearchPath</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_ServerCompatibilityMode">PgConnectionPropertiesBase.ServerCompatibilityMode</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_SocketReceiveBufferSize">PgConnectionPropertiesBase.SocketReceiveBufferSize</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_SocketSendBufferSize">PgConnectionPropertiesBase.SocketSendBufferSize</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_SslMode">PgConnectionPropertiesBase.SslMode</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAlive">PgConnectionPropertiesBase.TcpKeepAlive</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAliveInterval">PgConnectionPropertiesBase.TcpKeepAliveInterval</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAliveTime">PgConnectionPropertiesBase.TcpKeepAliveTime</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_Timeout">PgConnectionPropertiesBase.Timeout</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_Timezone">PgConnectionPropertiesBase.Timezone</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_TrustServerCertificate">PgConnectionPropertiesBase.TrustServerCertificate</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_UsePerfCounters">PgConnectionPropertiesBase.UsePerfCounters</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_UseSslStream">PgConnectionPropertiesBase.UseSslStream</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_WriteBufferSize">PgConnectionPropertiesBase.WriteBufferSize</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_UserName">DataConnectionConfigurationBase.UserName</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_Password">DataConnectionConfigurationBase.Password</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_WindowsAuth">DataConnectionConfigurationBase.WindowsAuth</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RetryCount">DataConnectionConfigurationBase.RetryCount</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RetryInterval">DataConnectionConfigurationBase.RetryInterval</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RetryLengthening">DataConnectionConfigurationBase.RetryLengthening</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_CircuitBreakerFailureCount">DataConnectionConfigurationBase.CircuitBreakerFailureCount</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval">DataConnectionConfigurationBase.CircuitBreakerTestInterval</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_">DataConnectionConfigurationBase.GetRetryTimespan(Int32)</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -144,171 +271,16 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <h6><strong>Assembly</strong>: ArgentSea.Pg.dll</h6>
   <h5 id="ArgentSea_Pg_PgConnectionConfiguration_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PgConnectionConfiguration : DataConnectionConfigurationBase, IConnectionConfiguration</code></pre>
+    <pre><code class="lang-csharp hljs">public class PgConnectionConfiguration : PgConnectionPropertiesBase, IDataConnection</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ApplicationName.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ApplicationName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L54">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_ApplicationName_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ApplicationName*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ApplicationName" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ApplicationName">ApplicationName</h4>
-  <div class="markdown level1 summary"><p>The optional application name parameter to be sent to the backend during connection initiation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ApplicationName { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_AutoPrepareMinUsages.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.AutoPrepareMinUsages%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L66">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_AutoPrepareMinUsages_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.AutoPrepareMinUsages*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_AutoPrepareMinUsages" data-uid="ArgentSea.Pg.PgConnectionConfiguration.AutoPrepareMinUsages">AutoPrepareMinUsages</h4>
-  <div class="markdown level1 summary"><p>The minimum number of usages an SQL statement is used before it's automatically prepared. Defaults to 5</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int AutoPrepareMinUsages { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_CheckCertificateRevocation.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.CheckCertificateRevocation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L78">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_CheckCertificateRevocation_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.CheckCertificateRevocation*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_CheckCertificateRevocation" data-uid="ArgentSea.Pg.PgConnectionConfiguration.CheckCertificateRevocation">CheckCertificateRevocation</h4>
-  <div class="markdown level1 summary"><p>Whether to check the certificate revocation list during authentication. False by default.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool CheckCertificateRevocation { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ClientEncoding.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ClientEncoding%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L90">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_ClientEncoding_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ClientEncoding*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ClientEncoding" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ClientEncoding">ClientEncoding</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the client_encoding parameter.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ClientEncoding { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_CommandTimeout.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.CommandTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L102">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_CommandTimeout_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.CommandTimeout*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_CommandTimeout" data-uid="ArgentSea.Pg.PgConnectionConfiguration.CommandTimeout">CommandTimeout</h4>
-  <div class="markdown level1 summary"><p>The time to wait (in seconds) while trying to execute a command before terminating the attempt and generating an error. Defaults to 30 seconds.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CommandTimeout { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ConnectionDescription.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ConnectionDescription%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L23">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L220">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_ConnectionDescription_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConnectionDescription*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ConnectionDescription" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConnectionDescription">ConnectionDescription</h4>
@@ -316,7 +288,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ConnectionDescription { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string ConnectionDescription { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -329,969 +301,6 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_ConnectionDescription">DataConnectionConfigurationBase.ConnectionDescription</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ConnectionIdleLifetime.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ConnectionIdleLifetime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L114">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_ConnectionIdleLifetime_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConnectionIdleLifetime*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ConnectionIdleLifetime" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConnectionIdleLifetime">ConnectionIdleLifetime</h4>
-  <div class="markdown level1 summary"><p>The time to wait before closing idle connections in the pool if the count of all connections exceeds MinPoolSize.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ConnectionIdleLifetime { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ConnectionPruningInterval.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ConnectionPruningInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L126">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_ConnectionPruningInterval_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConnectionPruningInterval*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ConnectionPruningInterval" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConnectionPruningInterval">ConnectionPruningInterval</h4>
-  <div class="markdown level1 summary"><p>How many seconds the pool waits before attempting to prune idle connections that are beyond idle lifetime.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ConnectionPruningInterval { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ConvertInfinityDateTime.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ConvertInfinityDateTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L138">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_ConvertInfinityDateTime_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConvertInfinityDateTime*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ConvertInfinityDateTime" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConvertInfinityDateTime">ConvertInfinityDateTime</h4>
-  <div class="markdown level1 summary"><p>Makes MaxValue and MinValue timestamps and dates readable as infinity and negative infinity.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ConvertInfinityDateTime { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Database.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Database%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L150">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_Database_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Database*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Database" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Database">Database</h4>
-  <div class="markdown level1 summary"><p>The PostgreSQL database to connect to.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Database { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Encoding.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Encoding%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L162">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_Encoding_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Encoding*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Encoding" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Encoding">Encoding</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the .NET encoding that will be used to encode/decode PostgreSQL string data.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Encoding { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Enlist.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Enlist%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L174">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_Enlist_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Enlist*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Enlist" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Enlist">Enlist</h4>
-  <div class="markdown level1 summary"><p>Whether to enlist in an ambient TransactionScope.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Enlist { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Host.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Host%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L186">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_Host_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Host*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Host" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Host">Host</h4>
-  <div class="markdown level1 summary"><p>The hostname or IP address of the PostgreSQL server to connect to.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Host { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_IncludeRealm.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.IncludeRealm%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L198">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_IncludeRealm_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.IncludeRealm*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_IncludeRealm" data-uid="ArgentSea.Pg.PgConnectionConfiguration.IncludeRealm">IncludeRealm</h4>
-  <div class="markdown level1 summary"><p>The Kerberos realm to be used for authentication</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IncludeRealm { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_InternalCommandTimeout.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.InternalCommandTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L210">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_InternalCommandTimeout_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.InternalCommandTimeout*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_InternalCommandTimeout" data-uid="ArgentSea.Pg.PgConnectionConfiguration.InternalCommandTimeout">InternalCommandTimeout</h4>
-  <div class="markdown level1 summary"><p>The time to wait (in seconds) while trying to execute a an internal command before terminating the attempt and generating an error.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int InternalCommandTimeout { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_KeepAlive.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.KeepAlive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L222">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_KeepAlive_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.KeepAlive*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_KeepAlive" data-uid="ArgentSea.Pg.PgConnectionConfiguration.KeepAlive">KeepAlive</h4>
-  <div class="markdown level1 summary"><p>The number of seconds of connection inactivity before Npgsql sends a keepalive query. Set to 0 (the default) to disable.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int KeepAlive { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_KerberosServiceName.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.KerberosServiceName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L234">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_KerberosServiceName_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.KerberosServiceName*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_KerberosServiceName" data-uid="ArgentSea.Pg.PgConnectionConfiguration.KerberosServiceName">KerberosServiceName</h4>
-  <div class="markdown level1 summary"><p>The Kerberos service name to be used for authentication.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string KerberosServiceName { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_MaxAutoPrepare.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.MaxAutoPrepare%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L246">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_MaxAutoPrepare_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.MaxAutoPrepare*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_MaxAutoPrepare" data-uid="ArgentSea.Pg.PgConnectionConfiguration.MaxAutoPrepare">MaxAutoPrepare</h4>
-  <div class="markdown level1 summary"><p>The maximum number SQL statements that can be automatically prepared at any given point. Beyond this number the least-recently-used statement will be recycled. Zero (the default) disables automatic preparation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MaxAutoPrepare { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_MaxPoolSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.MaxPoolSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L258">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_MaxPoolSize_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.MaxPoolSize*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_MaxPoolSize" data-uid="ArgentSea.Pg.PgConnectionConfiguration.MaxPoolSize">MaxPoolSize</h4>
-  <div class="markdown level1 summary"><p>The maximum connection pool size.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MaxPoolSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_MinPoolSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.MinPoolSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L270">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_MinPoolSize_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.MinPoolSize*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_MinPoolSize" data-uid="ArgentSea.Pg.PgConnectionConfiguration.MinPoolSize">MinPoolSize</h4>
-  <div class="markdown level1 summary"><p>The minimum connection pool size.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MinPoolSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_NoResetOnClose.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.NoResetOnClose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L282">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_NoResetOnClose_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.NoResetOnClose*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_NoResetOnClose" data-uid="ArgentSea.Pg.PgConnectionConfiguration.NoResetOnClose">NoResetOnClose</h4>
-  <div class="markdown level1 summary"><p>If set to true, a pool connection's state won't be reset when it is closed (improves performance). Do not specify this unless you know what you're doing.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool NoResetOnClose { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_PersistSecurityInfo.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.PersistSecurityInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L294">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_PersistSecurityInfo_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.PersistSecurityInfo*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_PersistSecurityInfo" data-uid="ArgentSea.Pg.PgConnectionConfiguration.PersistSecurityInfo">PersistSecurityInfo</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a Boolean value that indicates if security-sensitive information, such as the password, is not returned as part of the connection if the connection is open or has ever been in an open state.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool PersistSecurityInfo { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Pooling.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Pooling%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L306">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_Pooling_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Pooling*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Pooling" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Pooling">Pooling</h4>
-  <div class="markdown level1 summary"><p>Whether connection pooling should be used.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Pooling { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Port.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Port%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L318">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_Port_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Port*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Port" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Port">Port</h4>
-  <div class="markdown level1 summary"><p>The TCP/IP port of the PostgreSQL server.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Port { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ReadBufferSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ReadBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L330">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_ReadBufferSize_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ReadBufferSize*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ReadBufferSize" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ReadBufferSize">ReadBufferSize</h4>
-  <div class="markdown level1 summary"><p>Determines the size of the internal buffer Npgsql uses when reading. Increasing may improve performance if transferring large values from the database.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ReadBufferSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_SearchPath.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.SearchPath%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L342">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_SearchPath_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SearchPath*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_SearchPath" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SearchPath">SearchPath</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the schema search path.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string SearchPath { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ServerCompatibilityMode.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ServerCompatibilityMode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L354">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_ServerCompatibilityMode_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ServerCompatibilityMode*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ServerCompatibilityMode" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ServerCompatibilityMode">ServerCompatibilityMode</h4>
-  <div class="markdown level1 summary"><p>A compatibility mode for special PostgreSQL server types.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ServerCompatibilityMode ServerCompatibilityMode { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Npgsql.ServerCompatibilityMode</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_SocketReceiveBufferSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.SocketReceiveBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L366">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_SocketReceiveBufferSize_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SocketReceiveBufferSize*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_SocketReceiveBufferSize" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SocketReceiveBufferSize">SocketReceiveBufferSize</h4>
-  <div class="markdown level1 summary"><p>Determines the size of socket read buffer.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int SocketReceiveBufferSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_SocketSendBufferSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.SocketSendBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L378">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_SocketSendBufferSize_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SocketSendBufferSize*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_SocketSendBufferSize" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SocketSendBufferSize">SocketSendBufferSize</h4>
-  <div class="markdown level1 summary"><p>Determines the size of socket send buffer.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int SocketSendBufferSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_SslMode.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.SslMode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L390">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_SslMode_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SslMode*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_SslMode" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SslMode">SslMode</h4>
-  <div class="markdown level1 summary"><p>Controls whether SSL is required, disabled or preferred, depending on server support.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SslMode SslMode { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Npgsql.SslMode</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_TcpKeepAliveInterval.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.TcpKeepAliveInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L402">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_TcpKeepAliveInterval_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TcpKeepAliveInterval*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_TcpKeepAliveInterval" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TcpKeepAliveInterval">TcpKeepAliveInterval</h4>
-  <div class="markdown level1 summary"><p>The interval, in milliseconds, between when successive keep-alive packets are sent if no acknowledgement is received. Defaults to the value of TcpKeepAliveTime. TcpKeepAliveTime must be non-zero as well. Supported only on Windows.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int TcpKeepAliveInterval { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_TcpKeepAliveTime.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.TcpKeepAliveTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L414">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_TcpKeepAliveTime_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TcpKeepAliveTime*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_TcpKeepAliveTime" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TcpKeepAliveTime">TcpKeepAliveTime</h4>
-  <div class="markdown level1 summary"><p>The number of seconds of connection inactivity before a TCP keepalive query is sent. Use of this option is discouraged, use KeepAlive instead if possible. Set to 0 (the default) to disable. Supported only on Windows.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int TcpKeepAliveTime { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Timeout.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Timeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L426">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_Timeout_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Timeout*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Timeout" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Timeout">Timeout</h4>
-  <div class="markdown level1 summary"><p>The time to wait (in seconds) while trying to establish a connection before terminating the attempt and generating an error. Defaults to 15 seconds.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Timeout { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_TrustServerCertificate.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.TrustServerCertificate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L438">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_TrustServerCertificate_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TrustServerCertificate*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_TrustServerCertificate" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TrustServerCertificate">TrustServerCertificate</h4>
-  <div class="markdown level1 summary"><p>Whether to trust the server certificate without validating it.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TrustServerCertificate { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_UsePerfCounters.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.UsePerfCounters%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L451">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_UsePerfCounters_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.UsePerfCounters*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_UsePerfCounters" data-uid="ArgentSea.Pg.PgConnectionConfiguration.UsePerfCounters">UsePerfCounters</h4>
-  <div class="markdown level1 summary"><p>Writes connection performance information to performance counters.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool UsePerfCounters { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_UseSslStream.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.UseSslStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L463">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_UseSslStream_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.UseSslStream*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_UseSslStream" data-uid="ArgentSea.Pg.PgConnectionConfiguration.UseSslStream">UseSslStream</h4>
-  <div class="markdown level1 summary"><p>Npgsql uses its own internal implementation of TLS/SSL. Turn this on to use .NET SslStream instead.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool UseSslStream { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_WriteBufferSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.WriteBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L476">View Source</a>
-  </span>
-  <a id="ArgentSea_Pg_PgConnectionConfiguration_WriteBufferSize_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.WriteBufferSize*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_WriteBufferSize" data-uid="ArgentSea.Pg.PgConnectionConfiguration.WriteBufferSize">WriteBufferSize</h4>
-  <div class="markdown level1 summary"><p>Determines the size of the internal buffer Npgsql uses when writing. Increasing may improve performance if transferring large values to the database.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int WriteBufferSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1303,7 +312,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Add(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L490">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L230">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_Add_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Add*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Add(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -1336,7 +345,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Contains_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Contains(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L497">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L237">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_Contains_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Contains*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Contains_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Contains(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Contains(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -1384,7 +393,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ContainsKey_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ContainsKey(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L504">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L244">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_ContainsKey_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ContainsKey*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ContainsKey_System_String_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ContainsKey(System.String)">ContainsKey(String)</h4>
@@ -1432,7 +441,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_GetConnectionString.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.GetConnectionString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L28">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L190">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_GetConnectionString_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.GetConnectionString*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_GetConnectionString" data-uid="ArgentSea.Pg.PgConnectionConfiguration.GetConnectionString">GetConnectionString()</h4>
@@ -1440,7 +449,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string GetConnectionString()</code></pre>
+    <pre><code class="lang-csharp hljs">public string GetConnectionString()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1457,14 +466,12 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetConnectionString">DataConnectionConfigurationBase.GetConnectionString()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L513">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L253">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_Remove_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Remove*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Remove(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -1497,7 +504,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Remove_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Remove(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L521">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L261">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_Remove_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Remove*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Remove_System_String_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Remove(System.String)">Remove(String)</h4>
@@ -1527,10 +534,52 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_SetAmbientConfiguration_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.SetAmbientConfiguration(ArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L212">View Source</a>
+  </span>
+  <a id="ArgentSea_Pg_PgConnectionConfiguration_SetAmbientConfiguration_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SetAmbientConfiguration*"></a>
+  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_SetAmbientConfiguration_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SetAmbientConfiguration(ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase)">SetAmbientConfiguration(DataConnectionConfigurationBase, DataConnectionConfigurationBase, DataConnectionConfigurationBase)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAmbientConfiguration(DataConnectionConfigurationBase globalProperties, DataConnectionConfigurationBase shardSetProperties, DataConnectionConfigurationBase shardProperties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></td>
+        <td><span class="parametername">globalProperties</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></td>
+        <td><span class="parametername">shardSetProperties</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></td>
+        <td><span class="parametername">shardProperties</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_TryGetValue_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.TryGetValue(System.String%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L526">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L266">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_TryGetValue_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TryGetValue*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_TryGetValue_System_String_System_Object__" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TryGetValue(System.String,System.Object@)">TryGetValue(String, out Object)</h4>
@@ -1579,7 +628,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="../api/ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a>
+      <a class="xref" href="../api/ArgentSea.IDataConnection.html">IDataConnection</a>
   </div>
 </article>
           </div>
@@ -1592,7 +641,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
                     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

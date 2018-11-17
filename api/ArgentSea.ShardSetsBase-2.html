@@ -125,7 +125,7 @@ Classes that inherit from this class manage sharded database connections.</p>
   <h6><strong>Assembly</strong>: ArgentSea.dll</h6>
   <h5 id="ArgentSea_ShardSetsBase_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ShardSetsBase&lt;TShard, TConfiguration&gt; : ICollection, IEnumerable where TShard : IComparable where TConfiguration : class, IShardSetConfigurationOptions&lt;TShard&gt;, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class ShardSetsBase&lt;TShard, TConfiguration&gt; : ICollection, IEnumerable where TShard : IComparable where TConfiguration : class, IShardSetsConfigurationOptions&lt;TShard&gt;, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -152,18 +152,18 @@ Classes that inherit from this class manage sharded database connections.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2__ctor_Microsoft_Extensions_Options_IOptions__1__Microsoft_Extensions_Options_IOptions_ArgentSea_DataSecurityOptions__Microsoft_Extensions_Options_IOptions_ArgentSea_DataResilienceOptions__ArgentSea_IDataProviderServiceFactory_Microsoft_Extensions_Logging_ILogger_ArgentSea_ShardSetsBase__0__1___.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.%23ctor(Microsoft.Extensions.Options.IOptions%7B%601%7D%2CMicrosoft.Extensions.Options.IOptions%7BArgentSea.DataSecurityOptions%7D%2CMicrosoft.Extensions.Options.IOptions%7BArgentSea.DataResilienceOptions%7D%2CArgentSea.IDataProviderServiceFactory%2CMicrosoft.Extensions.Logging.ILogger%7BArgentSea.ShardSetsBase%7B%600%2C%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2__ctor_Microsoft_Extensions_Options_IOptions__1__ArgentSea_IDataProviderServiceFactory_ArgentSea_DataConnectionConfigurationBase_Microsoft_Extensions_Logging_ILogger_ArgentSea_ShardSetsBase__0__1___.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.%23ctor(Microsoft.Extensions.Options.IOptions%7B%601%7D%2CArgentSea.IDataProviderServiceFactory%2CArgentSea.DataConnectionConfigurationBase%2CMicrosoft.Extensions.Logging.ILogger%7BArgentSea.ShardSetsBase%7B%600%2C%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L33">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L34">View Source</a>
   </span>
   <a id="ArgentSea_ShardSetsBase_2__ctor_" data-uid="ArgentSea.ShardSetsBase`2.#ctor*"></a>
-  <h4 id="ArgentSea_ShardSetsBase_2__ctor_Microsoft_Extensions_Options_IOptions__1__Microsoft_Extensions_Options_IOptions_ArgentSea_DataSecurityOptions__Microsoft_Extensions_Options_IOptions_ArgentSea_DataResilienceOptions__ArgentSea_IDataProviderServiceFactory_Microsoft_Extensions_Logging_ILogger_ArgentSea_ShardSetsBase__0__1___" data-uid="ArgentSea.ShardSetsBase`2.#ctor(Microsoft.Extensions.Options.IOptions{`1},Microsoft.Extensions.Options.IOptions{ArgentSea.DataSecurityOptions},Microsoft.Extensions.Options.IOptions{ArgentSea.DataResilienceOptions},ArgentSea.IDataProviderServiceFactory,Microsoft.Extensions.Logging.ILogger{ArgentSea.ShardSetsBase{`0,`1}})">ShardSetsBase(IOptions&lt;TConfiguration&gt;, IOptions&lt;DataSecurityOptions&gt;, IOptions&lt;DataResilienceOptions&gt;, IDataProviderServiceFactory, ILogger&lt;ShardSetsBase&lt;TShard, TConfiguration&gt;&gt;)</h4>
+  <h4 id="ArgentSea_ShardSetsBase_2__ctor_Microsoft_Extensions_Options_IOptions__1__ArgentSea_IDataProviderServiceFactory_ArgentSea_DataConnectionConfigurationBase_Microsoft_Extensions_Logging_ILogger_ArgentSea_ShardSetsBase__0__1___" data-uid="ArgentSea.ShardSetsBase`2.#ctor(Microsoft.Extensions.Options.IOptions{`1},ArgentSea.IDataProviderServiceFactory,ArgentSea.DataConnectionConfigurationBase,Microsoft.Extensions.Logging.ILogger{ArgentSea.ShardSetsBase{`0,`1}})">ShardSetsBase(IOptions&lt;TConfiguration&gt;, IDataProviderServiceFactory, DataConnectionConfigurationBase, ILogger&lt;ShardSetsBase&lt;TShard, TConfiguration&gt;&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ShardSetsBase(IOptions&lt;TConfiguration&gt; configOptions, IOptions&lt;DataSecurityOptions&gt; securityOptions, IOptions&lt;DataResilienceOptions&gt; resilienceStrategiesOptions, IDataProviderServiceFactory dataProviderServices, ILogger&lt;ShardSetsBase&lt;TShard, TConfiguration&gt;&gt; logger)</code></pre>
+    <pre><code class="lang-csharp hljs">public ShardSetsBase(IOptions&lt;TConfiguration&gt; configOptions, IDataProviderServiceFactory dataProviderServices, DataConnectionConfigurationBase globalConfiguration, ILogger&lt;ShardSetsBase&lt;TShard, TConfiguration&gt;&gt; logger)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -181,18 +181,13 @@ Classes that inherit from this class manage sharded database connections.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">Microsoft.Extensions.Options.IOptions</span>&lt;<a class="xref" href="ArgentSea.DataSecurityOptions.html">DataSecurityOptions</a>&gt;</td>
-        <td><span class="parametername">securityOptions</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Options.IOptions</span>&lt;<a class="xref" href="ArgentSea.DataResilienceOptions.html">DataResilienceOptions</a>&gt;</td>
-        <td><span class="parametername">resilienceStrategiesOptions</span></td>
-        <td></td>
-      </tr>
-      <tr>
         <td><a class="xref" href="ArgentSea.IDataProviderServiceFactory.html">IDataProviderServiceFactory</a></td>
         <td><span class="parametername">dataProviderServices</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></td>
+        <td><span class="parametername">globalConfiguration</span></td>
         <td></td>
       </tr>
       <tr>
@@ -209,7 +204,7 @@ Classes that inherit from this class manage sharded database connections.</p>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_Count.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.Count%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L71">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L70">View Source</a>
   </span>
   <a id="ArgentSea_ShardSetsBase_2_Count_" data-uid="ArgentSea.ShardSetsBase`2.Count*"></a>
   <h4 id="ArgentSea_ShardSetsBase_2_Count" data-uid="ArgentSea.ShardSetsBase`2.Count">Count</h4>
@@ -239,7 +234,7 @@ Classes that inherit from this class manage sharded database connections.</p>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_IsSynchronized.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.IsSynchronized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L76">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L75">View Source</a>
   </span>
   <a id="ArgentSea_ShardSetsBase_2_IsSynchronized_" data-uid="ArgentSea.ShardSetsBase`2.IsSynchronized*"></a>
   <h4 id="ArgentSea_ShardSetsBase_2_IsSynchronized" data-uid="ArgentSea.ShardSetsBase`2.IsSynchronized">IsSynchronized</h4>
@@ -269,7 +264,7 @@ Classes that inherit from this class manage sharded database connections.</p>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_Item_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.Item(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L66">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L65">View Source</a>
   </span>
   <a id="ArgentSea_ShardSetsBase_2_Item_" data-uid="ArgentSea.ShardSetsBase`2.Item*"></a>
   <h4 id="ArgentSea_ShardSetsBase_2_Item_System_String_" data-uid="ArgentSea.ShardSetsBase`2.Item(System.String)">Item[String]</h4>
@@ -316,7 +311,7 @@ Classes that inherit from this class manage sharded database connections.</p>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_SyncRoot.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.SyncRoot%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L78">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L77">View Source</a>
   </span>
   <a id="ArgentSea_ShardSetsBase_2_SyncRoot_" data-uid="ArgentSea.ShardSetsBase`2.SyncRoot*"></a>
   <h4 id="ArgentSea_ShardSetsBase_2_SyncRoot" data-uid="ArgentSea.ShardSetsBase`2.SyncRoot">SyncRoot</h4>
@@ -348,7 +343,7 @@ Classes that inherit from this class manage sharded database connections.</p>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_CopyTo_System_Array_System_Int32_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.CopyTo(System.Array%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L80">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L79">View Source</a>
   </span>
   <a id="ArgentSea_ShardSetsBase_2_CopyTo_" data-uid="ArgentSea.ShardSetsBase`2.CopyTo*"></a>
   <h4 id="ArgentSea_ShardSetsBase_2_CopyTo_System_Array_System_Int32_" data-uid="ArgentSea.ShardSetsBase`2.CopyTo(System.Array,System.Int32)">CopyTo(Array, Int32)</h4>
@@ -385,7 +380,7 @@ Classes that inherit from this class manage sharded database connections.</p>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2_GetEnumerator.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602.GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L83">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L82">View Source</a>
   </span>
   <a id="ArgentSea_ShardSetsBase_2_GetEnumerator_" data-uid="ArgentSea.ShardSetsBase`2.GetEnumerator*"></a>
   <h4 id="ArgentSea_ShardSetsBase_2_GetEnumerator" data-uid="ArgentSea.ShardSetsBase`2.GetEnumerator">GetEnumerator()</h4>
@@ -428,7 +423,7 @@ Classes that inherit from this class manage sharded database connections.</p>
                     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardSetsBase_2.md&amp;value=---%0Auid%3A%20ArgentSea.ShardSetsBase%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L23" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/shared/blob/master/src/ShardSets.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

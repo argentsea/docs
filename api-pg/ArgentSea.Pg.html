@@ -161,8 +161,10 @@
 Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match as key in the DataResilienceOptions array.
 If the ResilienceKey is not defined, a default data resilience strategy will be used.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html">PgConnectionPropertiesBase</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.PgDatabases.html">PgDatabases</a></h4>
-      <section><p>This class manages the non-sharded SQL database connections.</p>
+      <section><p>This class manages the non-sharded PosgreSQL database connections.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Pg.PgDbConnectionConfiguration.html">PgDbConnectionConfiguration</a></h4>
       <section></section>
@@ -173,8 +175,9 @@ For example, you might configure your appsettings.json like this:<p>
 <pre><code>&quot;PgDbConnections&quot;: [
   {
     &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
-    &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
       &quot;DataConnection&quot;: {
+        &quot;UserName&quot;: &quot;webUser&quot;,
+        &quot;Password&quot;: &quot;pwd1234&quot;,
         &quot;Host&quot;: &quot;localhost&quot;,
         &quot;Database&quot;: &quot;MyDb&quot;
     }
@@ -183,6 +186,8 @@ For example, you might configure your appsettings.json like this:<p>
 <p>Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match a key in the DataResilienceOptions array.
 </example></p>
 </section>
+      <h4><a class="xref" href="ArgentSea.Pg.PgGlobalPropertiesOptions.html">PgGlobalPropertiesOptions</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.PgParameterCollectionExtensions.html">PgParameterCollectionExtensions</a></h4>
       <section><p>This class adds extension methods which simplify setting PostgreSQL parameter values from .NET types.</p>
 </section>
@@ -198,9 +203,6 @@ For example, you might configure your appsettings.json like this:<p>
       <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html">PgShardConnectionOptions&lt;TShard&gt;.PgShardConnectionsConfiguration</a></h4>
       <section></section>
-      <h4><a class="xref" href="ArgentSea.Pg.PgShardSets.html">PgShardSets</a></h4>
-      <section><p>A collection of ShardSets (with a UInt16 shardId type).</p>
-</section>
       <h4><a class="xref" href="ArgentSea.Pg.PgShardSets-1.html">PgShardSets&lt;TShard&gt;</a></h4>
       <section><p>A collection of ShardSets.</p>
 </section>

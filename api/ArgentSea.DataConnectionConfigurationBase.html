@@ -91,10 +91,6 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">DataConnectionConfigurationBase</span></div>
   </div>
-  <div classs="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a></div>
-  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -123,55 +119,89 @@
   <h6><strong>Assembly</strong>: ArgentSea.dll</h6>
   <h5 id="ArgentSea_DataConnectionConfigurationBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class DataConnectionConfigurationBase : IConnectionConfiguration</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class DataConnectionConfigurationBase</code></pre>
   </div>
-  <h3 id="fields">Fields
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_hasConnectionPropertyChanged.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.hasConnectionPropertyChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L19">View Source</a>
-  </span>
-  <h4 id="ArgentSea_DataConnectionConfigurationBase_hasConnectionPropertyChanged" data-uid="ArgentSea.DataConnectionConfigurationBase.hasConnectionPropertyChanged">hasConnectionPropertyChanged</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool hasConnectionPropertyChanged</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_ConnectionDescription.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.ConnectionDescription%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_CircuitBreakerFailureCount.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.CircuitBreakerFailureCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L49">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L64">View Source</a>
   </span>
-  <a id="ArgentSea_DataConnectionConfigurationBase_ConnectionDescription_" data-uid="ArgentSea.DataConnectionConfigurationBase.ConnectionDescription*"></a>
-  <h4 id="ArgentSea_DataConnectionConfigurationBase_ConnectionDescription" data-uid="ArgentSea.DataConnectionConfigurationBase.ConnectionDescription">ConnectionDescription</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="ArgentSea_DataConnectionConfigurationBase_CircuitBreakerFailureCount_" data-uid="ArgentSea.DataConnectionConfigurationBase.CircuitBreakerFailureCount*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_CircuitBreakerFailureCount" data-uid="ArgentSea.DataConnectionConfigurationBase.CircuitBreakerFailureCount">CircuitBreakerFailureCount</h4>
+  <div class="markdown level1 summary"><p>If a connection or command consistantly fails, the circuit breaker will reject all further connections until one suceeds.
+This setting determines how many failures (after retries, if retry-able) before blocking all connections apart from a few periodic test attempts.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract string ConnectionDescription { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int? CircuitBreakerFailureCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.CircuitBreakerTestInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L70">View Source</a>
+  </span>
+  <a id="ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval_" data-uid="ArgentSea.DataConnectionConfigurationBase.CircuitBreakerTestInterval*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval" data-uid="ArgentSea.DataConnectionConfigurationBase.CircuitBreakerTestInterval">CircuitBreakerTestInterval</h4>
+  <div class="markdown level1 summary"><p>If a connection or command fails, the circuit breaker will reject all further connections until one suceeds.
+This setting determines how long (in milliseonds) the system should wait before allowing a test connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? CircuitBreakerTestInterval { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_Password.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.Password%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L37">View Source</a>
+  </span>
+  <a id="ArgentSea_DataConnectionConfigurationBase_Password_" data-uid="ArgentSea.DataConnectionConfigurationBase.Password*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_Password" data-uid="ArgentSea.DataConnectionConfigurationBase.Password">Password</h4>
+  <div class="markdown level1 summary"><p>The database login password, if windows auth is not used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Password { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -190,18 +220,113 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_ResilienceKey.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.ResilienceKey%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_RetryCount.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.RetryCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L93">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L47">View Source</a>
   </span>
-  <a id="ArgentSea_DataConnectionConfigurationBase_ResilienceKey_" data-uid="ArgentSea.DataConnectionConfigurationBase.ResilienceKey*"></a>
-  <h4 id="ArgentSea_DataConnectionConfigurationBase_ResilienceKey" data-uid="ArgentSea.DataConnectionConfigurationBase.ResilienceKey">ResilienceKey</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="ArgentSea_DataConnectionConfigurationBase_RetryCount_" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryCount*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_RetryCount" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryCount">RetryCount</h4>
+  <div class="markdown level1 summary"><p>The number of times to automatically retry when a transient error is encountered. The default is 6.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ResilienceKey { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int? RetryCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_RetryInterval.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.RetryInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L53">View Source</a>
+  </span>
+  <a id="ArgentSea_DataConnectionConfigurationBase_RetryInterval_" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryInterval*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_RetryInterval" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryInterval">RetryInterval</h4>
+  <div class="markdown level1 summary"><p>This is the number of milliseconds to wait before retrying a “retry-able” connection or command error. Default is 250 ms.
+This interval may be extended with each retry, depending upon the RetryLengthening setting, up to RetryCount.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? RetryInterval { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_RetryLengthening.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.RetryLengthening%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L58">View Source</a>
+  </span>
+  <a id="ArgentSea_DataConnectionConfigurationBase_RetryLengthening_" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryLengthening*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_RetryLengthening" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryLengthening">RetryLengthening</h4>
+  <div class="markdown level1 summary"><p>If a connection or command fails, this setting determines how much each subsequent retry should be further delayed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SequenceLengthening? RetryLengthening { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<a class="xref" href="ArgentSea.SequenceLengthening.html">SequenceLengthening</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_UserName.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.UserName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L32">View Source</a>
+  </span>
+  <a id="ArgentSea_DataConnectionConfigurationBase_UserName_" data-uid="ArgentSea.DataConnectionConfigurationBase.UserName*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_UserName" data-uid="ArgentSea.DataConnectionConfigurationBase.UserName">UserName</h4>
+  <div class="markdown level1 summary"><p>The database login account, if windows auth is not used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string UserName { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -220,18 +345,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_SecurityKey.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.SecurityKey%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_WindowsAuth.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.WindowsAuth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L80">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L42">View Source</a>
   </span>
-  <a id="ArgentSea_DataConnectionConfigurationBase_SecurityKey_" data-uid="ArgentSea.DataConnectionConfigurationBase.SecurityKey*"></a>
-  <h4 id="ArgentSea_DataConnectionConfigurationBase_SecurityKey" data-uid="ArgentSea.DataConnectionConfigurationBase.SecurityKey">SecurityKey</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="ArgentSea_DataConnectionConfigurationBase_WindowsAuth_" data-uid="ArgentSea.DataConnectionConfigurationBase.WindowsAuth*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_WindowsAuth" data-uid="ArgentSea.DataConnectionConfigurationBase.WindowsAuth">WindowsAuth</h4>
+  <div class="markdown level1 summary"><p>Windows (kerberos) auth should be used, rather than username and password.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string SecurityKey { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool? WindowsAuth { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -243,7 +369,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -252,48 +378,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_GetConnectionString.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.GetConnectionString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.GetRetryTimespan(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L51">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L73">View Source</a>
   </span>
-  <a id="ArgentSea_DataConnectionConfigurationBase_GetConnectionString_" data-uid="ArgentSea.DataConnectionConfigurationBase.GetConnectionString*"></a>
-  <h4 id="ArgentSea_DataConnectionConfigurationBase_GetConnectionString" data-uid="ArgentSea.DataConnectionConfigurationBase.GetConnectionString">GetConnectionString()</h4>
+  <a id="ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_" data-uid="ArgentSea.DataConnectionConfigurationBase.GetRetryTimespan*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_" data-uid="ArgentSea.DataConnectionConfigurationBase.GetRetryTimespan(System.Int32)">GetRetryTimespan(Int32)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract string GetConnectionString()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_GetResilienceStrategy_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.GetResilienceStrategy(Microsoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L53">View Source</a>
-  </span>
-  <a id="ArgentSea_DataConnectionConfigurationBase_GetResilienceStrategy_" data-uid="ArgentSea.DataConnectionConfigurationBase.GetResilienceStrategy*"></a>
-  <h4 id="ArgentSea_DataConnectionConfigurationBase_GetResilienceStrategy_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.DataConnectionConfigurationBase.GetResilienceStrategy(Microsoft.Extensions.Logging.ILogger)">GetResilienceStrategy(ILogger)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected DataResilienceConfiguration GetResilienceStrategy(ILogger logger)</code></pre>
+    <pre><code class="lang-csharp hljs">public TimeSpan GetRetryTimespan(int attempt)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -306,8 +402,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
-        <td><span class="parametername">logger</span></td>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">attempt</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -322,82 +418,11 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="ArgentSea.DataResilienceConfiguration.html">DataResilienceConfiguration</a></td>
+        <td><span class="xref">System.TimeSpan</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_GetSecurityConfiguration.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.GetSecurityConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L67">View Source</a>
-  </span>
-  <a id="ArgentSea_DataConnectionConfigurationBase_GetSecurityConfiguration_" data-uid="ArgentSea.DataConnectionConfigurationBase.GetSecurityConfiguration*"></a>
-  <h4 id="ArgentSea_DataConnectionConfigurationBase_GetSecurityConfiguration" data-uid="ArgentSea.DataConnectionConfigurationBase.GetSecurityConfiguration">GetSecurityConfiguration()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected SecurityConfiguration GetSecurityConfiguration()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ArgentSea.SecurityConfiguration.html">SecurityConfiguration</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_SetConfigurationOptions_ArgentSea_DataSecurityOptions_ArgentSea_DataResilienceOptions_.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.SetConfigurationOptions(ArgentSea.DataSecurityOptions%2CArgentSea.DataResilienceOptions)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L21">View Source</a>
-  </span>
-  <a id="ArgentSea_DataConnectionConfigurationBase_SetConfigurationOptions_" data-uid="ArgentSea.DataConnectionConfigurationBase.SetConfigurationOptions*"></a>
-  <h4 id="ArgentSea_DataConnectionConfigurationBase_SetConfigurationOptions_ArgentSea_DataSecurityOptions_ArgentSea_DataResilienceOptions_" data-uid="ArgentSea.DataConnectionConfigurationBase.SetConfigurationOptions(ArgentSea.DataSecurityOptions,ArgentSea.DataResilienceOptions)">SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetConfigurationOptions(DataSecurityOptions securityOptions, DataResilienceOptions resilienceStrategiesOptions)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ArgentSea.DataSecurityOptions.html">DataSecurityOptions</a></td>
-        <td><span class="parametername">securityOptions</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="ArgentSea.DataResilienceOptions.html">DataResilienceOptions</a></td>
-        <td><span class="parametername">resilienceStrategiesOptions</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a>
-  </div>
 </article>
           </div>
           
@@ -409,7 +434,7 @@
                     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L25" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
