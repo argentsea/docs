@@ -1661,6 +1661,28 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/databases-config.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/databases-config.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/databases.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/databases.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/loosely-coupled.svg",
       "output": {
         "resource": {
@@ -1738,10 +1760,43 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/shardSetHierarchy.jpg",
+      "source_relative_path": "images/shardchild.svg",
       "output": {
         "resource": {
-          "relative_path": "images/shardSetHierarchy.jpg"
+          "relative_path": "images/shardchild.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/shardkey.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/shardkey.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/shardsets-config.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/shardsets-config.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/shardsets.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/shardsets.svg"
         }
       },
       "is_incremental": false,
@@ -1759,12 +1814,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "z5ceeqlL2gu0EDbcL+LTaw=="
+          "hash": "ZCo/8jCyW0axoWqAQ/IldQ=="
         }
       },
       "is_incremental": false,
@@ -1819,15 +1877,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "invalid-tab-group"
-      ],
       "type": "Conceptual",
       "source_relative_path": "tutorials/configuration.md",
       "output": {
         ".html": {
           "relative_path": "tutorials/configuration.html",
-          "hash": "5neOsYqdb9ERa6cqvnsKrQ=="
+          "hash": "+Lbe7zRlZ4E1w0NcozUYVA=="
         }
       },
       "is_incremental": false,
@@ -1839,7 +1894,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/index.html",
-          "hash": "PajpzUzXA2sV2+4U1eXWNQ=="
+          "hash": "Rzpmya1lA++1en/TJb1rVg=="
         }
       },
       "is_incremental": false,
@@ -1863,7 +1918,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/querying.html",
-          "hash": "0cdJkRykk0jK5F5v3u3hKA=="
+          "hash": "zMUtOdfhWwO9eQGktDHbug=="
         }
       },
       "is_incremental": false,
@@ -1878,7 +1933,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/quickstart1.html",
-          "hash": "bwT/49n2O22OtoqKb7eKYg=="
+          "hash": "7FgR47ojLoATW8xANElE+Q=="
         }
       },
       "is_incremental": false,
@@ -1901,23 +1956,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "tutorials/security.md",
-      "output": {
-        ".html": {
-          "relative_path": "tutorials/security.html",
-          "hash": "4eo7aA2eFHZ1YYdYThOkeQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "tutorials/setup.md",
       "output": {
         ".html": {
           "relative_path": "tutorials/setup.html",
-          "hash": "BqDJwRymfPG0HhnTJxNEHQ=="
+          "hash": "WKGnyCEj6RUSQvFrvyZH/Q=="
         }
       },
       "is_incremental": false,
@@ -1929,19 +1972,22 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/sharding.html",
-          "hash": "KPqLtoFwkZlHI9/Ax5/l5Q=="
+          "hash": "ilMuCCJ9xD9HZNjlHSJtFw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Toc",
       "source_relative_path": "tutorials/toc.yml",
       "output": {
         ".html": {
           "relative_path": "tutorials/toc.html",
-          "hash": "Br2/0qhucwbYpm2748WWQg=="
+          "hash": "YbnvXbTvJoiAvVxc2L66eQ=="
         }
       },
       "is_incremental": false,
@@ -1963,14 +2009,14 @@
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }

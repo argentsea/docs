@@ -83,14 +83,15 @@
 <p>Geo-dispersed deployments and SDLC staging processes require application deployments in many distinct environments. Managing configurations in each environment is already a challenge. Worse, sharded data sets can create a very large number of connections, amplifying the configuration problem further. Then, scale-out of read and write endpoints doubles the number of connections. In the end, there can be a lot of connections to manage.</p>
 <p>ArgentSea is designed to make this potentially large number connections manageable. Using the configuration architecture in .NET core and a unique <em>configuration hierarchy</em>, ArgentSea allows application changes to be promoted through staging environments and deployed into multiple production environments. It does this while storing passwords securely and without the need for messy transformations.</p>
 <h2 id="argentsea-data-connections">ArgentSea Data Connections</h2>
-<p>There are two types of database connections in ArgentSea:</p>
+<p>There are two types of data connections in ArgentSea:</p>
 <ul>
 <li><strong>A <em>database connection</em></strong> - a data set which is hosted by a single database</li>
 <li><strong>A <em>shard set</em></strong>  - a data set spread over multiple database connections</li>
 </ul>
-<p>ArgentSea configuration supports any number of <a href="http://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">database connections</a> and any number of <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">shard sets</a>. Each <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">shard set</a> can have any number of database connections (shard instances).</p>
-<p>All data connections have the option of separate read and write connections.
-If you are scaling-out your data access by sharding your data, you are likely also scaling-out by separating read activity from write operations. Examples of this includes <em>SQL Server Availability Groups</em>, <em>Amazon RDS</em> Read Replicas, <em>Azure SQL</em> geo-replication, <em>Amazon Aurora</em> reader endpoints, etc.</p>
+<p>A shard set represents a set of data that is spread among multiple database servers. This structure is common for high-performance data access, since it is usually more cost effective and predictably scalable to have multiple smaller database servers than to build one massive server. Global applications might try to improve performance for their global users by distributing shards in datacenters around the globe. The ArgentSea data access components allow you to query across multiple servers or a find specific record on its corresponding host server.</p>
+<p>ArgentSea configuration supports any number of database definitions in the <a href="http://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases collection</a>, and any number of <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">shard sets</a> in the <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.html">ShardSets</a> collection. Each <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">shard set</a> can have any number of database connections (shard instances).</p>
+<table border="0" margin="0" padding="0"><tr><td width="50%"><img src="/images/databases.svg"></td><td width="50%"><img src="/images/shardsets.svg"></td></tr></table>
+<p>All data connections have the option of separate read and write connections. If you are scaling-out your data access by sharding your data, you are likely also scaling-out by separating read activity from write operations. Examples of this includes <em>SQL Server Availability Groups</em>, <em>Amazon RDS</em> Read Replicas, <em>Azure SQL</em> geo-replication, <em>Amazon Aurora</em> reader endpoints, etc.</p>
 <p>All this creates a potentially large number of connections. Many of these will likely have similar connection information. For example, all of the connections in a shard set might use the same login information or database name, varying only the server address. To manage this redundancy, ArgentSea offers a unique <em>configuration hierarchy</em>.</p>
 <h2 id="connection-attributes">Connection Attributes</h2>
 <p>ArgentSea essentially dispenses with traditional connection strings (although you can use them if you really want to). Instead, it uses the .NET configuration architecture to manage each attribute as a discrete property. Each property can be managed globally, or at the shardSet, database, or connection level. Lower-level settings inherit values from their parent, which they can also overwrite if their own values are set differently.</p>
@@ -103,15 +104,6 @@ If you are scaling-out your data access by sharding your data, you are likely al
 </li>
 <li role="presentation">
 <a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="-1">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="-1">SQL Server</a>
 </li>
 </ul>
 <section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
@@ -200,14 +192,25 @@ If you are scaling-out your data access by sharding your data, you are likely al
   &quot;WriteBufferSize&quot;: 8192
 }
 </code></pre>
+</section>
+</div>
+
 <div class="CAUTION">
 <h5>Caution</h5>
 <p>Displayed are all of the available properties. It is neither necessary nor wise to set all of them. All that is typically required for most connections is login information, a server or host name, and a database name.</p>
 </div>
 <h2 id="the-configuration-hierarchy">The Configuration Hierarchy</h2>
 <p>The root of the configuration hierarchy is the “global settings” section. All properties set here are applied to every data connection — unless the value is overwritten by lower-level properties (i.e. database, shard set, shard, etc.).</p>
-</section>
-<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql" aria-hidden="true" hidden="hidden">
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <p>The SQL Server global section is <code>SqlGlobalSettings</code>. Any attributes specified in this section are applied to all SQL Server connections.</p>
 <p>For example, to globally change both the connection timeout property and packet size:</p>
@@ -219,7 +222,7 @@ If you are scaling-out your data access by sharding your data, you are likely al
 }
 </code></pre>
 </section>
-<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <p>The PostgreSQL global section is <code>PgGlobalSettings</code>. Any attributes specified in this section are applied to all PostgreSQL connections.</p>
 <p>For example, to globally change both the connection timeout property and packet size:</p>
@@ -231,12 +234,22 @@ If you are scaling-out your data access by sharding your data, you are likely al
   }
 }
 </code></pre>
-<h3 id="non-sharded-database-connections">(Non-Sharded) Database Connections</h3>
-<p>The database configuration architecture allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code.</p>
-<p>Non-sharded database connections have a three-level hierarchy: global values, connection settings, and settings for distinct read and write endpoints.</p>
-<p>[IMAGE! database connection]</p>
 </section>
-<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql" aria-hidden="true" hidden="hidden">
+</div>
+<h3 id="non-sharded-database-connections">(Non-Sharded) Database Connections</h3>
+<p>The database configuration architecture allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code. The key in your configuration must <em>exactly</em> match the keys used in your code (i.e casing, accents, and kana must match).</p>
+<p>Database connections have a three-level hierarchy: global properties, database properties, and properties for distinct read and write endpoints. This illustration shows how various “parent” configuration properties are applied to the child values. Ultimately, these values are combined to build a Read or Write connection.</p>
+<p><img src="../images/databases-config.svg" alt="Non-Sharded Configuration"></p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <p>The JSON section for SQL database connections is <code>SqlDbConnections</code>. This is an array of connections. Each connection has a required <code>DatabaseKey</code> property, and whatever connection properties are needed for the connection.</p>
 <pre><code class="lang-json">{
@@ -275,14 +288,7 @@ If you are scaling-out your data access by sharding your data, you are likely al
 }
 </code></pre>
 </section>
-</div>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="0" aria-selected="true">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg">
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <p>The JSON section for PostgreSQL database connections is <code>PgDbConnections</code>. This is an array of connections. Each connection has a required <code>DatabaseKey</code> property, and whatever connection properties are needed for the connection. The application obtains a connection by this <code>DatabaseKey</code> and the characters must be an exact match.</p>
 <pre><code class="lang-json">  &quot;PgDbConnections&quot;: [
@@ -326,19 +332,18 @@ If you are scaling-out your data access by sharding your data, you are likely al
 <p>In the example above, the first connection has the same values for read and write connections (both Read and Write connections inherit the same values from the parent). The second connection will access a different server for read connections than write connections. The third connection explicitly defines connection information for both the Read and Write connections.</p>
 <p>As mentioned before, <em>any</em> connection property from the complete property list (as listed earlier), can be included in the database definition, read connection, or write connection.</p>
 <h3 id="shard-set-connections">Shard Set Connections</h3>
-<p>A shard set represents a single set of data  that is spread among multiple database servers. This structure is common for high-performance data access, since it is usually more cost effective and predictably scalable to have multiple smaller database servers than to build one massive server. Global applications might try to improve performance for their global users by distributing shards in datacenters around the globe. The ArgentSea data access components allow you to query across multiple servers or a find specific record on its corresponding host server.</p>
-<p>ArgentSea shard sets have up to four inheritance levels: global values, shard sets, shards, and distinct read and write endpoint settings.</p>
-<p>[IMAGE! shardset connection]</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<p>ArgentSea shard sets have up to four inheritance levels: global properties, shard set properties, shard properties, and distinct read and write endpoint properties. The corresponding illustration again shows how various “parent” configuration properties are applied to the child values. As with non-sharded databases, these values are combined to build a Read or Write connection.</p>
+<p><img src="../images/shardsets-config.svg" alt="Non-Sharded Configuration"></p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
 </li>
 </ul>
-<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <p>The root JSON section for SQL shard connections is <code>SqlShardSets</code>. This is an array of shard sets, each of which has an array of shards. Presumably, most applications will not require multiple shard sets, but the capability exists if required.</p>
 <p>Each shard set has a required <code>ShardSetName</code> property. This value is how the shard set retrieved from within the application, so the characters must <em>exactly</em> match.</p>
@@ -374,7 +379,7 @@ If you are scaling-out your data access by sharding your data, you are likely al
 </code></pre>
 <p>In this example, there is one shard set with two shards as two databases on the same server. The read connections are directed to a mirror by overwriting the inherited <code>DataSource</code> value with the name of the mirror.</p>
 </section>
-<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <pre><code class="lang-json">{
   &quot;PgShardSets&quot;: [
@@ -412,10 +417,10 @@ If you are scaling-out your data access by sharding your data, you are likely al
 <h3 id="the-shard-identifier-type">The Shard Identifier Type</h3>
 <p>End each shard instance has a <code>ShardId</code> property, which identifies a specific subset (“shard”) of the data. This value is <em>critical</em> because it is not simply a key for a shard instance; the ShardId is generally used in combination with the record key to <em>uniquely identify</em> a record.</p>
 <p>Put another way, records in the shard set are identified with a sort of virtual compound key, consisting of the shard identifier and the record key. Because record in a data shard may refer to records in <em>other</em> shards, the “foreign key” reference requires saving the shard identifier too.</p>
-<p>Because of the need to persist the ShardId inside database records, the data type of the ShardId is critical. ArgentSea uses a generic ShardId to allow you to defined any data type you prefer.</p>
+<p>Because of the need to persist the ShardId inside database records, the data type of the ShardId is critical. ArgentSea uses a generic ShardId to allow you to define any data type you prefer.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>Once established, the ShardId <em>type</em> cannot be easily changed. The ShardId <em>type</em> is used in configuration, throughout your code, in the database, and across all shard sets. Make sure that you will not outgrow your ShardId type’s maximum value, nor unnecessarily require space that will never be used.<br>
+<p>Once established, the ShardId <em>type</em> cannot be easily changed. The ShardId type is used in configuration, throughout your code, in the database, and across all shard sets. Make sure that you will not outgrow your ShardId type’s maximum value, nor unnecessarily require space that will never be used.<br>
 If you are uncertain, consider using a <code>short</code> (Int16/smallint) data type for your ShardId.</p>
 </div>
 <p>The JSON ShardId type must correspond to whatever type you have defined for your application’s ShardId. If your application defines its ShardId as a string, then the JSON should be a string value (i.e. be in quotes); if a number, it should be numeric (i.e. a number, without quotes).</p>
@@ -429,16 +434,16 @@ If you are uncertain, consider using a <code>short</code> (Int16/smallint) data 
 <p>One of the key improvements of the configuration architecture in .NET standard is the dictionary architecture, which allows entries to be loaded and combined from multiple sources. So, for example, you might load the account names from an <em>appsettings.json</em> configuration file, the passwords from a <em>secrets.json</em> file (or <a href="https://azure.microsoft.com/en-us/services/key-vault/">Key Vault</a> or <a href="https://aws.amazon.com/secrets-manager/">Secrets Manager</a>), and the server names from environment variables. Properly managed, this can make deployments both easier and more secure.</p>
 <p>The previous examples all used JSON for configuration. This is not a requirement. In non-JSON configuration contexts, like environment variables, you can specify these values as key-value pairs. The key concatenates the hierarchy separated by “:”. Arrays and lists should include an index.</p>
 <p>The same configuration information listed above can be stored and loaded as key-value pairs. An example of the same shard set configuration in non-JSON format would be:</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-4">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+<a href="#tabpanel_CeZOj-G++Q-4_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-4_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+<a href="#tabpanel_CeZOj-G++Q-4_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-4_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
 </li>
 </ul>
-<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<section id="tabpanel_CeZOj-G++Q-4_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <table>
 <thead>
@@ -503,7 +508,7 @@ If you are uncertain, consider using a <code>short</code> (Int16/smallint) data 
 </tbody>
 </table>
 </section>
-<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-4_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <table>
 <thead>
@@ -563,19 +568,22 @@ If you are uncertain, consider using a <code>short</code> (Int16/smallint) data 
 <ul>
 <li>Secure values, like passwords or keys, which should not be readily accessible.</li>
 <li>Environment-specific values, like server names, which change as releases are promoted through various environments.</li>
-<li>Application values, which specify how the application should behave.</li>
+<li>Application values, which specify how the application should consistently behave.</li>
 </ul>
 <p>This capability is critical for managing configuration outside of the application. Using key-value pairs allows configuration values to be hosted in environment variables and secure stores.</p>
 <h3 id="securing-passwords">Securing Passwords</h3>
 <p>In a development environment, you should consider using the <a href="https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets">UserSecrets</a> functionality, which prevents this information from being checked into your source code repository.</p>
 <p>UserSecrets uses a JSON file, so the password entries can be simply removed from the appsettings.json file and stored in the <em>secrets.json</em> file. Note that the object counts must be consistent between your <em>appsettings.json</em> file and the <em>secrets.json</em> file.</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-4">
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-5">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-4_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-4_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+<a href="#tabpanel_CeZOj-G++Q-5_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-5_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-5_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-5_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
 </li>
 </ul>
-<section id="tabpanel_CeZOj-G++Q-4_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<section id="tabpanel_CeZOj-G++Q-5_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 <h3 id="user-secrets">User Secrets</h3>
 <pre><code class="lang-json">{
   &quot;SqlDbConnections&quot;: [
@@ -595,14 +603,7 @@ If you are uncertain, consider using a <code>short</code> (Int16/smallint) data 
 }
 </code></pre>
 </section>
-</div>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-5">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-5_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-5_tabid-pg" data-tab="tabid-pg" tabindex="0" aria-selected="true">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-5_tabid-pg" role="tabpanel" data-tab="tabid-pg">
+<section id="tabpanel_CeZOj-G++Q-5_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 <h3 id="user-secrets-1">User Secrets</h3>
 <pre><code class="lang-json">  &quot;PgDbConnections&quot;: [
     {
@@ -921,9 +922,9 @@ to time out. As this continues, the queue of backlogged requests becomes so larg
 <p>Configuration entries can be updated until the moment when the <code>Shardsets</code> or <code>Databases</code> objects are first created (i.e. at first injection). Once these singleton objects exist, further configuration changes are ignored. Further, the object use immutable collections, so once they are created, they cannot be changed directly either.</p>
 <p>Similarly, the first time a connection is used and ADO.NET the connection string is created, the same connection string will be provided to all subsequent requests.</p>
 <p>There is no way to update connection configuration once it has been used, other than to destroy and reload the ShardSets or Databases service.</p>
-<h3 id="simplified-data-connections">Simplified Data Connections</h3>
-<p>In .NET Core, any data repository class can use the ArgentSea data access component by adding and argument to its constructor.</p>
-<p>if you any experience in .NET Core, requesting the database connection in any data access class is straightforward:</p>
+<h2 id="simplifying-data-connections">Simplifying Data Connections</h2>
+<p>As per standard practice in .NET Core, any data repository class can use the ArgentSea data access component by having the service injected into its constructor.</p>
+<p>For example, requesting the databases collection in your data access class is straightforward:</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-9">
 <ul role="tablist">
 <li role="presentation">
@@ -935,25 +936,62 @@ to time out. As this continues, the queue of backlogged requests becomes so larg
 </ul>
 <section id="tabpanel_CeZOj-G++Q-9_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">
-        public MyDataAccessStore(SqlDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
-        {
-          ...
-
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+  public MyDataAccessStore(SqlDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+     _dbs = dbs;  // capturing injected SqlDatabases collection
+    ...
 </code></pre>
+<p>The injected data access component allows the class to access any database in the SqlDatabases connection. This means that you would need to specify the collection key to access a particular database or shard set.</p>
+<p>In most cases, a class will only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+    private readonly SqlDatabases.DataConnection _data;
+
+    public MyDataAccessStore(SqlDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+    {
+      _data = dbs[&quot;MyConnectionKey&quot;];  // capturing relevant database
+      ...
+</code></pre>
+<p>Setup this way, subsequent calls to the SQL database can be on methods directly on the <code>_data</code> object. Now, calls within the class do not need to specify a key.</p>
 </section>
 <section id="tabpanel_CeZOj-G++Q-9_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">
-        public MyDataAccessStore(PgDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
-        {
-          ...
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+  private readonly PgDatabases  _dbs;
+
+  public MyDataAccessStore(PgDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+     _dbs = dbs;   // capturing injected PgDatabases collection
+    ...
 
 </code></pre>
+<p>The injected data access component allows the class to access any database in the PgDatabases connection. This means that you would need to specify the collection key to access a particular database or shard set.</p>
+<p>In most cases, a class will only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+  private readonly PgDatabases.DataConnection _data;
+
+  public MyDataAccessStore(PgDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+    _data = dbs[&quot;MyConnectionName&quot;]; // capturing relevant database
+    ...
+</code></pre>
+<p>Setup this way, calls to the SQL database (or shard set) can be on methods directly on the <code>_data</code> object. Now, calls within the class do not need to specify a key.</p>
 </section>
 </div>
-
-<p>The injected data access component allows the class to access any defined database connection. This means that you would need to specify the collection key to access a particular database or shard set. In most cases, a class will only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
+<h3 id="simplifying-the-shardid-generic-type">Simplifying The ShardId Generic Type</h3>
+<p>The <code>ShardSets</code> object has even more need of simplification. As with Databases, a single class typically does not need to access multiple ShardSets, so one can follow the same approach as with the Databases example to reference only the relevant ShardSet within your class.</p>
+<p>The other ShardSet complexity is the need to repeatedly declare the <em>ShardId</em> type. Within your project, this will always be the same value, but programming against the ArgentSea library directly means declaring the type over and over again.</p>
+<p>There are two solutions to this:</p>
+<ul>
+<li>Use the <code>using</code> statement to alias the ShardSet declaration.</li>
+<li>Declare classes in your project which inherit from ShardSet, ShardKey, and ShardChild, but with the generic defined. Use these classes in your project.</li>
+</ul>
+<h4 id="using-using">Using “using”</h4>
+<p>As an example of the first approach, to simplify calling a ShardSet <em>within a single file</em>, simply add these <code>using</code> statements:</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-10">
 <ul role="tablist">
 <li role="presentation">
@@ -965,36 +1003,53 @@ to time out. As this continues, the queue of backlogged requests becomes so larg
 </ul>
 <section id="tabpanel_CeZOj-G++Q-10_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">        private readonly SqlDatabases.DataConnection _data;
-
-        public MyDataAccessStore(SqlDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
-        {
-            ...
-            _data = dbs.DbConnections[&quot;MyConnectionKey&quot;];
-          ...
+<pre><code class="lang-csharp">using ShardSets = ArgentSea.Sql.SqlShardSets&lt;byte&gt;;
+// and/or
+using ShardSet = ArgentSea.Sql.SqlShardSets&lt;byte&gt;.ShardDataSet;
 </code></pre>
-<p>Setup this way, subsequent calls to the SQL database can be on methods directly on the <code>_data</code> object.</p>
+<p>This example assumes a ShardId type of <em>byte</em>; replace this as appropriate.</p>
+<p>An example of how this might be used in the same class we showed before:</p>
+<pre><code class="lang-csharp">using ShardSets = ArgentSea.Sql.SqlShardSets&lt;byte&gt;;
+using ShardSet = ArgentSea.Sql.SqlShardSets&lt;byte&gt;.ShardDataSet;
+
+public class MyDataAccessStore
+{
+  private readonly ShardSet _data;
+
+  public MyDataAccessStore(ShardSets shards, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+    _data = shards[&quot;MyShardSetName&quot;]; //select relevant shard set
+    ...
+
+</code></pre>
 </section>
 <section id="tabpanel_CeZOj-G++Q-10_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">        private readonly PgDatabases.DataConnection _data;
-
-        public MyDataAccessStore(PgDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
-        {
-            ...
-            _data = dbs.DbConnections[&quot;MyConnectionName&quot;];
-          ...
+<pre><code class="lang-csharp">using ShardSets = ArgentSea.Pg.PgShardSets&lt;short&gt;;
+// and/or
+using ShardSet = ArgentSea.Pg.PgShardSets&lt;short&gt;.ShardDataSet;
 </code></pre>
-<p>Setup this way, calls to the SQL database (or shard set) can be on methods directly on the <code>_data</code> object. Subsequent calls within the class do not need to specify a key.</p>
+<p>This example assumes a ShardId type of <em>short</em>; replace this as appropriate.</p>
+<p>An example of how this might be used in the same class we showed before:</p>
+<pre><code class="lang-csharp">using ShardSets = ArgentSea.Pg.PgShardSets&lt;short&gt;;
+using ShardSet = ArgentSea.Pg.PgShardSets&lt;short&gt;.ShardDataSet;
+
+public class MyDataAccessStore
+{
+  private readonly ShardSet _data;
+
+  public MyDataAccessStore(ShardSets shards, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+    _data = shards[&quot;MyShardSetName&quot;]; //select relevant shard set
+    ...
+
+</code></pre>
 </section>
 </div>
 
-<p>The flexibility of the <code>ShardSets</code> object stands in more need of this simplification. Using the ArgentSea components requires that the generic <em>ShardId</em> type (which can never change) is declared redundantly. You can simplify this is two ways:</p>
-<ul>
-<li>Use the <code>using</code> statement to alias the ShardSet declaration.</li>
-<li>Declare a internal class which inherits from ShardSet</li>
-</ul>
-<p>To simplify calling a ShardSet <em>within a single file</em>, simply add:</p>
+<p>The downside to the <code>using</code> approach is that it works for only the current file.</p>
+<h4 id="child-classes">Child Classes</h4>
+<p>By creating a local class that inherits from the ArgentSea generic class, you can simplify the shard set reference throughout your project.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-11">
 <ul role="tablist">
 <li role="presentation">
@@ -1006,69 +1061,60 @@ to time out. As this continues, the queue of backlogged requests becomes so larg
 </ul>
 <section id="tabpanel_CeZOj-G++Q-11_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">using ShardSets = ArgentSea.Sql.SqlShardSets&lt;byte&gt;;
-// and/or
-using ShardSet = ArgentSea.Sql.SqlShardSets&lt;byte&gt;.ShardDataSet;
+<p>These are the classes you might create in your SQL project to simplify the ShardSet within our project.</p>
+<pre><code class="lang-csharp">public class MyShardSets : SqlShardSets&lt;byte&gt;
+{
+  public SqlShardSets(
+	  IOptions&lt;SqlShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
+    IOptions&lt;SqlGlobalPropertiesOptions&gt; globalOptions,
+    ILogger&lt;SqlShardSets&lt;TShard&gt;&gt; logger
+  ) : base(configOptions, globalOptions, logger)
+    {
+        //
+    }
+}
+
+public class MyShardKey : ShardKey&lt;byte&gt;
+{
+    //
+}
+
+public class MyShardChild : ShardChild&lt;byte&gt;
+{
+    //
+}
+
 </code></pre>
-<p>Again, the assumes a ShardId type of <em>byte</em>; replace this as appropriate.</p>
 </section>
 <section id="tabpanel_CeZOj-G++Q-11_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">using ShardSets = ArgentSea.Pg.PgShardSets&lt;short&gt;;
-// and/or
-using ShardSet = ArgentSea.Pg.PgShardSets&lt;short&gt;.ShardDataSet;
-</code></pre>
-<p>Again, the assumes a ShardId type of <em>short</em>; replace this as appropriate.</p>
-</section>
-</div>
-
-<p>By creating a local class that inherits from then generic class, you can simplify the shard set reference throughout your project.</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-12">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-12_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-12_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-12_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-12_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-12_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<pre><code class="lang-csharp">    public class ShardSets : SqlShardSets&lt;byte&gt;
+<pre><code class="lang-csharp">public class MyShardSets : PgShardSets&lt;short&gt;
+{
+  public SqlShardSets(
+	  IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
+    IOptions&lt;PgGlobalPropertiesOptions&gt; globalOptions,
+    ILogger&lt;PgShardSets&lt;TShard&gt;&gt; logger
+  ) : base(configOptions, globalOptions, logger)
     {
-        public ShardSets(
-            IOptions&lt;SqlShardConnectionOptions&lt;byte&gt;&gt; configOptions,
-            IOptions&lt;DataSecurityOptions&gt; securityOptions,
-            IOptions&lt;DataResilienceOptions&gt; resilienceStrategiesOptions,
-            ILogger&lt;ShardSets&gt; logger
-        ) : base(configOptions, securityOptions, resilienceStrategiesOptions, logger)
-        {
-            //
-        }
+        //
     }
+}
 
-</code></pre>
-</section>
-<section id="tabpanel_CeZOj-G++Q-12_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+public class MyShardKey : ShardKey&lt;short&gt;
+{
+    //
+}
 
-<pre><code class="lang-csharp">    public class ShardSets : PgShardSets&lt;short&gt;
-    {
-        public ShardSets(
-            IOptions&lt;SqlShardConnectionOptions&lt;short&gt;&gt; configOptions,
-            IOptions&lt;DataSecurityOptions&gt; securityOptions,
-            IOptions&lt;DataResilienceOptions&gt; resilienceStrategiesOptions,
-            ILogger&lt;ShardSets&gt; logger
-        ) : base(configOptions, securityOptions, resilienceStrategiesOptions, logger)
-        {
-            //
-        }
-    }
+public class MyShardChild : ShardChild&lt;short&gt;
+{
+    //
+}
 
 </code></pre>
 </section>
 </div>
 
-<p>This approach will be helpful in reducing the number of times the generic <em>ShardId</em> type must be specified in project.</p>
+<p>This approach will be helpful in reducing the number of times the generic <em>ShardId</em> type must be specified in your project code.</p>
 </article>
           </div>
           

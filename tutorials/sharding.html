@@ -111,13 +111,14 @@
 <p>ArgentSea will work with either design. The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> objects offer support for the second approach.</p>
 <h3 id="components">Components</h3>
 <p>A <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> consists of three components: a <em><a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a></em>, a <em>ShardId</em>, and a <em>RecordId</em>. A <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> has the same values plus an additional <em>ChildId</em>.</p>
+<table border="0" margin="0" padding="0"><tr><td width="43%"><img src="/images/shardkey.svg"></td><td width="57%"><img src="/images/shardchild.svg"></td></tr></table>
 <h4 id="the-dataorigin">The <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a></h4>
 <p>Both the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> have a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> value. The purpose of this value is to represent a data source. It is little more than a character value that you can choose to differentiate the data source.</p>
 <p>For example, keys representing a <em>Customer</em> record might have a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> of “c”, whereas keys representing a <em>Product</em> record might have a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> of “p”. Because this simple tag identifies the data source, two different <a href="/api/ArgentSea.ShardKey-2.html">ShardKeys</a> from the same shard and with the same record number will still not be equal because they represent different source data.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>One <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> character value is reserved: “0” (Unicode charactor Zero, Unicode numeric value 30).</p>
-<p>This is used for the <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> of <code>ShardKey.Empty</code> and <code>ShardChild.Empty</code>. Creating a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> with a “zero” <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> character but non-default (i.e. not zero or not null) <em>ShardId</em> or <em>RecordId</em> will throw an <a href="/api/ArgentSea.InvalidShardArgumentsException.html">InvalidShardArgumentsException</a> error.</p>
+<p>One <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> character value is reserved: “0” (Unicode character Zero, Unicode numeric value 30).</p>
+<p>This is used for the <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> of <code>ShardKey.Empty</code> and <code>ShardChild.Empty</code>. Creating a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> with a “zero” <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> character but non-default (i.e. not zero or not null) <em>ShardId</em> or <em>RecordId</em> values will throw an <a href="/api/ArgentSea.InvalidShardArgumentsException.html">InvalidShardArgumentsException</a> error.</p>
 </div>
 <p>This capability is useful for helping prevent data from being accessed with the wrong type of key — like an inventory key inadvertently passed to fetch an account record. Also, this may be helpful for caching data, since you can use the same dictionary to cache objects of different types without key collision.</p>
 <h4 id="the-shardid">The ShardId</h4>
@@ -265,7 +266,7 @@ public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
 <p>The root injectable service is a <a href="/api/ArgentSea.ShardSetsBase-2.html">ShardSets</a> object, which is merely a collection of <code>ShardSet</code> instances.</p>
 <h2 id="the-shardsets-class-hierarchy">The ShardSets Class Hierarchy</h2>
 <p>The <a href="/api/ArgentSea.ShardSets-2.html">ShardSets</a> collection is the root of an object hierarchy. The child objects in the hierarchy are implemented as nested classes. This simplifies the implementation, but can also make declarations somewhat verbose.</p>
-<p><img src="../images/shardSetHierarchy.jpg" alt="ShardSetHierarchy"></p>
+<p><img src="../images/shardsets.svg" alt="ShardSetHierarchy"></p>
 <h3 id="nested-classes">Nested classes</h3>
 <ul>
 <li><code>ShardSets</code> - the root collection, which provides access to any of the various sharding schemas.</li>
