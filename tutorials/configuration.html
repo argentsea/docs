@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -93,10 +93,12 @@
 <table border="0" margin="0" padding="0"><tr><td width="50%"><img src="/images/databases.svg"></td><td width="50%"><img src="/images/shardsets.svg"></td></tr></table>
 <p>All data connections have the option of separate read and write connections. If you are scaling-out your data access by sharding your data, you are likely also scaling-out by separating read activity from write operations. Examples of this includes <em>SQL Server Availability Groups</em>, <em>Amazon RDS</em> Read Replicas, <em>Azure SQL</em> geo-replication, <em>Amazon Aurora</em> reader endpoints, etc.</p>
 <p>All this creates a potentially large number of connections. Many of these will likely have similar connection information. For example, all of the connections in a shard set might use the same login information or database name, varying only the server address. To manage this redundancy, ArgentSea offers a unique <em>configuration hierarchy</em>.</p>
-<h2 id="connection-attributes">Connection Attributes</h2>
+<h2 id="the-configuration-hierarchy">The Configuration Hierarchy</h2>
+<p>The Configuration Hierarchy, allows users to configure their data connection information at multiple levels. Child nodes “inherit” any settings of their parent. By dramatically reducing configuration redundancy, it makes handling multiple connections much more manageable.</p>
+<h3 id="connection-attributes">Connection Attributes</h3>
 <p>ArgentSea essentially dispenses with traditional connection strings (although you can use them if you really want to). Instead, it uses the .NET configuration architecture to manage each attribute as a discrete property. Each property can be managed globally, or at the shardSet, database, or connection level. Lower-level settings inherit values from their parent, which they can also overwrite if their own values are set differently.</p>
 <p>For example, if your network infrastructure supports jumbo frames, you can configure the network packet size <em>once</em> in the global configuration section and every ArgentSea connection will default to this value.</p>
-<p>The set of available properties depends upon the provider:</p>
+<p>The complete set of available properties is:</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q">
 <ul role="tablist">
 <li role="presentation">
@@ -182,7 +184,7 @@
   &quot;SocketSendBufferSize&quot;: 8192,
   &quot;SslMode&quot;: &quot;Require&quot;,
   &quot;TcpKeepAlive&quot;: true,
-  &quot;Timeout&quot;: 2,
+  &quot;Timeout&quot;: 5,
   &quot;Timezone&quot;: &quot;America/Los_Angeles&quot;,
   &quot;TrustServerCertificate&quot;: true,
   &quot;UsePerfCounters&quot;: false,
@@ -199,7 +201,8 @@
 <h5>Caution</h5>
 <p>Displayed are all of the available properties. It is neither necessary nor wise to set all of them. All that is typically required for most connections is login information, a server or host name, and a database name.</p>
 </div>
-<h2 id="the-configuration-hierarchy">The Configuration Hierarchy</h2>
+<p>Each level in the Configuration Hierarchy can use any of the properties on this list.</p>
+<h3 id="the-global-section">The Global Section</h3>
 <p>The root of the configuration hierarchy is the “global settings” section. All properties set here are applied to every data connection — unless the value is overwritten by lower-level properties (i.e. database, shard set, shard, etc.).</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
 <ul role="tablist">
@@ -236,6 +239,8 @@
 </code></pre>
 </section>
 </div>
+
+<p>Note that these examples include only the attributes (from the previous section) that we want to change.</p>
 <h3 id="non-sharded-database-connections">(Non-Sharded) Database Connections</h3>
 <p>The database configuration architecture allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code. The key in your configuration must <em>exactly</em> match the keys used in your code (i.e casing, accents, and kana must match).</p>
 <p>Database connections have a three-level hierarchy: global properties, database properties, and properties for distinct read and write endpoints. This illustration shows how various “parent” configuration properties are applied to the child values. Ultimately, these values are combined to build a Read or Write connection.</p>
@@ -794,7 +799,7 @@ If you are uncertain, consider using a <code>short</code> (Int16/smallint) data 
 <pre><code class="lang-json">{
   &quot;CircuitBreakerFailureCount&quot;: 20,
   &quot;CircuitBreakerTestInterval&quot;: 5000,
-  &quot;ConnectTimeout&quot;: 2,
+  &quot;ConnectTimeout&quot;: 5,
   &quot;RetryCount&quot;: 6,
   &quot;RetryInterval&quot;: 256,
   &quot;RetryLengthening&quot;: &quot;Fibonacci&quot;,
@@ -845,7 +850,7 @@ If you are uncertain, consider using a <code>short</code> (Int16/smallint) data 
 </tr>
 <tr>
 <td>(Connect) Timeout</td>
-<td>2</td>
+<td>5</td>
 </tr>
 </tbody>
 </table>
@@ -918,10 +923,9 @@ to time out. As this continues, the queue of backlogged requests becomes so larg
 </div>
 
 <p>This code references a <code>Configuration</code> property. It is common practice to obtain the configuration object from the constructor of the <code>Startup</code> class, then use this to set the <code>Configuration</code> property.</p>
-<h2 id="immutability">Immutability</h2>
-<p>Configuration entries can be updated until the moment when the <code>Shardsets</code> or <code>Databases</code> objects are first created (i.e. at first injection). Once these singleton objects exist, further configuration changes are ignored. Further, the object use immutable collections, so once they are created, they cannot be changed directly either.</p>
-<p>Similarly, the first time a connection is used and ADO.NET the connection string is created, the same connection string will be provided to all subsequent requests.</p>
-<p>There is no way to update connection configuration once it has been used, other than to destroy and reload the ShardSets or Databases service.</p>
+<h2 id="failover">Failover</h2>
+<p>ArgentSea itself does not currently include functionality that enables an automatic failover to a standby database server. This is often managed through DNS changes or via configuration of the .NET data provider (such as the <em>FailoverPartner</em> property), which may not even require client connection string changes. Furthermore, business continuity plans typically do not expect disaster recovery plans to be fully “automatic” at the individual client level; a lot of infrastructure must be coordinated in a robust failover, and a rogue client should not failover without a coordinated signal.</p>
+<p>Once created, both the <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">ShardSets</a> and <a href="http://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases</a> singleton collections are immutable, but any property in the configuration hierarchy can still be updated. In other words, after the configuration hierarchy is created, you cannot change the <em>structure</em> of the hierarchy, but the connection properties of the members can still be changed and will update the client connections. Child objects will also continue to inherit any updates from their parents. This allows you to build failover logic that updates the connection information — server endpoints, database names, etc. — given whatever trigger you prefer.</p>
 <h2 id="simplifying-data-connections">Simplifying Data Connections</h2>
 <p>As per standard practice in .NET Core, any data repository class can use the ArgentSea data access component by having the service injected into its constructor.</p>
 <p>For example, requesting the databases collection in your data access class is straightforward:</p>
@@ -1122,9 +1126,6 @@ public class MyShardChild : ShardChild&lt;short&gt;
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/configuration.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

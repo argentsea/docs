@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -91,6 +91,10 @@
     <div class="level1"><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></div>
     <div class="level2"><a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html">SqlConnectionPropertiesBase</a></div>
     <div class="level3"><span class="xref">SqlGlobalPropertiesOptions</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -161,6 +165,9 @@
       <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_WorkstationID">SqlConnectionPropertiesBase.WorkstationID</a>
     </div>
     <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_PropertyChanged">DataConnectionConfigurationBase.PropertyChanged</a>
+    </div>
+    <div>
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_UserName">DataConnectionConfigurationBase.UserName</a>
     </div>
     <div>
@@ -188,6 +195,9 @@
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_">DataConnectionConfigurationBase.GetRetryTimespan(Int32)</a>
     </div>
     <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_">DataConnectionConfigurationBase.RaisePropertyChanged(String)</a>
+    </div>
+    <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
@@ -213,7 +223,11 @@
   <h6><strong>Assembly</strong>: ArgentSea.Sql.dll</h6>
   <h5 id="ArgentSea_Sql_SqlGlobalPropertiesOptions_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SqlGlobalPropertiesOptions : SqlConnectionPropertiesBase</code></pre>
+    <pre><code class="lang-csharp hljs">public class SqlGlobalPropertiesOptions : SqlConnectionPropertiesBase, INotifyPropertyChanged</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
   </div>
 </article>
           </div>

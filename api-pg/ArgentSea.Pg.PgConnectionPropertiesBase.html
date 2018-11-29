@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -96,8 +96,15 @@
       <div class="level3"><a class="xref" href="ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionConfiguration.html">PgShardConnectionOptions&lt;TShard&gt;.PgShardConnectionConfiguration</a></div>
       <div class="level3"><a class="xref" href="ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html">PgShardConnectionOptions&lt;TShard&gt;.PgShardConnectionsConfiguration</a></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_PropertyChanged">DataConnectionConfigurationBase.PropertyChanged</a>
+    </div>
     <div>
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_UserName">DataConnectionConfigurationBase.UserName</a>
     </div>
@@ -126,6 +133,9 @@
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_">DataConnectionConfigurationBase.GetRetryTimespan(Int32)</a>
     </div>
     <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_">DataConnectionConfigurationBase.RaisePropertyChanged(String)</a>
+    </div>
+    <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
@@ -151,7 +161,7 @@
   <h6><strong>Assembly</strong>: ArgentSea.Pg.dll</h6>
   <h5 id="ArgentSea_Pg_PgConnectionPropertiesBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class PgConnectionPropertiesBase : DataConnectionConfigurationBase</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class PgConnectionPropertiesBase : DataConnectionConfigurationBase, INotifyPropertyChanged</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -160,7 +170,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_ApplicationName.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.ApplicationName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L13">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L54">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_ApplicationName_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ApplicationName*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_ApplicationName" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ApplicationName">ApplicationName</h4>
@@ -191,7 +201,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_AutoPrepareMinUsages.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.AutoPrepareMinUsages%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L18">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L70">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_AutoPrepareMinUsages_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.AutoPrepareMinUsages*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_AutoPrepareMinUsages" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.AutoPrepareMinUsages">AutoPrepareMinUsages</h4>
@@ -222,7 +232,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_CheckCertificateRevocation.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.CheckCertificateRevocation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L23">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L86">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_CheckCertificateRevocation_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.CheckCertificateRevocation*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_CheckCertificateRevocation" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.CheckCertificateRevocation">CheckCertificateRevocation</h4>
@@ -253,7 +263,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_ClientEncoding.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.ClientEncoding%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L28">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L102">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_ClientEncoding_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ClientEncoding*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_ClientEncoding" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ClientEncoding">ClientEncoding</h4>
@@ -284,7 +294,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_CommandTimeout.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.CommandTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L33">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L118">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_CommandTimeout_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.CommandTimeout*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_CommandTimeout" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.CommandTimeout">CommandTimeout</h4>
@@ -315,7 +325,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_ConnectionIdleLifetime.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.ConnectionIdleLifetime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L38">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L134">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_ConnectionIdleLifetime_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ConnectionIdleLifetime*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_ConnectionIdleLifetime" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ConnectionIdleLifetime">ConnectionIdleLifetime</h4>
@@ -346,7 +356,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_ConnectionPruningInterval.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.ConnectionPruningInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L43">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L150">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_ConnectionPruningInterval_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ConnectionPruningInterval*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_ConnectionPruningInterval" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ConnectionPruningInterval">ConnectionPruningInterval</h4>
@@ -377,7 +387,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_ConvertInfinityDateTime.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.ConvertInfinityDateTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L48">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L166">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_ConvertInfinityDateTime_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ConvertInfinityDateTime*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_ConvertInfinityDateTime" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ConvertInfinityDateTime">ConvertInfinityDateTime</h4>
@@ -408,7 +418,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_Database.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.Database%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L53">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L182">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_Database_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Database*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_Database" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Database">Database</h4>
@@ -439,7 +449,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_Encoding.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.Encoding%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L58">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L198">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_Encoding_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Encoding*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_Encoding" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Encoding">Encoding</h4>
@@ -470,7 +480,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_Enlist.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.Enlist%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L63">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L214">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_Enlist_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Enlist*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_Enlist" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Enlist">Enlist</h4>
@@ -501,7 +511,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_Host.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.Host%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L68">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L230">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_Host_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Host*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_Host" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Host">Host</h4>
@@ -532,7 +542,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_IncludeRealm.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.IncludeRealm%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L73">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L246">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_IncludeRealm_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.IncludeRealm*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_IncludeRealm" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.IncludeRealm">IncludeRealm</h4>
@@ -563,7 +573,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_InternalCommandTimeout.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.InternalCommandTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L78">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L262">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_InternalCommandTimeout_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.InternalCommandTimeout*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_InternalCommandTimeout" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.InternalCommandTimeout">InternalCommandTimeout</h4>
@@ -594,7 +604,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_KeepAlive.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.KeepAlive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L83">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L278">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_KeepAlive_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.KeepAlive*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_KeepAlive" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.KeepAlive">KeepAlive</h4>
@@ -625,7 +635,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_KerberosServiceName.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.KerberosServiceName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L88">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L294">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_KerberosServiceName_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.KerberosServiceName*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_KerberosServiceName" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.KerberosServiceName">KerberosServiceName</h4>
@@ -656,7 +666,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_LoadTableComposites.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.LoadTableComposites%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L93">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L310">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_LoadTableComposites_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.LoadTableComposites*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_LoadTableComposites" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.LoadTableComposites">LoadTableComposites</h4>
@@ -687,7 +697,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_MaxAutoPrepare.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.MaxAutoPrepare%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L98">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L326">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_MaxAutoPrepare_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.MaxAutoPrepare*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_MaxAutoPrepare" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.MaxAutoPrepare">MaxAutoPrepare</h4>
@@ -718,7 +728,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_MaxPoolSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.MaxPoolSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L103">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L342">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_MaxPoolSize_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.MaxPoolSize*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_MaxPoolSize" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.MaxPoolSize">MaxPoolSize</h4>
@@ -749,7 +759,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_MinPoolSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.MinPoolSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L108">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L358">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_MinPoolSize_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.MinPoolSize*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_MinPoolSize" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.MinPoolSize">MinPoolSize</h4>
@@ -780,7 +790,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_NoResetOnClose.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.NoResetOnClose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L113">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L374">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_NoResetOnClose_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.NoResetOnClose*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_NoResetOnClose" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.NoResetOnClose">NoResetOnClose</h4>
@@ -811,7 +821,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_PersistSecurityInfo.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.PersistSecurityInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L118">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L390">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_PersistSecurityInfo_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.PersistSecurityInfo*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_PersistSecurityInfo" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.PersistSecurityInfo">PersistSecurityInfo</h4>
@@ -842,7 +852,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_Pooling.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.Pooling%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L123">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L406">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_Pooling_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Pooling*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_Pooling" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Pooling">Pooling</h4>
@@ -873,7 +883,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_Port.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.Port%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L128">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L422">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_Port_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Port*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_Port" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Port">Port</h4>
@@ -904,7 +914,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_ReadBufferSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.ReadBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L133">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L438">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_ReadBufferSize_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ReadBufferSize*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_ReadBufferSize" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ReadBufferSize">ReadBufferSize</h4>
@@ -935,7 +945,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_SearchPath.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.SearchPath%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L138">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L454">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_SearchPath_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.SearchPath*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_SearchPath" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.SearchPath">SearchPath</h4>
@@ -966,7 +976,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_ServerCompatibilityMode.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.ServerCompatibilityMode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L143">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L470">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_ServerCompatibilityMode_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ServerCompatibilityMode*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_ServerCompatibilityMode" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.ServerCompatibilityMode">ServerCompatibilityMode</h4>
@@ -997,7 +1007,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_SocketReceiveBufferSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.SocketReceiveBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L148">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L486">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_SocketReceiveBufferSize_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.SocketReceiveBufferSize*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_SocketReceiveBufferSize" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.SocketReceiveBufferSize">SocketReceiveBufferSize</h4>
@@ -1028,7 +1038,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_SocketSendBufferSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.SocketSendBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L153">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L502">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_SocketSendBufferSize_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.SocketSendBufferSize*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_SocketSendBufferSize" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.SocketSendBufferSize">SocketSendBufferSize</h4>
@@ -1059,7 +1069,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_SslMode.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.SslMode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L158">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L518">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_SslMode_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.SslMode*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_SslMode" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.SslMode">SslMode</h4>
@@ -1090,7 +1100,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAlive.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAlive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L163">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L535">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAlive_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAlive*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAlive" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAlive">TcpKeepAlive</h4>
@@ -1121,7 +1131,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAliveInterval.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAliveInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L168">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L551">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAliveInterval_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAliveInterval*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAliveInterval" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAliveInterval">TcpKeepAliveInterval</h4>
@@ -1152,7 +1162,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAliveTime.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAliveTime%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L173">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L567">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAliveTime_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAliveTime*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_TcpKeepAliveTime" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.TcpKeepAliveTime">TcpKeepAliveTime</h4>
@@ -1183,7 +1193,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_Timeout.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.Timeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L178">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L583">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_Timeout_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Timeout*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_Timeout" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Timeout">Timeout</h4>
@@ -1214,7 +1224,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_Timezone.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.Timezone%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L183">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L599">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_Timezone_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Timezone*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_Timezone" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.Timezone">Timezone</h4>
@@ -1245,7 +1255,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_TrustServerCertificate.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.TrustServerCertificate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L188">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L615">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_TrustServerCertificate_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.TrustServerCertificate*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_TrustServerCertificate" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.TrustServerCertificate">TrustServerCertificate</h4>
@@ -1276,7 +1286,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_UsePerfCounters.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.UsePerfCounters%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L193">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L631">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_UsePerfCounters_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.UsePerfCounters*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_UsePerfCounters" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.UsePerfCounters">UsePerfCounters</h4>
@@ -1307,7 +1317,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_UseSslStream.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.UseSslStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L198">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L647">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_UseSslStream_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.UseSslStream*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_UseSslStream" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.UseSslStream">UseSslStream</h4>
@@ -1338,7 +1348,7 @@
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionPropertiesBase_WriteBufferSize.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionPropertiesBase.WriteBufferSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L203">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionPropertiesBase.cs/#L663">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionPropertiesBase_WriteBufferSize_" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.WriteBufferSize*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionPropertiesBase_WriteBufferSize" data-uid="ArgentSea.Pg.PgConnectionPropertiesBase.WriteBufferSize">WriteBufferSize</h4>
@@ -1364,6 +1374,10 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
 </article>
           </div>
           

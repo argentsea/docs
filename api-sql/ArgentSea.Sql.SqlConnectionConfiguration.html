@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -95,6 +95,7 @@
   </div>
   <div classs="implements">
     <h5>Implements</h5>
+    <div><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
     <div><a class="xref" href="../api/ArgentSea.IDataConnection.html">IDataConnection</a></div>
   </div>
   <div class="inheritedMembers">
@@ -166,6 +167,9 @@
       <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_WorkstationID">SqlConnectionPropertiesBase.WorkstationID</a>
     </div>
     <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_PropertyChanged">DataConnectionConfigurationBase.PropertyChanged</a>
+    </div>
+    <div>
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_UserName">DataConnectionConfigurationBase.UserName</a>
     </div>
     <div>
@@ -193,6 +197,9 @@
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_">DataConnectionConfigurationBase.GetRetryTimespan(Int32)</a>
     </div>
     <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_">DataConnectionConfigurationBase.RaisePropertyChanged(String)</a>
+    </div>
+    <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
@@ -218,7 +225,7 @@
   <h6><strong>Assembly</strong>: ArgentSea.Sql.dll</h6>
   <h5 id="ArgentSea_Sql_SqlConnectionConfiguration_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SqlConnectionConfiguration : SqlConnectionPropertiesBase, IDataConnection</code></pre>
+    <pre><code class="lang-csharp hljs">public class SqlConnectionConfiguration : SqlConnectionPropertiesBase, INotifyPropertyChanged, IDataConnection</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -227,7 +234,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration__ctor.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L22">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L23">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration__ctor_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.#ctor*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration__ctor" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.#ctor">SqlConnectionConfiguration()</h4>
@@ -244,7 +251,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ConnectionDescription.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ConnectionDescription%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L168">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L187">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectionDescription_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectionDescription*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectionDescription" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectionDescription">ConnectionDescription</h4>
@@ -276,7 +283,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Add(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L177">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L196">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_Add_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Add*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Add(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -309,7 +316,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ContainsKey_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ContainsKey(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L184">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L203">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_ContainsKey_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ContainsKey*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ContainsKey_System_String_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ContainsKey(System.String)">ContainsKey(String)</h4>
@@ -357,7 +364,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_GetConnectionString.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.GetConnectionString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L139">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L145">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_GetConnectionString_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.GetConnectionString*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_GetConnectionString" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.GetConnectionString">GetConnectionString()</h4>
@@ -387,7 +394,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L192">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L211">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_Remove_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Remove*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Remove(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -420,7 +427,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Remove_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Remove(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L200">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L219">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_Remove_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Remove*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Remove_System_String_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Remove(System.String)">Remove(String)</h4>
@@ -453,7 +460,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_SetAmbientConfiguration_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.SetAmbientConfiguration(ArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L161">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L167">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_SetAmbientConfiguration_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.SetAmbientConfiguration*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_SetAmbientConfiguration_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.SetAmbientConfiguration(ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase)">SetAmbientConfiguration(DataConnectionConfigurationBase, DataConnectionConfigurationBase, DataConnectionConfigurationBase)</h4>
@@ -495,7 +502,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_TryGetValue_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.TryGetValue(System.String%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L205">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L224">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_TryGetValue_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.TryGetValue*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_TryGetValue_System_String_System_Object__" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.TryGetValue(System.String,System.Object@)">TryGetValue(String, out Object)</h4>
@@ -544,6 +551,9 @@
   </table>
   <h3 id="implements">Implements</h3>
   <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
       <a class="xref" href="../api/ArgentSea.IDataConnection.html">IDataConnection</a>
   </div>
 </article>
@@ -557,7 +567,7 @@
                     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

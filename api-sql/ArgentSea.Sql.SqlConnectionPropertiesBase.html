@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -96,8 +96,15 @@
       <div class="level3"><a class="xref" href="ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionConfiguration.html">SqlShardConnectionOptions&lt;TShard&gt;.SqlShardConnectionConfiguration</a></div>
       <div class="level3"><a class="xref" href="ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html">SqlShardConnectionOptions&lt;TShard&gt;.SqlShardConnectionsConfiguration</a></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_PropertyChanged">DataConnectionConfigurationBase.PropertyChanged</a>
+    </div>
     <div>
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_UserName">DataConnectionConfigurationBase.UserName</a>
     </div>
@@ -126,6 +133,9 @@
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_">DataConnectionConfigurationBase.GetRetryTimespan(Int32)</a>
     </div>
     <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_">DataConnectionConfigurationBase.RaisePropertyChanged(String)</a>
+    </div>
+    <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
     </div>
     <div>
@@ -151,7 +161,7 @@
   <h6><strong>Assembly</strong>: ArgentSea.Sql.dll</h6>
   <h5 id="ArgentSea_Sql_SqlConnectionPropertiesBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class SqlConnectionPropertiesBase : DataConnectionConfigurationBase</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class SqlConnectionPropertiesBase : DataConnectionConfigurationBase, INotifyPropertyChanged</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -160,7 +170,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_ApplicationIntent.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.ApplicationIntent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L16">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L37">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_ApplicationIntent_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.ApplicationIntent*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_ApplicationIntent" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.ApplicationIntent">ApplicationIntent</h4>
@@ -191,7 +201,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_ApplicationName.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.ApplicationName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L21">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L50">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_ApplicationName_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.ApplicationName*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_ApplicationName" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.ApplicationName">ApplicationName</h4>
@@ -222,7 +232,7 @@
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_ConnectTimeout.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.ConnectTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L27">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L67">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_ConnectTimeout_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.ConnectTimeout*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_ConnectTimeout" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.ConnectTimeout">ConnectTimeout</h4>
@@ -254,7 +264,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_CurrentLanguage.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.CurrentLanguage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L32">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L83">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_CurrentLanguage_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.CurrentLanguage*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_CurrentLanguage" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.CurrentLanguage">CurrentLanguage</h4>
@@ -285,7 +295,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_DataSource.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.DataSource%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L37">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L99">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_DataSource_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.DataSource*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_DataSource" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.DataSource">DataSource</h4>
@@ -316,7 +326,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_Encrypt.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.Encrypt%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L42">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L115">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_Encrypt_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.Encrypt*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_Encrypt" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.Encrypt">Encrypt</h4>
@@ -347,7 +357,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_FailoverPartner.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.FailoverPartner%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L47">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L131">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_FailoverPartner_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.FailoverPartner*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_FailoverPartner" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.FailoverPartner">FailoverPartner</h4>
@@ -378,7 +388,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_InitialCatalog.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.InitialCatalog%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L52">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L147">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_InitialCatalog_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.InitialCatalog*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_InitialCatalog" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.InitialCatalog">InitialCatalog</h4>
@@ -409,7 +419,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_LoadBalanceTimeout.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.LoadBalanceTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L57">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L163">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_LoadBalanceTimeout_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.LoadBalanceTimeout*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_LoadBalanceTimeout" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.LoadBalanceTimeout">LoadBalanceTimeout</h4>
@@ -440,7 +450,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_MaxPoolSize.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.MaxPoolSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L62">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L179">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_MaxPoolSize_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.MaxPoolSize*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_MaxPoolSize" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.MaxPoolSize">MaxPoolSize</h4>
@@ -471,7 +481,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_MinPoolSize.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.MinPoolSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L67">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L195">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_MinPoolSize_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.MinPoolSize*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_MinPoolSize" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.MinPoolSize">MinPoolSize</h4>
@@ -502,7 +512,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_MultipleActiveResultSets.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.MultipleActiveResultSets%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L72">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L211">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_MultipleActiveResultSets_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.MultipleActiveResultSets*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_MultipleActiveResultSets" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.MultipleActiveResultSets">MultipleActiveResultSets</h4>
@@ -533,7 +543,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_MultiSubnetFailover.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.MultiSubnetFailover%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L77">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L227">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_MultiSubnetFailover_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.MultiSubnetFailover*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_MultiSubnetFailover" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.MultiSubnetFailover">MultiSubnetFailover</h4>
@@ -564,7 +574,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_PacketSize.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.PacketSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L82">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L243">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_PacketSize_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.PacketSize*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_PacketSize" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.PacketSize">PacketSize</h4>
@@ -595,7 +605,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_PersistSecurityInfo.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.PersistSecurityInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L87">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L259">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_PersistSecurityInfo_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.PersistSecurityInfo*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_PersistSecurityInfo" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.PersistSecurityInfo">PersistSecurityInfo</h4>
@@ -626,7 +636,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_Pooling.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.Pooling%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L92">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L275">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_Pooling_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.Pooling*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_Pooling" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.Pooling">Pooling</h4>
@@ -657,7 +667,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_Replication.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.Replication%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L97">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L291">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_Replication_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.Replication*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_Replication" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.Replication">Replication</h4>
@@ -688,7 +698,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_TransactionBinding.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.TransactionBinding%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L102">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L307">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_TransactionBinding_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.TransactionBinding*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_TransactionBinding" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.TransactionBinding">TransactionBinding</h4>
@@ -719,7 +729,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_TrustServerCertificate.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.TrustServerCertificate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L107">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L323">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_TrustServerCertificate_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.TrustServerCertificate*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_TrustServerCertificate" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.TrustServerCertificate">TrustServerCertificate</h4>
@@ -750,7 +760,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_TypeSystemVersion.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.TypeSystemVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L112">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L339">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_TypeSystemVersion_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.TypeSystemVersion*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_TypeSystemVersion" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.TypeSystemVersion">TypeSystemVersion</h4>
@@ -781,7 +791,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_UserInstance.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.UserInstance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L117">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L355">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_UserInstance_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.UserInstance*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_UserInstance" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.UserInstance">UserInstance</h4>
@@ -812,7 +822,7 @@ Defaults to 5 seconds (before retry) if not set.</p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionPropertiesBase_WorkstationID.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionPropertiesBase.WorkstationID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L122">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionPropertiesBase.cs/#L371">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionPropertiesBase_WorkstationID_" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.WorkstationID*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionPropertiesBase_WorkstationID" data-uid="ArgentSea.Sql.SqlConnectionPropertiesBase.WorkstationID">WorkstationID</h4>
@@ -838,6 +848,10 @@ Defaults to 5 seconds (before retry) if not set.</p>
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
 </article>
           </div>
           

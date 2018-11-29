@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -91,6 +91,10 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">DataConnectionConfigurationBase</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -119,7 +123,7 @@
   <h6><strong>Assembly</strong>: ArgentSea.dll</h6>
   <h5 id="ArgentSea_DataConnectionConfigurationBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class DataConnectionConfigurationBase</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class DataConnectionConfigurationBase : INotifyPropertyChanged</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -128,12 +132,13 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_CircuitBreakerFailureCount.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.CircuitBreakerFailureCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L64">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L110">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_CircuitBreakerFailureCount_" data-uid="ArgentSea.DataConnectionConfigurationBase.CircuitBreakerFailureCount*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_CircuitBreakerFailureCount" data-uid="ArgentSea.DataConnectionConfigurationBase.CircuitBreakerFailureCount">CircuitBreakerFailureCount</h4>
   <div class="markdown level1 summary"><p>If a connection or command consistantly fails, the circuit breaker will reject all further connections until one suceeds.
-This setting determines how many failures (after retries, if retry-able) before blocking all connections apart from a few periodic test attempts.</p>
+This setting determines how many failures (after retries, if retry-able) before blocking all connections apart from a few periodic test attempts.
+Does not raise PropertyChanged event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -160,12 +165,13 @@ This setting determines how many failures (after retries, if retry-able) before 
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.CircuitBreakerTestInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L70">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L117">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval_" data-uid="ArgentSea.DataConnectionConfigurationBase.CircuitBreakerTestInterval*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval" data-uid="ArgentSea.DataConnectionConfigurationBase.CircuitBreakerTestInterval">CircuitBreakerTestInterval</h4>
   <div class="markdown level1 summary"><p>If a connection or command fails, the circuit breaker will reject all further connections until one suceeds.
-This setting determines how long (in milliseonds) the system should wait before allowing a test connection.</p>
+This setting determines how long (in milliseonds) the system should wait before allowing a test connection.
+Does not raise PropertyChanged event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -192,7 +198,7 @@ This setting determines how long (in milliseonds) the system should wait before 
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_Password.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.Password%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L37">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L57">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_Password_" data-uid="ArgentSea.DataConnectionConfigurationBase.Password*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_Password" data-uid="ArgentSea.DataConnectionConfigurationBase.Password">Password</h4>
@@ -223,11 +229,12 @@ This setting determines how long (in milliseonds) the system should wait before 
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_RetryCount.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.RetryCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L47">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L90">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_RetryCount_" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryCount*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_RetryCount" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryCount">RetryCount</h4>
-  <div class="markdown level1 summary"><p>The number of times to automatically retry when a transient error is encountered. The default is 6.</p>
+  <div class="markdown level1 summary"><p>The number of times to automatically retry when a transient error is encountered. The default is 6.
+Does not raise PropertyChanged event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -254,12 +261,13 @@ This setting determines how long (in milliseonds) the system should wait before 
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_RetryInterval.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.RetryInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L53">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L97">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_RetryInterval_" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryInterval*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_RetryInterval" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryInterval">RetryInterval</h4>
   <div class="markdown level1 summary"><p>This is the number of milliseconds to wait before retrying a “retry-able” connection or command error. Default is 250 ms.
-This interval may be extended with each retry, depending upon the RetryLengthening setting, up to RetryCount.</p>
+This interval may be extended with each retry, depending upon the RetryLengthening setting, up to RetryCount.
+Does not raise PropertyChanged event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -286,11 +294,12 @@ This interval may be extended with each retry, depending upon the RetryLengtheni
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_RetryLengthening.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.RetryLengthening%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L58">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L103">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_RetryLengthening_" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryLengthening*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_RetryLengthening" data-uid="ArgentSea.DataConnectionConfigurationBase.RetryLengthening">RetryLengthening</h4>
-  <div class="markdown level1 summary"><p>If a connection or command fails, this setting determines how much each subsequent retry should be further delayed.</p>
+  <div class="markdown level1 summary"><p>If a connection or command fails, this setting determines how much each subsequent retry should be further delayed.
+Does not raise PropertyChanged event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -317,7 +326,7 @@ This interval may be extended with each retry, depending upon the RetryLengtheni
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_UserName.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.UserName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L32">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L41">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_UserName_" data-uid="ArgentSea.DataConnectionConfigurationBase.UserName*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_UserName" data-uid="ArgentSea.DataConnectionConfigurationBase.UserName">UserName</h4>
@@ -348,7 +357,7 @@ This interval may be extended with each retry, depending upon the RetryLengtheni
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_WindowsAuth.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.WindowsAuth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L42">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L73">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_WindowsAuth_" data-uid="ArgentSea.DataConnectionConfigurationBase.WindowsAuth*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_WindowsAuth" data-uid="ArgentSea.DataConnectionConfigurationBase.WindowsAuth">WindowsAuth</h4>
@@ -381,7 +390,7 @@ This interval may be extended with each retry, depending upon the RetryLengtheni
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.GetRetryTimespan(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L73">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L120">View Source</a>
   </span>
   <a id="ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_" data-uid="ArgentSea.DataConnectionConfigurationBase.GetRetryTimespan*"></a>
   <h4 id="ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_" data-uid="ArgentSea.DataConnectionConfigurationBase.GetRetryTimespan(System.Int32)">GetRetryTimespan(Int32)</h4>
@@ -423,6 +432,74 @@ This interval may be extended with each retry, depending upon the RetryLengtheni
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L151">View Source</a>
+  </span>
+  <a id="ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_" data-uid="ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged*"></a>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_" data-uid="ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged(System.String)">RaisePropertyChanged(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RaisePropertyChanged(string caller = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">caller</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase_PropertyChanged.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase.PropertyChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L31">View Source</a>
+  </span>
+  <h4 id="ArgentSea_DataConnectionConfigurationBase_PropertyChanged" data-uid="ArgentSea.DataConnectionConfigurationBase.PropertyChanged">PropertyChanged</h4>
+  <div class="markdown level1 summary"><p>Event indicating that a connection property has changed, which should cause any future connection strings to change. This event is not raise on resiliance (non-connection) properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event PropertyChangedEventHandler PropertyChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ComponentModel.PropertyChangedEventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
 </article>
           </div>
           
@@ -434,7 +511,7 @@ This interval may be extended with each retry, depending upon the RetryLengtheni
                     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DataConnectionConfigurationBase.md&amp;value=---%0Auid%3A%20ArgentSea.DataConnectionConfigurationBase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L25" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/shared/blob/master/src/DataConnectionConfigurationBase.cs/#L26" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

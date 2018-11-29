@@ -533,6 +533,25 @@ references:
   isSpec: "True"
   fullName: ArgentSea.DataConnectionConfigurationBase.Password
   nameWithType: DataConnectionConfigurationBase.Password
+- uid: ArgentSea.DataConnectionConfigurationBase.PropertyChanged
+  name: PropertyChanged
+  href: api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_PropertyChanged
+  commentId: E:ArgentSea.DataConnectionConfigurationBase.PropertyChanged
+  fullName: ArgentSea.DataConnectionConfigurationBase.PropertyChanged
+  nameWithType: DataConnectionConfigurationBase.PropertyChanged
+- uid: ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged(System.String)
+  name: RaisePropertyChanged(String)
+  href: api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_
+  commentId: M:ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged(System.String)
+  fullName: ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged(System.String)
+  nameWithType: DataConnectionConfigurationBase.RaisePropertyChanged(String)
+- uid: ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged*
+  name: RaisePropertyChanged
+  href: api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_
+  commentId: Overload:ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged
+  isSpec: "True"
+  fullName: ArgentSea.DataConnectionConfigurationBase.RaisePropertyChanged
+  nameWithType: DataConnectionConfigurationBase.RaisePropertyChanged
 - uid: ArgentSea.DataConnectionConfigurationBase.RetryCount
   name: RetryCount
   href: api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RetryCount
