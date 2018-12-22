@@ -139,15 +139,28 @@ This exception is not raised in the case of <see cref="!:ShardKey"> ShardKey</se
       <h4><a class="xref" href="ArgentSea.ShardParameterValue-1.html">ShardParameterValue&lt;TShard&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.html">ShardSetsBase&lt;TShard, TConfiguration&gt;</a></h4>
-      <section><p>This class is used by provider specific implementations. It is unlikely that you would reference this in consumer code.
+      <section><p>The ShardSets collection contains any number of ShardSets.
+This class is used by provider specific implementations. It is unlikely that you would reference this in consumer code.
 Classes that inherit from this class manage sharded database connections.</p>
 </section>
-      <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.DataConnection.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.DataConnection</a></h4>
-      <section></section>
+      <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardDataConnection.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardDataConnection</a></h4>
+      <section><p>This class represents an actual connection to the database. There may be two connections per shard.</p>
+</section>
       <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardInstance.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardInstance</a></h4>
-      <section></section>
+      <section><p>This class represents a distinct shard, or database instance, within the shardset.</p>
+</section>
       <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardSet.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardSet</a></h4>
-      <section></section>
+      <section><p>This collection represents a complete shard set. Typically all databases within a shard set have nearly identical schemas.</p>
+</section>
+      <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardSetReadAll.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardSetReadAll</a></h4>
+      <section><p>This class hosts the concurrent shard set read methods which return all valid results.</p>
+</section>
+      <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardSetReadFirst.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardSetReadFirst</a></h4>
+      <section><p>This class hosts the concurrent shard set read methods which return the fist valid result.</p>
+</section>
+      <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardSetWrite.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardSetWrite</a></h4>
+      <section><p>This class hosts the concurrent write methods across the shard set.</p>
+</section>
       <h4><a class="xref" href="ArgentSea.SimpleDbConnection.html">SimpleDbConnection</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.StringExtensions.html">StringExtensions</a></h4>

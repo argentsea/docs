@@ -81,7 +81,7 @@
 
 <h2 id="introduction">Introduction</h2>
 <p>Geo-dispersed deployments and SDLC staging processes require application deployments in many distinct environments. Managing configurations in each environment is already a challenge. Worse, sharded data sets can create a very large number of connections, amplifying the configuration problem further. Then, scale-out of read and write endpoints doubles the number of connections. In the end, there can be a lot of connections to manage.</p>
-<p>ArgentSea is designed to make this potentially large number connections manageable. Using the configuration architecture in .NET core and a unique <em>configuration hierarchy</em>, ArgentSea allows application changes to be promoted through staging environments and deployed into multiple production environments. It does this while storing passwords securely and without the need for messy transformations.</p>
+<p>ArgentSea is designed to make this potentially large number connections manageable. Using the configuration architecture in .NET core and a unique <em>Hereditary Configuration Hierarchy</em>, ArgentSea allows application changes to be promoted through staging environments and deployed into multiple production environments. It does this while storing passwords securely and without the need for messy transformations.</p>
 <h2 id="argentsea-data-connections">ArgentSea Data Connections</h2>
 <p>There are two types of data connections in ArgentSea:</p>
 <ul>
@@ -91,14 +91,14 @@
 <p>A shard set represents a set of data that is spread among multiple database servers. This structure is common for high-performance data access, since it is usually more cost effective and predictably scalable to have multiple smaller database servers than to build one massive server. Global applications might try to improve performance for their global users by distributing shards in datacenters around the globe. The ArgentSea data access components allow you to query across multiple servers or a find specific record on its corresponding host server.</p>
 <p>ArgentSea configuration supports any number of database definitions in the <a href="http://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases collection</a>, and any number of <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">shard sets</a> in the <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.html">ShardSets</a> collection. Each <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">shard set</a> can have any number of database connections (shard instances).</p>
 <table border="0" margin="0" padding="0"><tr><td width="50%"><img src="/images/databases.svg"></td><td width="50%"><img src="/images/shardsets.svg"></td></tr></table>
-<p>All data connections have the option of separate read and write connections. If you are scaling-out your data access by sharding your data, you are likely also scaling-out by separating read activity from write operations. Examples of this includes <em>SQL Server Availability Groups</em>, <em>Amazon RDS</em> Read Replicas, <em>Azure SQL</em> geo-replication, <em>Amazon Aurora</em> reader endpoints, etc.</p>
-<p>All this creates a potentially large number of connections. Many of these will likely have similar connection information. For example, all of the connections in a shard set might use the same login information or database name, varying only the server address. To manage this redundancy, ArgentSea offers a unique <em>configuration hierarchy</em>.</p>
-<h2 id="the-configuration-hierarchy">The Configuration Hierarchy</h2>
-<p>The Configuration Hierarchy, allows users to configure their data connection information at multiple levels. Child nodes “inherit” any settings of their parent. By dramatically reducing configuration redundancy, it makes handling multiple connections much more manageable.</p>
-<h3 id="connection-attributes">Connection Attributes</h3>
-<p>ArgentSea essentially dispenses with traditional connection strings (although you can use them if you really want to). Instead, it uses the .NET configuration architecture to manage each attribute as a discrete property. Each property can be managed globally, or at the shardSet, database, or connection level. Lower-level settings inherit values from their parent, which they can also overwrite if their own values are set differently.</p>
-<p>For example, if your network infrastructure supports jumbo frames, you can configure the network packet size <em>once</em> in the global configuration section and every ArgentSea connection will default to this value.</p>
-<p>The complete set of available properties is:</p>
+<p>All data connections have the option of separate read and write connections. If you are scaling-out your data access by sharding your data, you are likely also scaling-out by separating read activity from write operations. Examples of this include <a href="https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups">SQL Server Availability Groups</a>, <a href="https://www.postgresql.org/docs/11/hot-standby.html">PostgreSQL Hot Standby</a>,<a href="https://aws.amazon.com/rds/details/read-replicas/">Amazon RDS Read Replicas</a>, <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-active-geo-replication">Azure SQL Geo-Replication</a>, <a href="https://aws.amazon.com/rds/aurora/details/postgresql-details/">Amazon Aurora Low-Latency Read Replicas</a>, etc.</p>
+<p>All this creates a potentially large number of connections. Many of these will likely have similar connection information. For example, all of the connections in a shard set might use the same login information or database name, varying only the server address. To manage this redundancy, ArgentSea offers a unique <em>Hereditary Configuration Hierarchy</em>.</p>
+<h2 id="the-hereditary-configuration-hierarchy">The Hereditary Configuration Hierarchy</h2>
+<p>ArgentSea essentially dispenses with traditional connection strings (although you can use them if you really want to). Instead, it uses the new .NET configuration architecture to manage each attribute as a discrete property. Each property can be managed globally, or at the shardSet, database, or connection level. Lower-level settings inherit values from their parent, which they can also overwrite if their own values are set differently.</p>
+<p>The Hereditary Configuration Hierarchy allows users to configure their data connection information at multiple levels. Child nodes “inherit” any settings of their parent. By dramatically reducing configuration redundancy, it makes handling many connections much more manageable.</p>
+<p>For example, if your network infrastructure supports jumbo frames, you can configure the network packet size <em>once</em>, in the global configuration section, and every ArgentSea connection will default to this value.</p>
+<h3 id="the-global-section">The Global Section</h3>
+<p>The root of the configuration hierarchy is the “global settings” section. All properties set here are applied to every data connection — unless the value is overwritten by lower-level properties (i.e. database, shard set, shard, etc.).</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q">
 <ul role="tablist">
 <li role="presentation">
@@ -109,6 +109,229 @@
 </li>
 </ul>
 <section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The SQL Server global section is <code>SqlGlobalSettings</code>. Any attributes specified in this section are applied to all SQL Server connections.</p>
+<p>For example, to globally change both the connection timeout property and packet size:</p>
+<pre><code class="lang-json">{
+  &quot;SqlGlobalSettings&quot;: {
+    &quot;ConnectTimeout&quot;: 3,
+    &quot;PacketSize&quot;: 8196
+  }
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>The PostgreSQL global section is <code>PgGlobalSettings</code>. Any attributes specified in this section are applied to all PostgreSQL connections.</p>
+<p>For example, to globally change both the connection timeout property and packet size:</p>
+<pre><code class="lang-json">{
+  &quot;PgGlobalSettings&quot;: {
+    &quot;Timeout&quot;: 3,
+    &quot;SocketReceiveBufferSize&quot;: 8192,
+    &quot;SocketSendBufferSize&quot;: 8192
+  }
+}
+</code></pre>
+</section>
+</div>
+
+<p>Note that these examples include only the attributes that we want to change. The complete attribute list is described below.</p>
+<h3 id="non-sharded-database-connections">(Non-Sharded) Database Connections</h3>
+<p>The database configuration architecture allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code. The key in your configuration must <em>exactly</em> match the keys used in your code (i.e casing, accents, and kana must match).</p>
+<p>Database connections have a three-level hierarchy: global properties, database properties, and properties for distinct read and write endpoints. This illustration shows how various “parent” configuration properties are applied to the child values. Ultimately, these values are combined to build a Read or Write connection.</p>
+<p><img src="../images/databases-config.svg" alt="Non-Sharded Configuration"></p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The JSON section for SQL database connections is <code>SqlDbConnections</code>. This is an array of connections. Each connection has a required <code>DatabaseKey</code> property, and whatever connection properties are needed for the connection.</p>
+<pre><code class="lang-json">{
+  &quot;SqlDbConnections&quot;: [
+    {
+      &quot;DatabaseKey&quot;: &quot;MainDb&quot;,
+      &quot;DataSource&quot;: &quot;DbServer1&quot;,
+      &quot;InitialCatalog&quot;: &quot;MainDb&quot;,
+      &quot;WindowsAuth&quot;: true
+    },
+    {
+      &quot;DatabaseKey&quot;: &quot;OtherDb&quot;,
+      &quot;DataSource&quot;: &quot;DbServer1&quot;,
+      &quot;InitialCatalog&quot;: &quot;OtherDb&quot;,
+      &quot;WindowsAuth&quot;: true,
+      &quot;WriteConnection&quot;: {
+        &quot;DataSource&quot;: &quot;DbServer2&quot;
+      }
+    },
+    {
+      &quot;DatabaseKey&quot;: &quot;ThirdDb&quot;,
+      &quot;ReadConnection&quot;: {
+        &quot;DataSource&quot;: &quot;DbServer3&quot;,
+        &quot;InitialCatalog&quot;: &quot;Db1&quot;,
+        &quot;UserName&quot;: &quot;apiUser&quot;,
+        &quot;Password&quot;: &quot;pwd1234&quot;
+      },
+      &quot;WriteConnection&quot;: {
+        &quot;DataSource&quot;: &quot;DbServer4&quot;,
+        &quot;InitialCatalog&quot;: &quot;Db2&quot;,
+        &quot;UserName&quot;: &quot;webUser&quot;,
+        &quot;Password&quot;: &quot;pwd5678&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>The JSON section for PostgreSQL database connections is <code>PgDbConnections</code>. This is an array of connections. Each connection has a required <code>DatabaseKey</code> property, and whatever connection properties are needed for the connection. The application obtains a connection by this <code>DatabaseKey</code> and the characters must be an exact match.</p>
+<pre><code class="lang-json">  &quot;PgDbConnections&quot;: [
+    {
+      &quot;DatabaseKey&quot;: &quot;MainDb&quot;,
+      &quot;Host&quot;: &quot;10.10.25.1&quot;,
+      &quot;Database&quot;: &quot;MainDb&quot;,
+      &quot;WindowsAuth&quot;: true
+    },
+    {
+      &quot;DatabaseKey&quot;: &quot;OtherDb&quot;,
+      &quot;Host&quot;: &quot;10.10.25.2&quot;,
+      &quot;Database&quot;: &quot;OtherDb&quot;,
+      &quot;WindowsAuth&quot;: true,
+      &quot;WriteConnection&quot;: {
+        &quot;Host&quot;: &quot;10.10.25.2&quot;
+      }
+    },
+    {
+      &quot;DatabaseKey&quot;: &quot;ThirdDb&quot;,
+      &quot;ReadConnection&quot;: {
+        &quot;Host&quot;: &quot;10.10.25.4&quot;,
+        &quot;Database&quot;: &quot;MainDb&quot;,
+        &quot;UserName&quot;: &quot;apiUser&quot;,
+        &quot;Password&quot;: &quot;pwd1234&quot;
+      },
+      &quot;WriteConnection&quot;: {
+        &quot;Host&quot;: &quot;10.10.20.25&quot;,
+        &quot;Database&quot;: &quot;MainDb&quot;,
+        &quot;UserName&quot;: &quot;webUser&quot;,
+        &quot;Password&quot;: &quot;pwd5678&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</section>
+</div>
+
+<p>Each connection has two optional child sections, <code>ReadConnection</code> and <code>WriteConnection</code>. These can be set explicitly if you want different values between read and write connections; otherwise, both read and write connections these will inherit from the parent properties.</p>
+<p>In the example above, the first connection has the same values for read and write connections (both Read and Write connections inherit the same values from the parent). The second connection will access a different server for read connections than write connections. The third connection explicitly defines connection information for both the Read and Write connections.</p>
+<p>As mentioned before, <em>any</em> connection property from the complete property list (as listed earlier), can be included in the database definition, read connection, or write connection.</p>
+<h3 id="shard-set-connections">Shard Set Connections</h3>
+<p>ArgentSea shard sets have up to five inheritance levels: global properties, shard set properties, shard set read/write properties, shard properties, and distinct read and write endpoint properties. The corresponding illustration again shows how various “parent” configuration properties are applied to the child values. As with non-sharded databases, these values are combined to build a Read or Write connection.</p>
+<p><img src="../images/shardsets-config.svg" alt="Non-Sharded Configuration"></p>
+<p>When using a scale-out read strategy, all or most of your read connections might have consistent values (a login, for example), which could likely be different than the consistent values used for all of your write connections. A straightforward parent-child inheritance would require you to redundantly specify the same values for every shard’s read or write connection. To better manage this, the ShardSet has an exception to the parent-child hierarchy: a Read and Write configuration section. Values set in the ShardSet Read section will be used by only the read connections in the shards within the set. Likeswise, write connections in the shard set inherit from the write parameters.</p>
+<p>Consequently, the inheritance hierarchy for a sharded database connection is: Global settings &gt; shard set settings &gt; read or write settings &gt; shard settings &gt; connection settings.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The root JSON section for SQL shard connections is <code>SqlShardSets</code>. This is an array of shard sets, each of which has an array of shards. Presumably, most applications will not require multiple shard sets, but the capability exists if required.</p>
+<p>Each shard set has two require properties. The <code>ShardSetName</code> property is how the shard set retrieved from within the application, so the characters must <em>exactly</em> match. The <code>DefaultShardId</code> value determines which shard to use when creating new records.</p>
+<pre><code class="lang-json">{
+  &quot;SqlShardSets&quot;: [
+    {
+      &quot;ShardSetName&quot;: &quot;Primary&quot;,
+      &quot;DefaultShardId&quot;: 1,
+      &quot;DataSource&quot;: &quot;DbServer1&quot;,
+      &quot;FailoverPartner&quot;: &quot;Mirror1&quot;,
+      &quot;UserName&quot;: &quot;webUser&quot;,
+      &quot;Password&quot;: &quot;pwd1234&quot;,
+      &quot;Shards&quot;: [
+        {
+          &quot;ShardId&quot;: 0,
+          &quot;InitialCatalog&quot;: &quot;ShardDb1&quot;,
+          &quot;ReadConnection&quot;: {
+            &quot;ApplicationIntent&quot;: &quot;ReadOnly&quot;,
+            &quot;DataSource&quot;: &quot;Mirror1&quot;,
+          }
+        },
+        {
+          &quot;ShardId&quot;: 1,
+          &quot;InitialCatalog&quot;: &quot;ShardDb2&quot;,
+          &quot;ReadConnection&quot;: {
+            &quot;ApplicationIntent&quot;: &quot;ReadOnly&quot;,
+            &quot;DataSource&quot;: &quot;Mirror1&quot;,
+          }
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>In this example, there is one shard set with two shards as two databases on the same server. The read connections are directed to a mirror by overwriting the inherited <code>DataSource</code> value with the name of the mirror.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>The root JSON section for SQL shard connections is <code>PgShardSets</code>. This is an array of shard sets, each of which has an array of shards. Presumably, most applications will not require multiple shard sets, but the capability exists if required.</p>
+<p>Each shard set has two require properties. The <code>ShardSetName</code> property is how the shard set retrieved from within the application, so the characters must <em>exactly</em> match. The <code>DefaultShardId</code> value determines which shard to use when creating new records.</p>
+<pre><code class="lang-json">{
+  &quot;PgShardSets&quot;: [
+    {
+      &quot;ShardSetName&quot;: &quot;Primary&quot;,
+      &quot;DefaultShardId&quot;: 1,
+      &quot;Host&quot;: &quot;DbServer1&quot;,
+      &quot;UserName&quot;: &quot;webUser&quot;,
+      &quot;Password&quot;: &quot;pwd1234&quot;,
+      &quot;Shards&quot;: [
+        {
+          &quot;ShardId&quot;: 0,
+          &quot;Database&quot;: &quot;ShardDb1&quot;,
+          &quot;ReadConnection&quot;: {
+            &quot;DataSource&quot;: &quot;HotStandby1&quot;,
+          }
+        },
+        {
+          &quot;ShardId&quot;: 1,
+          &quot;Database&quot;: &quot;ShardDb2&quot;,
+          &quot;ReadConnection&quot;: {
+            &quot;DataSource&quot;: &quot;HotStandby1&quot;,
+          }
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>In this example, there is one shard set with two shards as two databases on the same server. The read connections are directed to a hot standby replication instance by overwriting the inherited <code>DataSource</code> value with the name of the mirror.</p>
+</section>
+</div>
+
+<p>Again, <em>any</em> connection property from the complete property list (as listed earlier), can be included in the shard set definition (to be used by all connections in the shard set), or shard instance (to be used by both Read and Write connections), or to specifically configure the Read and/or Write connection.</p>
+<p>In a typical data sharding implementation, all shard connections are likely to use same login information and each server may even use the same database name. The Hereditary Configuration Hierarchy makes this easy to manage because the login information and database can be defined once for the shard set, then used by every connection.</p>
+<h3 id="connection-attributes">Connection Attributes</h3>
+<p>The complete set of available properties is:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <pre><code class="lang-json">{
   &quot;ApplicationIntent&quot;: &quot;ReadWrite&quot;,
@@ -144,7 +367,7 @@
 }
 </code></pre>
 </section>
-<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <pre><code class="lang-json">{
   &quot;ApplicationName&quot;: &quot;MyWebApp&quot;,
@@ -201,224 +424,7 @@
 <h5>Caution</h5>
 <p>Displayed are all of the available properties. It is neither necessary nor wise to set all of them. All that is typically required for most connections is login information, a server or host name, and a database name.</p>
 </div>
-<p>Each level in the Configuration Hierarchy can use any of the properties on this list.</p>
-<h3 id="the-global-section">The Global Section</h3>
-<p>The root of the configuration hierarchy is the “global settings” section. All properties set here are applied to every data connection — unless the value is overwritten by lower-level properties (i.e. database, shard set, shard, etc.).</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<p>The SQL Server global section is <code>SqlGlobalSettings</code>. Any attributes specified in this section are applied to all SQL Server connections.</p>
-<p>For example, to globally change both the connection timeout property and packet size:</p>
-<pre><code class="lang-json">{
-  &quot;SqlGlobalSettings&quot;: {
-    &quot;ConnectTimeout&quot;: 3,
-    &quot;PacketSize&quot;: 8196
-  }
-}
-</code></pre>
-</section>
-<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-
-<p>The PostgreSQL global section is <code>PgGlobalSettings</code>. Any attributes specified in this section are applied to all PostgreSQL connections.</p>
-<p>For example, to globally change both the connection timeout property and packet size:</p>
-<pre><code class="lang-json">{
-  &quot;PgGlobalSettings&quot;: {
-    &quot;Timeout&quot;: 3,
-    &quot;SocketReceiveBufferSize&quot;: 8192,
-    &quot;SocketSendBufferSize&quot;: 8192
-  }
-}
-</code></pre>
-</section>
-</div>
-
-<p>Note that these examples include only the attributes (from the previous section) that we want to change.</p>
-<h3 id="non-sharded-database-connections">(Non-Sharded) Database Connections</h3>
-<p>The database configuration architecture allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code. The key in your configuration must <em>exactly</em> match the keys used in your code (i.e casing, accents, and kana must match).</p>
-<p>Database connections have a three-level hierarchy: global properties, database properties, and properties for distinct read and write endpoints. This illustration shows how various “parent” configuration properties are applied to the child values. Ultimately, these values are combined to build a Read or Write connection.</p>
-<p><img src="../images/databases-config.svg" alt="Non-Sharded Configuration"></p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<p>The JSON section for SQL database connections is <code>SqlDbConnections</code>. This is an array of connections. Each connection has a required <code>DatabaseKey</code> property, and whatever connection properties are needed for the connection.</p>
-<pre><code class="lang-json">{
-  &quot;SqlDbConnections&quot;: [
-    {
-      &quot;DatabaseKey&quot;: &quot;MainDb&quot;,
-      &quot;DataSource&quot;: &quot;DbServer1&quot;,
-      &quot;InitialCatalog&quot;: &quot;MainDb&quot;,
-      &quot;WindowsAuth&quot;: true
-    },
-    {
-      &quot;DatabaseKey&quot;: &quot;OtherDb&quot;,
-      &quot;DataSource&quot;: &quot;DbServer1&quot;,
-      &quot;InitialCatalog&quot;: &quot;OtherDb&quot;,
-      &quot;WindowsAuth&quot;: true,
-      &quot;WriteConnection&quot;: {
-        &quot;DataSource&quot;: &quot;DbServer2&quot;
-      }
-    },
-    {
-      &quot;DatabaseKey&quot;: &quot;ThirdDb&quot;,
-      &quot;ReadConnection&quot;: {
-        &quot;DataSource&quot;: &quot;DbServer3&quot;,
-        &quot;InitialCatalog&quot;: &quot;Db1&quot;,
-        &quot;UserName&quot;: &quot;apiUser&quot;,
-        &quot;Password&quot;: &quot;pwd1234&quot;
-      },
-      &quot;WriteConnection&quot;: {
-        &quot;DataSource&quot;: &quot;DbServer4&quot;,
-        &quot;InitialCatalog&quot;: &quot;Db2&quot;,
-        &quot;UserName&quot;: &quot;webUser&quot;,
-        &quot;Password&quot;: &quot;pwd5678&quot;
-      }
-    }
-  ]
-}
-</code></pre>
-</section>
-<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-
-<p>The JSON section for PostgreSQL database connections is <code>PgDbConnections</code>. This is an array of connections. Each connection has a required <code>DatabaseKey</code> property, and whatever connection properties are needed for the connection. The application obtains a connection by this <code>DatabaseKey</code> and the characters must be an exact match.</p>
-<pre><code class="lang-json">  &quot;PgDbConnections&quot;: [
-    {
-      &quot;DatabaseKey&quot;: &quot;MainDb&quot;,
-      &quot;Host&quot;: &quot;10.10.25.1&quot;,
-      &quot;Database&quot;: &quot;MainDb&quot;,
-      &quot;WindowsAuth&quot;: true
-    },
-    {
-      &quot;DatabaseKey&quot;: &quot;OtherDb&quot;,
-      &quot;Host&quot;: &quot;10.10.25.2&quot;,
-      &quot;Database&quot;: &quot;OtherDb&quot;,
-      &quot;WindowsAuth&quot;: true,
-      &quot;WriteConnection&quot;: {
-        &quot;Host&quot;: &quot;10.10.25.2&quot;
-      }
-    },
-    {
-      &quot;DatabaseKey&quot;: &quot;ThirdDb&quot;,
-      &quot;ReadConnection&quot;: {
-        &quot;Host&quot;: &quot;10.10.25.4&quot;,
-        &quot;Database&quot;: &quot;MainDb&quot;,
-        &quot;UserName&quot;: &quot;apiUser&quot;,
-        &quot;Password&quot;: &quot;pwd1234&quot;
-      },
-      &quot;WriteConnection&quot;: {
-        &quot;Host&quot;: &quot;10.10.20.25&quot;,
-        &quot;Database&quot;: &quot;MainDb&quot;,
-        &quot;UserName&quot;: &quot;webUser&quot;,
-        &quot;Password&quot;: &quot;pwd5678&quot;
-      }
-    }
-  ]
-}
-</code></pre>
-</section>
-</div>
-
-<p>Each connection has two optional child sections, <code>ReadConnection</code> and <code>WriteConnection</code>. These can be set explicitly if you want different values between read and write connections; otherwise, both read and write connections these will inherit from the parent properties.</p>
-<p>In the example above, the first connection has the same values for read and write connections (both Read and Write connections inherit the same values from the parent). The second connection will access a different server for read connections than write connections. The third connection explicitly defines connection information for both the Read and Write connections.</p>
-<p>As mentioned before, <em>any</em> connection property from the complete property list (as listed earlier), can be included in the database definition, read connection, or write connection.</p>
-<h3 id="shard-set-connections">Shard Set Connections</h3>
-<p>ArgentSea shard sets have up to four inheritance levels: global properties, shard set properties, shard properties, and distinct read and write endpoint properties. The corresponding illustration again shows how various “parent” configuration properties are applied to the child values. As with non-sharded databases, these values are combined to build a Read or Write connection.</p>
-<p><img src="../images/shardsets-config.svg" alt="Non-Sharded Configuration"></p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<p>The root JSON section for SQL shard connections is <code>SqlShardSets</code>. This is an array of shard sets, each of which has an array of shards. Presumably, most applications will not require multiple shard sets, but the capability exists if required.</p>
-<p>Each shard set has a required <code>ShardSetName</code> property. This value is how the shard set retrieved from within the application, so the characters must <em>exactly</em> match.</p>
-<pre><code class="lang-json">{
-  &quot;SqlShardSets&quot;: [
-    {
-      &quot;ShardSetName&quot;: &quot;Primary&quot;,
-      &quot;DataSource&quot;: &quot;DbServer1&quot;,
-      &quot;FailoverPartner&quot;: &quot;Mirror1&quot;,
-      &quot;UserName&quot;: &quot;webUser&quot;,
-      &quot;Password&quot;: &quot;pwd1234&quot;,
-      &quot;Shards&quot;: [
-        {
-          &quot;ShardId&quot;: 0,
-          &quot;InitialCatalog&quot;: &quot;ShardDb1&quot;,
-          &quot;ReadConnection&quot;: {
-            &quot;ApplicationIntent&quot;: &quot;ReadOnly&quot;,
-            &quot;DataSource&quot;: &quot;Mirror1&quot;,
-          }
-        },
-        {
-          &quot;ShardId&quot;: 1,
-          &quot;InitialCatalog&quot;: &quot;ShardDb2&quot;,
-          &quot;ReadConnection&quot;: {
-            &quot;ApplicationIntent&quot;: &quot;ReadOnly&quot;,
-            &quot;DataSource&quot;: &quot;Mirror1&quot;,
-          }
-        }
-      ]
-    }
-  ]
-}
-</code></pre>
-<p>In this example, there is one shard set with two shards as two databases on the same server. The read connections are directed to a mirror by overwriting the inherited <code>DataSource</code> value with the name of the mirror.</p>
-</section>
-<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-
-<pre><code class="lang-json">{
-  &quot;PgShardSets&quot;: [
-    {
-      &quot;ShardSetName&quot;: &quot;Primary&quot;,
-      &quot;Host&quot;: &quot;DbServer1&quot;,
-      &quot;UserName&quot;: &quot;webUser&quot;,
-      &quot;Password&quot;: &quot;pwd1234&quot;,
-      &quot;Shards&quot;: [
-        {
-          &quot;ShardId&quot;: 0,
-          &quot;Database&quot;: &quot;ShardDb1&quot;,
-          &quot;ReadConnection&quot;: {
-            &quot;DataSource&quot;: &quot;HotStandby1&quot;,
-          }
-        },
-        {
-          &quot;ShardId&quot;: 1,
-          &quot;Database&quot;: &quot;ShardDb2&quot;,
-          &quot;ReadConnection&quot;: {
-            &quot;DataSource&quot;: &quot;HotStandby1&quot;,
-          }
-        }
-      ]
-    }
-  ]
-}
-</code></pre>
-<p>In this example, there is one shard set with two shards as two databases on the same server. The read connections are directed to a hot standby replication instance by overwriting the inherited <code>DataSource</code> value with the name of the mirror.</p>
-</section>
-</div>
-
-<p>Again, <em>any</em> connection property from the complete property list (as listed earlier), can be included in the shard set definition (to be used by all connections in the shard set), or shard instance (to be used by both Read and Write connections), or to specifically configure the Read and/or Write connection.</p>
-<p>In a typical data sharding implementation, all shard connections are likely to use same login information and each server may even use the same database name. The configuration hierarchy makes this easy to manage because the login information and database can be defined once for the shard set, then used by every connection.</p>
+<p>Each level in the Hereditary Configuration Hierarchy can use any of the properties on this list.</p>
 <h3 id="the-shard-identifier-type">The Shard Identifier Type</h3>
 <p>End each shard instance has a <code>ShardId</code> property, which identifies a specific subset (“shard”) of the data. This value is <em>critical</em> because it is not simply a key for a shard instance; the ShardId is generally used in combination with the record key to <em>uniquely identify</em> a record.</p>
 <p>Put another way, records in the shard set are identified with a sort of virtual compound key, consisting of the shard identifier and the record key. Because record in a data shard may refer to records in <em>other</em> shards, the “foreign key” reference requires saving the shard identifier too.</p>
@@ -426,7 +432,7 @@
 <div class="IMPORTANT">
 <h5>Important</h5>
 <p>Once established, the ShardId <em>type</em> cannot be easily changed. The ShardId type is used in configuration, throughout your code, in the database, and across all shard sets. Make sure that you will not outgrow your ShardId type’s maximum value, nor unnecessarily require space that will never be used.<br>
-If you are uncertain, consider using a <code>short</code> (Int16/smallint) data type for your ShardId.</p>
+If you are uncertain, consider using a <code>short</code> (Int16/SmallInt) data type for your ShardId.</p>
 </div>
 <p>The JSON ShardId type must correspond to whatever type you have defined for your application’s ShardId. If your application defines its ShardId as a string, then the JSON should be a string value (i.e. be in quotes); if a number, it should be numeric (i.e. a number, without quotes).</p>
 <p>More details about the ShardId type is in the <a href="sharding.html">Sharding</a> section</p>
@@ -805,7 +811,7 @@ If you are uncertain, consider using a <code>short</code> (Int16/smallint) data 
   &quot;RetryLengthening&quot;: &quot;Fibonacci&quot;,
 }
 </code></pre>
-<p>If no retry or circuit breaking properties are configured, ArgentSea uses a default resilience strategy using automatic retries and circuit breaking. Like everything else, these values participate in the ArgentSea configuration hierarchy — you can set these values globally (most likely) or at any level down to the individual Read or Write connection.</p>
+<p>If no retry or circuit breaking properties are configured, ArgentSea uses a default resilience strategy using automatic retries and circuit breaking. Like everything else, these values participate in the ArgentSea Hereditary Configuration Hierarchy — you can set these values globally (most likely) or at any level down to the individual Read or Write connection.</p>
 <h3 id="retries">Retries</h3>
 <p>Retries occur on errors that are defined as <em>transient</em>. A network interruption may quickly resolve itself, so it makes sense to retry after a short interval; it doesn’t make sense to retry after a permission exception. (The list of errors defined as <em>transient</em> is in the provider-specific implementation of IDataProviderServiceFactory. You can view this in the source code).</p>
 <p>The properties that define the retry behavior are:</p>
@@ -923,9 +929,14 @@ to time out. As this continues, the queue of backlogged requests becomes so larg
 </div>
 
 <p>This code references a <code>Configuration</code> property. It is common practice to obtain the configuration object from the constructor of the <code>Startup</code> class, then use this to set the <code>Configuration</code> property.</p>
-<h2 id="failover">Failover</h2>
-<p>ArgentSea itself does not currently include functionality that enables an automatic failover to a standby database server. This is often managed through DNS changes or via configuration of the .NET data provider (such as the <em>FailoverPartner</em> property), which may not even require client connection string changes. Furthermore, business continuity plans typically do not expect disaster recovery plans to be fully “automatic” at the individual client level; a lot of infrastructure must be coordinated in a robust failover, and a rogue client should not failover without a coordinated signal.</p>
-<p>Once created, both the <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">ShardSets</a> and <a href="http://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases</a> singleton collections are immutable, but any property in the configuration hierarchy can still be updated. In other words, after the configuration hierarchy is created, you cannot change the <em>structure</em> of the hierarchy, but the connection properties of the members can still be changed and will update the client connections. Child objects will also continue to inherit any updates from their parents. This allows you to build failover logic that updates the connection information — server endpoints, database names, etc. — given whatever trigger you prefer.</p>
+<h2 id="failover-and-mutability">Failover and Mutability</h2>
+<p>ArgentSea itself does not currently include specific functionality that enables an automatic failover to a standby database server. Often this is managed through DNS changes or via configuration of the .NET data provider (such as the <em>FailoverPartner</em> property), which may not even require client connection string changes. It would be difficult to build a robust strategy that predictably worked well with the variations of approaches possible. Furthermore, business continuity plans typically do not expect disaster recovery plans to be fully “automatic” at the individual client level; a lot of infrastructure must be coordinated in a robust failover, and a rogue client should not failover without a coordinated signal.</p>
+<p>Consequently, ArgentSea makes it <em>possible</em> easily build failover capability, but does not natively offer this. All of the connection properties in the configuration hierarchy are updatable. This allows you to build failover logic that updates the connection information — server endpoints, database names, etc. — given whatever trigger you prefer.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Once created, both the <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">ShardSets</a> and <a href="http://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases</a> singleton collections themselves are immutable, although any connection property in the configuration hierarchy can still be updated. In other words, after the Hereditary Configuration Hierarchy is created, you cannot change the layout of the hierarchy, but the connection properties of the members can still be changed and will update the client connections. Child objects will also continue to inherit any updates from their parents. Of course, updating connection properties is not fully thread-safe, but it will not impact queries that have already started.</p>
+</div>
+<p>The configuration objects are <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-2.1">.NET Options</a> classes, which are obtained through an <code>IOptions&lt;&gt;</code> injection. One possible point of confusion is that the you reference objects in the <a href="http://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">ShardSets</a> and <a href="http://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases</a> <em>collections</em> by their (string) key; however, the Options objects themselves originate as <em>arrays</em> that reflect your configuration layout. You must use an integer index to reference a shard set or connection. The value of this index depends on the order in your configuration files and the order in which they are loaded. In other words, you can verify the configuration options object by checking the key property, but you cannot use the key as an indexer.</p>
 <h2 id="simplifying-data-connections">Simplifying Data Connections</h2>
 <p>As per standard practice in .NET Core, any data repository class can use the ArgentSea data access component by having the service injected into its constructor.</p>
 <p>For example, requesting the databases collection in your data access class is straightforward:</p>
@@ -1069,7 +1080,7 @@ public class MyDataAccessStore
 <pre><code class="lang-csharp">public class MyShardSets : SqlShardSets&lt;byte&gt;
 {
   public SqlShardSets(
-	  IOptions&lt;SqlShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
+    IOptions&lt;SqlShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
     IOptions&lt;SqlGlobalPropertiesOptions&gt; globalOptions,
     ILogger&lt;SqlShardSets&lt;TShard&gt;&gt; logger
   ) : base(configOptions, globalOptions, logger)
@@ -1095,7 +1106,7 @@ public class MyShardChild : ShardChild&lt;byte&gt;
 <pre><code class="lang-csharp">public class MyShardSets : PgShardSets&lt;short&gt;
 {
   public SqlShardSets(
-	  IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
+    IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
     IOptions&lt;PgGlobalPropertiesOptions&gt; globalOptions,
     ILogger&lt;PgShardSets&lt;TShard&gt;&gt; logger
   ) : base(configOptions, globalOptions, logger)
@@ -1126,6 +1137,9 @@ public class MyShardChild : ShardChild&lt;short&gt;
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/configuration.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

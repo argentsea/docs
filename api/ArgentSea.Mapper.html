@@ -128,7 +128,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_CreateInputParameters__1_System_Data_Common_DbParameterCollection___0_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.CreateInputParameters%60%601(System.Data.Common.DbParameterCollection%2C%60%600%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L43">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L44">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_CreateInputParameters_" data-uid="ArgentSea.Mapper.CreateInputParameters*"></a>
   <h4 id="ArgentSea_Mapper_CreateInputParameters__1_System_Data_Common_DbParameterCollection___0_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.CreateInputParameters``1(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)">CreateInputParameters&lt;TModel&gt;(DbParameterCollection, TModel, ILogger)</h4>
@@ -222,7 +222,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_CreateInputParameters__1_System_Data_Common_DbParameterCollection___0_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.CreateInputParameters%60%601(System.Data.Common.DbParameterCollection%2C%60%600%2CSystem.Collections.Generic.HashSet%7BSystem.String%7D%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L56">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L57">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_CreateInputParameters_" data-uid="ArgentSea.Mapper.CreateInputParameters*"></a>
   <h4 id="ArgentSea_Mapper_CreateInputParameters__1_System_Data_Common_DbParameterCollection___0_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.CreateInputParameters``1(System.Data.Common.DbParameterCollection,``0,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)">CreateInputParameters&lt;TModel&gt;(DbParameterCollection, TModel, HashSet&lt;String&gt;, ILogger)</h4>
@@ -322,7 +322,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_CreateOutputParameters_System_Data_Common_DbParameterCollection_System_Type_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection%2CSystem.Type%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L95">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L107">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_CreateOutputParameters_" data-uid="ArgentSea.Mapper.CreateOutputParameters*"></a>
   <h4 id="ArgentSea_Mapper_CreateOutputParameters_System_Data_Common_DbParameterCollection_System_Type_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,Microsoft.Extensions.Logging.ILogger)">CreateOutputParameters(DbParameterCollection, Type, ILogger)</h4>
@@ -331,7 +331,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DbParameterCollection CreateOutputParameters(this DbParameterCollection parameters, Type TModel, ILogger logger)</code></pre>
+    <pre><code class="lang-csharp hljs">public static DbParameterCollection CreateOutputParameters(this DbParameterCollection parameters, Type tModel, ILogger logger)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -351,7 +351,7 @@
       </tr>
       <tr>
         <td><span class="xref">System.Type</span></td>
-        <td><span class="parametername">TModel</span></td>
+        <td><span class="parametername">tModel</span></td>
         <td><p>The type of the object. The &quot;MapTo&quot; attributes are used to create the Sql parameter types.</p>
 </td>
       </tr>
@@ -374,22 +374,7 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ArgentSea.InvalidMapTypeException.html">InvalidMapTypeException</a></td>
-        <td><p>Thrown when the property data type is not supported by the MapTo* atribute type.</p>
+        <td><p>The DbParameterCollection, enabling a fluent API.</p>
 </td>
       </tr>
     </tbody>
@@ -399,7 +384,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_CreateOutputParameters_System_Data_Common_DbParameterCollection_System_Type_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection%2CSystem.Type%2CSystem.Collections.Generic.HashSet%7BSystem.String%7D%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L132">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L131">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_CreateOutputParameters_" data-uid="ArgentSea.Mapper.CreateOutputParameters*"></a>
   <h4 id="ArgentSea_Mapper_CreateOutputParameters_System_Data_Common_DbParameterCollection_System_Type_System_Collections_Generic_HashSet_System_String__Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.CreateOutputParameters(System.Data.Common.DbParameterCollection,System.Type,System.Collections.Generic.HashSet{System.String},Microsoft.Extensions.Logging.ILogger)">CreateOutputParameters(DbParameterCollection, Type, HashSet&lt;String&gt;, ILogger)</h4>
@@ -423,14 +408,13 @@
       <tr>
         <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
         <td><span class="parametername">parameters</span></td>
-        <td><p>A parameter collection, generally belonging to a ADO.Net Command object.</p>
+        <td><p>A parameter collection, possibly belonging to a ADO.Net Command object or a QueryParmaters object.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.Type</span></td>
         <td><span class="parametername">tModel</span></td>
-        <td><p>The type of the object. The &quot;MapTo&quot; attributes are used to read the Sql parameter collection values.</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<span class="xref">System.String</span>&gt;</td>
@@ -457,7 +441,8 @@
     <tbody>
       <tr>
         <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
-        <td></td>
+        <td><p>The DbParameterCollection, enabling a fluent API.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -482,7 +467,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_CreateOutputParameters__1_System_Data_Common_DbParameterCollection_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.CreateOutputParameters%60%601(System.Data.Common.DbParameterCollection%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L106">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L96">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_CreateOutputParameters_" data-uid="ArgentSea.Mapper.CreateOutputParameters*"></a>
   <h4 id="ArgentSea_Mapper_CreateOutputParameters__1_System_Data_Common_DbParameterCollection_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.CreateOutputParameters``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)">CreateOutputParameters&lt;TModel&gt;(DbParameterCollection, ILogger)</h4>
@@ -580,8 +565,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DbParameterCollection CreateOutputParameters&lt;TModel&gt;(this DbParameterCollection parameters, HashSet&lt;string&gt; ignoreParameters, ILogger logger)
-    where TModel : class, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public static DbParameterCollection CreateOutputParameters&lt;TModel&gt;(this DbParameterCollection parameters, HashSet&lt;string&gt; ignoreParameters, ILogger logger)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -602,8 +586,7 @@
       <tr>
         <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td><span class="parametername">ignoreParameters</span></td>
-        <td><p>A lists of parameter names that should not be created.</p>
-</td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
@@ -666,7 +649,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ListFromReaderResultsHandler__2___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ListFromReaderResultsHandler%60%602(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1286">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1284">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ListFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ListFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ListFromReaderResultsHandler__2___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ListFromReaderResultsHandler``2(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ListFromReaderResultsHandler&lt;TShard, TModel&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -774,7 +757,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__10___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%6010(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1686">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1858">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__10___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``10(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -946,7 +929,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__2___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%602(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1328">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1326">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__2___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``2(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -1070,7 +1053,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__3___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%603(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1357">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1355">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__3___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``3(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -1200,7 +1183,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__4___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%604(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1395">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1393">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__4___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``4(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -1336,7 +1319,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__5___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%605(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1436">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1443">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__5___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``5(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -1478,7 +1461,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__6___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%606(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1480">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1504">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__6___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``6(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -1626,7 +1609,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__7___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%607(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1527">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1576">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__7___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``7(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -1780,7 +1763,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__8___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%608(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1577">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1659">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__8___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``8(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -1940,7 +1923,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromOutResultsHandler__9___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromOutResultsHandler%60%609(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1630">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1753">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromOutResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromOutResultsHandler__9___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromOutResultsHandler``9(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromOutResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -2106,7 +2089,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromReaderResultsHandler__10___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromReaderResultsHandler%60%6010(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2067">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2470">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromReaderResultsHandler__10___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler``10(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -2283,7 +2266,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromReaderResultsHandler__2___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromReaderResultsHandler%60%602(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1739">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1968">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromReaderResultsHandler__2___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler``2(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromReaderResultsHandler&lt;TShard, TModel&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -2412,7 +2395,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromReaderResultsHandler__4___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromReaderResultsHandler%60%604(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1776">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2005">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromReaderResultsHandler__4___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler``4(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -2553,7 +2536,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromReaderResultsHandler__5___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromReaderResultsHandler%60%605(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1817">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2055">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromReaderResultsHandler__5___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler``5(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -2700,7 +2683,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromReaderResultsHandler__6___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromReaderResultsHandler%60%606(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1861">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2116">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromReaderResultsHandler__6___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler``6(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -2853,7 +2836,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromReaderResultsHandler__7___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromReaderResultsHandler%60%607(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1908">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2188">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromReaderResultsHandler__7___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler``7(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -3012,7 +2995,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromReaderResultsHandler__8___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromReaderResultsHandler%60%608(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L1958">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2271">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromReaderResultsHandler__8___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler``8(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -3177,7 +3160,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ModelFromReaderResultsHandler__9___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ModelFromReaderResultsHandler%60%609(%60%600%2CSystem.String%2CSystem.Object%2CSystem.Data.Common.DbDataReader%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2011">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L2365">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ModelFromReaderResultsHandler_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler*"></a>
   <h4 id="ArgentSea_Mapper_ModelFromReaderResultsHandler__9___0_System_String_System_Object_System_Data_Common_DbDataReader_System_Data_Common_DbParameterCollection_System_String_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ModelFromReaderResultsHandler``9(``0,System.String,System.Object,System.Data.Common.DbDataReader,System.Data.Common.DbParameterCollection,System.String,Microsoft.Extensions.Logging.ILogger)">ModelFromReaderResultsHandler&lt;TShard, TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(TShard, String, Object, DbDataReader, DbParameterCollection, String, ILogger)</h4>
@@ -3348,7 +3331,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ToList__1_System_Data_Common_DbDataReader_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ToList%60%601(System.Data.Common.DbDataReader%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L282">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L281">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ToList_" data-uid="ArgentSea.Mapper.ToList*"></a>
   <h4 id="ArgentSea_Mapper_ToList__1_System_Data_Common_DbDataReader_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ToList``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)">ToList&lt;TModel&gt;(DbDataReader, ILogger)</h4>
@@ -3437,7 +3420,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ToList__2_System_Data_Common_DbDataReader___0_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ToList%60%602(System.Data.Common.DbDataReader%2C%60%600%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L296">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L295">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ToList_" data-uid="ArgentSea.Mapper.ToList*"></a>
   <h4 id="ArgentSea_Mapper_ToList__2_System_Data_Common_DbDataReader___0_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ToList``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)">ToList&lt;TShard, TModel&gt;(DbDataReader, TShard, ILogger)</h4>
@@ -3537,7 +3520,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ToModel__1_System_Data_Common_DbDataReader_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ToModel%60%601(System.Data.Common.DbDataReader%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L218">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L217">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ToModel_" data-uid="ArgentSea.Mapper.ToModel*"></a>
   <h4 id="ArgentSea_Mapper_ToModel__1_System_Data_Common_DbDataReader_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ToModel``1(System.Data.Common.DbDataReader,Microsoft.Extensions.Logging.ILogger)">ToModel&lt;TModel&gt;(DbDataReader, ILogger)</h4>
@@ -3626,7 +3609,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ToModel__1_System_Data_Common_DbParameterCollection_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ToModel%60%601(System.Data.Common.DbParameterCollection%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L178">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L177">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ToModel_" data-uid="ArgentSea.Mapper.ToModel*"></a>
   <h4 id="ArgentSea_Mapper_ToModel__1_System_Data_Common_DbParameterCollection_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ToModel``1(System.Data.Common.DbParameterCollection,Microsoft.Extensions.Logging.ILogger)">ToModel&lt;TModel&gt;(DbParameterCollection, ILogger)</h4>
@@ -3715,7 +3698,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ToModel__2_System_Data_Common_DbDataReader___0_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ToModel%60%602(System.Data.Common.DbDataReader%2C%60%600%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L232">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L231">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ToModel_" data-uid="ArgentSea.Mapper.ToModel*"></a>
   <h4 id="ArgentSea_Mapper_ToModel__2_System_Data_Common_DbDataReader___0_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ToModel``2(System.Data.Common.DbDataReader,``0,Microsoft.Extensions.Logging.ILogger)">ToModel&lt;TShard, TModel&gt;(DbDataReader, TShard, ILogger)</h4>
@@ -3815,7 +3798,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_Mapper_ToModel__2_System_Data_Common_DbParameterCollection___0_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Mapper.ToModel%60%602(System.Data.Common.DbParameterCollection%2C%60%600%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L192">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Mapper.cs/#L191">View Source</a>
   </span>
   <a id="ArgentSea_Mapper_ToModel_" data-uid="ArgentSea.Mapper.ToModel*"></a>
   <h4 id="ArgentSea_Mapper_ToModel__2_System_Data_Common_DbParameterCollection___0_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Mapper.ToModel``2(System.Data.Common.DbParameterCollection,``0,Microsoft.Extensions.Logging.ILogger)">ToModel&lt;TShard, TModel&gt;(DbParameterCollection, TShard, ILogger)</h4>
