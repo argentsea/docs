@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>QuickStart Two | ArgentSea Docs </title>
+    <title>Mapping | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="QuickStart Two | ArgentSea Docs ">
+    <meta name="title" content="Mapping | ArgentSea Docs ">
     <meta name="generator" content="docfx 2.40.0.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
     
-    <meta property="docfx:rel" content="../">
+    <meta property="docfx:rel" content="../../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -35,7 +35,7 @@
               </button>
               
               <a class="navbar-brand" href="http://www.argentsea.com">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -77,12 +77,24 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="quickstart-two">QuickStart Two</h1>
+<h1 id="mapping">Mapping</h1>
 
-<h2 id="this-document-is-still-under-construction">This document is still under construction</h2>
-<p>The <a href="quickstart1.html">previous QuickStart</a> introduced configuration and mapping. This tutorial extends that information while working with a sharded data set.</p>
-<p>Create a new ASP.NET Core project, selecting the API project option.</p>
-<p>Add swashbuckle.</p>
+<p>The Mapper make data-access coding simpler and more productive by using  property attributes to map a model class’s properties to data values — parameters, reader columns, and (in the case of SQL Server) table-value parameters. This reduces and simplifies the amount of code required to render data.</p>
+<h2 id="overview">Overview</h2>
+<p>Using the Mapper consists of two parts:</p>
+<ul>
+<li>Add attributes to a model class define how each property should be mapped to a data store (if at all)</li>
+<li>Call a method which maps data results using the attribute metadata to populate the properties</li>
+</ul>
+<p>By defining metadata about the names of parameters or result columns, the Mapper can automatically map properties to columns and/or parameters. Several query methods on both Database connections and ShardSets implicitly use the Mapper.</p>
+<h2 id="performance">Performance</h2>
+<p>The ArgentSea Mapper is written to be as high-performance as optimized hand-coded data access code. However, there is a hitch.</p>
+<p>Property attributes can only be retrieved using <em>reflection</em>, which is relatively slow .NET code. To avoid this type of performance penalty on every data access, ArgentSea uses reflection only the first time the mapping is performed; using that metadata it then creates and compiles an “Expression Tree”to build an optimized, compiled mapping. The compiled code is cached in memory and reused for all subsequent calls.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>The Mapper will be relatively slow (and CPU intensive) the <em>first time</em> each model class is mapped to parameters or data. The initial compilation usually takes less than a second. Subsequent calls will execute the data to property mapping at native machine-code speeds. When the application is restarted, the memory is cleared and the compilation overhead occurs again.</p>
+</div>
+<p>Next: <a href="attributes.html">Property Attributes</a></p>
 </article>
           </div>
           
@@ -91,7 +103,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/quickstart2.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Mapping/mapping.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
@@ -117,8 +129,8 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
   </body>
 </html>

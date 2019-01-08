@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>The Hereditary Configuration Hierarchy | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="The Hereditary Configuration Hierarchy | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="the-hereditary-configuration-hierarchy">The Hereditary Configuration Hierarchy</h1>
+
+<p>ArgentSea essentially dispenses with traditional connection strings (although you can use them if you really want to). Instead, it uses the new .NET configuration architecture to manage each attribute as a discrete property. Each property can be managed globally, or at the shardSet, database, or connection level. Lower-level settings inherit values from their parent, which they can also overwrite if their own values are set differently.</p>
+<p>The Hereditary Configuration Hierarchy allows users to configure their data connection information at multiple levels. Child nodes “inherit” any settings of their parent. By dramatically reducing configuration redundancy, it makes handling many connections much more manageable.</p>
+<p>For example, if your network infrastructure supports jumbo frames, you can configure the network packet size <em>once</em>, in the global configuration section, and every ArgentSea connection will default to this value.</p>
+<h2 id="the-global-section">The Global Section</h2>
+<p>The root of the configuration hierarchy is the “global settings” section. All properties set here are applied to every data connection — unless the value is overwritten by lower-level properties (i.e. database, shard set, shard, etc.).</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The SQL Server global section is <code>SqlGlobalSettings</code>. Any attributes specified in this section are applied to all SQL Server connections.</p>
+<p>For example, to globally change both the connection timeout property and packet size:</p>
+<pre><code class="lang-json">{
+  &quot;SqlGlobalSettings&quot;: {
+    &quot;ConnectTimeout&quot;: 3,
+    &quot;PacketSize&quot;: 8196
+  }
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>The PostgreSQL global section is <code>PgGlobalSettings</code>. Any attributes specified in this section are applied to all PostgreSQL connections.</p>
+<p>For example, to globally change both the connection timeout property and packet size:</p>
+<pre><code class="lang-json">{
+  &quot;PgGlobalSettings&quot;: {
+    &quot;Timeout&quot;: 3,
+    &quot;SocketReceiveBufferSize&quot;: 8192,
+    &quot;SocketSendBufferSize&quot;: 8192
+  }
+}
+</code></pre>
+</section>
+</div>
+
+<p>Note that these examples include only the attributes that we want to change. The complete attribute list is described below.</p>
+<h2 id="non-sharded-database-connections">(Non-Sharded) Database Connections</h2>
+<p>The database configuration architecture allow any number of database connections. Each connection is identified by a key, which you also use to request the connection in your code. The key in your configuration must <em>exactly</em> match the keys used in your code (i.e casing, accents, and kana must match — and spelling too).</p>
+<p>Database connections have a three-level hierarchy: global properties, database properties, and properties for distinct read and write endpoints. This illustration shows how various “parent” configuration properties are applied to the child values. Ultimately, these values are combined to build a Read or Write connection.</p>
+<p><img src="../../images/databases-config.svg" alt="Non-Sharded Configuration"></p>
+<p>The upshot is that if you have a simple database connection that handles both reads and writes, you can define this once at the database level; both Read and Write connections will “inherit” this value.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The JSON section for SQL database connections is <code>SqlDbConnections</code>. This is an array of connections. Each connection has a required <code>DatabaseKey</code> property, and whatever connection properties are needed for the connection.</p>
+<pre><code class="lang-json">{
+  &quot;SqlDbConnections&quot;: [
+    {
+      &quot;DatabaseKey&quot;: &quot;MainDb&quot;,
+      &quot;DataSource&quot;: &quot;DbServer1&quot;,
+      &quot;InitialCatalog&quot;: &quot;MainDb&quot;,
+      &quot;WindowsAuth&quot;: true
+    },
+    {
+      &quot;DatabaseKey&quot;: &quot;OtherDb&quot;,
+      &quot;DataSource&quot;: &quot;DbServer1&quot;,
+      &quot;InitialCatalog&quot;: &quot;OtherDb&quot;,
+      &quot;WindowsAuth&quot;: true,
+      &quot;WriteConnection&quot;: {
+        &quot;DataSource&quot;: &quot;DbServer2&quot;
+      }
+    },
+    {
+      &quot;DatabaseKey&quot;: &quot;ThirdDb&quot;,
+      &quot;ReadConnection&quot;: {
+        &quot;DataSource&quot;: &quot;DbServer3&quot;,
+        &quot;InitialCatalog&quot;: &quot;Db1&quot;,
+        &quot;UserName&quot;: &quot;apiUser&quot;,
+        &quot;Password&quot;: &quot;pwd1234&quot;
+      },
+      &quot;WriteConnection&quot;: {
+        &quot;DataSource&quot;: &quot;DbServer4&quot;,
+        &quot;InitialCatalog&quot;: &quot;Db2&quot;,
+        &quot;UserName&quot;: &quot;webUser&quot;,
+        &quot;Password&quot;: &quot;pwd5678&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>The JSON section for PostgreSQL database connections is <code>PgDbConnections</code>. This is an array of connections. Each connection has a required <code>DatabaseKey</code> property, and whatever connection properties are needed for the connection. The application obtains a connection by this <code>DatabaseKey</code> and the characters must be an exact match.</p>
+<pre><code class="lang-json">  &quot;PgDbConnections&quot;: [
+    {
+      &quot;DatabaseKey&quot;: &quot;MainDb&quot;,
+      &quot;Host&quot;: &quot;10.10.25.1&quot;,
+      &quot;Database&quot;: &quot;MainDb&quot;,
+      &quot;WindowsAuth&quot;: true
+    },
+    {
+      &quot;DatabaseKey&quot;: &quot;OtherDb&quot;,
+      &quot;Host&quot;: &quot;10.10.25.2&quot;,
+      &quot;Database&quot;: &quot;OtherDb&quot;,
+      &quot;WindowsAuth&quot;: true,
+      &quot;WriteConnection&quot;: {
+        &quot;Host&quot;: &quot;10.10.25.2&quot;
+      }
+    },
+    {
+      &quot;DatabaseKey&quot;: &quot;ThirdDb&quot;,
+      &quot;ReadConnection&quot;: {
+        &quot;Host&quot;: &quot;10.10.25.4&quot;,
+        &quot;Database&quot;: &quot;MainDb&quot;,
+        &quot;UserName&quot;: &quot;apiUser&quot;,
+        &quot;Password&quot;: &quot;pwd1234&quot;
+      },
+      &quot;WriteConnection&quot;: {
+        &quot;Host&quot;: &quot;10.10.20.25&quot;,
+        &quot;Database&quot;: &quot;MainDb&quot;,
+        &quot;UserName&quot;: &quot;webUser&quot;,
+        &quot;Password&quot;: &quot;pwd5678&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</section>
+</div>
+
+<p>Each connection has two optional child sections, <code>ReadConnection</code> and <code>WriteConnection</code>. These can be set explicitly if you want different values between read and write connections; otherwise, both read and write connections these will inherit from the parent properties.</p>
+<p>In the example above, the first connection has the same values for read and write connections (both Read and Write connections inherit the same values from the parent). The second connection will access a different server for read connections than write connections. The third connection explicitly defines connection information for both the Read and Write connections.</p>
+<p>As mentioned before, <em>any</em> connection property from the complete property list (as listed earlier), can be included in the database definition, read connection, or write connection.</p>
+<h2 id="shard-set-connections">Shard Set Connections</h2>
+<p>ArgentSea shard sets have up to five inheritance levels: global properties, shard set properties, shard set read/write properties, shard properties, and distinct read and write endpoint properties. The corresponding illustration again shows how various “parent” configuration properties are applied to the child values. As with non-sharded databases, these values are combined to build a Read or Write connection.</p>
+<p>When using a scale-out read strategy, all or most of your read connections might have consistent values (a login, for example), which could likely be different than the consistent values used for all of your write connections. A straightforward parent-child inheritance would require you to redundantly specify the same values for every shard’s read or write connection. To better manage this, the ShardSet has an exception to the parent-child hierarchy: a Read and Write configuration section. Values set in the ShardSet Read section will be used by only the read connections in the shards within the set. Likewise, write connections in the shard set inherit from the write parameters.</p>
+<p><img src="../../images/shardsets-config.svg" alt="Non-Sharded Configuration"></p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The root JSON section for SQL shard connections is <code>SqlShardSets</code>. This is an array of shard sets, each of which has an array of shards. Presumably, most applications will not require multiple shard sets, but the capability exists if required.</p>
+<p>Each shard set has a required <code>ShardSetName</code> property. This is how the shard set retrieved from within the application, so the characters must <em>exactly</em> match.</p>
+<p>In addition, a shard set can include a <code>DefaultShardId</code> value, which may be used to determine which shard should be used when this client creates new records.</p>
+<pre><code class="lang-json">{
+  &quot;SqlShardSets&quot;: [
+    {
+      &quot;ShardSetName&quot;: &quot;Primary&quot;,
+      &quot;DefaultShardId&quot;: 1,
+      &quot;UserName&quot;: &quot;webUser&quot;,
+      &quot;Password&quot;: &quot;pwd1234&quot;,
+      &quot;Read&quot;: {
+        &quot;ApplicationIntent&quot;: &quot;ReadOnly&quot;,
+        &quot;UserName&quot;: &quot;webReader&quot;
+      },
+      &quot;Shards&quot;: [
+        {
+          &quot;ShardId&quot;: 0,
+          &quot;DataSource&quot;: &quot;DbServer1&quot;,
+          &quot;FailoverPartner&quot;: &quot;Mirror1&quot;,
+          &quot;InitialCatalog&quot;: &quot;ShardDb1&quot;,
+          &quot;ReadConnection&quot;: {
+            &quot;DataSource&quot;: &quot;Mirror1&quot;,
+          }
+        },
+        {
+          &quot;ShardId&quot;: 1,
+          &quot;DataSource&quot;: &quot;DbServer2&quot;,
+          &quot;FailoverPartner&quot;: &quot;Mirror2&quot;,
+          &quot;InitialCatalog&quot;: &quot;ShardDb2&quot;,
+          &quot;ReadConnection&quot;: {
+            &quot;DataSource&quot;: &quot;Mirror2&quot;,
+          }
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>In this example, there is one shard set with two shards as two databases on the same server. The read connections are directed to a mirror by overwriting the inherited <code>DataSource</code> value with the name of the mirror. Of course, in reality the password should be moved to a different, more secure configuration provider.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>The root JSON section for SQL shard connections is <code>PgShardSets</code>. This is an array of shard sets, each of which has an array of shards. Presumably, most applications will not require multiple shard sets, but the capability exists if required.</p>
+<p>Each shard set has two required properties:</p>
+<ul>
+<li>The <code>ShardSetName</code> property is how the shard set retrieved from within the application, so the characters must <em>exactly</em> match.</li>
+<li>The <code>DefaultShardId</code> value can be used to determine which shard should be used when this client creates new records.</li>
+</ul>
+<pre><code class="lang-json">{
+  &quot;PgShardSets&quot;: [
+    {
+      &quot;ShardSetName&quot;: &quot;Primary&quot;,
+      &quot;DefaultShardId&quot;: 1,
+      &quot;Host&quot;: &quot;DbServer1&quot;,
+      &quot;UserName&quot;: &quot;webUser&quot;,
+      &quot;Password&quot;: &quot;pwd1234&quot;,
+      &quot;Read&quot;: {
+        &quot;UserName&quot;: &quot;webReader&quot;
+      },
+      &quot;Shards&quot;: [
+        {
+          &quot;ShardId&quot;: 0,
+          &quot;Database&quot;: &quot;ShardDb1&quot;,
+          &quot;ReadConnection&quot;: {
+            &quot;DataSource&quot;: &quot;HotStandby1&quot;,
+          }
+        },
+        {
+          &quot;ShardId&quot;: 1,
+          &quot;Database&quot;: &quot;ShardDb2&quot;,
+          &quot;ReadConnection&quot;: {
+            &quot;DataSource&quot;: &quot;HotStandby1&quot;,
+          }
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>In this example, there is one shard set with two shards as two databases on the same server. The read connections are directed to a hot standby replication instance by overwriting the inherited <code>DataSource</code> value with the name of the mirror. Of course, in reality the password should be moved to a different, more secure configuration provider.</p>
+</section>
+</div>
+
+<p>Again, <em>any</em> connection property from the complete property list — as enumerated in the next section — can be included in the shard set definition (to be used by all connections in the shard set), or shard instance (to be used by both Read and Write connections), or to specifically configure the Read and/or Write connection.</p>
+<p>In a typical data sharding implementation, all shard read or write connections are likely to use same login information. Each server may even use the same database name. The Hereditary Configuration Hierarchy makes this easy to manage because the login information and database can be defined once for the shard set, or shard set read/write connection type, then used by every connection.</p>
+<h2 id="connection-attributes">Connection Attributes</h2>
+<p>The complete set of available properties is:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-json">{
+  &quot;ApplicationIntent&quot;: &quot;ReadWrite&quot;,
+  &quot;ApplicationName&quot;: &quot;MyWebApp&quot;,
+  &quot;CircuitBreakerFailureCount&quot;: 20,
+  &quot;CircuitBreakerTestInterval&quot;: 5000,
+  &quot;ConnectTimeout&quot;: 2,
+  &quot;CurrentLanguage&quot;: &quot;english&quot;,
+  &quot;DataSource&quot;: &quot;localhost&quot;,
+  &quot;Encrypt&quot;: false,
+  &quot;FailoverPartner&quot;: &quot;MyMirror&quot;,
+  &quot;InitialCatalog&quot;: &quot;MyDb&quot;,
+  &quot;LoadBalanceTimeout&quot;: 0,
+  &quot;MaxPoolSize&quot;: 100,
+  &quot;MinPoolSize&quot;: 0,
+  &quot;MultipleActiveResultSets&quot;: false,
+  &quot;MultiSubnetFailover&quot;: true,
+  &quot;PacketSize&quot;: 4096,
+  &quot;Password&quot;: &quot;pwd1234&quot;,
+  &quot;PersistSecurityInfo&quot;: false,
+  &quot;Pooling&quot;: true,
+  &quot;Replication&quot;: true,
+  &quot;RetryCount&quot;: 6,
+  &quot;RetryInterval&quot;: 256,
+  &quot;RetryLengthening&quot;: &quot;Fibonacci&quot;,
+  &quot;TransactionBinding&quot;: &quot;&quot;,
+  &quot;TrustServerCertificate&quot;: true,
+  &quot;TypeSystemVersion&quot;: &quot;Latest&quot;,
+  &quot;UserInstance&quot;: &quot;&quot;,
+  &quot;UserName&quot;: &quot;webUser&quot;,
+  &quot;WindowsAuth&quot;: false,
+  &quot;WorkstationID&quot;: &quot;MyPC&quot;
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-json">{
+  &quot;ApplicationName&quot;: &quot;MyWebApp&quot;,
+  &quot;AutoPrepareMinUsages&quot;: 5,
+  &quot;CheckCertificateRevocation&quot;: false,
+  &quot;CircuitBreakerFailureCount&quot;: 20,
+  &quot;CircuitBreakerTestInterval&quot;: 25,
+  &quot;ClientEncoding&quot;: &quot;UTF8&quot;,
+  &quot;CommandTimeout&quot;: 5,
+  &quot;ConnectionIdleLifetime&quot;: 300,
+  &quot;ConnectionPruningInterval&quot;: 10,
+  &quot;ConvertInfinityDateTime&quot;: false,
+  &quot;Database&quot;: &quot;MyDb&quot;,
+  &quot;Encoding&quot;: &quot;UTF8&quot;,
+  &quot;Enlist&quot;: true,
+  &quot;Host&quot;: &quot;10.10.25.1&quot;,
+  &quot;IncludeRealm&quot;: false,
+  &quot;InternalCommandTimeout&quot;: -1,
+  &quot;KeepAlive&quot;: null,
+  &quot;KerberosServiceName&quot;: &quot;postgres&quot;,
+  &quot;LoadTableComposites&quot;: false,
+  &quot;MaxAutoPrepare&quot;: 0,
+  &quot;MaxPoolSize&quot;: 100,
+  &quot;MinPoolSize&quot;: 1,
+  &quot;NoResetOnClose&quot;: false,
+  &quot;Password&quot;: &quot;pwd1234&quot;,
+  &quot;PersistSecurityInfo&quot;: false,
+  &quot;Pooling&quot;: true,
+  &quot;Port&quot;: 5432,
+  &quot;ReadBufferSize&quot;: 8192,
+  &quot;RetryCount&quot;: 15,
+  &quot;RetryInterval&quot;: 10,
+  &quot;RetryLengthening&quot;: &quot;Fibonacci&quot;,
+  &quot;SearchPath&quot;: null,
+  &quot;ServerCompatibilityMode&quot;: &quot;none&quot;,
+  &quot;SocketReceiveBufferSize&quot;: 8192,
+  &quot;SocketSendBufferSize&quot;: 8192,
+  &quot;SslMode&quot;: &quot;Require&quot;,
+  &quot;TcpKeepAlive&quot;: true,
+  &quot;Timeout&quot;: 5,
+  &quot;Timezone&quot;: &quot;America/Los_Angeles&quot;,
+  &quot;TrustServerCertificate&quot;: true,
+  &quot;UsePerfCounters&quot;: false,
+  &quot;UserName&quot;: &quot;webUser&quot;,
+  &quot;UseSslStream&quot;: true,
+  &quot;WindowsAuth&quot;: false,
+  &quot;WriteBufferSize&quot;: 8192
+}
+</code></pre>
+</section>
+</div>
+
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>Displayed are all of the available properties. It is neither necessary nor wise to set all of them. All that is minimally required for most connections is login information, a server or host name, and a database name.</p>
+</div>
+<p>Each level in the Hereditary Configuration Hierarchy can use <em>any</em> of the properties on this list.</p>
+<p>Next: <a href="shardtype.html">The ShardId Data Type</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Configuration/hierarchy.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

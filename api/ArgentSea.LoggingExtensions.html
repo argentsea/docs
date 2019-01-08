@@ -772,6 +772,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void NullShardChildArguments&lt;TShard, TRecord, TChild&gt;(this ILogger logger, string propertyName, ShardChild&lt;TShard, TRecord, TChild&gt; shardChild)
+
     where TShard : IComparable where TRecord : IComparable where TChild : IComparable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -838,6 +839,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void NullShardKeyArguments&lt;TShard, TRecord&gt;(this ILogger logger, string propertyName, ShardKey&lt;TShard, TRecord&gt; shardKey)
+
     where TShard : IComparable where TRecord : IComparable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1620,6 +1622,7 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void TraceShardCmdExecuted&lt;TShard&gt;(this ILogger logger, string commandName, string shardSetKey, TShard shardId, long milliseconds)
+
     where TShard : IComparable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

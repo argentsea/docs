@@ -89,6 +89,7 @@
   <div classs="implements">
     <h5>Implements</h5>
     <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="ArgentSea.ShardChild-3.html">ShardChild</a>&lt;TShard, TRecord, TChild&gt;&gt;</div>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -106,7 +107,8 @@
   <h6><strong>Assembly</strong>: ArgentSea.dll</h6>
   <h5 id="ArgentSea_ShardChild_3_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct ShardChild&lt;TShard, TRecord, TChild&gt; : IEquatable&lt;ShardChild&lt;TShard, TRecord, TChild&gt;&gt; where TShard : IComparable where TRecord : IComparable where TChild : IComparable</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct ShardChild&lt;TShard, TRecord, TChild&gt; : IEquatable&lt;ShardChild&lt;TShard, TRecord, TChild&gt;&gt;, ISerializable where TShard : IComparable where TRecord : IComparable where TChild : IComparable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -138,7 +140,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3__ctor_ArgentSea_DataOrigin__0__1__2_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.%23ctor(ArgentSea.DataOrigin%2C%600%2C%601%2C%602)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L33">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L34">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3__ctor_" data-uid="ArgentSea.ShardChild`3.#ctor*"></a>
   <h4 id="ArgentSea_ShardChild_3__ctor_ArgentSea_DataOrigin__0__1__2_" data-uid="ArgentSea.ShardChild`3.#ctor(ArgentSea.DataOrigin,`0,`1,`2)">ShardChild(DataOrigin, TShard, TRecord, TChild)</h4>
@@ -185,7 +187,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3__ctor_ArgentSea_ShardKey__0__1___2_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.%23ctor(ArgentSea.ShardKey%7B%600%2C%601%7D%2C%602)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L28">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L29">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3__ctor_" data-uid="ArgentSea.ShardChild`3.#ctor*"></a>
   <h4 id="ArgentSea_ShardChild_3__ctor_ArgentSea_ShardKey__0__1___2_" data-uid="ArgentSea.ShardChild`3.#ctor(ArgentSea.ShardKey{`0,`1},`2)">ShardChild(ShardKey&lt;TShard, TRecord&gt;, TChild)</h4>
@@ -222,7 +224,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3__ctor_System_Char__0__1__2_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.%23ctor(System.Char%2C%600%2C%601%2C%602)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L38">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L39">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3__ctor_" data-uid="ArgentSea.ShardChild`3.#ctor*"></a>
   <h4 id="ArgentSea_ShardChild_3__ctor_System_Char__0__1__2_" data-uid="ArgentSea.ShardChild`3.#ctor(System.Char,`0,`1,`2)">ShardChild(Char, TShard, TRecord, TChild)</h4>
@@ -264,6 +266,44 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.%23ctor(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L48">View Source</a>
+  </span>
+  <a id="ArgentSea_ShardChild_3__ctor_" data-uid="ArgentSea.ShardChild`3.#ctor*"></a>
+  <h4 id="ArgentSea_ShardChild_3__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="ArgentSea.ShardChild`3.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">ShardChild(SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary"><p>ISerializer constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ShardChild(SerializationInfo info, StreamingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">info</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -271,7 +311,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_ChildId.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.ChildId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L43">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L55">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_ChildId_" data-uid="ArgentSea.ShardChild`3.ChildId*"></a>
   <h4 id="ArgentSea_ShardChild_3_ChildId" data-uid="ArgentSea.ShardChild`3.ChildId">ChildId</h4>
@@ -301,7 +341,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_Empty.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.Empty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L180">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L192">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_Empty_" data-uid="ArgentSea.ShardChild`3.Empty*"></a>
   <h4 id="ArgentSea_ShardChild_3_Empty" data-uid="ArgentSea.ShardChild`3.Empty">Empty</h4>
@@ -331,7 +371,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_IsEmpty.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.IsEmpty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L70">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L82">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_IsEmpty_" data-uid="ArgentSea.ShardChild`3.IsEmpty*"></a>
   <h4 id="ArgentSea_ShardChild_3_IsEmpty" data-uid="ArgentSea.ShardChild`3.IsEmpty">IsEmpty</h4>
@@ -361,7 +401,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_Key.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.Key%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L24">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L25">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_Key_" data-uid="ArgentSea.ShardChild`3.Key*"></a>
   <h4 id="ArgentSea_ShardChild_3_Key" data-uid="ArgentSea.ShardChild`3.Key">Key</h4>
@@ -391,7 +431,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_Origin.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.Origin%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L47">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L59">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_Origin_" data-uid="ArgentSea.ShardChild`3.Origin*"></a>
   <h4 id="ArgentSea_ShardChild_3_Origin" data-uid="ArgentSea.ShardChild`3.Origin">Origin</h4>
@@ -421,7 +461,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_RecordId.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.RecordId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L62">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L74">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_RecordId_" data-uid="ArgentSea.ShardChild`3.RecordId*"></a>
   <h4 id="ArgentSea_ShardChild_3_RecordId" data-uid="ArgentSea.ShardChild`3.RecordId">RecordId</h4>
@@ -451,7 +491,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_ShardId.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.ShardId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L55">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L67">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_ShardId_" data-uid="ArgentSea.ShardChild`3.ShardId*"></a>
   <h4 id="ArgentSea_ShardChild_3_ShardId" data-uid="ArgentSea.ShardChild`3.ShardId">ShardId</h4>
@@ -483,7 +523,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_Equals_ArgentSea_ShardChild__0__1__2__.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.Equals(ArgentSea.ShardChild%7B%600%2C%601%2C%602%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L78">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L90">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_Equals_" data-uid="ArgentSea.ShardChild`3.Equals*"></a>
   <h4 id="ArgentSea_ShardChild_3_Equals_ArgentSea_ShardChild__0__1__2__" data-uid="ArgentSea.ShardChild`3.Equals(ArgentSea.ShardChild{`0,`1,`2})">Equals(ShardChild&lt;TShard, TRecord, TChild&gt;)</h4>
@@ -530,7 +570,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_Equals_System_Object_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L82">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L94">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_Equals_" data-uid="ArgentSea.ShardChild`3.Equals*"></a>
   <h4 id="ArgentSea_ShardChild_3_Equals_System_Object_" data-uid="ArgentSea.ShardChild`3.Equals(System.Object)">Equals(Object)</h4>
@@ -579,7 +619,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_FromExternalString_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.FromExternalString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L151">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L163">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_FromExternalString_" data-uid="ArgentSea.ShardChild`3.FromExternalString*"></a>
   <h4 id="ArgentSea_ShardChild_3_FromExternalString_System_String_" data-uid="ArgentSea.ShardChild`3.FromExternalString(System.String)">FromExternalString(String)</h4>
@@ -626,7 +666,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_GetHashCode.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L91">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L103">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_GetHashCode_" data-uid="ArgentSea.ShardChild`3.GetHashCode*"></a>
   <h4 id="ArgentSea_ShardChild_3_GetHashCode" data-uid="ArgentSea.ShardChild`3.GetHashCode">GetHashCode()</h4>
@@ -655,10 +695,47 @@
   <div><span class="xref">System.ValueType.GetHashCode()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.GetObjectData(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L199">View Source</a>
+  </span>
+  <a id="ArgentSea_ShardChild_3_GetObjectData_" data-uid="ArgentSea.ShardChild`3.GetObjectData*"></a>
+  <h4 id="ArgentSea_ShardChild_3_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="ArgentSea.ShardChild`3.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">GetObjectData(SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">info</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_ToExternalString.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.ToExternalString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L143">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L155">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_ToExternalString_" data-uid="ArgentSea.ShardChild`3.ToExternalString*"></a>
   <h4 id="ArgentSea_ShardChild_3_ToExternalString" data-uid="ArgentSea.ShardChild`3.ToExternalString">ToExternalString()</h4>
@@ -690,7 +767,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_ToString.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L147">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L159">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_ToString_" data-uid="ArgentSea.ShardChild`3.ToString*"></a>
   <h4 id="ArgentSea_ShardChild_3_ToString" data-uid="ArgentSea.ShardChild`3.ToString">ToString()</h4>
@@ -724,7 +801,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_op_Equality_ArgentSea_ShardChild__0__1__2__ArgentSea_ShardChild__0__1__2__.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.op_Equality(ArgentSea.ShardChild%7B%600%2C%601%2C%602%7D%2CArgentSea.ShardChild%7B%600%2C%601%2C%602%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L172">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L184">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_op_Equality_" data-uid="ArgentSea.ShardChild`3.op_Equality*"></a>
   <h4 id="ArgentSea_ShardChild_3_op_Equality_ArgentSea_ShardChild__0__1__2__ArgentSea_ShardChild__0__1__2__" data-uid="ArgentSea.ShardChild`3.op_Equality(ArgentSea.ShardChild{`0,`1,`2},ArgentSea.ShardChild{`0,`1,`2})">Equality(ShardChild&lt;TShard, TRecord, TChild&gt;, ShardChild&lt;TShard, TRecord, TChild&gt;)</h4>
@@ -776,7 +853,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardChild_3_op_Inequality_ArgentSea_ShardChild__0__1__2__ArgentSea_ShardChild__0__1__2__.md&amp;value=---%0Auid%3A%20ArgentSea.ShardChild%603.op_Inequality(ArgentSea.ShardChild%7B%600%2C%601%2C%602%7D%2CArgentSea.ShardChild%7B%600%2C%601%2C%602%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L176">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardChild.cs/#L188">View Source</a>
   </span>
   <a id="ArgentSea_ShardChild_3_op_Inequality_" data-uid="ArgentSea.ShardChild`3.op_Inequality*"></a>
   <h4 id="ArgentSea_ShardChild_3_op_Inequality_ArgentSea_ShardChild__0__1__2__ArgentSea_ShardChild__0__1__2__" data-uid="ArgentSea.ShardChild`3.op_Inequality(ArgentSea.ShardChild{`0,`1,`2},ArgentSea.ShardChild{`0,`1,`2})">Inequality(ShardChild&lt;TShard, TRecord, TChild&gt;, ShardChild&lt;TShard, TRecord, TChild&gt;)</h4>
@@ -826,6 +903,9 @@
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
   </div>
 </article>
           </div>

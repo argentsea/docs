@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Configuration Deep-Dive | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Configuration Deep-Dive | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="configuration-deep-dive">Configuration Deep-Dive</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>The many environments required by SDLC processes — and possibly several Geo-dispersed production instances too — require application deployments in many distinct environments; managing configurations in each environment is already a challenge. Worse, sharded data sets can create a <em>very large</em> number of client connections, amplifying the configuration problem further. Then, scale-out of read and write endpoints doubles the number of connections. In the end, there can be a <em>lot</em> of connections to manage.</p>
+<p>ArgentSea is designed to make this potentially large number connections manageable. Using the configuration architecture in .NET core and a unique <em>Hereditary Configuration Hierarchy</em>, ArgentSea allows application changes to be promoted through staging environments and deployed into multiple production environments. It does this while storing passwords securely and without the need for messy transformations.</p>
+<h2 id="argentsea-data-connections">ArgentSea Data Connections</h2>
+<p>There are two types of data connections in ArgentSea:</p>
+<ul>
+<li><strong>A <em>database connection</em></strong> - a data set which is hosted by a single database</li>
+<li><strong>A <em>shard set</em></strong>  - a data set spread over multiple database connections</li>
+</ul>
+<p>A shard set represents a set of data that is spread among multiple database servers. This structure is common for high-performance data access, since it is usually more cost effective and predictably scalable to have multiple smaller database servers than to build one massive server. Global applications might try to improve performance for their global users by distributing shards in datacenters around the globe. The ArgentSea data access components allow you to query across multiple servers or a find specific record on its corresponding host server.</p>
+<p>ArgentSea configuration supports any number of database definitions in the <a href="https://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases collection</a>, and any number of <a href="https://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">shard sets</a> in the <a href="https://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.html">ShardSets</a> collection. Each <a href="https://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">shard set</a> can have any number of database connections (shard instances).</p>
+<table border="0" margin="0" padding="0"><tr><td width="50%"><img src="/images/databases.svg"></td><td width="50%"><img src="/images/shardsets.svg"></td></tr></table>
+<p>All data connections have the option of separate read and write connections. If you are scaling-out your data access by sharding your data, you are likely also scaling-out by separating read activity from write operations. Examples of this include <a href="https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups">SQL Server Availability Groups</a>, <a href="https://www.postgresql.org/docs/11/hot-standby.html">PostgreSQL Hot Standby</a>,<a href="https://aws.amazon.com/rds/details/read-replicas/">Amazon RDS Read Replicas</a>, <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-active-geo-replication">Azure SQL Geo-Replication</a>, <a href="https://aws.amazon.com/rds/aurora/details/postgresql-details/">Amazon Aurora Low-Latency Read Replicas</a>, etc.</p>
+<p>This creates a potentially large number of connections. Many of these will likely have similar connection information. For example, all of the connections in a shard set might use the same login information or database name, varying only the server address. To manage this redundancy, ArgentSea offers a unique <em>Hereditary Configuration Hierarchy</em>.</p>
+<p>Next: <a href="hierarchy.html">The Hereditary Configuration Hierarchy</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Configuration/configuration.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

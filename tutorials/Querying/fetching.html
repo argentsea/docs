@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Fetching Data | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Fetching Data | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="fetching-data">Fetching Data</h1>
+
+<p>Retrieving database data consists of running a stored procedure or function on each connection. ArgentSea provides various methods to offer the best approach:</p>
+<h2 id="connection-methods">Connection methods</h2>
+<p>Both database connections and shards have distinct Read and Write connections. The distinction allows the system to “scale out” reads and writes. The Read connection should be used for SELECT-only stored procedures or functions; the Write connection should be used for everything else. For example, you could direct reads to a mirror, active standby, or read-only endpoint, and direct writes to the master or source database.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Even if you do not <em>currently</em> have separate read-only endpoints like mirrors or active standbys, consistent discrimination of Read and Write access will allow you to scale-out in the future.</p>
+</div>
+<p>If only the Read or Write connection is configured, both the Read and Write connections will have the same value.</p>
+<p>These are the methods that can be invoked on a connection:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LookupAsync</strong></td>
+<td>Returns a value from the database. This may be a return value (int) or single output parameter.</td>
+</tr>
+<tr>
+<td><strong>RunAsync</strong></td>
+<td>Executes a database procedure. No results are returned.</td>
+</tr>
+<tr>
+<td><strong>QueryAsync</strong></td>
+<td>Returns the typed object created by a handler delegate.</td>
+</tr>
+<tr>
+<td><strong>MapListAsync</strong></td>
+<td>Returns a List of typed objects from the data results.</td>
+</tr>
+<tr>
+<td><strong>MapReaderAsync</strong></td>
+<td>Returns a typed object created by the <a href="/api/ArgentSea.Mapper.html">Mapper</a> from <strong>DataReader</strong> results.</td>
+</tr>
+<tr>
+<td><strong>MapOutputAsync</strong></td>
+<td>Returns a typed object created by the <a href="/api/ArgentSea.Mapper.html">Mapper</a> from output parameters <em>and</em> <strong>DataReader</strong> results.</td>
+</tr>
+</tbody>
+</table>
+<p>Database objects and shard intances have both <code>Write</code> and <code>Read</code> connections, which executes a stored procedure or function on a single database. All the methods listed are available on either connection (even though it may not make sense to use <code>RunAsync</code> on a read connection).</p>
+<p>The ShardSet has <code>Write</code>, <code>ReadAll</code>, and <code>ReadFirst</code> connections, which execute the procedure or function on every shard. They return either the combined result or the first valid (non-null) result. For example, if you need to look up a user by their login name (rather than their user key), use <code>ReadFirst</code> to query all shards for a matching record, and to return the single expected matching result. Whereas, <code>ReadAll</code> could be used to retrieve all users in any shard with particular attribute. Note that <code>ReadAll</code> methods always return list results.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: center;">Uses Mapper</th>
+<th style="text-align: center;">Db.Read</th>
+<th style="text-align: center;">Db.Write</th>
+<th style="text-align: center;">ShardSet.ReadAll</th>
+<th style="text-align: center;">ShardSet.ReadFirst</th>
+<th style="text-align: center;">ShardSet.Write</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LookupAsync</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><strong>RunAsync</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">•</td>
+</tr>
+<tr>
+<td><strong>QueryAsync</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+</tr>
+<tr>
+<td><strong>MapListAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><strong>MapReaderAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+</tr>
+<tr>
+<td><strong>MapOutputAsync</strong></td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+<td style="text-align: center;">•</td>
+</tr>
+</tbody>
+</table>
+<h2 id="method-arguments">Method Arguments</h2>
+<p>The arguments are largely consistent across all of the methods.</p>
+<h3 id="required-argument-string-sprocname">Required Argument: (string) sprocName</h3>
+<p>This is simply the name of the stored procedure or function to be invoked. This string value is required for every data access method.</p>
+<p>The general practice is to provide a stored procedure/function name with string constant, like this:</p>
+<pre><code class="lang-csharp">await database.RunAsync(&quot;ws.MyProcedureName&quot;, parameters, cancellationToken);
+</code></pre>
+<p>As larger applications evolve, however, one can lose track of which database procedures are <em>actually being used</em> by the application. It is not unusual for a custom application to have hundreds of data procedures, only a fraction of which are used.</p>
+<p><strong>Pro tip:</strong> you might consider consistently referencing procedure names via a static class, like this.</p>
+<pre><code class="lang-csharp">internal static class DataProcedures
+{
+  //This should be a COMPREHENSIVE list of stored procedure names.
+  //You can use the reference count to determine what is in use.
+  public static string StoreAdd { get;  } = &quot;ws.StoreAdd&quot;;
+  public static string StoreList { get; } = &quot;ws.StoreList&quot;;
+  public static string StoreLocationGet { get; } = &quot;ws.StoreLocationGet&quot;;
+  public static string StoreLocationDetailsGet { get;  } = &quot;ws.StoreLocationDetailsGet&quot;;
+  public static string StoreLocationsAllByUser { get; } = &quot;ws.StoreLocationsAllByUser&quot;;
+  public static string StoreLocationsByGroupIDs { get; } = &quot;ws.StoreLocationsByGroupIDs&quot;;
+  // ...
+}
+// Now you can reference the procedure name like this:
+await database.Write.RunAsync(DataProcedures.StoreAdd, parameters, cancellationToken);
+
+</code></pre>
+<p>Centralizing the procedure name list allows reviewers to see which procedures are actually used by the application (and ensure that non are misspelled). Surfacing them using static properties, as in the example, allows Visual Studio to provide a “reference count” for each procedure (constants do not do this). When the method that called this stored procedure/function is removed from the code, the zero “reference count” will make it obvious that, even though the name defined, it is not actually used.</p>
+<p>The reference count popup data even allows you to find all of the methods that invoke that stored procedure/function. This can be helpful as you prune different data procedures that seem to do the same thing.</p>
+<h3 id="required-argument-dbparametercollection-parameters">Required Argument: (DbParameterCollection) parameters</h3>
+<p>The abstract <code>DbParameterCollection</code> is implemented by ArgentSea’s <a href="/api/ArgentSea.QueryParameterCollection.html">QueryParameterCollection</a> object. Because it is also implemented by the provider-specific command.Parameters property, if you have a command with valid parameters defined (for some reason), you can use that too.</p>
+<p>This value can be null if there are no parameters.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>When working with output parameters in standard ADO.NET, you may habitually maintain a variable reference to any output parameters you created before adding it to the collection. This makes it easy to get the output parameter value after the query is executed.<br>
+This approach will not work with sharded data, because ArgentSea will <em>copy</em> the parameter set before executing the stored procedure/function. Any referenced output parameters will <em>not</em> contain a data result.</p>
+</div>
+<h3 id="optional-shardset-argument-ienumerableshardparametervaluetshard-shardparametervalues">Optional ShardSet Argument: (IEnumerable&lt;ShardParameterValue&lt;TShard&gt;&gt;) shardParameterValues</h3>
+<p>Some shard query method overloads accept a <code>ShardParameterValue</code> object. This object allows you to specify which shards should be queried and even provide distinct parameter values to each shard.</p>
+<p>For example, suppose your User record returns a list of “Friends”. The Friend detail data may be hosted on other shards, but not on <em>every</em> shard. Building a list of <code>ShardParameterValue</code> objects from the User results would limit the subsequent queries to just the relevant shards.</p>
+<p>The <code>ShardParameterValue</code> type has a ShardId and an optional parameter name and value. Only shards with at least one listed ShardId will be queried. If a parameter name is also specified, the corresponding parameter will be set to that value on the indicated shard. You can include multiple parameters/values on the same shard by repeating the shardId.</p>
+<h3 id="optional-shardset-argument-string-shardparametername">Optional ShardSet Argument: (string) shardParameterName</h3>
+<p>Some shard query overloads also accept the name of the parameter that represents the name of the parameter that should be set to shardId value. If specified, ArgentSea will set this parameter value to the current shardId value as it executes each query.</p>
+<p>For example, a query for a list of records that spans shards could be enhanced if the query new the value of its own ShardId. Alternatively, because a shard misconfiguration might result in catastrophic data corruption (due to the high likelihood of duplicate record identities between shards), you might require that stored procedures or functions that write to the database also have a ShardId parameter that they validate is correct.</p>
+<h3 id="optional-argument-queryresultmodelhandlertshard-targ-tmodel-resulthandler">Optional Argument: (QueryResultModelHandler&lt;TShard, TArg, TModel&gt;&gt;) resultHandler</h3>
+<p>This is only used in the QueryAsync methods. As described earlier, the data query process is divided into two processes. The resultHandler is a delegate that may be invoked concurrently by distinct, shard-specific threads.</p>
+<p>If you use a data access method prefixed with Map*, this argument is not required because the delegate provided by the Mapper is used. If the Mapper does not suit your purpose, then a custom delegate must be provided to a Query* method.</p>
+<p>Your custom delegate can have an argument that provides additional data or context information. Information on how to build a custom delegate is provided below.</p>
+<h3 id="optional-argument-bool-istopone">Optional Argument: (bool) isTopOne</h3>
+<p>Some overloads expose the isTopOne option, which allows a minor optimization when only a single result is expected. For example, if you are looking up a record by its key, you don’t need to allocate space for multiple results when only a single result can ever be returned.</p>
+<h3 id="optional-argument-targ-optionalargument">Optional Argument: (TArg) optionalArgument</h3>
+<p>If you are creating a custom data handling method, you may need to provide additional data or context information. This argument may be generically typed. The provided object is passed to your result handling delegate.</p>
+<h3 id="required-argument-cancellationtoken-cancellationtoken">Required Argument: (CancellationToken) cancellationToken</h3>
+<p>The cancellation token allow you to cancel asynchronous operations. ASP.NET MVC provides cancellation tokens and these can be passed along. In this way, when a user abandons their session, any uncompleted queries can be cancelled.</p>
+<h2 id="the-mapreader-and-mapoutput-methods">The MapReader* and MapOutput* Methods</h2>
+<p>The <strong>MapReader*</strong> and <strong>MapOutput*</strong> methods are similar. Both use the Mapping attributes to resolve data to Model objects. The <strong>MapOutput*</strong> method uses <em>output parameters</em> to build the root result object; the <strong>MapReader</strong> methods use a (single record) <strong>DataReader</strong> result instead.</p>
+<p>So, if you use output parameters (which is potentially more performant), use <strong>MapOutput*</strong>. If you use standard SELECTs to return your data, use <strong>MapReader*</strong>.</p>
+<p>Both methods support multiple result sets that populate properties that contain Lists of related data. For example, you might have an Order record with a property containing an OrderItem List. The list items come from (additional) DataReader results. You can have up to eight of these List properties.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>The order in which your attribute-mapped class appears in the generic definitions should be the same order as the list data results in the procedure output.</p>
+</div>
+<p>An example of calling each would be:</p>
+<pre><code class="lang-csharp">// In this example, ws.GetOrderDetails returns Order data in output parameters:
+_database.MapOutputAsync&lt;Order&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+// Here, ws.GetOrderDetails returns simple Order data in a single-row SELECT:
+_database.MapReaderAsync&lt;Order&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+
+// Now ws.GetOrderDetails returns Order data in output parameters and a list of OrderItem from a SELECT:
+_database.MapOutputAsync&lt;Order, OrderItems&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+// Finally, ws.GetOrderDetails returns Order data in a single-row SELECT, then a list of OrderItems from a 2nd SELECT:
+_database.MapReaderAsync&lt;Order, Order, OrderItems&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+
+// Expanding this, we now have output parameters and three SELECTs:
+_database.MapOutputAsync&lt;Store, OrderHistory, Locations, Contact&gt;(&quot;ws.GetStoreDetails&quot;, parameters, cancellation);
+// Likewise, the procedure now returns four SELECTs, and the third one is a single-row SELECT with the base customer data,
+// the remaining select are used to build customer property lists (order history, locations, and contacts):
+_database.MapReaderAsync&lt;Store, OrderHistory, Store, Locations, Contact&gt;(&quot;ws.GetStoreDetails&quot;, parameters, cancellation);
+</code></pre>
+<p>In both methods, the generic type in the <em>first</em> position is the return type. If additional results are included in the result stream, the subsequent types define the order in which they are expected in the DataReader results. You can have up to eight DataReader results streamed to distinct List properties.</p>
+<ul>
+<li>In the <strong>MapOutput*</strong> example, then, the result type is Order and the first DataReader result is a series of OrderItems.</li>
+<li>In the <strong>MapOutput*</strong> example, the result type is Order, and the first DataReader result is the Order data, and the second DataReader result is a series of OrderItems.</li>
+</ul>
+<h2 id="the-query-methods">The Query* Methods</h2>
+<p>The <strong>Query*</strong> methods provide the most control, as you are given raw ADO.NET query results to construct whatever return value you like. You can return a list, a dictionary, or any type of Model object. When you call a <strong>Query*</strong> method, you must provide a handler method whose signature corresponds to the <a href="/api/ArgentSea.QueryResultModelHandler-3.html">QueryResultModelHandler</a> delegate.</p>
+<p>There are two obvious scenarios for the <strong>Query*</strong> methods:</p>
+<ul>
+<li>The Model class is defined in a library, so Mapping attributes cannot be added.</li>
+<li>The rendering a complex return value is beyond the capabilities of the Mapper.</li>
+</ul>
+<p>The delegate even has a parameter that allows you to provide custom data (through the query method) with which to construct your result object.</p>
+<p>The delegate must be thread-safe.  The <a href="/api/ArgentSea.ShardSetsBase-2.ShardSet.html">ShardSet</a> manages the complexity of initializing multiple queries on multiple connections and multiple results, but it is the delegate that takes the database results (from each connection/thread) and creates an object result.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The Mapper provides several thread-safe, high-performance <a href="/api/ArgentSea.QueryResultModelHandler-3.html">QueryResultModelHandler</a> delegates. In fact, providing a Mapper delegate to the <strong>Query*</strong> method is exactly how the <strong>MapOutput*</strong> an <strong>MapOutput*</strong> methods are implemented. You can use this yourself to extend the Mapper; just provide your own delegate that calls the Mapper in turn.</p>
+</div>
+<p>Details on implementing the <a href="/api/ArgentSea.QueryResultModelHandler-3.html">QueryResultModelHandler</a> delegate is in the next section.</p>
+<p>Next: <a href="handling.html">Handling Data Results</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Querying/fetching.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

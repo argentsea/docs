@@ -8305,6 +8305,14 @@ references:
   fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ShardChild(System.Char, TShard, TRecord, TChild)
   nameWithType: ShardChild<TShard, TRecord, TChild>.ShardChild(Char, TShard, TRecord, TChild)
   nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ShardChild(Char, TShard, TRecord, TChild)
+- uid: ArgentSea.ShardChild`3.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: ShardChild(SerializationInfo, StreamingContext)
+  href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:ArgentSea.ShardChild`3.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: ArgentSea.ShardChild<TShard, TRecord, TChild>.ShardChild(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ShardChild(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: ShardChild<TShard, TRecord, TChild>.ShardChild(SerializationInfo, StreamingContext)
+  nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ShardChild(SerializationInfo, StreamingContext)
 - uid: ArgentSea.ShardChild`3.#ctor*
   name: ShardChild
   href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3__ctor_
@@ -8408,6 +8416,23 @@ references:
   fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).GetHashCode
   nameWithType: ShardChild<TShard, TRecord, TChild>.GetHashCode
   nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).GetHashCode
+- uid: ArgentSea.ShardChild`3.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:ArgentSea.ShardChild`3.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: ArgentSea.ShardChild<TShard, TRecord, TChild>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: ShardChild<TShard, TRecord, TChild>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).GetObjectData(SerializationInfo, StreamingContext)
+- uid: ArgentSea.ShardChild`3.GetObjectData*
+  name: GetObjectData
+  href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_GetObjectData_
+  commentId: Overload:ArgentSea.ShardChild`3.GetObjectData
+  isSpec: "True"
+  fullName: ArgentSea.ShardChild<TShard, TRecord, TChild>.GetObjectData
+  fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).GetObjectData
+  nameWithType: ShardChild<TShard, TRecord, TChild>.GetObjectData
+  nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).GetObjectData
 - uid: ArgentSea.ShardChild`3.IsEmpty
   name: IsEmpty
   href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_IsEmpty
@@ -8588,6 +8613,14 @@ references:
   fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).ShardKey(System.Char, TShard, TRecord)
   nameWithType: ShardKey<TShard, TRecord>.ShardKey(Char, TShard, TRecord)
   nameWithType.vb: ShardKey(Of TShard, TRecord).ShardKey(Char, TShard, TRecord)
+- uid: ArgentSea.ShardKey`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: ShardKey(SerializationInfo, StreamingContext)
+  href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:ArgentSea.ShardKey`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: ArgentSea.ShardKey<TShard, TRecord>.ShardKey(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).ShardKey(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: ShardKey<TShard, TRecord>.ShardKey(SerializationInfo, StreamingContext)
+  nameWithType.vb: ShardKey(Of TShard, TRecord).ShardKey(SerializationInfo, StreamingContext)
 - uid: ArgentSea.ShardKey`2.#ctor*
   name: ShardKey
   href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2__ctor_
@@ -8674,6 +8707,23 @@ references:
   fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).GetHashCode
   nameWithType: ShardKey<TShard, TRecord>.GetHashCode
   nameWithType.vb: ShardKey(Of TShard, TRecord).GetHashCode
+- uid: ArgentSea.ShardKey`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:ArgentSea.ShardKey`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: ArgentSea.ShardKey<TShard, TRecord>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: ShardKey<TShard, TRecord>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: ShardKey(Of TShard, TRecord).GetObjectData(SerializationInfo, StreamingContext)
+- uid: ArgentSea.ShardKey`2.GetObjectData*
+  name: GetObjectData
+  href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_GetObjectData_
+  commentId: Overload:ArgentSea.ShardKey`2.GetObjectData
+  isSpec: "True"
+  fullName: ArgentSea.ShardKey<TShard, TRecord>.GetObjectData
+  fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).GetObjectData
+  nameWithType: ShardKey<TShard, TRecord>.GetObjectData
+  nameWithType.vb: ShardKey(Of TShard, TRecord).GetObjectData
 - uid: ArgentSea.ShardKey`2.IsEmpty
   name: IsEmpty
   href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_IsEmpty
@@ -21015,7 +21065,7 @@ references:
   nameWithType: UnexpectedSqlResultException.UnexpectedSqlResultException
 - uid: Microsoft.Extensions.DependencyInjection
   name: Microsoft.Extensions.DependencyInjection
-  href: api-sql/Microsoft.Extensions.DependencyInjection.html
+  href: api-pg/Microsoft.Extensions.DependencyInjection.html
   commentId: N:Microsoft.Extensions.DependencyInjection
   fullName: Microsoft.Extensions.DependencyInjection
   nameWithType: Microsoft.Extensions.DependencyInjection
