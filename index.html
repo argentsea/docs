@@ -77,7 +77,7 @@
 <p>The goal of ArgentSea is to simplify the development process for delivering highly scalable and supportable applications.</p>
 <h2 id="massive-scalability">Massive Scalability</h2>
 <p>The essential ingredients for building a service that can scale to any demand include highly efficient code, reducing server round-trips, and the scale-out of reads and writes.</p>
-<p>Highly scalable data typically means data “<a href="tutorials/sharding.md">sharding</a>” — the practice of spreading data across many database servers. <a href="tutorials/sharding.md">Data sharding</a> offers the most cost effective way to scale your data application as demand grows. To scale your application globally, data sharding offers the ability locate copies of your data across regional datacenters, so that data is located closer to your customers.</p>
+<p>Highly scalable data typically means data “<a href="tutorials/Sharding/sharding.html">sharding</a>” — the practice of spreading data across many database servers. <a href="tutorials/Sharding/sharding.html">Data sharding</a> offers the most cost effective way to scale your data application as demand grows. To scale your application globally, data sharding offers the ability locate copies of your data across regional datacenters, so that data is located closer to your customers.</p>
 <p>ArgentSea helps deliver highly optimized data access through data-to-object mapping without the overhead of reflection. The consistent use of stored procedures/functions reduces both SQL compilation overhead and support/maintenance costs. Because ArgentSea can handle multiple results from the same query, the number of server round-trips can be reduced — a huge performance win.</p>
 <p>While the genesis of ArgentSea was to support the complex requirements of data sharding, it will likely be useful for high-performance data access even if you are not accessing sharded data. Especially with a cloud infrastructure, more efficient code requires fewer resources and this translates into ongoing cost savings.</p>
 <h2 id="mission-critical-supportability">Mission Critical Supportability</h2>
@@ -85,8 +85,8 @@
 <p>The data framework will attempt to recover from transient errors by automatically retrying the data access; you have control over how long and how often. If repeated failures occur, the system will “circuit break”, so that data failures have less chance of bringing down the whole application.</p>
 <p>The robust logging implementation allows you to log to any provider, including <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net-core">Application Insights</a>, <a href="https://github.com/aws/aws-logging-dotnet#aspnet-core-logging">CloudWatch</a>, the file system, Windows event logs, and more.</p>
 <p>Database passwords can be secured using <a href="https://azure.microsoft.com/en-us/services/key-vault/">Key Vault</a>, <a href="https://aws.amazon.com/secrets-manager/">Secrets Manager</a>, <a href="https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets">User Secrets</a>, <a href="https://docs.docker.com/engine/swarm/secrets/">Docker secrets</a>, or other secure storage.</p>
-<p>The configuration architecture simplifies the management of large numbers of data connections, reducing redunancy while making it easy to deploy a release though staging environments.</p>
-<h2 id="code-clarity-and-maintenance">Code Clarity and Maintenance</h2>
+<p>The configuration architecture simplifies the management of large numbers of data connections, reducing redundancy while making it easy to deploy a release though staging environments.</p>
+<h2 id="maintainability-via-code-clarity">Maintainability via Code Clarity</h2>
 <p>Supportability is about more than managing the operational burden. It also includes simplicity in understanding application behavior, ease in extending it with new features and requirements, and a discoverable path to resolving bugs. When long-lived applications must be supported by teams that are not the original authors, this becomes especially critical.</p>
 <p>The ArgentSea Mapper helps reduce the burden of code maintenance by simplifying data access code. Schema mapping throughout the application can be managed with simple attributes on the Model classes.</p>
 <p>The logging functionality can also provide substantial insight to developers, including the dynamic code compilation behind the Mapper, misconfigurations, and data errors.</p>
@@ -126,22 +126,8 @@
 </div>
 <p>Stored procedures enable <em>loose coupling</em> between the application domain and the data domain. They generally perform better and offer better security too. This is why ArgentSea was built to work with stored procedures. Because ArgentSea encourages you to do your data-domain work in SQL and your application work in .NET, both your developers and your database administrators have far better control over your data.</p>
 <h2 id="getting-started">Getting Started</h2>
-<p>If you like to understand everything first, explore the <a href="tutorials/index.html">deep dives</a>; if you prefer to learn by getting your hands dirty, jump into the <a href="#walkthroughs">walkthroughs</a>.</p>
-<h3 id="deep-dives">Deep Dives</h3>
-<ol>
-<li>Installing ArgentSea (coming soon).</li>
-<li><a href="tutorials/Configuration/configuration.html">Setting up your configuration</a></li>
-<li><a href="tutorials/Querying/querying.html">Querying</a></li>
-<li><a href="tutorials/Mapping/mapping.html">Mapping</a></li>
-<li><a href="tutorials/Sharding/sharding.html">Using shards</a></li>
-</ol>
-<h3 id="walkthroughs">Walkthroughs</h3>
-<ol>
-<li><a href="tutorials/quickstart1.html">QuickStart 1</a> - Setting up and configuring an initial project</li>
-<li><a href="tutorials/quickstart2.html">QuickStart 2</a> - Adding shard handling and queries</li>
-</ol>
-<h2 id="reference">Reference</h2>
-<p>You can find the most detailed information in the <a href="/reference/apis.html">API section</a>.</p>
+<p>Explore the <a href="tutorials/index.html">deep dives</a> to understand the logic and services or ArgentSea; if you prefer to learn by getting your hands dirty, jump into the <a href="tutorials.quickstart1.md">walkthroughs</a>. You can find the most detailed information in the <a href="/reference/apis.html">API section</a>.</p>
+<p>Next: <a href="tutorials/index.html">Explore ArgentSea’s functionality</a></p>
 </article>
           </div>
           

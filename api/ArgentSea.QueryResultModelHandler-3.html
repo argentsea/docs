@@ -91,7 +91,6 @@
   <h5 id="ArgentSea_QueryResultModelHandler_3_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public delegate TModel QueryResultModelHandler&lt;TShard, TArg, TModel&gt;(TShard shardId, string sprocName, TArg optionalArgument, DbDataReader rdr, DbParameterCollection parameters, string connectionDescription, ILogger logger)
-
     where TShard : IComparable;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

@@ -1173,7 +1173,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.DatabasesBase-1.DataConnection.html",
-          "hash": "90yXShLCiRRHk7sA6RNYkw=="
+          "hash": "meViscHFBYtZtOAR3aIS4A=="
         }
       },
       "is_incremental": false,
@@ -1281,7 +1281,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.IShardConnectionConfiguration-1.html",
-          "hash": "BNs5ZNkdYHJ4gXFasO2HpQ=="
+          "hash": "ExLv/9Yq0y5N5tLZFytd5Q=="
         }
       },
       "is_incremental": false,
@@ -1293,7 +1293,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.IShardSetConnectionsConfiguration-1.html",
-          "hash": "l5Li8xzt3RLwHCBNEJci4g=="
+          "hash": "dPaqMQmxa1jYzP6xyUIzbg=="
         }
       },
       "is_incremental": false,
@@ -1305,7 +1305,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.IShardSetsConfigurationOptions-1.html",
-          "hash": "Fol+JW8RUPKRthy4UXDoZA=="
+          "hash": "Wo53YzCOCG60V6eYF29GqA=="
         }
       },
       "is_incremental": false,
@@ -1353,7 +1353,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.LoggingExtensions.html",
-          "hash": "D1bkGYvwBlP0jB0esM+EPA=="
+          "hash": "01B45wmzNYcfr3VqhvwXTw=="
         }
       },
       "is_incremental": false,
@@ -1401,7 +1401,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.Mapper.DummyType.html",
-          "hash": "aMoe0boO+bHDSfgKAkZJJQ=="
+          "hash": "B69Fv9Qo3EcbmDbG6qlaAg=="
         }
       },
       "is_incremental": false,
@@ -1413,7 +1413,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.Mapper.html",
-          "hash": "cBS9QJfJv+kt21sBOXNh4w=="
+          "hash": "JmbYnfD9lqMhCahIHwXAnQ=="
         }
       },
       "is_incremental": false,
@@ -1461,7 +1461,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.QueryResultModelHandler-3.html",
-          "hash": "SghpGoAE4Rhb71tNJGXDLg=="
+          "hash": "1s0fKeb6PoQ2p4GBGUfUaA=="
         }
       },
       "is_incremental": false,
@@ -1521,7 +1521,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.ShardParameterValue-1.html",
-          "hash": "2YRdDWru26WftqWv0nrvyg=="
+          "hash": "R5E27bApMKkiL5WEVEgp9w=="
         }
       },
       "is_incremental": false,
@@ -1533,7 +1533,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.ShardSetsBase-2.ShardDataConnection.html",
-          "hash": "7m75eKz0hFQDRzm6S+r4FQ=="
+          "hash": "2STPjRGyR2bvqhprfjGG2Q=="
         }
       },
       "is_incremental": false,
@@ -1569,7 +1569,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.ShardSetsBase-2.ShardSetReadAll.html",
-          "hash": "D2rZAcm0uEzh9InoGpJHWQ=="
+          "hash": "BSfIGobaksNVkvxy0/PccQ=="
         }
       },
       "is_incremental": false,
@@ -1581,7 +1581,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.ShardSetsBase-2.ShardSetReadFirst.html",
-          "hash": "kiWvpvIwiO0Jy6WmnyCn2A=="
+          "hash": "rMsyUehFsgw0ufQjAxLs8g=="
         }
       },
       "is_incremental": false,
@@ -1593,7 +1593,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ArgentSea.ShardSetsBase-2.ShardSetWrite.html",
-          "hash": "DKGnqx7isz7atrJtgonPpQ=="
+          "hash": "FQyf1drQh7NhT2RI4l12zA=="
         }
       },
       "is_incremental": false,
@@ -1750,6 +1750,17 @@
         ".html": {
           "relative_path": "documentation/toc.html",
           "hash": "OJIfE2POoRA1xBsh+RnEFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/ArgentSeaTitle.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/ArgentSeaTitle.jpg"
         }
       },
       "is_incremental": false,
@@ -1918,7 +1929,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "V8sbOshLEAYxvERxT5VCUQ=="
+          "hash": "jAv1Llfg9w5CscLsTVFUPA=="
         }
       },
       "is_incremental": false,
@@ -1990,7 +2001,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Configuration/hierarchy.html",
-          "hash": "5DUBVYWkSsm9GvwUKzfWNw=="
+          "hash": "RS7Oy/4ufToo+eaxHrtiLw=="
         }
       },
       "is_incremental": false,
@@ -2002,7 +2013,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Configuration/loading.html",
-          "hash": "6iNlzLIdtxQSBdpUHnl8hg=="
+          "hash": "6sGMJEPTmx4usYmOaNPSCw=="
         }
       },
       "is_incremental": false,
@@ -2014,7 +2025,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Configuration/resilience.html",
-          "hash": "Zb0lGQyeuXTDx0gf+alQoQ=="
+          "hash": "isN9WoI1Izm5HE+SrsA9qQ=="
         }
       },
       "is_incremental": false,
@@ -2026,7 +2037,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Configuration/shardtype.html",
-          "hash": "kRriqGkw2Gjq0eRn639HbA=="
+          "hash": "fFOz1KtNbFa5ps0W7gxJAw=="
         }
       },
       "is_incremental": false,
@@ -2038,7 +2049,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Configuration/simplifying.html",
-          "hash": "jbuFxyEDKpdJnxwQY01O7g=="
+          "hash": "7j0LcHs+PQ4dFikoJ1WUqQ=="
         }
       },
       "is_incremental": false,
@@ -2062,7 +2073,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Mapping/logging.html",
-          "hash": "JgtM8JWIjb+JEgsfs1z5pQ=="
+          "hash": "kRb5l2R9eH5ZO53jUHczWw=="
         }
       },
       "is_incremental": false,
@@ -2110,7 +2121,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Querying/handling.html",
-          "hash": "NW7fcxyvoDkvk1taArnGfg=="
+          "hash": "d4XiLdJfmUTk23YkKOfT5g=="
         }
       },
       "is_incremental": false,
@@ -2185,7 +2196,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/index.html",
-          "hash": "BBEuo09/3InZJQOs8raEjQ=="
+          "hash": "WJEBRgPIzQnLrNT7DBcomQ=="
         }
       },
       "is_incremental": false,
@@ -2221,7 +2232,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/setup.html",
-          "hash": "HB+jvc7Opiq8SB0cdY+k2A=="
+          "hash": "EIzd10pWG0Mp4g7Bmga9UQ=="
         }
       },
       "is_incremental": false,
@@ -2233,7 +2244,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/toc.html",
-          "hash": "JjdNlSJlnr7WLDg/9gUzoQ=="
+          "hash": "Gke1/0ISga0DdUilDQ2bwQ=="
         }
       },
       "is_incremental": false,
@@ -2255,14 +2266,14 @@
           "can_incremental": true,
           "incrementalPhase": "build"
         },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }
