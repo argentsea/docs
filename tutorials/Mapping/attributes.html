@@ -464,7 +464,7 @@ public class Subscriber
 </tbody>
 </table>
 <p>¹ The Enum name is saved as string.</p>
-<p>² The Enum value is saved based on its underlying numeric value. The Enum integer <em>base type</em> (int, short, byte, etc.) must match the database type.</p>
+<p>² The Enum value is saved based on its underlying numeric value. The Enum integer <em>base type</em> (int, short, etc.) must match the database type.</p>
 <p>³ This data type is not intended for general use.</p>
 <p>⁴ The Npgsql type is used to create parameters; the Property type is used to read them.</p>
 </section>
@@ -488,15 +488,18 @@ public class Subscriber
 <p>Enums can inherit from several base types (byte, short, int, etc.). If you are saving to a numeric database column, the base type must correctly correspond to the database data type. Enums are Int32 by default.</p>
 </div>
 <p>Nullable Enum types will read or write as a DbNull when the value is null.</p>
-<h3 id="shardkey-and-shardchild"><a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a></h3>
-<p>These are special types and are discussed in detail in the <a href="../Sharding/sharding.html">sharding</a> section.</p>
-<h3 id="the-maptomodel-attribute">The <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> attribute</h3>
-<p>Complex object models may include properties that are objects with their <em>own</em> properties, which also need to be mapped to the underlying data.</p>
-<p>For example, you might have an Address object that you use for Customers, Vendors, Contacts, Stores, and more. The Vendor class, then, has a property of type Address, and the Customer class has an Address property too. Since the address information is included with the results from the database, the Mapper should map the matching values to the Address object. The <code>MapToModel</code> attribute tells the Mapper to do this.</p>
-<p>Of course, the property’s type must also have data mapping attributes on the appropriate class properties. The type referenced by a MapToModel attribute can <em>itself</em> have a object property with a MapToModel attribute.</p>
-<p>In other words, a <em>Store</em> object can have a property of type <em>Address</em>, which might in turn have a property of type <em>Coordinates</em>. If the <em>Coordinates</em> type has two properties, each with a <code>MapToDouble</code> attribute, the Mapper will be able to map the Latitude and Longitude values to the <em>Store.Address.Latitude</em> and <em>Store.Address.Longitude</em> fields respectively.</p>
-<p>Properties with the <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> attribute cannot be null, so the root object must be instantiate all of its properties when it is created.</p>
-<p>Next: <a href="targets.html">Mapping Targets</a></p>
+<h2 id="model-inheritance">Model Inheritance</h2>
+<p>Models which inherit from other Model classes also inherit the attributes of the parent class. This can be very useful when some queries return a subset of the data entities overall columns.</p>
+<h2 id="properties-with-object-types">Properties with Object Types</h2>
+<p>This page has described simple 1:1 mapping between database columns and model properties. This is the heart of the Mapper. However, mapping sometimes requires more complex types, built from these simple relationships.</p>
+<p>In addition to the types already described, the Mapper supports three additional types of Model properties:</p>
+<ul>
+<li>Properties which contain a second Model class</li>
+<li>Properties which contain lists of Model classes</li>
+<li>Sharded record identifiers</li>
+</ul>
+<p>These will be explored in the next section.</p>
+<p>Next: <a href="complexattributes.html">Complex Attributes</a></p>
 </article>
           </div>
           

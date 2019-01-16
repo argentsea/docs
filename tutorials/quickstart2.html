@@ -79,10 +79,306 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="quickstart-two">QuickStart Two</h1>
 
-<h2 id="this-document-is-still-under-construction">This document is still under construction</h2>
-<p>The <a href="quickstart1.html">previous QuickStart</a> introduced configuration and mapping. This tutorial extends that information while working with a sharded data set.</p>
-<p>Create a new ASP.NET Core project, selecting the API project option.</p>
-<p>Add swashbuckle.</p>
+<p>The <a href="quickstart1.html">previous QuickStart</a> introduced configuration and mapping. This tutorial extends that information while working with a sharded data set. This tutorial also extends the mapping functionality to include list and object properties on the model class.</p>
+<p>Sharded data introduces two complexities:</p>
+<ul>
+<li>How do I uniquely identify and locate a record, which could be on any shard?</li>
+<li>How do I manage data on one shard and related data on a foreign shard?</li>
+</ul>
+<p>This walkthrough illustrates how both challenges are met.</p>
+<h2 id="create-the-project">Create the Project</h2>
+<p>Although you can download QuickStart2 as a completed project, this walkthrough will guide you as if this is a new project.</p>
+<p>Create a new “ASP.NET Core Web Application” project. When prompted, select the “API” project type. Once the solutions is created, open your dependencies and add the following NuGet packages.</p>
+<ul>
+<li><strong>ArgentSea.Sql</strong> or <strong>ArgentSea.Pg</strong> - for SQL Sever or PostgreSQL databases respectively</li>
+<li><strong>Swashbuckle.Aspnetcore</strong> - for <a href="https://swagger.io/">Swagger</a>] and for invoking the API without creating a client</li>
+</ul>
+<p>To follow a standard convention for an MVC project, create folders for <strong>Models</strong>, <strong>InputModels</strong>, and <strong>Stores</strong> (or “Repositories”).</p>
+<h2 id="the-sample-data">The Sample Data</h2>
+<p>Our sample application is going to track Customers. Customers can have multiple Locations (1:∞). Customers can also have Contacts, but the Contacts can belong to more than one Customer (∞:∞). The Contact may not exist in the same shard as the Customer.</p>
+<p>The data is set up this way to illustrate one of the difficulties with sharded data: managing relationships between sharded records. In this case, a Customer may be associated with a Contact on any shard. Consequently, querying the Customer’s Contacts may require accessing multiple shards, deleting a customer means removing the Customer link from each Contact, which could be on any shard, and updating a Customer’s Contacts could also impact multiple shards.</p>
+<p>The SQL for the sample data is found in the GitHub source repository.</p>
+<ul>
+<li>PostgreSQL - <a href="https://github.com/argentsea/quickstarts/tree/master/QuickStart2.Pg/QuickStart2.Pg/Sql">https://github.com/argentsea/quickstarts/tree/master/QuickStart2.Pg/QuickStart2.Pg/Sql</a></li>
+<li>SQL Server - <a href="https://github.com/argentsea/quickstarts/tree/master/QuickStart2.Sql/QuickStart2.Sql/Sql">https://github.com/argentsea/quickstarts/tree/master/QuickStart2.Sql/QuickStart2.Sql/Sql</a></li>
+</ul>
+<p>To create the QuickStart data sources, first run the <strong>ServerSetup.sql</strong> file. This will create four databases and two logins. The logins contain weak passwords (that are published on the Internet), so you might consider changing them; on the other hand, these will only have permission to execute procedures or functions in a specific namespace, so it’s not a big risk.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Conceptually, these four databases would correspond to regional data stores in the <em>United States</em>, <em>Brazil</em>, <em>Europe</em>, and <em>China</em>. In my real global application I would replicate the data from each region to each other region. Therefore, each region would have one writable data store and three readable ones. In this way, the “local” shard is writeable, the “foreign” shards are read-only. Writes to a foreign shard must be done across the WAN. Your implementation may vary.<br>
+Our walkthrough, however, only needs four simple databases on one server. We’ll only imagine the rest.</p>
+</div>
+<h3 id="the-shardid">The ShardId</h3>
+<p>Each of the four databases needs an identifier. This is more significant and may more fraught than it sounds. A thorough discussion of the options and impact is <a href="Sharding/shardkey.html">here</a>. The précis is that once established, the type (and values) of the <em>ShardId</em> cannot be easily changed. The ShardId is a part of record identification, so confusion or misconfiguration could result in data corruption.</p>
+<p>In this sample application, the type of the ShardId for SQL Server is a <code>byte</code> (SQL TinyInt); for PostgreSQL it is a <code>short</code> (SQL SmallInt).</p>
+<p>In <em>each</em> of the four databases, you will need to run the <strong>DbSetup.sql</strong> file. This creates the schemas, tables, and procedures in the database. The first function is called <code>ws.ShardId</code>. <em>Before you run the SQL script</em>, change the return value (line 11) for each database:</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th style="text-align: center;">Return Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CustomerShardUS</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td>CustomerShardEU</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td>CustomerShardBR</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td>CustomerShardZH</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+<p>After the tables are created, run the SQL file specific to that database (i.e. <strong>ShardBR.sql</strong>, <strong>ShardEU.sql</strong>, <strong>ShardUS.sql</strong>, or <strong>ShardZH.sql</strong>). This will populate the tables with sample data.</p>
+<p>At this point, we should have four database with identical stored procedures or functions. ArgentSea will only invoke stored procedures or functions.</p>
+<h2 id="configuring-connections">Configuring Connections</h2>
+<p>Because sharded data may require a large number of data connections, ArgentSea offers a more flexible way of managing this than by using connection strings. ArgentSea offers the “Hereditary Configuration Hierarchy”. This allows you to set an attribute at the parent level and all children will inherit this value, unless overwritten by a child. A more thorough discussion is <a href="configuration%5Chierarchy.md">here</a>.</p>
+<p>In our sample application, we can use the same server or host for all connections; each shard connection only changes the database name. (In a production deployment, the configuration might be exactly backwards: the databases have identical names, but each is on a different host). We also want to use the <em>webWriter</em> user for write connections and <em>webReader</em> for read connections.</p>
+<p>So the configuration settings looks like this (with annotations):</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-json">{
+  &quot;SqlShardSets&quot;: [¹
+    {
+      &quot;ShardSetName&quot;: &quot;Customers&quot;,²
+      &quot;DataSource&quot;: &quot;.&quot;,³
+      &quot;Write&quot;: {⁴
+        &quot;UserName&quot;: &quot;webWriter&quot;,
+        &quot;Password&quot;: &quot;Pwd567890&quot;,
+      },
+      &quot;Read&quot;: {⁴
+        &quot;ApplicationIntent&quot;: &quot;ReadOnly&quot;,
+        &quot;UserName&quot;: &quot;webReader&quot;,
+        &quot;Password&quot;: &quot;Pwd123456&quot;
+      },
+      &quot;Shards&quot;: [⁵
+        {
+          &quot;ShardId&quot;: 1,⁶
+          &quot;InitialCatalog&quot;: &quot;CustomerShardUS&quot;⁷
+        },
+        {
+          &quot;ShardId&quot;: 2,⁶
+          &quot;InitialCatalog&quot;: &quot;CustomerShardEU&quot;⁷
+        },
+        {
+          &quot;ShardId&quot;: 3,⁶
+          &quot;InitialCatalog&quot;: &quot;CustomerShardBR&quot;⁷
+        },
+        {
+          &quot;ShardId&quot;: 4,⁶
+          &quot;InitialCatalog&quot;: &quot;CustomerShardZH&quot;⁷
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<h3 id="annotations">Annotations</h3>
+<p>¹ <code>SqlShardSets</code> is the root JSON section for all the shard configuration metadata. It contains an array of shard sets.</p>
+<p>² <code>ShardSetName</code> is a <em>required</em> key for this specific shard set. Multiple shard sets are possible and each will be identified by this key. This value must exactly match the value used in your code to invoke this shard set.</p>
+<p>³ <code>DataSourceName</code> is a connection attribute. Connection attributes can appear anywhere in the hierarchy. Because it appears at the “shard set” level, all shards in the shard set will inherit this server name.</p>
+<p>⁴ <code>Read</code> and <code>Write</code> are peculiar, and optional, members of shard set’s “inheritance” chain, as their children are indirect. Any attributes defined in the shard set’s <code>Write</code> section apply only to write connections. Likewise, for <code>Read</code> connections. These values can be overwritten by shard or connection attributes.</p>
+<p>⁵ <code>Shards</code> is an array of shard connections, one for each shard in the shard set.</p>
+<p>⁶ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. If the type of the shard identifier is a string, then this value should have quotes around it in the JSON file.</p>
+<p>⁷ <code>InitialCatalog</code> is a connection attribute. Because it appears at the shard level, both read connections and write connections for this shard will inherit this value.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-json">{
+  &quot;PgShardSets&quot;: [¹
+    {
+      &quot;ShardSetName&quot;: &quot;Customers&quot;,²
+      &quot;Host&quot;: &quot;localhost&quot;,³
+      &quot;Write&quot;: {⁴
+        &quot;UserName&quot;: &quot;webWriter&quot;,
+        &quot;Password&quot;: &quot;Pwd567890&quot;
+      },
+      &quot;Read&quot;: {⁴
+        &quot;UserName&quot;: &quot;webReader&quot;,
+        &quot;Password&quot;: &quot;Pwd123456&quot;
+      },
+      &quot;Shards&quot;: [⁵
+        {
+          &quot;ShardId&quot;: 1,⁶
+          &quot;Database&quot;: &quot;CustomerShardUS&quot;⁷
+        },
+        {
+          &quot;ShardId&quot;: 2,⁶
+          &quot;Database&quot;: &quot;CustomerShardEU&quot;⁷
+        },
+        {
+          &quot;ShardId&quot;: 3,⁶
+          &quot;Database&quot;: &quot;CustomerShardBR&quot;⁷
+        },
+        {
+          &quot;ShardId&quot;: 4,⁶
+          &quot;Database&quot;: &quot;CustomerShardZH&quot;⁷
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<h3 id="annotations-1">Annotations</h3>
+<p>¹ <code>PgShardSets</code> is the root JSON section for all the shard configuration metadata. It contains an array of shard sets.</p>
+<p>² <code>ShardSetName</code> is a <em>required</em> key for this specific shard set. Multiple shard sets are possible and each will be identified by this key. This value must exactly match the value used in your code to invoke this shard set.</p>
+<p>³ <code>Host</code> is a connection attribute. Connection attributes can appear anywhere in the hierarchy. Because it appears at the “shard set” level, all shards in the shard set will inherit this server name.</p>
+<p>⁴ <code>Read</code> and <code>Write</code> are peculiar, and optional, members of shard set’s “inheritance” chain, as their children are indirect. Any attributes defined in the shard set’s <code>Write</code> section apply only to write connections. Likewise, for <code>Read</code> connections. These values can be overwritten by shard or connection attributes.</p>
+<p>⁵ <code>Shards</code> is an array of shard connections, one for each shard in the shard set.</p>
+<p>⁶ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. If the type of the shard identifier is a string, then this value should have quotes around it in the JSON file.</p>
+<p>⁷ <code>Database</code> is a connection attribute. Because it appears at the shard level, both read connections and write connections for this shard will inherit this value.</p>
+</section>
+</div>
+
+<p>This hierarchy, then, defines a server name once, to be used for the entire shard set. The read and write logins are also defined once, to be used by all read or write connections in the shard set. Each shard has a distinct database name. ArgentSea can build read and write connections to each data store without the need to configure any of this data redundantly — the login, server name, and database names are each managed only once.</p>
+<p>When you save this configuration to project’s appsettings file, be sure to update the JSON to the appropriate server references.</p>
+<p>You might consider moving the login password information to the UserSecrets store, which is a best practice. Simply remove the password entries from the appsettings.json hierarchy and add them to the usersecrets.json file.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<h3 id="user-secrets-entry">User Secrets Entry</h3>
+<pre><code class="lang-json">{
+  &quot;SqlShardSets&quot;: [
+    {
+      &quot;Write&quot;: {
+        &quot;Password&quot;: &quot;Pwd567890&quot;,
+      },
+      &quot;Read&quot;: {
+        &quot;Password&quot;: &quot;Pwd123456&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<h3 id="user-secrets-entry-1">User Secrets Entry</h3>
+<pre><code class="lang-json">{
+  &quot;PgShardSets&quot;: [
+    {
+      &quot;Write&quot;: {
+        &quot;Password&quot;: &quot;Pwd567890&quot;,
+      },
+      &quot;Read&quot;: {
+        &quot;Password&quot;: &quot;Pwd123456&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</section>
+</div>
+
+<div class="WARNING">
+<h5>Warning</h5>
+<p>The configuration arrays in appsettings.json and usersecrets.json will not match if they do not appear in exactly same order. In this sample, we have only one shard set and the passwords are not in the <code>Shards</code> array, so this is not a problem.</p>
+</div>
+<h2 id="creating-the-models">Creating the Models</h2>
+<p>The process of creating a model class was introduced in <a href="quickstart1.html">Quickstart 1</a>. Essentially, it simply requires adding attributes to properties, which the Mapper can then use. This quickstart adds four new wrinkles: object properties, list properties, enums, and shard keys.</p>
+<h3 id="object-properties">Object Properties</h3>
+<p>Our data contains location data with <em>latitude</em> and <em>longitude</em> values. Generally, these are usually managed as a value pair. Geographic functions would likely expect a single geographic <em>coordinates</em> argument, rather than the two separate values. It would be handy to map data directly to/from a coordinates class, which would be a property of the location class.</p>
+<p>That is exactly what the <code>MapToModel</code> attribute does. This attribute tells the mapper that the property is a child object that also has properties to be included in the mapping.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">// The coordinates class:
+public class CoordinatesModel
+{
+    [MapToSqlFloat(&quot;Latitude&quot;)]
+    public double Latitude { get; set; }
+
+    [MapToSqlFloat(&quot;Longitude&quot;)]
+    public double Longitude { get; set; }
+}
+
+// The location, which contains the coordinates class as a property:
+public class LocationModel
+{
+    //include other properties here...
+
+    [MapToModel]
+    public CoordinatesModel Coordinates { get; } = new CoordinatesModel();
+}
+
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">// The coordinates class:
+public class CoordinatesModel
+{
+    [MapToPgDouble(&quot;Latitude&quot;)]
+    public double Latitude { get; set; }
+
+    [MapToPgDouble(&quot;Longitude&quot;)]
+    public double Longitude { get; set; }
+}
+
+// The location, which contains the coordinates class as a property:
+public class LocationModel
+{
+    //include other properties here...
+
+    [MapToModel]
+    public CoordinatesModel Coordinates { get; } = new CoordinatesModel();
+}
+
+</code></pre>
+</section>
+</div>
+
+<p>Note that the MapToModel object must:</p>
+<ul>
+<li>Be instantiated on the parent object (i.e. the parent model’s property cannot be null)</li>
+<li>Not be a list</li>
+<li>Be a class and not a struct.</li>
+<li>Have Mapping attributes itself</li>
+</ul>
+<p>A MapToModel class can itself have a MapToModel property</p>
+<ol>
+<li>Have map attributes</li>
+<li>Be Instantiated</li>
+<li>1:1</li>
+</ol>
+<p>The</p>
+<p>ArgentSea will map data to a lets you do</p>
+<h3 id="list-properties">List Properties</h3>
+<h3 id="the-shardkey-and-shardchild">The ShardKey and ShardChild</h3>
+<p>Our sharded data set</p>
+<h2 id="using-shardkey--argentseashardkeyshort-int">using ShardKey = ArgentSea.ShardKey&lt;short, int&gt;;</h2>
 </article>
           </div>
           
