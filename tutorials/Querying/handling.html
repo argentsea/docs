@@ -101,7 +101,7 @@
 <h3 id="tshard-shardid">(TShard) shardId</h3>
 <p>The shardId argument will be a default value, like null or zero, when not using a ShardSet; otherwise it will be set to the current ShardId. This value is essential when building ShardKey or ShardChild types, where the shard identity is a component of the record identity.</p>
 <h3 id="string-sprocname">(string) sprocName</h3>
-<p>This is the name of the stored procedure or function that was executed. It is provided to the procedure for logging purposes.</p>
+<p>This is the name of the stored procedure or SQL statement that was executed. It is provided to the procedure for logging purposes.</p>
 <h3 id="targ-optionalargument">(TArg) optionalArgument</h3>
 <p>The third argument type is a generic parameter; the type is defined when you declare the delegate. This object provides whatever external data or context that many be necessary or useful in order to create your result.</p>
 <p>If it not needed (i.e. most cases), define the type as <code>object</code>. This allows you to use the <strong>Query*</strong> overloads that do not require this parameter; in those cases, this value will be null.</p>
@@ -114,10 +114,10 @@ var amount = parameters[&quot;@Amount&quot;].GetNullableDecimal();
 var name = parameters[&quot;@Name&quot;].GetString();
 </code></pre>
 <h3 id="string-connectiondescription">(string) connectionDescription</h3>
-<p>The connectionDescription argument allows the logger to include the connection that raised the error or event. You should include this (and also the stored/function procedure name) in any logging or errors in your procedures. Because your delegate could run on multiple connections, this can be essential debugging information.</p>
+<p>The connectionDescription argument allows the logger to include the connection that raised the error or event. You should include this (and also the stored procedure or statement name) in any logging or errors in your procedures. Because your delegate could run on multiple connections, this can be essential debugging information.</p>
 <h3 id="ilogger-logger">(ILogger) logger</h3>
 <p>Finally, the logger argument allows you to write debugging, warning, and error information to the application logs. This is the same logger instance as is passed in through the various query methods.</p>
-<p>Next: <a href="../Sharding/sharding.html">Sharding</a></p>
+<p>Next: <a href="batches.html">The Query Batch</a></p>
 </article>
           </div>
           
@@ -125,9 +125,6 @@ var name = parameters[&quot;@Name&quot;].GetString();
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Querying/handling.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

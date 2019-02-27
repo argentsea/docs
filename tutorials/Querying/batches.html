@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Query Batches | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Query Batches | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="query-batches">Query Batches</h1>
+
+<p>A <em>Batch</em> allows multiple commands to run within a single transaction on the same connection.  For example, ArgentSea makes it easy to save a single “customer” record with multiple “locations”. However, using a batch you could save multiple customers, each with multiple locations — all within the same transaction.</p>
+<p>The real purpose of the <em>Batch</em> is that it allows non-query actions, like <em>SqlBulkCopy</em> (SQL Server) or the <em>NpgsqlBinaryImporter</em> (PostgreSQL) to be combined with queries within the same transaction. See <a href="multirecord.html">multi-record saves</a> for more information.</p>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>Because they involve multiple round-trips to the database server, Batches are less efficient than executing multiple SQL statements in a single command. You should avoid using batches to execute a series of statements that could be combined into a single command.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Because client-managed transactions are much less efficient than server-side transactions, a <em>Batch</em> is the only place where ArgentSEa explicitly enlists ADO.NET transactions.</p>
+</div>
+<h2 id="batch-types">Batch Types</h2>
+<p>There are three types of batches. Each type offers somewhat different operations.</p>
+<ul>
+<li><strong>DatabaseBatch</strong> can be used for non-sharded database connections.</li>
+<li><strong>ShardBatch</strong> is for a specific shard in a shard set.</li>
+<li><strong>ShardSetBatch</strong> can run the batch commands on every shard in the shard set. These commands cannot return a result.</li>
+</ul>
+<p>Batches are executed with the <code>RunAsync</code> command. The ShardSet’s <code>RunAsync</code> method will only accept a <code>ShardSetBatch</code> argument. Likewise, the Database or Shard connections will only accept the <code>DatabaseBatch</code> or <code>ShardBatch</code> respectively.</p>
+<p>Batches are simply collections of <em>BatchStep</em> objects. The BatchStep is abstract. You can implement your own BatchStep, but several implementations are available. The principal one enables execution of <code>Query</code>.</p>
+<p>ShardSet batches cannot not return a result, but the other batches use a generic argument to specify the type of the return value. For example, this batch will return a integer value when run:</p>
+<pre><code class="lang-csharp">var batch = new DatabaseBatch&lt;int&gt;();
+</code></pre>
+<p>You use the <code>Add</code> method to set up the batch commands. The <code>Add</code> method has a fluent API:</p>
+<pre><code class="lang-csharp">var batch = new DatabaseBatch&lt;string&gt;()
+    .Add(Queries.CustomerLoadStuff, parameters)
+    .Add(Queries.CustomerCreate, &quot;customername&quot;);
+var customerName = _database.Write.RunAsync(batch, cancellation);
+</code></pre>
+<p>In this example, the batch is declared with a return type (of integer). The second step run a query that ultimately returns a value; the value in the first row with a column name of “customername” is returned to the caller.</p>
+<h3 id="the-shard-set-batch">The Shard Set Batch</h3>
+<p>Because the <code>ShardSetBatch</code> will run on multiple sharded databases, the <code>ShardSetBatch</code> does return data when executed. ArgentSea offers the ability to run a query (<code>QueryProcedure</code> or <code>QueryStatement</code>) on a <code>ShardSetBatch</code>, although a user-created implementation of a custom BatchStep&lt;&gt; could also be used.</p>
+<p>When creating a <code>ShardSetBatch</code>, the generic parameter is the shard id type.</p>
+<pre><code class="lang-csharp">var batch = new ShardSetBatch&lt;short&gt;()
+    .Add(Queries.UpdateCustomers, parameters)
+    .Add(Queries.ProcessCustomers);
+await _shardSet.Write.RunAsync(batch, cancellation);
+</code></pre>
+<p>The query can include input parameters. As with other query commands, if a <em>shardParameters</em> argument is provided, only the listed shards with be impacted — and the shard parameter values will be updated as per any matching argument values.</p>
+<table>
+<thead>
+<tr>
+<th>Instantiation:</th>
+<th>Batch argument:</th>
+<th>Return Type:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new ShardSetBatch&lt;TShard&gt;()</td>
+<td>Query</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Custom BatchStep implementation</td>
+<td>varies</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>The <code>ShardSetBatch</code> will likely perform more poorly than a single SQL command. The main circumstance where this would be useful is when the client application must dynamically assemble the Query set. Really, the <code>ShardSetBatch</code> seems to have a fairly limited number of use cases.</p>
+</div>
+<h3 id="the-shard-batch">The Shard Batch</h3>
+<p>The <code>ShardBatch</code> can execute a query and return a Model result (using the Mapper), a ShardKey, a ShardChild, or a list of ShardKeys or ShardChilds. For example, a batch that inserts records with identity columns might need to return the ShardKey(s) or ShardChild(s) containing the identifiers of the newly inserted records. You can use <code>ShardKey</code>, <code>ShardChild</code> for a single record key result, or <code>List&lt;ShardKey&gt;</code>, <code>List&lt;ShardChild&gt;</code>, <code>IList&lt;ShardKey&gt;</code> and <code>IList&lt;ShardChild&gt;</code> for a multi-record key result.</p>
+<p>The <code>ShardBatch</code> has two generic parameters. The first is the ubiquitous shard id type; the second is the return type.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The methods that are available are determined by the return type specified in the second generic argument.</p>
+</div>
+<p>For example, this would return the ShardKey of the new customer:</p>
+<pre><code class="lang-csharp">var batch = new ShardBatch&lt;short, ShardKey&lt;short, int&gt;&gt;()
+    .Add(Queries.CustomerCreate)
+    .Add(Queries.CustomerGet, parameters, 'c', &quot;customerid&quot;);
+var customerKey = await _shardSet.DefaultShard.Write.RunAsync(batch, cancellation);
+</code></pre>
+<p>Note that you must specify the <em>DataOrigin</em> value for the new ShardKey and the column name from which to get the new record id.</p>
+<p>To instead return a list of new keys from the query, make the return type a list:</p>
+<pre><code class="lang-csharp">var batch = new ShardBatch&lt;short, List&lt;ShardKey&lt;short, int&gt;&gt;&gt;()
+    .Add(Queries.CustomersCreate)
+    .Add(Queries.CustomersGet, parameters, 'c', &quot;customerid&quot;);
+var customerKeys = await _shardSet.DefaultShard.Write.RunAsync(batch, cancellation);
+</code></pre>
+<p>In both the above examples, the shard id of the resulting key will be set to the shard id of the current shard. If the query result contains shardkeys that reference other shards, simply provide the ShardId column name also:</p>
+<pre><code class="lang-csharp">var batch = new ShardBatch&lt;short, List&lt;ShardKey&lt;short, int&gt;&gt;&gt;()
+    .Add(Queries.CustomersCreate)
+    .Add(Queries.CustomersGet, parameters, 'c', &quot;shardid&quot;, &quot;customerid&quot;);
+var customerKeys = await _shardSet.DefaultShard.Write.RunAsync(batch, cancellation);
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you do not need a result, you can simply specified the return type of <code>object</code> and the Run method will return null.</p>
+</div>
+<p>Ideally, only one step in the batch should return a result. If multiple steps each return a result, only the last one with a valid value (non-null or non-default value) is returned to the client.</p>
+<table>
+<thead>
+<tr>
+<th>Instantiation:</th>
+<th>Batch argument:</th>
+<th>Return Type:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new ShardBatch&lt;TShard, ShardKey&lt;TShard, TRecord&gt;&gt;()</td>
+<td>Query</td>
+<td>ShardKey</td>
+</tr>
+<tr>
+<td>new ShardBatch&lt;TShard, ShardChild&lt;TShard, TRecord, TChild&gt;&gt;()</td>
+<td>Query</td>
+<td>ShardChild</td>
+</tr>
+<tr>
+<td>new ShardBatch&lt;TShard, List&lt;ShardKey&lt;TShard, TRecord&gt;&gt;&gt;()</td>
+<td>Query</td>
+<td>ShardKey List</td>
+</tr>
+<tr>
+<td>new ShardBatch&lt;TShard, List&lt;ShardChild&lt;TShard, TRecord, TChild&gt;&gt;&gt;()</td>
+<td>Query</td>
+<td>ShardChild List</td>
+</tr>
+<tr>
+<td>new ShardBatch&lt;TShard, IList&lt;ShardKey&lt;TShard, TRecord&gt;&gt;&gt;()</td>
+<td>Query</td>
+<td>ShardKey List</td>
+</tr>
+<tr>
+<td>new ShardBatch&lt;TShard, IList&lt;ShardChild&lt;TShard, TRecord, TChild&gt;&gt;&gt;()</td>
+<td>Query</td>
+<td>ShardChild List</td>
+</tr>
+<tr>
+<td>new ShardBatch&lt;TShard, Model&gt;()</td>
+<td>Query</td>
+<td>Model</td>
+</tr>
+<tr>
+<td>new ShardBatch&lt;TShard, CustomBatchStep)</td>
+<td>varies</td>
+<td>any</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-database-batch">The Database Batch</h3>
+<p>The DatabaseBatch object is similar to the ShardBatch object. It has one generic argument, which specifies the return type when executed.</p>
+<pre><code class="lang-csharp">var batch = new DatabaseBatch&lt;long&gt;()
+    .Add(Queries.CustomerCreate, parameters)
+    .Add(Queries.CustomerList, &quot;customerid&quot;);
+var newCustomerId = _database.Write.RunAsync(batch4, cancellation);
+
+</code></pre>
+<p>The return type can be a Model class (using the Mapper), a column value, or a list of column values. This allows you to return the identity value (or values) of an inserted record (or records).</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The methods that are available are determined by the return type specified in the generic argument.</p>
+</div>
+<p>For example, this would return the identity value of the new customer:</p>
+<pre><code class="lang-csharp">var batch = new DatabaseBatch&lt;int&gt;()
+    .Add(Queries.CustomerPrep)
+    .Add(Queries.CustomerCreate, parameters, &quot;customerid&quot;);
+var customerId = await _database.Write.RunAsync(batch, cancellation);
+</code></pre>
+<p>To instead return a list of values from the query, make the return type a list:</p>
+<pre><code class="lang-csharp">var batch = new DatabaseBatch&lt;List&lt;int&gt;&gt;()
+    .Add(Queries.CustomerPrep)
+    .Add(Queries.CustomersCreate, parameters, &quot;customerid&quot;);
+var customerIds = await _database.Write.RunAsync(batch, cancellation);
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If you do not need a result, you can simply specified the return type of <code>object</code> and the Run method will return null.</p>
+</div>
+<p>Ideally, only one step in the batch should return a result. If multiple steps each return a result, only the last one with a valid value (non-null or non-default value) is returned to the client.</p>
+<table>
+<thead>
+<tr>
+<th>Instantiation:</th>
+<th>Batch argument:</th>
+<th>Return Type:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new DatabaseBatch&lt;TRecord&gt;()</td>
+<td>Query</td>
+<td>TRecord</td>
+</tr>
+<tr>
+<td>new DatabaseBatch&lt;int&gt;()</td>
+<td>Query</td>
+<td>int</td>
+</tr>
+<tr>
+<td>new DatabaseBatch&lt;List&lt;TRecord&gt;&gt;()</td>
+<td>Query</td>
+<td>Id List</td>
+</tr>
+<tr>
+<td>new DatabaseBatch&lt;IList&lt;TRecord&gt;&gt;()</td>
+<td>Query</td>
+<td>Id List</td>
+</tr>
+<tr>
+<td>new DatabaseBatch&lt;Model&gt;()</td>
+<td>Query</td>
+<td>Model</td>
+</tr>
+<tr>
+<td>new DatabaseBatch&lt;CustomBatchStep)</td>
+<td>varies</td>
+<td>any</td>
+</tr>
+</tbody>
+</table>
+<p>Next: <a href="multirecord.html">Multi-record Saves</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

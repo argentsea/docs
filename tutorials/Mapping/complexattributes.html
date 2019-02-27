@@ -184,16 +184,16 @@ public class Customer
 
 public class Address
 {
-        [MapToPgVarChar(&quot;StreetAddress&quot;, 255)]
+        [MapToPgVarchar(&quot;StreetAddress&quot;, 255)]
         public string StreetAddress { get; set; }
 
-        [MapToPgVarChar(&quot;Locality&quot;, 100)]
+        [MapToPgVarchar(&quot;Locality&quot;, 100)]
         public string Locality { get; set; }
 
-        [MapToPgVarChar(&quot;Region&quot;, 100)]
+        [MapToPgVarchar(&quot;Region&quot;, 100)]
         public string Region { get; set; }
 
-        [MapToPgVarChar(&quot;PostalCode&quot;, 25)]
+        [MapToPgVarchar(&quot;PostalCode&quot;, 25)]
         public string PostalCode { get; set; }
 }
 </code></pre>
@@ -224,7 +224,8 @@ public class Address
 <p>The Mapper can also map to properties that contain lists (<code>List&lt;Model&gt;</code> or <code>IList&lt;Model&gt;</code>) of Model objects. This allows for one-to-many relationships.</p>
 <p>Mapping to a List works quite differently than <a href="/api/ArgentSea.MapToModel.html">MapToModel</a>. The List data can only come from a data reader result. Because data readers can contain multiple results — which might be mapped to different list properties — the mapping and result order is specified at query time. For this reason, no attribute is required.</p>
 <p>Models in a List may themselves have child lists, but unlike <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> properties, they will be ignored by the Mapper. In cases where a result set must be transformed into a complete Model hierarchy, you can use the <a href="../Querying/handling.html">Query</a> methods to bypass the Mapper. This allows you to hydrate the results in your own code, optionally invoking Mapper on parts of the result stream.</p>
-<p>For the details on how to populate Models with <code>List&lt;Model&gt;</code> properties, see the discussion on <a href="../Querying/fetching.html">querying</a>.</p>
+<p>List properties cannot be read-only.</p>
+<p>For the details on how to populate Models with <code>List&lt;Model&gt;</code> properties, see the discussion on <a href="../Querying/fetching.html#the-mapreader-and-mapoutput-methods">querying</a>.</p>
 <h2 id="mapshardkey-and-mapshardchild-attributes"><a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> Attributes</h2>
 <p>A <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> is a record identifier containing a shard Id and a record Id. A <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> is a compound key consisting of a shard Id, a record Id, and a child Id.</p>
 <p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attributes are used to decorate properties of type <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> respectively.</p>

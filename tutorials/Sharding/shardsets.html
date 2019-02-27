@@ -171,7 +171,7 @@ var shard = myShardSet[myShardChild];
 {
     var prms = new QueryParameterCollection()
         .AddSqlIntInputParameter(&quot;@SubId&quot;, subscriberKey.RecordId);
-    return await _shardSet[subscriberKey].Read.MapOutputAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
+    return await _shardSet[subscriberKey].Read.MapOutputAsync&lt;Subscriber&gt;(Queries.GetSubscriber, prms, cancellation);
 }
 </code></pre>
 </section>
@@ -181,7 +181,7 @@ var shard = myShardSet[myShardChild];
 {
     var prms = new QueryParameterCollection()
         .AddPgIntegerInputParameter(&quot;SubId&quot;, subscriberKey.RecordId);
-    return await _shardSet[subscriberKey].Read.MapOutputAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
+    return await _shardSet[subscriberKey].Read.MapOutputAsync&lt;Subscriber&gt;(Queries.GetSubscriber, prms, cancellation);
 }
 </code></pre>
 </section>
@@ -189,17 +189,17 @@ var shard = myShardSet[myShardChild];
 
 <p>Several database implementations — such as <em>SQL Server Availability Groups</em> or <em>AWS Aurora PostgreSQL</em> to name a couple of examples — enable a master server to handle both reads and writes and separate clone instances that can handle read-only traffic. Most applications have a greater percentage of reads than writes, so this is a great way to scale-out database access. However, there are two issues of concern:</p>
 <ul>
-<li>ArgentSea has <em>no idea</em> which stored procedures or functions update data and which are read-only, so it is left to the application developer to designate this by selecting  the appropriate connection property (Read or Write).</li>
+<li>ArgentSea has <em>no idea</em> which queries update data and which are read-only, so it is left to the application developer to designate this by selecting  the appropriate connection property (Read or Write).</li>
 <li>There is often some latency between the time that data is saved and when it is available from the read instance. This temporary data inconsistency can cause problems or confusion due to missing data.</li>
 </ul>
 <p>There are several architectural solutions to the latency-driven data inconsistency problem, such as intelligent caching, client observable collections, delayed retries, and retries on the Write connection. Due to the variations in environments, optimal solutions, and the challenge of simple determining when a missing record is really expected, ArgentSea does not attempt an automatic retry on the Write connection.</p>
 <p>To implement your own latency handling, you can easily implement an automatic retry using the Write connection after an unexpectedly missing record on the Read connection. In this example method we retrieve data by key value, so a missing record is unexpected and might be due to replication latency. The code assumes that the subscriber key has the “required” attribute set so that the Mapper returns a null object if the key is null. The resolution is to simply retry on the Write connection.</p>
-<pre><code class="lang-csharp">    var sub = await _shardSet[subscriberKey].Read.MapReaderAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
+<pre><code class="lang-csharp">    var sub = await _shardSet[subscriberKey].Read.MapReaderAsync&lt;Subscriber&gt;(Queries.GetSubscriber, prms, cancellation);
     // add automatic retry on write connection if subscriber is not found.
     if (sub is null)
     {
         // consider logging the retry on the write connection
-        var sub = await _shardSet[subscriberKey].Write.MapReaderAsync&lt;Subscriber&gt;(&quot;ws.GetSubscriber&quot;, prms, cancellation);
+        var sub = await _shardSet[subscriberKey].Write.MapReaderAsync&lt;Subscriber&gt;(Queries.GetSubscriber, prms, cancellation);
     }
     return sub;
 }
@@ -208,20 +208,23 @@ var shard = myShardSet[myShardChild];
 <div class="TIP">
 <h5>Tip</h5>
 <p>Even if you are not using a scale-out strategy today, it would be a good idea to use the <code>Read</code> and <code>Write</code> properties as if you were. This would make a future migration to separate read and write instances a little easier.<br>
-You might also consider using different database schemas for read-only and write-capable procedures or functions. This helps underline the importance of separating read-only activity to your data developers. And testing may be easier if each connection’s permissions is limited to the appropriate schema.</p>
+You might also consider using different database schemas for read-only and write-capable stored procedures. This helps underline the importance of separating read-only activity to your data developers. And testing may be easier if each connection’s permissions is limited to the appropriate schema.</p>
 </div>
 <h3 id="shard-query-methods">Shard Query Methods</h3>
 <p>There are several query methods, described briefly below and in more detail in the <a href="../Querying/querying.html">querying</a> tutorial. The arguments for these query methods are described in the next section.</p>
 <h4 id="runasync"><em>RunAsync</em></h4>
-<p>Executes a stored procedure without returning a result — other than an Exception if it is not successful. Presumably, this method would only be called on the Write connection but nothing prevents running a procedure on the Read connection. This method is available on individual shards, but not on the entire ShardSet.</p>
-<h4 id="lookupasync"><em>LookupAsync</em></h4>
-<p>Executes a stored procedure and returns the value (string, number, etc.) of either the return result or (single) output parameter. This method useful to fetch a single value from the shard rather than an entire record. This method is also available on individual shards, but not on the entire ShardSet.</p>
+<p>Executes a stored procedure or SQL statement without returning a result — other than an Exception if it is not successful. Presumably, this method would only be called on the Write connection but nothing prevents running a query on the Read connection.</p>
+<p>This method also supports running a <em>Batch</em>, which is a set of statements which run within the same transaction. Batches on ShardSets do not return results, but batches on databases or shard instances can.</p>
+<h4 id="returnvalueasync"><em>ReturnValueAsync</em></h4>
+<p>Executes a query and returns the value (string, number, etc.) of either the return result, output parameter, or first-row column. The result can also be a ShardKey or ShardChild.</p>
+<p>This method might be useful to lookup a single value from the shard rather than an entire record. Its principle and essential role, however, is to enable the return of inserted keys when identity columns are used.</p>
+<p>This method is available on individual shards, but not across the ShardSet.</p>
 <h4 id="listasync"><em>ListAsync</em></h4>
-<p>Executes a stored procedure and returns a list containing a Model object, one entry for each record in the result set.</p>
+<p>Executes a query and returns a list containing a Model object, one entry for each record in the result set.</p>
 <p>The objects are created using Mapping attributes. If the Model object does not have attributes, you can create a List using QueryAsync with a custom handler.</p>
 <p>This method is available on both individual shards and the entire ShardSet. Results across ShardSets are combined into a single list.</p>
 <h4 id="queryasync-queryfirstasync-and-queryallasync"><em>QueryAsync</em>, <em>QueryFirstAsync</em>, and <em>QueryAllAsync</em></h4>
-<p>Executes a stored procedure and returns a (potentially complex) result object from output parameters and/or result sets. The method can create an arbitrary result (List, Dictionary, Model, etc.) via a custom delegate that constructs the response.</p>
+<p>Executes a query and returns a (potentially complex) result object from output parameters and/or result sets. The method can create an arbitrary result (List, Dictionary, Model, etc.) via a custom delegate that constructs the response.</p>
 <h4 id="mapoutputasync-mapoutputfirstasync-andmapoutputallasync"><em>MapOutputAsync</em>, <em>MapOutputFirstAsync</em>, and<em>MapOutputAllAsync</em></h4>
 <p>Uses the Mapper to build a result using output parameters. The Mapper can use DataReader results to build list properties. MapOutputAsync is found on individual shards; MapOutputFirstAsync and MapOutputAllAsync are on ShardSets and return the first non-null result, or a list of all non-null results, respectively.</p>
 <h4 id="mapreaderasync-mapreaderfirstasync-and-mapreaderallasync"><em>MapReaderAsync</em>, <em>MapReaderFirstAsync</em>, and <em>MapReaderAllAsync</em></h4>
@@ -231,8 +234,8 @@ You might also consider using different database schemas for read-only and write
 <p>Parallelized queries across a ShardSet use the Read connection. Writes should be managed on individual shards.</p>
 </div>
 <h3 id="arguments">Arguments</h3>
-<h4 id="procedure-required">Procedure (required)</h4>
-<p>The name of the stored procedure, including the schema name.</p>
+<h4 id="query-required">Query (required)</h4>
+<p>The stored procedure or SQL statement to run.</p>
 <h4 id="parameters-required">Parameters (required)</h4>
 <p>In most cases this should be a <a href="/api/ArgentSea.QueryParameterCollection.html">QueryParametersCollection</a> object. Technically, this argument can be any parameter collection, but the collections provided by ADO.NET are problematic: the DbParameterCollection is abstract, while the provider implementations (SqlParameterCollection and NpgsqlParameterCollection) can only be created by existing command objects.</p>
 <h4 id="shardparameterordinal-optional">shardParameterOrdinal (optional)</h4>
@@ -256,9 +259,6 @@ You might also consider using different database schemas for read-only and write
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Sharding/shardsets.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

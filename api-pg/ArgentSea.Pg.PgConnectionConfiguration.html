@@ -220,10 +220,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
       <a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html#ArgentSea_Pg_PgConnectionPropertiesBase_WriteBufferSize">PgConnectionPropertiesBase.WriteBufferSize</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_">DataConnectionConfigurationBase.GetRetryTimespan(Int32)</a>
-    </div>
-    <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_">DataConnectionConfigurationBase.RaisePropertyChanged(String)</a>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_PropertyChanged">DataConnectionConfigurationBase.PropertyChanged</a>
     </div>
     <div>
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_UserName">DataConnectionConfigurationBase.UserName</a>
@@ -250,7 +247,10 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
       <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval">DataConnectionConfigurationBase.CircuitBreakerTestInterval</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_PropertyChanged">DataConnectionConfigurationBase.PropertyChanged</a>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_">DataConnectionConfigurationBase.GetRetryTimespan(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_">DataConnectionConfigurationBase.RaisePropertyChanged(String)</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -280,6 +280,23 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class PgConnectionConfiguration : PgConnectionPropertiesBase, INotifyPropertyChanged, IDataConnection</code></pre>
   </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration__ctor.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L28">View Source</a>
+  </span>
+  <a id="ArgentSea_Pg_PgConnectionConfiguration__ctor_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.#ctor*"></a>
+  <h4 id="ArgentSea_Pg_PgConnectionConfiguration__ctor" data-uid="ArgentSea.Pg.PgConnectionConfiguration.#ctor">PgConnectionConfiguration()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PgConnectionConfiguration()</code></pre>
+  </div>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -287,7 +304,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ConnectionDescription.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ConnectionDescription%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L249">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L261">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_ConnectionDescription_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConnectionDescription*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ConnectionDescription" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ConnectionDescription">ConnectionDescription</h4>
@@ -319,7 +336,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Add(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L259">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L271">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_Add_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Add*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Add(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -352,7 +369,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Contains_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Contains(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L266">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L278">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_Contains_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Contains*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Contains_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Contains(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Contains(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -400,7 +417,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_ContainsKey_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.ContainsKey(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L273">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L285">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_ContainsKey_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ContainsKey*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_ContainsKey_System_String_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.ContainsKey(System.String)">ContainsKey(String)</h4>
@@ -445,19 +462,36 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_GetConnectionString.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.GetConnectionString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_GetConnectionString_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.GetConnectionString(Microsoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L197">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L202">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_GetConnectionString_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.GetConnectionString*"></a>
-  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_GetConnectionString" data-uid="ArgentSea.Pg.PgConnectionConfiguration.GetConnectionString">GetConnectionString()</h4>
+  <h4 id="ArgentSea_Pg_PgConnectionConfiguration_GetConnectionString_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.GetConnectionString(Microsoft.Extensions.Logging.ILogger)">GetConnectionString(ILogger)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string GetConnectionString()</code></pre>
+    <pre><code class="lang-csharp hljs">public string GetConnectionString(ILogger logger)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
+        <td><span class="parametername">logger</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -478,7 +512,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L282">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L294">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_Remove_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Remove*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Remove(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -511,7 +545,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_Remove_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.Remove(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L290">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L302">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_Remove_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Remove*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_Remove_System_String_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.Remove(System.String)">Remove(String)</h4>
@@ -544,7 +578,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_SetAmbientConfiguration_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.SetAmbientConfiguration(ArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L223">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L235">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_SetAmbientConfiguration_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SetAmbientConfiguration*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_SetAmbientConfiguration_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.SetAmbientConfiguration(ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase)">SetAmbientConfiguration(DataConnectionConfigurationBase, DataConnectionConfigurationBase, DataConnectionConfigurationBase, DataConnectionConfigurationBase)</h4>
@@ -591,7 +625,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration_TryGetValue_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration.TryGetValue(System.String%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L295">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L307">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgConnectionConfiguration_TryGetValue_" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TryGetValue*"></a>
   <h4 id="ArgentSea_Pg_PgConnectionConfiguration_TryGetValue_System_String_System_Object__" data-uid="ArgentSea.Pg.PgConnectionConfiguration.TryGetValue(System.String,System.Object@)">TryGetValue(String, out Object)</h4>
@@ -656,7 +690,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
                     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgConnectionConfiguration.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgConnectionConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L15" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/pg/blob/master/src/PgConnectionConfiguration.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -88,6 +88,10 @@
 <li>Methods to simplify obtaining values from parameters.</li>
 <li>Methods to Map Models properties to parameters.</li>
 </ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Parameter names are implicitly normalized. On SQL Server this means always ensuring a “@” prefix. On PostgreSQL, future versions might automatically convert to lowercase.</p>
+</div>
 <h2 id="creating-parameters-with-extension-methods">Creating Parameters with Extension Methods</h2>
 <p>ArgentSea offers a set of extension methods that simplify the code required to optimally create and populate parameters and also handle database nulls.</p>
 <p>The methods to add parameters to a collection are provider-specific, since they are converting .NET types to database types. This means that the extension methods won’t appear unless you have a <code>using</code> statement referencing the provider.</p>
@@ -102,25 +106,28 @@
 </ul>
 <section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">using ArgentSea.Sql;
-</code></pre>
 <div class="NOTE">
 <h5>Note</h5>
 <p>The QueryParameterCollection and SqlParameterCollection inherit from the same base class. Not only can you use these methods on ArgentSea’s <code>QueryParameterCollection</code>, but you can also use them on the standard ADO.NET <code>SqlCommand.Parameters</code> property.</p>
 </div>
-<p>Here are some code examples:</p>
+<p>To access the extension methods, you need the following <code>using</code> statement:</p>
+<pre><code class="lang-csharp">using ArgentSea.Sql;
+</code></pre>
+<p>Adding a correctly typed parameter now requires only one line:</p>
 <pre><code class="lang-csharp">parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId);
 parameters.AddSqlDecimalInputParameter(&quot;@Amount&quot;, amount, 16, 2);
 parameters.AddSqlNVarCharInputParameter(&quot;@Name&quot;, name, 255);
 parameters.AddSqlFloatOutputParameter(&quot;@Temperature&quot;);
-// These methods all support a fluent api, so these can be written instead as:
-var parameters = new QueryParameterCollection()
+</code></pre>
+<p>These methods all support a fluent api, so these can be written instead as:</p>
+<pre><code class="lang-csharp">var parameters = new QueryParameterCollection()
     .AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId)
     .AddSqlDecimalInputParameter(&quot;@Amount&quot;, amount, 16, 2)
     .AddSqlNVarCharInputParameter(&quot;@Name&quot;, name, 255)
     .AddSqlRealOutputParameter(&quot;@Temperature&quot;);
-// And these methods also work on the data provider’s command parameters collection.
-cmd.Parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId)
+</code></pre>
+<p>And these methods also work directly on the data provider’s command parameters collection.</p>
+<pre><code class="lang-csharp">cmd.Parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId)
     .AddSqlDecimalInputParameter(&quot;@Amount&quot;, amount, 16, 2)
     .AddSqlNVarCharInputParameter(&quot;@Name&quot;, name, 255)
     .AddSqlRealOutputParameter(&quot;@Temperature&quot;);
@@ -128,38 +135,42 @@ cmd.Parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId
 </section>
 <section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">using ArgentSea.Pg;
-</code></pre>
 <div class="NOTE">
 <h5>Note</h5>
 <p>The QueryParameterCollection and NpgsqlParameterCollection inherit from the same base class. Not only can you use these methods on ArgentSea’s <code>QueryParameterCollection</code>, but you can also use them on the standard ADO.NET <code>NpgsqlCommand.Parameters</code> property.</p>
 </div>
-<pre><code class="lang-csharp">parameters.AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactionId);
-parameters.AddPgDecimalInputParameter(&quot;Amount&quot;, amount, 16, 4);
-parameters.AddPgVarCharInputParameter(&quot;Name&quot;, name, 255);
-parameters.AddPgDoubleOutputParameter(&quot;Temperature&quot;);
-// These methods all support a fluent api, so these can be written instead as:
-var parameters = new QueryParameterCollection()
-    .AddPgIntegerIputnParameter(&quot;TransactionId&quot;, transactionId)
-    .AddPgDecimalInputParameter(&quot;Amount&quot;, amount, 16, 2)
-    .AddPgVarCharInputParameter(&quot;Name&quot;, name, 255)
-    .AddPgDoubleOutputParameter(&quot;Temperature&quot;);
-// And these methods also work on the data provider’s command parameters collection.
-cmd.Parameters..AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactionId)
-    .AddPgDecimalInputParameter(&quot;Amount&quot;, amount, 16, 2)
-    .AddPgVarCharInputParameter(&quot;Name&quot;, name, 255)
-    .AddPgDoubleOutputParameter(&quot;Temperature&quot;);
+<p>To access the extension methods, you need the following <code>using</code> statement:</p>
+<pre><code class="lang-csharp">using ArgentSea.Pg;
+</code></pre>
+<p>Adding a correctly typed parameter now requires only one line:</p>
+<pre><code class="lang-csharp">parameters.AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId);
+parameters.AddPgDecimalInputParameter(&quot;amount&quot;, amount, 16, 4);
+parameters.AddPgVarcharInputParameter(&quot;name&quot;, name, 255);
+parameters.AddPgDoubleOutputParameter(&quot;temperature&quot;);
+</code></pre>
+<p>These methods all support a fluent api, so these can be written instead as:</p>
+<pre><code class="lang-csharp">var parameters = new QueryParameterCollection()
+    .AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId)
+    .AddPgDecimalInputParameter(&quot;amount&quot;, amount, 16, 2)
+    .AddPgVarcharInputParameter(&quot;name&quot;, name, 255)
+    .AddPgDoubleOutputParameter(&quot;temperature&quot;);
+</code></pre>
+<p>And these methods also work directly on the data provider’s command parameters collection.</p>
+<pre><code class="lang-csharp">cmd.Parameters..AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId)
+    .AddPgDecimalInputParameter(&quot;amount&quot;, amount, 16, 2)
+    .AddPgVarcharInputParameter(&quot;name&quot;, name, 255)
+    .AddPgDoubleOutputParameter(&quot;temperature&quot;);
 </code></pre>
 </section>
 </div>
 
 <p>Where appropriate, the methods have overloads that accept nullable value types. When the nullable type is null, the parameter will be set to a database Null value. If you are not using the Nullable overloads, then the values Guid.Empty, double.NaN, and float.NaN will also be saved as database Nulls. Likewise, null strings will be set to database Nulls, but empty strings will save as zero-length strings. The extension methods accepting string values have a max length argument, and those converting to Ansi database values have a code page parameter. The decimal methods have arguments for specifying precision and scale.</p>
 <h2 id="creating-parameters-with-the-mapper">Creating Parameters with the Mapper</h2>
-<p>The Mapper uses Model property attributes to automatically generate code that is much like what would be created in the previous section. Technically, the Mapper procedures are also extension methods, but we are discussing them separately in this section.</p>
+<p>The Mapper uses Model property attributes to automatically generate code that is much like what would be created in the previous section.</p>
 <p>Assuming that the Model (in this example, a “Store” class) has Mapping attributes associated with each of its properties, you can render all the corresponding input parameters and set their respective values with:</p>
-<pre><code class="lang-csharp">parameters.CreateInputParameters&lt;Store&gt;(customer, logger);
+<pre><code class="lang-csharp">parameters.CreateInputParameters&lt;Store&gt;(store, logger);
 </code></pre>
-<p>You can do something similar with output parameters — though it would be unlikely that you would want to want to create <em>only</em> output parameters. You will probably need at least one input parameter (likely a key). If you create the input parameter first, it will not be duplicated by the Mapper as it generates output parameters.</p>
+<p>This one line of code is much easier than individually coding the creation of each parameter and setting each value.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
 <ul role="tablist">
 <li role="presentation">
@@ -171,6 +182,7 @@ cmd.Parameters..AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactio
 </ul>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
+<p>You can do something similar with output parameters. Because you will probably need at least one input parameter (likely a key), set that first. Then, when you generate the output parameters the Mapper will not duplicate this existing parameter with a redundant output parameter.</p>
 <pre><code class="lang-csharp">parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId);
 parameters.CreateOutputParameters&lt;Store&gt;(logger);
 // Again, these methods all support a fluent api, so this can be written instead as:
@@ -181,25 +193,50 @@ var parameters = new QueryParameterCollection()
 </section>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">parameters.AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactionId);
+<p>Although ArgentSea can set and retrieve PostgreSQL output parameters, it is <a href="http://www.npgsql.org/doc/basic-usage.html#stored-functions-and-procedures">not a recommended practice</a>.</p>
+<p>If you are determined to use output parameters, here is an example:</p>
+<pre><code class="lang-csharp">parameters.AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId);
 parameters.CreateOutputParameters&lt;Store&gt;(logger);
 // Again, these methods all support a fluent api, so this can be written instead as:
 var parameters = new QueryParameterCollection()
-    .AddPgIntegerInputParameter(&quot;TransactionId&quot;, transactionId)
+    .AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId)
     .CreateOutputParameters&lt;Store&gt;(logger);
 </code></pre>
 </section>
 </div>
 
-<p>Finally, you can always add parameters using standard ADO.NET syntax:</p>
+<p>Of course, you can always add parameters using standard ADO.NET syntax.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
 <pre><code class="lang-csharp">var parameter = new System.Data.SqlClient.SqlParameter();
 parameter.SqlDbType = System.Data.SqlDbType.Int;
 parameter.Value = transactionId;
 command.Parameters.Add(parameter);
 </code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">var parameter = new Npgsql.NpgsqlParameter();
+parameter.NpgsqlDbType = NpgsqlType.Integer;
+parameter.Value = transactionId;
+command.Parameters.Add(parameter);
+</code></pre>
+</section>
+</div>
+
+<p>This may be useful for types not yet supported by ArgentSea.</p>
 <div class="TIP">
 <h5>Tip</h5>
-<p>As you define parameters in your stored procedures or functions, being as consistent as possible will make using the Mapper easy. For example, every time you save or retrieve a Model, you should always use the same parameters or fields results. Occiasionally missing parameters or columns will likely be maddening.</p>
+<p>As you define parameters in your queries, naming them as consistently as possible will make using the Mapper easy.</p>
 </div>
 <p>Next: <a href="fetching.html">Fetching Data</a></p>
 </article>

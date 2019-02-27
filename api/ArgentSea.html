@@ -87,6 +87,14 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="ArgentSea.BatchBase-2.html">BatchBase&lt;TShard, TResult&gt;</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.BatchExtensions.html">BatchExtensions</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.BatchStep-2.html">BatchStep&lt;TShard, TResult&gt;</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.DatabaseBatch-1.html">DatabaseBatch&lt;TResult&gt;</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.DatabasesBase-1.html">DatabasesBase&lt;TConfiguration&gt;</a></h4>
       <section><p>This class is used by provider specific implementations. It is unlikely that you would reference this in consumer code.
 Classes that inherit from this class manage non-sharded database connections.</p>
@@ -99,7 +107,10 @@ Classes that inherit from this class manage non-sharded database connections.</p
       <section><p>Abstract class implementing the data connection functionality shared by PostgreSQL and SQL Server implementations.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.DbParameterExtensions.html">DbParameterExtensions</a></h4>
-      <section></section>
+      <section><p>This class adds extension methods which simplify getting typed .NET values from (output) parameters.
+Because these methods reference the abstract DbParameterCollection, these methods are available in the derived classes:</p>
+<ul><li></li><li></li><li></li></ul>
+</section>
       <h4><a class="xref" href="ArgentSea.ExpressionHelpers.html">ExpressionHelpers</a></h4>
       <section><p>This class is used by provider specific implementations. It is unlikely that you would reference this in consumer code.</p>
 </section>
@@ -113,30 +124,51 @@ Essentially, any shard object with a DataOrigin of '0' (Empty) must also have ze
       <h4><a class="xref" href="ArgentSea.LoggingExtensions.html">LoggingExtensions</a></h4>
       <section><p>The are extension methods for high-performance logging.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.MapAttributeMissingException.html">MapAttributeMissingException</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.Mapper.html">Mapper</a></h4>
       <section><p>This static class contains the logic for mapping database parameters to/from properties.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Mapper.DummyType.html">Mapper.DummyType</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.MapShardChildAttribute.html">MapShardChildAttribute</a></h4>
-      <section></section>
+      <section><p>This property attribute is used to map multiple paramters to a ShardChild object.
+This recordIdName attribute and childIdName attributes must exactly match the names of the corresponding MapTo attributes which are also on the same property.</p>
+</section>
       <h4><a class="xref" href="ArgentSea.MapShardKeyAttribute.html">MapShardKeyAttribute</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.MapToModel.html">MapToModel</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.MultipleMapAttributesException.html">MultipleMapAttributesException</a></h4>
       <section><p>This exception is invoked if a model property has multiple mapping attributes. A single value cannot be mapped to/from multiple parameters or columns.
-This exception is not raised in the case of <see cref="!:ShardKey"> ShardKey</see>&gt; or <see cref="!:ShardChild">ShardChild</see> properties.</p>
+This exception is not raised in the case of <a class="xref" href="ArgentSea.ShardKey-2.html">ShardKey&lt;TShard, TRecord&gt;</a> or <a class="xref" href="ArgentSea.ShardChild-3.html">ShardChild&lt;TShard, TRecord, TChild&gt;</a> properties.</p>
+</section>
+      <h4><a class="xref" href="ArgentSea.NoMappingAttributesFoundException.html">NoMappingAttributesFoundException</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.ParameterCollection.html">ParameterCollection</a></h4>
+      <section><p>This is an implementation of the abstract DbParameterCollecion class. Unlike most provider-specific parameter collections, it can be created without a prior DbCommand object instance.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.ParameterMapAttributeBase.html">ParameterMapAttributeBase</a></h4>
       <section></section>
-      <h4><a class="xref" href="ArgentSea.QueryParameterCollection.html">QueryParameterCollection</a></h4>
-      <section><p>This is an implementation of the abstract DbParameterCollecion class. Unlike most provider-specific parameter collections, it can be created without a prior DbCommand object instance.</p>
+      <h4><a class="xref" href="ArgentSea.ParameterNotFoundException.html">ParameterNotFoundException</a></h4>
+      <section><p>The exception is thrown when a statement or procedure has a parameter names set, but a query is missing a parameter in the set.</p>
+</section>
+      <h4><a class="xref" href="ArgentSea.Query.html">Query</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.QueryProcedure.html">QueryProcedure</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.QueryStatement.html">QueryStatement</a></h4>
+      <section><p>This implementation of Query loads the SQL from a relative file.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.RetryLimitExceededException.html">RetryLimitExceededException</a></h4>
       <section><p>This exception is raise when a transient failure occurs, but automatic retries were not successful.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch&lt;TShard, TResult&gt;</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.ShardParameterValue-1.html">ShardParameterValue&lt;TShard&gt;</a></h4>
+      <section><p>The class enables passing different parameters to specific shards. Only distinct members of the shard Id list are queried.</p>
+</section>
+      <h4><a class="xref" href="ArgentSea.ShardSetBatch-1.html">ShardSetBatch&lt;TShard&gt;</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.html">ShardSetsBase&lt;TShard, TConfiguration&gt;</a></h4>
       <section><p>The ShardSets collection contains any number of ShardSets.
@@ -161,6 +193,8 @@ Classes that inherit from this class manage sharded database connections.</p>
       <h4><a class="xref" href="ArgentSea.ShardSetsBase-2.ShardSetWrite.html">ShardSetsBase&lt;TShard, TConfiguration&gt;.ShardSetWrite</a></h4>
       <section><p>This class hosts the concurrent write methods across the shard set.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.ShardsValues-1.html">ShardsValues&lt;TShard&gt;</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.SimpleDbConnection.html">SimpleDbConnection</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.StringExtensions.html">StringExtensions</a></h4>
@@ -174,11 +208,6 @@ It does NOT sanitize input strings for protection against injection attacks (you
 </section>
     <h3 id="structs">Structs
   </h3>
-      <h4><a class="xref" href="ArgentSea.DataOrigin.html">DataOrigin</a></h4>
-      <section><p>This object help descript the “type” of data. For example, you could assign Customer data a data origin value of 'c'.
-When comparing data values, the ShardKey/ShardChild will not match if the data origin is not the same value — even if IDs are the same.
-This helps prevent accidentaly comparisions that are not valid and also prevents collisions if you choose allows values of different types to be stored in the same cache.</p>
-</section>
       <h4><a class="xref" href="ArgentSea.ShardChild-3.html">ShardChild&lt;TShard, TRecord, TChild&gt;</a></h4>
       <section><p>Immutable class representing a sharded record with a database compound key. The ShardChild consist of the (virtual) shardId, the recordId, and the childId.</p>
 </section>
@@ -199,6 +228,10 @@ This helps prevent accidentaly comparisions that are not valid and also prevents
       <section><p>This interface is used by provider specific implementations. It is unlikely that you would reference this in consumer code.
 The interface defines the capabilities of a database providers service.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.IKeyedChildModel-3.html">IKeyedChildModel&lt;TShard, TRecord, TChild&gt;</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.IKeyedModel-2.html">IKeyedModel&lt;TShard, TRecord&gt;</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.IShardConnectionConfiguration-1.html">IShardConnectionConfiguration&lt;TShard&gt;</a></h4>
       <section><p>This interface is used by provider specific implementations. It is unlikely that you would implement this in consumer code.</p>
 </section>
@@ -211,6 +244,8 @@ The interface defines the capabilities of a database providers service.</p>
     <h3 id="enums">Enums
   </h3>
       <h4><a class="xref" href="ArgentSea.LoggingExtensions.EventIdentifier.html">LoggingExtensions.EventIdentifier</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.MapAttributeMissingException.ShardElement.html">MapAttributeMissingException.ShardElement</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.SequenceLengthening.html">SequenceLengthening</a></h4>
       <section></section>

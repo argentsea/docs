@@ -84,7 +84,7 @@
 <p>Using the Mapper consists of two parts:</p>
 <ul>
 <li>Add attributes to a model class define how each property should be mapped to a data store (if at all)</li>
-<li>Call a method which maps data results using the attribute metadata to populate the properties</li>
+<li>Call a method which maps properties to parameters and/or maps data results to properties</li>
 </ul>
 <p>By defining metadata about the names of parameters or result columns, the Mapper can automatically map properties to columns and/or parameters. Several query methods on both Database connections and ShardSets implicitly use the Mapper.</p>
 <h2 id="performance">Performance</h2>
@@ -94,6 +94,10 @@
 <h5>Warning</h5>
 <p>The Mapper will be relatively slow (and CPU intensive) the <em>first time</em> each model class is mapped to parameters or data. The initial compilation usually takes less than a second. Subsequent calls will execute the data to property mapping at native machine-code speeds. When the application is restarted, the memory is cleared and the compilation overhead occurs again.</p>
 </div>
+<h2 id="missing-parameters-or-columns">Missing Parameters or Columns</h2>
+<p>In some cases, the Model may have more properties than are defined in a parameter list or in data reader columns. When this happens, ArgentSea is somewhat forgiving.</p>
+<p>If a data reader result does not contain an expected column, the property is simply ignored. If the logging level is “Debug” or lower, a log message will be created including the Model name and column name.</p>
+<p>If the Mapper sets/reads/writes parameters and the query does not include that parameter, ADO.NET will return an error if the query is sent to the database. One solution is to simply manually remove unwanted parameters from the parameters collection. However, a better approach is to include parameter names in the query definition (<code>QueryStatement</code> or <code>QueryProcedure</code> class). This allows the Mapper to only include the subset of parameters whose names match the query definition.</p>
 <p>Next: <a href="attributes.html">Property Attributes</a></p>
 </article>
           </div>

@@ -87,17 +87,21 @@
 </ul>
 <p>ArgentSea will work with either design. The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> objects offer support for the second approach.</p>
 <h2 id="components">Components</h2>
-<p>A <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> consists of three components: a <em><a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a></em>, a <em>ShardId</em>, and a <em>RecordId</em>. A <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> has the same values plus an additional <em>ChildId</em>.</p>
+<p>A <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> consists of three components: a <em>DataOrigin</em> char value, a <em>ShardId</em>, and a <em>RecordId</em>. A <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> has the same values plus an additional <em>ChildId</em>.</p>
 <table border="0" margin="0" padding="0"><tr><td width="43%"><img src="/images/shardkey.svg"></td><td width="57%"><img src="/images/shardchild.svg"></td></tr></table>
-<h3 id="the-dataorigin">The <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a></h3>
-<p>Both the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> have a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> value. The purpose of this value is to represent a data source. It is little more than a character value that you can choose to differentiate the data source.</p>
-<p>For example, keys representing a <em>Customer</em> record might have a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> of “c”, whereas keys representing a <em>Product</em> record might have a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> of “p”. Because this simple tag identifies the data source, two different <a href="/api/ArgentSea.ShardKey-2.html">ShardKeys</a> from the same shard and with the same record number will still not be equal because they represent different source data.</p>
+<h3 id="the-dataorigin">The DataOrigin</h3>
+<p>Both the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> have a <em>DataOrigin</em> value. The purpose of this value is to represent a data source. It is simply a character value that you can choose to differentiate the data source.</p>
+<p>For example, keys representing a <em>Customer</em> record might have a <em>DataOrigin</em> of “c”, whereas keys representing a <em>Product</em> record might have a <em>DataOrigin</em> of “p”. Because this simple tag identifies the data source, two different <a href="/api/ArgentSea.ShardKey-2.html">ShardKeys</a> from the same shard and with the same record number will still not be equal because they represent different source data.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
-<p>One <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> character value is reserved: “0” (Unicode character Zero, Unicode numeric value 30).</p>
-<p>This is used for the <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> of <code>ShardKey.Empty</code> and <code>ShardChild.Empty</code>. Creating a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> with a “zero” <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> character but non-default (i.e. not zero or not null) <em>ShardId</em> or <em>RecordId</em> values will throw an <a href="/api/ArgentSea.InvalidShardArgumentsException.html">InvalidShardArgumentsException</a> error.</p>
+<p>One <em>DataOrigin</em> character value is reserved: “0” (Unicode character Zero, Unicode numeric value 30).</p>
+<p>This is used for the <em>DataOrigin</em> of <code>ShardKey.Empty</code> and <code>ShardChild.Empty</code>. Creating a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> with a “zero” <em>DataOrigin</em> character but non-default (i.e. not zero or not null) <em>ShardId</em> or <em>RecordId</em> values will throw an <a href="/api/ArgentSea.InvalidShardArgumentsException.html">InvalidShardArgumentsException</a> error.</p>
 </div>
 <p>This capability is useful for helping prevent data from being accessed with the wrong type of key — like an inventory key inadvertently passed to fetch an account record. Also, this may be helpful for caching data, since you can use the same dictionary to cache objects of different types without key collision.</p>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>Although the <em>DataOrigin</em> is a char, it is serialized as an 8-bit ANSI charactor value. You should avoid using non-alphanumeric charactors for this value. And definately no emojis.</p>
+</div>
 <h3 id="the-shardid">The ShardId</h3>
 <p>The ShardId is used to identify a particular shard in the ShardSet. The core ArgentSea framework uses a generic type for the ShardId because the ideal data type will depend upon your requirements. Technically, the ShardId can be any of the types available to a RecordId (see below). Practically, however, it makes sense to avoid types without a corresponding SQL type and also avoid unnecessarily large data sizes. This leaves <em>byte</em> (SQL Server only), <em>short</em>, <em>char</em> as the most storage-efficient choices; <em>int</em>, <em>string</em> are viable choices if your ShardId has other requirements — like needing to integrate with external systems.</p>
 <p>In essence, the most efficient ShardId type for SQL Server is byte/Tinyint, and for PostgreSQL is Int16(short)/Smalllint.</p>
@@ -105,7 +109,7 @@
 <p>Because the ShardId value is used in configuration, queries, and also for saving foreign shard references in your databases, once your project is established this value cannot be easily changed. The same ShardId type is used across all <a href="/api/ArgentSea.ShardSetsBase-2.html">ShardSets</a>.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The database itself may not know what its own <em>ShardId</em> is. This sounds absurd until you realize that it is genuinely difficult to keep scores or even hundreds of database schemas and procedures in sync while preserving a programmatic ShardId value. Your continuous delivery tooling will keep detecting any differences and trying to overwrite them. Fortunately, your connection <em>does</em> know this and can set the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values correctly.</p>
+<p>The database itself may not know what its own <em>ShardId</em> is. This sounds absurd until you realize that it is genuinely difficult to keep scores or even hundreds of database schemas and procedures in sync while preserving a programmatic ShardId value. Your continuous delivery tooling will keep detecting any differences and trying to overwrite them! Fortunately, your connection <em>does</em> know this and can set the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values correctly.</p>
 </div>
 <h3 id="the-recordid">The RecordId</h3>
 <p>Like the ShardId, the RecordId is also an generic type, which can be one of the following:</p>
@@ -162,10 +166,8 @@ public ShardKey&lt;short, int&gt; CustomerKey { get; set; }
 </section>
 </div>
 
-<p>This example sets the property to a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> instance with a <em><a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a></em> of “c”, the <em>ShardId</em> to the value of the data connection, and the <em>RecordId</em> the “CustomerId” column or parameter value.</p>
-<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> attribute’s first argument can be either a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> instance or a char from which a <a href="/api/ArgentSea.DataOrigin.html">DataOrigin</a> will be created.</p>
-<p>The second argument is the name of the data parameter or column. This name must <em>exactly</em> match the name in the data <em>MapTo</em> attribute.</p>
-<p>The <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attribute is nearly identical, except for the additional <em>ChildId</em> parameter:</p>
+<p>This example sets the property to a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> instance with a <em>DataOrigin</em> of “c”, the <em>ShardId</em> to the value of the data connection, and the <em>RecordId</em> the “CustomerId” column or parameter value.</p>
+<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> attribute’s first argument is a <em>DataOrigin</em> char value. The second argument is the name of the data parameter or column. This name must <em>exactly</em> match the name in the data <em>MapTo</em> attribute. The <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attribute is nearly identical, except for the additional <em>ChildId</em> parameter:</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
 <ul role="tablist">
 <li role="presentation">

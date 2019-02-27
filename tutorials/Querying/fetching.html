@@ -79,9 +79,9 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="fetching-data">Fetching Data</h1>
 
-<p>Retrieving database data consists of running a stored procedure or function on each connection. ArgentSea provides various methods to offer the best approach:</p>
+<p>Retrieving database data consists of running a query on each connection. ArgentSea provides various methods to offer the best approach.</p>
 <h2 id="connection-methods">Connection methods</h2>
-<p>Both database connections and shards have distinct Read and Write connections. The distinction allows the system to “scale out” reads and writes. The Read connection should be used for SELECT-only stored procedures or functions; the Write connection should be used for everything else. For example, you could direct reads to a mirror, active standby, or read-only endpoint, and direct writes to the master or source database.</p>
+<p>Both database connections and shards have distinct Read and Write connections. The distinction allows the system to “scale out” reads and writes. The Read connection should be used for SELECT-only stored procedures or SQL statements; the Write connection should be used for everything else. For example, you could direct reads to a mirror, active standby, or read-only endpoint, and direct writes to the master or source database.</p>
 <div class="TIP">
 <h5>Tip</h5>
 <p>Even if you do not <em>currently</em> have separate read-only endpoints like mirrors or active standbys, consistent discrimination of Read and Write access will allow you to scale-out in the future.</p>
@@ -97,12 +97,12 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>LookupAsync</strong></td>
-<td>Returns a value from the database. This may be a return value (int) or single output parameter.</td>
+<td><strong>ReturnValueAsync</strong></td>
+<td>Returns a value from the database. This may be a return value (int) or single output value from a parameter or column.</td>
 </tr>
 <tr>
 <td><strong>RunAsync</strong></td>
-<td>Executes a database procedure. No results are returned.</td>
+<td>Executes a database statement, procedure, or batch. No results are returned (except possibly batch results).</td>
 </tr>
 <tr>
 <td><strong>QueryAsync</strong></td>
@@ -122,8 +122,8 @@
 </tr>
 </tbody>
 </table>
-<p>Database objects and shard intances have both <code>Write</code> and <code>Read</code> connections, which executes a stored procedure or function on a single database. All the methods listed are available on either connection (even though it may not make sense to use <code>RunAsync</code> on a read connection).</p>
-<p>The ShardSet has <code>Write</code>, <code>ReadAll</code>, and <code>ReadFirst</code> connections, which execute the procedure or function on every shard. They return either the combined result or the first valid (non-null) result. For example, if you need to look up a user by their login name (rather than their user key), use <code>ReadFirst</code> to query all shards for a matching record, and to return the single expected matching result. Whereas, <code>ReadAll</code> could be used to retrieve all users in any shard with particular attribute. Note that <code>ReadAll</code> methods always return list results.</p>
+<p>Database objects and shard instances have both <code>Write</code> and <code>Read</code> connections, which executes a query on a single database. All the methods listed are available on either connection (even though it may not make sense to use <code>RunAsync</code> on a read connection).</p>
+<p>The ShardSet has <code>Write</code>, <code>ReadAll</code>, and <code>ReadFirst</code> connections, which execute the procedure or SQL statement on every shard. They return either the combined result or the first valid (non-null) result. For example, if you need to look up a user by their login name (rather than their user key), use <code>ReadFirst</code> to query all shards for a matching record, and to return the single expected matching result. Whereas, <code>ReadAll</code> could be used to retrieve all users in any shard with particular attribute. Note that <code>ReadAll</code> methods always return list results.</p>
 <table>
 <thead>
 <tr>
@@ -138,7 +138,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>LookupAsync</strong></td>
+<td><strong>ReturnValueAsync</strong></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">•</td>
 <td style="text-align: center;">•</td>
@@ -194,39 +194,24 @@
 </tbody>
 </table>
 <h2 id="method-arguments">Method Arguments</h2>
-<p>The arguments are largely consistent across all of the methods.</p>
-<h3 id="required-argument-string-sprocname">Required Argument: (string) sprocName</h3>
-<p>This is simply the name of the stored procedure or function to be invoked. This string value is required for every data access method.</p>
-<p>The general practice is to provide a stored procedure/function name with string constant, like this:</p>
-<pre><code class="lang-csharp">await database.RunAsync(&quot;ws.MyProcedureName&quot;, parameters, cancellationToken);
+<p>The arguments are largely consistent across all of the methods, except running a query batch which is discussed later.</p>
+<h3 id="required-argument-query-query">Required Argument: (Query) query</h3>
+<p>There are two types of query objects:</p>
+<ul>
+<li><strong>Stored procedures</strong> are parameterized statements stored within the database server. This is the preferred approach with SQL Server.</li>
+<li><strong>Statements</strong> are parameterized SQL files stored in a application folder (rather than compiled into the source code). This is useful for PostgreSQL databases and situations with less-than-full ownership of the target database.</li>
+</ul>
+<p>The recommended practice is to create a single static class rendering all SQL statements and procedures. This approach is simple and also provides a reference count indicating which procedures/statements are in use, which can be a problem when an application has grown large. Sample code and more detail is discussed in <a href="/tutorials/querying/sql.md">SQL queries</a> and the <a href="/tutorials/quickstarts/configuration.md">configuration quickstart</a>.</p>
+<p>An example invocation is like this:</p>
+<pre><code class="lang-csharp">await database.RunAsync(Queries.MyProcedure, parameters, cancellationToken);
 </code></pre>
-<p>As larger applications evolve, however, one can lose track of which database procedures are <em>actually being used</em> by the application. It is not unusual for a custom application to have hundreds of data procedures, only a fraction of which are used.</p>
-<p><strong>Pro tip:</strong> you might consider consistently referencing procedure names via a static class, like this.</p>
-<pre><code class="lang-csharp">internal static class DataProcedures
-{
-  //This should be a COMPREHENSIVE list of stored procedure names.
-  //You can use the reference count to determine what is in use.
-  public static string StoreAdd { get;  } = &quot;ws.StoreAdd&quot;;
-  public static string StoreList { get; } = &quot;ws.StoreList&quot;;
-  public static string StoreLocationGet { get; } = &quot;ws.StoreLocationGet&quot;;
-  public static string StoreLocationDetailsGet { get;  } = &quot;ws.StoreLocationDetailsGet&quot;;
-  public static string StoreLocationsAllByUser { get; } = &quot;ws.StoreLocationsAllByUser&quot;;
-  public static string StoreLocationsByGroupIDs { get; } = &quot;ws.StoreLocationsByGroupIDs&quot;;
-  // ...
-}
-// Now you can reference the procedure name like this:
-await database.Write.RunAsync(DataProcedures.StoreAdd, parameters, cancellationToken);
-
-</code></pre>
-<p>Centralizing the procedure name list allows reviewers to see which procedures are actually used by the application (and ensure that non are misspelled). Surfacing them using static properties, as in the example, allows Visual Studio to provide a “reference count” for each procedure (constants do not do this). When the method that called this stored procedure/function is removed from the code, the zero “reference count” will make it obvious that, even though the name defined, it is not actually used.</p>
-<p>The reference count popup data even allows you to find all of the methods that invoke that stored procedure/function. This can be helpful as you prune different data procedures that seem to do the same thing.</p>
 <h3 id="required-argument-dbparametercollection-parameters">Required Argument: (DbParameterCollection) parameters</h3>
 <p>The abstract <code>DbParameterCollection</code> is implemented by ArgentSea’s <a href="/api/ArgentSea.QueryParameterCollection.html">QueryParameterCollection</a> object. Because it is also implemented by the provider-specific command.Parameters property, if you have a command with valid parameters defined (for some reason), you can use that too.</p>
 <p>This value can be null if there are no parameters.</p>
 <div class="WARNING">
 <h5>Warning</h5>
 <p>When working with output parameters in standard ADO.NET, you may habitually maintain a variable reference to any output parameters you created before adding it to the collection. This makes it easy to get the output parameter value after the query is executed.<br>
-This approach will not work with sharded data, because ArgentSea will <em>copy</em> the parameter set before executing the stored procedure/function. Any referenced output parameters will <em>not</em> contain a data result.</p>
+This approach will not work with sharded data, because ArgentSea will <em>copy</em> the parameter set before executing the query. Any referenced output parameters will <em>not</em> contain a data result.</p>
 </div>
 <h3 id="optional-shardset-argument-ienumerableshardparametervaluetshard-shardparametervalues">Optional ShardSet Argument: (IEnumerable&lt;ShardParameterValue&lt;TShard&gt;&gt;) shardParameterValues</h3>
 <p>Some shard query method overloads accept a <code>ShardParameterValue</code> object. This object allows you to specify which shards should be queried and even provide distinct parameter values to each shard.</p>
@@ -234,7 +219,7 @@ This approach will not work with sharded data, because ArgentSea will <em>copy</
 <p>The <code>ShardParameterValue</code> type has a ShardId and an optional parameter name and value. Only shards with at least one listed ShardId will be queried. If a parameter name is also specified, the corresponding parameter will be set to that value on the indicated shard. You can include multiple parameters/values on the same shard by repeating the shardId.</p>
 <h3 id="optional-shardset-argument-string-shardparametername">Optional ShardSet Argument: (string) shardParameterName</h3>
 <p>Some shard query overloads also accept the name of the parameter that represents the name of the parameter that should be set to shardId value. If specified, ArgentSea will set this parameter value to the current shardId value as it executes each query.</p>
-<p>For example, a query for a list of records that spans shards could be enhanced if the query new the value of its own ShardId. Alternatively, because a shard misconfiguration might result in catastrophic data corruption (due to the high likelihood of duplicate record identities between shards), you might require that stored procedures or functions that write to the database also have a ShardId parameter that they validate is correct.</p>
+<p>For example, a query for a list of records that spans shards could be enhanced if the query new the value of its own ShardId. Alternatively, because a shard misconfiguration might result in catastrophic data corruption (due to the high likelihood of duplicate record identities between shards), you might require that queries that write to the database also have a ShardId parameter that they validate is correct.</p>
 <h3 id="optional-argument-queryresultmodelhandlertshard-targ-tmodel-resulthandler">Optional Argument: (QueryResultModelHandler&lt;TShard, TArg, TModel&gt;&gt;) resultHandler</h3>
 <p>This is only used in the QueryAsync methods. As described earlier, the data query process is divided into two processes. The resultHandler is a delegate that may be invoked concurrently by distinct, shard-specific threads.</p>
 <p>If you use a data access method prefixed with Map*, this argument is not required because the delegate provided by the Mapper is used. If the Mapper does not suit your purpose, then a custom delegate must be provided to a Query* method.</p>
@@ -248,27 +233,27 @@ This approach will not work with sharded data, because ArgentSea will <em>copy</
 <h2 id="the-mapreader-and-mapoutput-methods">The MapReader* and MapOutput* Methods</h2>
 <p>The <strong>MapReader*</strong> and <strong>MapOutput*</strong> methods are similar. Both use the Mapping attributes to resolve data to Model objects. The <strong>MapOutput*</strong> method uses <em>output parameters</em> to build the root result object; the <strong>MapReader</strong> methods use a (single record) <strong>DataReader</strong> result instead.</p>
 <p>So, if you use output parameters (which is potentially more performant), use <strong>MapOutput*</strong>. If you use standard SELECTs to return your data, use <strong>MapReader*</strong>.</p>
-<p>Both methods support multiple result sets that populate properties that contain Lists of related data. For example, you might have an Order record with a property containing an OrderItem List. The list items come from (additional) DataReader results. You can have up to eight of these List properties.</p>
-<div class="TIP">
-<h5>Tip</h5>
-<p>The order in which your attribute-mapped class appears in the generic definitions should be the same order as the list data results in the procedure output.</p>
+<p>Both methods support multiple result sets that populate properties that contain Lists (<code>List&lt;Model&gt;</code> or <code>IList&lt;Model&gt;</code>) of related data. For example, you might have an Order record with a property containing an OrderItem List. The list items come from (additional) DataReader results. A single root Model may have up to eight of these List properties. The List property must be settable.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The order in which your attribute-mapped class appears in the generic definitions should be the same order as the list data results in the procedure or statement output.</p>
 </div>
 <p>An example of calling each would be:</p>
 <pre><code class="lang-csharp">// In this example, ws.GetOrderDetails returns Order data in output parameters:
-_database.MapOutputAsync&lt;Order&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+_database.MapOutputAsync&lt;Order&gt;(Queries.GetOrderDetails, parameters, cancellation);
 // Here, ws.GetOrderDetails returns simple Order data in a single-row SELECT:
-_database.MapReaderAsync&lt;Order&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+_database.MapReaderAsync&lt;Order&gt;(Queries.GetOrderDetails, parameters, cancellation);
 
 // Now ws.GetOrderDetails returns Order data in output parameters and a list of OrderItem from a SELECT:
-_database.MapOutputAsync&lt;Order, OrderItems&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+_database.MapOutputAsync&lt;Order, OrderItems&gt;(Queries.GetOrderDetails, parameters, cancellation);
 // Finally, ws.GetOrderDetails returns Order data in a single-row SELECT, then a list of OrderItems from a 2nd SELECT:
-_database.MapReaderAsync&lt;Order, Order, OrderItems&gt;(&quot;ws.GetOrderDetails&quot;, parameters, cancellation);
+_database.MapReaderAsync&lt;Order, Order, OrderItems&gt;(Queries.GetOrderDetails, parameters, cancellation);
 
 // Expanding this, we now have output parameters and three SELECTs:
-_database.MapOutputAsync&lt;Store, OrderHistory, Locations, Contact&gt;(&quot;ws.GetStoreDetails&quot;, parameters, cancellation);
-// Likewise, the procedure now returns four SELECTs, and the third one is a single-row SELECT with the base customer data,
+_database.MapOutputAsync&lt;Store, OrderHistory, Locations, Contact&gt;(Queries.GetStoreDetails, parameters, cancellation);
+// Likewise, the query now returns four SELECTs, and the third one is a single-row SELECT with the base customer data,
 // the remaining select are used to build customer property lists (order history, locations, and contacts):
-_database.MapReaderAsync&lt;Store, OrderHistory, Store, Locations, Contact&gt;(&quot;ws.GetStoreDetails&quot;, parameters, cancellation);
+_database.MapReaderAsync&lt;Store, OrderHistory, Store, Locations, Contact&gt;(Queries.GetStoreDetails, parameters, cancellation);
 </code></pre>
 <p>In both methods, the generic type in the <em>first</em> position is the return type. If additional results are included in the result stream, the subsequent types define the order in which they are expected in the DataReader results. You can have up to eight DataReader results streamed to distinct List properties.</p>
 <ul>
@@ -297,9 +282,6 @@ _database.MapReaderAsync&lt;Store, OrderHistory, Store, Locations, Contact&gt;(&
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Querying/fetching.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

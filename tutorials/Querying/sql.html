@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Creating SQL Queries | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Creating SQL Queries | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="creating-sql-queries">Creating SQL Queries</h2>
+
+<p>Every ArgentSea data access method takes a <code>Query</code> argument. ArgentSea offers two implementations:</p>
+<ul>
+<li><code>QueryProcedure</code> - which names a stored procedure (or function). This also sets the DbCommandType to <em>StoredProcedure</em>. Of course, the actual SQL implementation is hosted on the server, giving DBAs or SQL developers the ability to revise the implementation, if needed. This is the recommended approach for SQL Server.</li>
+<li><code>QueryStatement</code> - which presents a parameterized SQL statement which is loaded from a file. This sets the DbCommandType to “Text”. This is the recommended approach for PostgreSQL and situations with limited ownership of the database.</li>
+</ul>
+<p>ArgentSea recommends creating a single, static class which contains <em>all</em> defined procedures or SQL statements as static properties. As large applications evolve, it can become difficult to determine procedures or commands are actually used by the application. Noting Visual Studio’s reference count for each property may help prune dead code.</p>
+<p>Here is an example:</p>
+<pre><code class="lang-csharp">public static class Queries
+{
+    // Define query for a SQL Stored Procedure or PostgreSQL function.
+    public static QueryProcedure GetSubscriber =&gt; new QueryProcedure(&quot;ws.ListSubscribers&quot;, new[] { &quot;subscriberid&quot; });
+
+    // Define query in a SQL file named “GetSubscriber”. Lazy load and cache.
+    private static readonly Lazy&lt;QueryStatement&gt; _getSubscriber = QueryStatement.Create(&quot;GetSubscriber&quot;, new[] { &quot;subid&quot; });
+    public static QueryStatement GetSubscriber =&gt; _getSubscriber.Value;
+
+    // add a new static properties for each additional query...
+}
+</code></pre>
+<p>Now, it is easy to reference the statement batch or procedure like this:</p>
+<pre><code class="lang-csharp">return await db.Read.MapReaderAsync&lt;Subscriber&gt;(Queries.GetSubscriber, parameters, cancellation);
+</code></pre>
+<h3 id="queryprocedures">QueryProcedures</h3>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The recommended way to query SQL Server is via stored procedures. This offers performance benefits, the advantage of consolidating SQL in a single repository (SQL Server itself), and the ability to tinker with SQL without changing application code. The defined inputs and output of the stored procedure becomes the defined “interface” to the underlying data.</p>
+<p>A <code>QueryProcedure</code> class requires a stored procedure name in its constructor. Optionally, you can add parameter names. The advantage of providing parameters names is described below, along with a SQL script that can generate this metadata automatically.</p>
+<p>If you are referencing a database where creating stored procedures would be problematic (say, you don’t control the target database), then the <code>Statement</code> class allows SQL strings to be used instead.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>PostgreSQL clients are generally advised to use the <code>QueryStatement</code> class, rather than <code>QueryProcedure</code>.</p>
+</div>
+<p>You can use the <code>QueryProcedure</code> type to call a PostgreSQL function. The longstanding behavior of the <a href="http://www.npgsql.org/">Npgsql</a> provider is to implicitly change the query to “SELECT * FROM &lt;functionName&gt;”. Consequently, this class can only invoke <em>functions</em>, not stored procedures. To invoke stored procedures, use “CALL &lt;sprocName&gt;” in the <code>QueryStatement</code> class instead.</p>
+<p>A <code>QueryProcedure</code> class requires the function name in its constructor. Optionally, you can add parameter names. The advantage of providing parameters names is described below.</p>
+</section>
+</div>
+<h3 id="querystatements">QueryStatements</h3>
+<p>A <code>QueryStatement</code> class loads a text file containing SQL commands. The file contains the batch of SQL commands to execute. This helps avoid immutable SQL that is compiled within the application.</p>
+<p>The default steps to implement this are:</p>
+<h4 id="1-create-a-project-folder-called-sql">1. Create a project folder called “SQL”</h4>
+<p>This is the subdirectory folder from which ArgentSea will load the SQL batch files. The default “SQL” folder name can be changed by setting the static QueryStatement.Folder` property. This should be done during startup.</p>
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    QueryStatement.Folder = Configuration[&quot;sqlFolder&quot;];
+    QueryStatement.Extension = &quot;psql&quot;;
+    ...
+}
+</code></pre>
+<p>Alternatively, the <code>QueryStatement.Create()</code> factory method overloads allow you specify a folder and extension or absolute path and filename.</p>
+<h4 id="2-in-the-sql-folder-add-a-new-file-for-each-statement-batch">2. In the SQL folder, add a new file for each statement batch</h4>
+<p>The file name should be the same name as the property in your <code>Queries</code> class.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The default extension for each file is “.sql”. This will be appended to the name you specify. In other words, by default ArgentSea uses “&lt;AppFolder&gt;\SQL&amp;lt;name&gt;.sql” to locate SQL files.</p>
+<p>As with the default folder, you can change the default extension by setting the static <code>QueryStatement.Extension</code> property, or by using one of the <code>Create</code> overloads.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>When PostgreSQL services are loaded, via the <code>AddPgServices</code> call in the <code>ConfigureServices</code> method, the default extension for SQL files is set to “psql”. This will be appended to the name you specify. In other words, by default ArgentSea uses “&lt;AppFolder&gt;\SQL&amp;lt;name&gt;.psql” to locate SQL files.</p>
+<p>As with the default folder, you can change the default extension by setting the static <code>QueryStatement.Extension</code> property, or by using one of the <code>Create</code> overloads. Be sure to set this value, <em>after</em> the <code>AddPgServices</code> call, but before a query is invoked.</p>
+<p>As with the default folder, you can change the default extension by setting the static <code>QueryStatement.Extension</code> property, or by using one of the <code>Create</code> overloads.</p>
+</section>
+</div>
+<h3 id="3-ensure-the-sql-files-are-deployed">3. Ensure the SQL files are deployed</h3>
+<p>In your IDE (i.e. Visual Studio), access the file’s <em>Properties</em> pane, then:</p>
+<ul>
+<li>Ensure the <em>Build Action</em> attribute is “None”</li>
+<li>Set the <em>Copy to Output Directory</em> attribute to “Copy if newer” for each SQL file.</li>
+</ul>
+<p>This will ensure that the files are copied to the output/publish directory.</p>
+<h4 id="4-add-a-corresponding-property-to-the-queries-static-class">4. Add a corresponding property to the Queries static class</h4>
+<p>The <code>QueryStatement</code> class does not have a default constructor; use the <code>Create</code> factory method instead. The <code>Create</code> factory method returns a <code>Lazy&lt;QueryStatement&gt;</code>. This allows the SQL file to be loaded only when first requested, and then cached for all subsequent requests.</p>
+<p>Each static method takes only two lines:</p>
+<pre><code class="lang-csharp">private static readonly Lazy&lt;QueryStatement&gt; _getSubscriber = QueryStatement.Create(&quot;ListSubscribers&quot;);
+public static QueryStatement GetSubscriber =&gt; _getSubscriber.Value;
+</code></pre>
+<p>The create method overloads allow you to explicitly set a folder and extension, or an absolute path and filename.</p>
+<pre><code class="lang-csharp">private static readonly Lazy&lt;QueryStatement&gt; _getSubscriber = QueryStatement.Create(&quot;ListSubscribers&quot;, null, &quot;SqlQueries&quot;, &quot;qry&quot;);
+public static QueryStatement GetSubscriber =&gt; _getSubscriber.Value;
+</code></pre>
+<h2 id="parameter-names">Parameter Names</h2>
+<p>Both the <code>QueryProcedure</code> constructor and  the <code>QueryStatement</code> factory method take an optional string array of parameter names. If not provided, the Mapper will set/write/read <em>all</em> the parameters defined on the Model class; otherwise, only those matching the listed parameter names will be set.</p>
+<p>For example, INSERT queries would be unlikely to expect a “LastModified” parameter, but UPDATE queries often do. Unless the appropriate parameters are listed with the Query definition, the ArgentSea Mapper will create parameters from all properties with a corresponding attribute. Extra or missing parameters will generate a query error.</p>
+<p>Another scenario where this is helpful is the the “ShardId” parameter. Because this can be implicitly handled by ArgentSea Mapper, there can be ambiguity and inconsistency as to whether or not a shard id parameter should be created. The parameter list helps resolve this.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>SQL parameter names are always implicitly normalized to include a “@” prefix, so parameters names should match even if the Model’s property attribute does not include the “@” sign. Casing does matter though.</p>
+<p>This SQL statement will generate the Queries class from the existing stored procedures, you can paste this code into SQL Management Studio.</p>
+<pre><code class="lang-sql">PRINT N'public static class Queries
+{'
+DECLARE @Parameters nvarchar(max), @ObjectId int, @SchemaName sysname, @SprocName sysname, @ParameterName sysname;
+
+DECLARE curProcedures CURSOR FOR 
+SELECT procedures.object_id, schemas.name, procedures.name 
+FROM sys.procedures 
+	INNER JOIN sys.schemas 
+	ON schemas.schema_id = procedures.schema_id 
+ORDER BY schemas.name, procedures.name
+
+OPEN curProcedures;
+FETCH NEXT FROM curProcedures INTO @ObjectId, @SchemaName, @SprocName;
+WHILE @@FETCH_STATUS = 0
+BEGIN;
+	SET @Parameters = N'';
+	DECLARE curParameters CURSOR FOR
+	SELECT parameters.name FROM sys.parameters WHERE object_id = @ObjectId ORDER BY parameter_id;
+	OPEN curParameters;
+	FETCH NEXT FROM curParameters INTO @ParameterName;
+	WHILE @@FETCH_STATUS = 0
+	BEGIN;
+		IF @Parameters = N''
+		BEGIN;
+			SET @Parameters = N'&quot;' + @ParameterName + N'&quot;'
+		END;
+		ELSE
+		BEGIN;
+			SET @Parameters = @Parameters + N', &quot;' + @ParameterName + N'&quot;'
+		END;
+		--PRINT N'     ' + @ParameterName
+		FETCH NEXT FROM curParameters INTO @ParameterName;
+	END;
+	CLOSE curParameters;
+	DEALLOCATE curParameters;
+	IF @Parameters = N''
+	BEGIN;
+		PRINT N'    public static QueryProcedure ' + @SprocName + N' =&gt; new QueryProcedure(&quot;' + @SchemaName + N'.' + @SprocName + N'&quot;, new string[] { });'
+	END;
+	ELSE
+	BEGIN;
+		PRINT N'    public static QueryProcedure ' + @SprocName + N' =&gt; new QueryProcedure(&quot;' + @SchemaName + N'.' + @SprocName + N'&quot;, new[] { ' + @Parameters + ' });'
+	END;
+
+	FETCH NEXT FROM curProcedures INTO @ObjectId, @SchemaName, @SprocName;
+END;
+CLOSE curProcedures;
+DEALLOCATE curProcedures;
+
+PRINT N'}'
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>Parameter names much match, including casing, kana type, etc. Parameter names should generally be consistently lowercase. Future versions of ArgentSea may automatically convert data object names to lowercase.</p>
+</section>
+</div>
+
+<p>Next: <a href="sequence.html">Coding Queries with ArgentSea</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

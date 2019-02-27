@@ -84,9 +84,9 @@
 <li>Query input parameters</li>
 <li>Query output parameters</li>
 <li>Data reader columns</li>
-<li>Table-valued parameters (SQL Server only)</li>
+<li>Table-valued parameters (SQL Server) or Copy statements (PostgreSQL)</li>
 </ul>
-<p>The mapper does <em>not</em> generate dynamic SQL statements. The Mapper may be useful in situations where dynamic SQL is used, but, philosophically, this is not encouraged. Stored procedures are generally more secure, more performant, and offer a less tightly-coupled architecture.</p>
+<p>The mapper does <em>not</em> generate dynamic SQL statements. The Mapper may be useful in situations where dynamic SQL is used, but, philosophically, this is not encouraged. Stored procedures and parameterized SQL statements are generally more secure, more performant, and offer a less tightly-coupled architecture.</p>
 <h2 id="the-parameter-collection">The Parameter Collection</h2>
 <p>The Mapper’s parameter methods are implemented as an extension method to the (abstract) DbParametersCollection, which is inherited by each provider implementation of the DbCommand.Parameters property. This means that you can call the Mapper through the command object of any provider.</p>
 <pre><code class="lang-csharp">cmd.Parameters.CreateInputParameters&lt;MyDataClass&gt;(myDataClass, logger);
@@ -193,7 +193,7 @@ var customer = cmd.Parameters.ToModel&lt;Customer&gt;(logger);
 </div>
 
 <p>Of course, it would be quite unusual to have a query that <em>only</em> uses output parameters. Because the input parameter is added to the collection first, the output parameter will be automatically skipped. As with input parameters, you can also provide a list of parameter names that you want to explicitly skip. And also like input parameters, the <code>CreateOutputParameters</code> method simply creates output parameters; you can modify the collection as needed.</p>
-<p>Once the parameters are set and the procedure is executed, the Mapper can read the values of the output parameters into the corresponding properties of a new object instance. The <code>ToModel</code> method returns a new object with the properties set.</p>
+<p>Once the parameters are set and the query is executed, the Mapper can read the values of the output parameters into the corresponding properties of a new object instance. The <code>ToModel</code> method returns a new object with the properties set.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>The <code>MapOutput*;</code> methods of the Database or ShardSet objects fetch results from the database and implicitly use the Mapper to return a Model based upon output parameters. In most cases, you would use one of those methods rather than <code>ToModel</code> on the Mapper directly.</p>
@@ -220,9 +220,6 @@ var customer = cmd.Parameters.ToModel&lt;Customer&gt;(logger);
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Mapping/targets.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

@@ -127,7 +127,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_ConnectionString.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.ConnectionString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L123">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L117">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_ConnectionString_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.ConnectionString*"></a>
   <h4 id="ArgentSea_DatabasesBase_1_DataConnection_ConnectionString" data-uid="ArgentSea.DatabasesBase`1.DataConnection.ConnectionString">ConnectionString</h4>
@@ -156,97 +156,19 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_LookupAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.LookupAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapListAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapListAsync%60%601(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L134">View Source</a>
-  </span>
-  <a id="ArgentSea_DatabasesBase_1_DataConnection_LookupAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.LookupAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_LookupAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.LookupAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">LookupAsync&lt;TValue&gt;(String, DbParameterCollection, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Connect to the database and return a single value.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TValue&gt; LookupAsync&lt;TValue&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the value.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
-        <td><span class="parametername">parameters</span></td>
-        <td><p>A parameters collction. Input parameters may be used to find the parameter; will return the value of the first output (or input/output) parameter. If TValue is an int, will also return the sproc return value.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>A token to cancel the asynchronous operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TValue&gt;</td>
-        <td><p>The retrieved value.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">TValue</span></td>
-        <td><p>The expected type of the return value.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapListAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L145">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L150">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapListAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapListAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapListAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapListAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapListAsync&lt;TModel&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapListAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapListAsync``1(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapListAsync&lt;TModel&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return the values as a list of objects.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;TModel&gt;&gt; MapListAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;IList&lt;TModel&gt;&gt; MapListAsync&lt;TModel&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -260,9 +182,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -313,19 +235,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%601(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L157">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L162">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``1(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -339,9 +261,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -391,19 +313,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__2_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%602(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__2_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%602(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L170">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L175">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__2_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``2(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__2_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``2(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult : class, new()</code></pre>
   </div>
@@ -418,9 +340,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -475,19 +397,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__3_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%603(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__3_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%603(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L186">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L191">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__3_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``3(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__3_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``3(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()</code></pre>
@@ -503,9 +425,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -565,19 +487,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__4_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%604(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__4_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%604(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L204">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L209">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__4_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``4(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__4_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``4(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -594,9 +516,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -661,19 +583,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__5_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%605(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__5_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%605(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L224">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L229">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__5_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``5(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__5_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``5(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -691,9 +613,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -763,19 +685,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__6_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%606(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__6_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%606(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L246">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L251">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__6_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``6(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__6_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``6(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -794,9 +716,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -871,19 +793,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__7_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%607(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__7_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%607(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L270">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L275">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__7_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``7(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__7_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``7(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -903,9 +825,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -985,19 +907,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__8_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%608(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__8_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%608(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L296">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L301">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__8_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``8(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__8_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``8(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -1018,9 +940,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1105,19 +1027,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__9_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%609(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__9_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapOutputAsync%60%609(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L324">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L329">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__9_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``9(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapOutputAsync__9_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapOutputAsync``9(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results and output parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapOutputAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -1139,9 +1061,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1231,19 +1153,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%601(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L348">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L353">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__1_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``1(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``1(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1257,9 +1179,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1309,19 +1231,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__3_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%603(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__3_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%603(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L362">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L367">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__3_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``3(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__3_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``3(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()</code></pre>
@@ -1337,9 +1259,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1399,19 +1321,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__4_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%604(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__4_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%604(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L380">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L385">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__4_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``4(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__4_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``4(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -1428,9 +1350,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1495,19 +1417,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__5_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%605(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__5_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%605(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L400">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L405">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__5_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``5(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__5_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``5(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -1525,9 +1447,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1597,19 +1519,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__6_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%606(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__6_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%606(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L422">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L427">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__6_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``6(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__6_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``6(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -1628,9 +1550,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1705,19 +1627,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__7_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%607(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__7_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%607(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L446">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L451">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__7_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``7(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__7_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``7(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -1737,9 +1659,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1819,19 +1741,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__8_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%608(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__8_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%608(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L472">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L477">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__8_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``8(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__8_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``8(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -1852,9 +1774,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -1939,19 +1861,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__9_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%609(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__9_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.MapReaderAsync%60%609(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L500">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L505">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__9_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``9(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(String, DbParameterCollection, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_MapReaderAsync__9_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.MapReaderAsync``9(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(Query, DbParameterCollection, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return an object of the specified type built from the corresponding data reader results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; MapReaderAsync&lt;TModel, TReaderResult0, TReaderResult1, TReaderResult2, TReaderResult3, TReaderResult4, TReaderResult5, TReaderResult6, TReaderResult7&gt;(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)
     where TModel : class, new()
     where TReaderResult0 : class, new()
     where TReaderResult1 : class, new()
@@ -1973,9 +1895,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -2065,19 +1987,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_QueryAsync__1_System_String_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32_System_Object___0__System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.QueryAsync%60%601(System.String%2CSystem.Data.Common.DbParameterCollection%2CArgentSea.QueryResultModelHandler%7BSystem.Int32%2CSystem.Object%2C%60%600%7D%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_QueryAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32_System_Object___0__System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.QueryAsync%60%601(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CArgentSea.QueryResultModelHandler%7BSystem.Int32%2CSystem.Object%2C%60%600%7D%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L525">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L530">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_QueryAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.QueryAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_QueryAsync__1_System_String_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32_System_Object___0__System_Boolean_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.QueryAsync``1(System.String,System.Data.Common.DbParameterCollection,ArgentSea.QueryResultModelHandler{System.Int32,System.Object,``0},System.Boolean,System.Threading.CancellationToken)">QueryAsync&lt;TModel&gt;(String, DbParameterCollection, QueryResultModelHandler&lt;Int32, Object, TModel&gt;, Boolean, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_QueryAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32_System_Object___0__System_Boolean_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.QueryAsync``1(ArgentSea.Query,System.Data.Common.DbParameterCollection,ArgentSea.QueryResultModelHandler{System.Int32,System.Object,``0},System.Boolean,System.Threading.CancellationToken)">QueryAsync&lt;TModel&gt;(Query, DbParameterCollection, QueryResultModelHandler&lt;Int32, Object, TModel&gt;, Boolean, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return the TModel object returned by the delegate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; QueryAsync&lt;TModel&gt;(string sprocName, DbParameterCollection parameters, QueryResultModelHandler&lt;int, object, TModel&gt; resultHandler, bool isTopOne, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; QueryAsync&lt;TModel&gt;(Query query, DbParameterCollection parameters, QueryResultModelHandler&lt;int, object, TModel&gt; resultHandler, bool isTopOne, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2090,9 +2012,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -2155,19 +2077,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_QueryAsync__2_System_String_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32___0___1__System_Boolean___0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.QueryAsync%60%602(System.String%2CSystem.Data.Common.DbParameterCollection%2CArgentSea.QueryResultModelHandler%7BSystem.Int32%2C%60%600%2C%60%601%7D%2CSystem.Boolean%2C%60%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_QueryAsync__2_ArgentSea_Query_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32___0___1__System_Boolean___0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.QueryAsync%60%602(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CArgentSea.QueryResultModelHandler%7BSystem.Int32%2C%60%600%2C%60%601%7D%2CSystem.Boolean%2C%60%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L540">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L545">View Source</a>
   </span>
   <a id="ArgentSea_DatabasesBase_1_DataConnection_QueryAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.QueryAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_QueryAsync__2_System_String_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32___0___1__System_Boolean___0_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.QueryAsync``2(System.String,System.Data.Common.DbParameterCollection,ArgentSea.QueryResultModelHandler{System.Int32,``0,``1},System.Boolean,``0,System.Threading.CancellationToken)">QueryAsync&lt;TArg, TModel&gt;(String, DbParameterCollection, QueryResultModelHandler&lt;Int32, TArg, TModel&gt;, Boolean, TArg, CancellationToken)</h4>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_QueryAsync__2_ArgentSea_Query_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32___0___1__System_Boolean___0_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.QueryAsync``2(ArgentSea.Query,System.Data.Common.DbParameterCollection,ArgentSea.QueryResultModelHandler{System.Int32,``0,``1},System.Boolean,``0,System.Threading.CancellationToken)">QueryAsync&lt;TArg, TModel&gt;(Query, DbParameterCollection, QueryResultModelHandler&lt;Int32, TArg, TModel&gt;, Boolean, TArg, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Connect to the database and return the TModel object returned by the delegate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; QueryAsync&lt;TArg, TModel&gt;(string sprocName, DbParameterCollection parameters, QueryResultModelHandler&lt;int, TArg, TModel&gt; resultHandler, bool isTopOne, TArg optionalArgument, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;TModel&gt; QueryAsync&lt;TArg, TModel&gt;(Query query, DbParameterCollection parameters, QueryResultModelHandler&lt;int, TArg, TModel&gt; resultHandler, bool isTopOne, TArg optionalArgument, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2180,9 +2102,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure to call to fetch the data.</p>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -2254,19 +2176,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_RunAsync_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.RunAsync(System.String%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_ReturnValueAsync_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.ReturnValueAsync(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L551">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L127">View Source</a>
   </span>
-  <a id="ArgentSea_DatabasesBase_1_DataConnection_RunAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.RunAsync*"></a>
-  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_RunAsync_System_String_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.RunAsync(System.String,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">RunAsync(String, DbParameterCollection, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>Executes a database procedure or function that does not return a data result.</p>
+  <a id="ArgentSea_DatabasesBase_1_DataConnection_ReturnValueAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.ReturnValueAsync*"></a>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_ReturnValueAsync_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.ReturnValueAsync(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">ReturnValueAsync(Query, DbParameterCollection, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Invokes the query and returns the integer result.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task RunAsync(string sprocName, DbParameterCollection parameters, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; ReturnValueAsync(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2279,9 +2201,152 @@
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_ReturnValueAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.ReturnValueAsync%60%601(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L139">View Source</a>
+  </span>
+  <a id="ArgentSea_DatabasesBase_1_DataConnection_ReturnValueAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.ReturnValueAsync*"></a>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_ReturnValueAsync__1_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.ReturnValueAsync``1(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.String,System.Threading.CancellationToken)">ReturnValueAsync&lt;TValue&gt;(Query, DbParameterCollection, String, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Invokes the query and returns the output parameter or first-row column value matching the “dataName”.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TValue&gt; ReturnValueAsync&lt;TValue&gt;(Query query, DbParameterCollection parameters, string dataName, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>A parameters collction. Input parameters may be used to find the parameter; output parameter should match dataName arguement.</p>
+</td>
+      </tr>
+      <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">sprocName</span></td>
-        <td><p>The stored procedure or function to call.</p>
+        <td><span class="parametername">dataName</span></td>
+        <td><p>If this values matches the name of a output parameter, then this returns that value; otherwise, this should match the name of a column.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A token to cancel the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TValue&gt;</td>
+        <td><p>The output parameter or first-row column retrieved from the query.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TValue</span></td>
+        <td><p>The type of the value to return.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_RunAsync_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.RunAsync(ArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L556">View Source</a>
+  </span>
+  <a id="ArgentSea_DatabasesBase_1_DataConnection_RunAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.RunAsync*"></a>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_RunAsync_ArgentSea_Query_System_Data_Common_DbParameterCollection_System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.RunAsync(ArgentSea.Query,System.Data.Common.DbParameterCollection,System.Threading.CancellationToken)">RunAsync(Query, DbParameterCollection, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Executes a database procedure or function that does not return a data result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task RunAsync(Query query, DbParameterCollection parameters, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td><p>The SQL procedure or statement to invoke to fetch the data.</p>
 </td>
       </tr>
       <tr>
@@ -2314,6 +2379,78 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection_RunAsync__1_ArgentSea_DatabaseBatch___0__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection.RunAsync%60%601(ArgentSea.DatabaseBatch%7B%60%600%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L566">View Source</a>
+  </span>
+  <a id="ArgentSea_DatabasesBase_1_DataConnection_RunAsync_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.RunAsync*"></a>
+  <h4 id="ArgentSea_DatabasesBase_1_DataConnection_RunAsync__1_ArgentSea_DatabaseBatch___0__System_Threading_CancellationToken_" data-uid="ArgentSea.DatabasesBase`1.DataConnection.RunAsync``1(ArgentSea.DatabaseBatch{``0},System.Threading.CancellationToken)">RunAsync&lt;TResult&gt;(DatabaseBatch&lt;TResult&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Execute a set of commands within a single transaction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;TResult&gt; RunAsync&lt;TResult&gt;(DatabaseBatch&lt;TResult&gt; batch, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.DatabaseBatch-1.html">DatabaseBatch</a>&lt;TResult&gt;</td>
+        <td><span class="parametername">batch</span></td>
+        <td><p>The QueryBatch object.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A token to cancel the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TResult&gt;</td>
+        <td><p>The last valid TResult type returned by the collection of commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>The optional return type specified in the batch.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -2325,7 +2462,7 @@
                     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_DatabasesBase_1_DataConnection.md&amp;value=---%0Auid%3A%20ArgentSea.DatabasesBase%601.DataConnection%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L115" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/shared/blob/master/src/Databases.cs/#L109" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

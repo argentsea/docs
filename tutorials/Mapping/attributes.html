@@ -91,7 +91,7 @@ public class Subscriber
     public DateTime Expiration { get; set; }
 }
 </code></pre>
-<p>Adding mapping attributes to this class provides the metadata to automatically map these properties to stored procedures:</p>
+<p>Adding mapping attributes to this class provides the metadata to automatically map these properties to stored procedures or SQL statements:</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q">
 <ul role="tablist">
 <li role="presentation">
@@ -118,7 +118,10 @@ public class Subscriber
     public DateTime Expiration { get; set; }
 }
 </code></pre>
-<p>The “@” parameter prefix is optional — ArgentSea will add the “@” automatically for parameters and remove it automatically when reading data reader rows.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The “@” parameter prefix is optional — ArgentSea will always add the “@” automatically for parameters and remove it automatically when reading data reader rows.</p>
+</div>
 </section>
 <section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
@@ -130,13 +133,17 @@ public class Subscriber
     [MapToPgInteger(&quot;SubId&quot;, true)]
     public int SubscriberId { get; set; }
 
-    [MapToPgVarChar(&quot;SubscriberName&quot;, 255)]
+    [MapToPgVarchar(&quot;SubscriberName&quot;, 255)]
     public string Name { get; set; }
 
     [MapToPgTimestamp(&quot;EndDate&quot;)]
     public DateTime Expiration { get; set; }
 }
 </code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>ArgentSea will automatically convert the casing of parameter names and column names to <em>lowercase</em>.</p>
+</div>
 </section>
 </div>
 
@@ -324,7 +331,7 @@ public class Subscriber
 </thead>
 <tbody>
 <tr>
-<td><a href="/api-pg/ArgentSea.Pg.MapToPgVarCharAttribute.html">MapToPgVarcharAttribute</a></td>
+<td><a href="/api-pg/ArgentSea.Pg.MapToPgVarcharAttribute.html">MapToPgVarcharAttribute</a></td>
 <td>length</td>
 <td>String, Enum¹, Nullable&lt;Enum&gt;</td>
 <td>VarChar</td>
@@ -507,9 +514,6 @@ public class Subscriber
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Mapping/attributes.md/#L1" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
