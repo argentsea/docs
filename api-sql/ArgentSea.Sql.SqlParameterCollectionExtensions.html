@@ -3105,7 +3105,6 @@ Setting the value correctly will help avoid plan cache pollution (when not using
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static DbParameterCollection AddSqlTableValuedParameter&lt;TModel&gt;(this DbParameterCollection prms, string parameterName, IEnumerable&lt;TModel&gt; values, ILogger logger)
-
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -3169,6 +3168,517 @@ Setting the value correctly will help avoid plan cache pollution (when not using
     <tbody>
       <tr>
         <td><span class="parametername">TModel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__1_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IList_System_String__Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter%60%601(System.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Collections.Generic.IEnumerable%7B%60%600%7D%2CSystem.Collections.Generic.IList%7BSystem.String%7D%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlParameterCollectionExtensions.cs/#L1227">View Source</a>
+  </span>
+  <a id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter*"></a>
+  <h4 id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__1_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable___0__System_Collections_Generic_IList_System_String__Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter``1(System.Data.Common.DbParameterCollection,System.String,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IList{System.String},Microsoft.Extensions.Logging.ILogger)">AddSqlTableValuedParameter&lt;TModel&gt;(DbParameterCollection, String, IEnumerable&lt;TModel&gt;, IList&lt;String&gt;, ILogger)</h4>
+  <div class="markdown level1 summary"><p>Creates a parameter for providing a user-defined table to a stored procedure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DbParameterCollection AddSqlTableValuedParameter&lt;TModel&gt;(this DbParameterCollection prms, string parameterName, IEnumerable&lt;TModel&gt; values, IList&lt;string&gt; columnList, ILogger logger)
+    where TModel : class, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">prms</span></td>
+        <td><p>The existing parameter collection to which this parameter should be added.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">parameterName</span></td>
+        <td><p>The name of the parameter. If the name doesn’t start with “@”, it will be automatically pre-pended.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TModel&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">columnList</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
+        <td><span class="parametername">logger</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><p>The DbParameterCollection to which the parameter was appended.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TModel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__2_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable_ArgentSea_ShardKey___0___1___System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter%60%602(System.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Collections.Generic.IEnumerable%7BArgentSea.ShardKey%7B%60%600%2C%60%601%7D%7D%2CSystem.String%2CSystem.Data.SqlDbType%2CSystem.String%2CSystem.Data.SqlDbType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlParameterCollectionExtensions.cs/#L1173">View Source</a>
+  </span>
+  <a id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter*"></a>
+  <h4 id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__2_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable_ArgentSea_ShardKey___0___1___System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter``2(System.Data.Common.DbParameterCollection,System.String,System.Collections.Generic.IEnumerable{ArgentSea.ShardKey{``0,``1}},System.String,System.Data.SqlDbType,System.String,System.Data.SqlDbType)">AddSqlTableValuedParameter&lt;TShard, TRecord&gt;(DbParameterCollection, String, IEnumerable&lt;ShardKey&lt;TShard, TRecord&gt;&gt;, String, SqlDbType, String, SqlDbType)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DbParameterCollection AddSqlTableValuedParameter&lt;TShard, TRecord&gt;(this DbParameterCollection prms, string parameterName, IEnumerable&lt;ShardKey&lt;TShard, TRecord&gt;&gt; values, string shardIdName, SqlDbType shardIdType, string recordIdName, SqlDbType recordIdType)
+    where TShard : IComparable where TRecord : IComparable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">prms</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">parameterName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="../api/ArgentSea.ShardKey-2.html">ShardKey</a>&lt;TShard, TRecord&gt;&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">shardIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">shardIdType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">recordIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">recordIdType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__3_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable___0__System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter%60%603(System.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Collections.Generic.IEnumerable%7B%60%600%7D%2CSystem.String%2CSystem.Data.SqlDbType%2CSystem.String%2CSystem.Data.SqlDbType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlParameterCollectionExtensions.cs/#L1127">View Source</a>
+  </span>
+  <a id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter*"></a>
+  <h4 id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__3_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable___0__System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter``3(System.Data.Common.DbParameterCollection,System.String,System.Collections.Generic.IEnumerable{``0},System.String,System.Data.SqlDbType,System.String,System.Data.SqlDbType)">AddSqlTableValuedParameter&lt;TModel, TShard, TRecord&gt;(DbParameterCollection, String, IEnumerable&lt;TModel&gt;, String, SqlDbType, String, SqlDbType)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DbParameterCollection AddSqlTableValuedParameter&lt;TModel, TShard, TRecord&gt;(this DbParameterCollection prms, string parameterName, IEnumerable&lt;TModel&gt; values, string shardIdName, SqlDbType shardIdType, string recordIdName, SqlDbType recordIdType)
+    where TModel : IKeyedModel&lt;TShard, TRecord&gt; where TShard : IComparable where TRecord : IComparable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">prms</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">parameterName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TModel&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">shardIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">shardIdType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">recordIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">recordIdType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TModel</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__3_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable_ArgentSea_ShardChild___0___1___2___System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter%60%603(System.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Collections.Generic.IEnumerable%7BArgentSea.ShardChild%7B%60%600%2C%60%601%2C%60%602%7D%7D%2CSystem.String%2CSystem.Data.SqlDbType%2CSystem.String%2CSystem.Data.SqlDbType%2CSystem.String%2CSystem.Data.SqlDbType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlParameterCollectionExtensions.cs/#L1194">View Source</a>
+  </span>
+  <a id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter*"></a>
+  <h4 id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__3_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable_ArgentSea_ShardChild___0___1___2___System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter``3(System.Data.Common.DbParameterCollection,System.String,System.Collections.Generic.IEnumerable{ArgentSea.ShardChild{``0,``1,``2}},System.String,System.Data.SqlDbType,System.String,System.Data.SqlDbType,System.String,System.Data.SqlDbType)">AddSqlTableValuedParameter&lt;TShard, TRecord, TChild&gt;(DbParameterCollection, String, IEnumerable&lt;ShardChild&lt;TShard, TRecord, TChild&gt;&gt;, String, SqlDbType, String, SqlDbType, String, SqlDbType)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DbParameterCollection AddSqlTableValuedParameter&lt;TShard, TRecord, TChild&gt;(this DbParameterCollection prms, string parameterName, IEnumerable&lt;ShardChild&lt;TShard, TRecord, TChild&gt;&gt; values, string shardIdName, SqlDbType shardIdType, string recordIdName, SqlDbType recordIdType, string childIdName, SqlDbType childIdType)
+    where TShard : IComparable where TRecord : IComparable where TChild : IComparable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">prms</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">parameterName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="../api/ArgentSea.ShardChild-3.html">ShardChild</a>&lt;TShard, TRecord, TChild&gt;&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">shardIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">shardIdType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">recordIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">recordIdType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">childIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">childIdType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TChild</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__4_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable___0__System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter%60%604(System.Data.Common.DbParameterCollection%2CSystem.String%2CSystem.Collections.Generic.IEnumerable%7B%60%600%7D%2CSystem.String%2CSystem.Data.SqlDbType%2CSystem.String%2CSystem.Data.SqlDbType%2CSystem.String%2CSystem.Data.SqlDbType)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlParameterCollectionExtensions.cs/#L1149">View Source</a>
+  </span>
+  <a id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter*"></a>
+  <h4 id="ArgentSea_Sql_SqlParameterCollectionExtensions_AddSqlTableValuedParameter__4_System_Data_Common_DbParameterCollection_System_String_System_Collections_Generic_IEnumerable___0__System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_System_String_System_Data_SqlDbType_" data-uid="ArgentSea.Sql.SqlParameterCollectionExtensions.AddSqlTableValuedParameter``4(System.Data.Common.DbParameterCollection,System.String,System.Collections.Generic.IEnumerable{``0},System.String,System.Data.SqlDbType,System.String,System.Data.SqlDbType,System.String,System.Data.SqlDbType)">AddSqlTableValuedParameter&lt;TModel, TShard, TRecord, TChild&gt;(DbParameterCollection, String, IEnumerable&lt;TModel&gt;, String, SqlDbType, String, SqlDbType, String, SqlDbType)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DbParameterCollection AddSqlTableValuedParameter&lt;TModel, TShard, TRecord, TChild&gt;(this DbParameterCollection prms, string parameterName, IEnumerable&lt;TModel&gt; values, string shardIdName, SqlDbType shardIdType, string recordIdName, SqlDbType recordIdType, string childIdName, SqlDbType childIdType)
+    where TModel : IKeyedChildModel&lt;TShard, TRecord, TChild&gt; where TShard : IComparable where TRecord : IComparable where TChild : IComparable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">prms</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">parameterName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;TModel&gt;</td>
+        <td><span class="parametername">values</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">shardIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">shardIdType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">recordIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">recordIdType</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">childIdName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.SqlDbType</span></td>
+        <td><span class="parametername">childIdType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TModel</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TChild</span></td>
         <td></td>
       </tr>
     </tbody>

@@ -212,6 +212,27 @@ var customer = cmd.Parameters.ToModel&lt;Customer&gt;(logger);
 <p>As with output parameters, the <code>MapReader*;</code> or <code>MapListAsync</code> methods of the Database or ShardSet objects fetch results from the database and implicitly use the Mapper to return a Model based upon DataReader results. In most cases, you would use one of those methods rather than <code>ToList</code> or <code>ToModel</code> on the Mapper.</p>
 </div>
 <p>The DataReader mapping methods allow you to use multiple SELECT result to map both the base object and one or more list properties. The order of the generic objects provided to the Mapper determines the expected order of the result streams in the DataReader.</p>
+<h2 id="mapping-to-data-loaders">Mapping to Data Loaders</h2>
+<p>In addition to the capabilities just discussed, ArgentSea has provider-specific Mapping functionality.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The SQL Server library offers a Mapper to set Table Valued Parameters. A Table Valued Parameter allows a series of records to be sent to a stored procedure, which can dramatically improve performance compared to multiple requests.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>The PostgreSQL library offers a Mapper to create tables and load data using PostgreSQL COPY command and the NpgsqlBinaryImporter.</p>
+</section>
+</div>
+
 <p>Next: <a href="logging.html">Logging</a></p>
 </article>
           </div>
@@ -220,6 +241,9 @@ var customer = cmd.Parameters.ToModel&lt;Customer&gt;(logger);
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Mapping/targets.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

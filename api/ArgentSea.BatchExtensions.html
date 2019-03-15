@@ -127,7 +127,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__1_ArgentSea_DatabaseBatch___0__ArgentSea_Query_ArgentSea_QueryResultModelHandler_System_Int32_System_Object___0__.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%601(ArgentSea.DatabaseBatch%7B%60%600%7D%2CArgentSea.Query%2CArgentSea.QueryResultModelHandler%7BSystem.Int32%2CSystem.Object%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L183">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L206">View Source</a>
   </span>
   <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
   <h4 id="ArgentSea_BatchExtensions_Add__1_ArgentSea_DatabaseBatch___0__ArgentSea_Query_ArgentSea_QueryResultModelHandler_System_Int32_System_Object___0__" data-uid="ArgentSea.BatchExtensions.Add``1(ArgentSea.DatabaseBatch{``0},ArgentSea.Query,ArgentSea.QueryResultModelHandler{System.Int32,System.Object,``0})">Add&lt;TModel&gt;(DatabaseBatch&lt;TModel&gt;, Query, QueryResultModelHandler&lt;Int32, Object, TModel&gt;)</h4>
@@ -200,7 +200,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__1_ArgentSea_DatabaseBatch___0__ArgentSea_Query_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32_System_Object___0__.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%601(ArgentSea.DatabaseBatch%7B%60%600%7D%2CArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CArgentSea.QueryResultModelHandler%7BSystem.Int32%2CSystem.Object%2C%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L173">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L196">View Source</a>
   </span>
   <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
   <h4 id="ArgentSea_BatchExtensions_Add__1_ArgentSea_DatabaseBatch___0__ArgentSea_Query_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32_System_Object___0__" data-uid="ArgentSea.BatchExtensions.Add``1(ArgentSea.DatabaseBatch{``0},ArgentSea.Query,System.Data.Common.DbParameterCollection,ArgentSea.QueryResultModelHandler{System.Int32,System.Object,``0})">Add&lt;TModel&gt;(DatabaseBatch&lt;TModel&gt;, Query, DbParameterCollection, QueryResultModelHandler&lt;Int32, Object, TModel&gt;)</h4>
@@ -278,7 +278,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__1_ArgentSea_DatabaseBatch___0__ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%601(ArgentSea.DatabaseBatch%7B%60%600%7D%2CArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L190">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L213">View Source</a>
   </span>
   <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
   <h4 id="ArgentSea_BatchExtensions_Add__1_ArgentSea_DatabaseBatch___0__ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_" data-uid="ArgentSea.BatchExtensions.Add``1(ArgentSea.DatabaseBatch{``0},ArgentSea.Query,System.Data.Common.DbParameterCollection,System.String)">Add&lt;TRecord&gt;(DatabaseBatch&lt;TRecord&gt;, Query, DbParameterCollection, String)</h4>
@@ -286,7 +286,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DatabaseBatch&lt;TRecord&gt; Add&lt;TRecord&gt;(this DatabaseBatch&lt;TRecord&gt; batch, Query query, DbParameterCollection parameters, string recordIdColumnName)
+    <pre><code class="lang-csharp hljs">public static DatabaseBatch&lt;TRecord&gt; Add&lt;TRecord&gt;(this DatabaseBatch&lt;TRecord&gt; batch, Query query, DbParameterCollection parameters, string dataColumnName)
     where TRecord : IComparable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -316,7 +316,7 @@
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">recordIdColumnName</span></td>
+        <td><span class="parametername">dataColumnName</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -356,7 +356,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__1_ArgentSea_DatabaseBatch___0__ArgentSea_Query_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%601(ArgentSea.DatabaseBatch%7B%60%600%7D%2CArgentSea.Query%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L195">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L218">View Source</a>
   </span>
   <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
   <h4 id="ArgentSea_BatchExtensions_Add__1_ArgentSea_DatabaseBatch___0__ArgentSea_Query_System_String_" data-uid="ArgentSea.BatchExtensions.Add``1(ArgentSea.DatabaseBatch{``0},ArgentSea.Query,System.String)">Add&lt;TRecord&gt;(DatabaseBatch&lt;TRecord&gt;, Query, String)</h4>
@@ -364,7 +364,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static DatabaseBatch&lt;TRecord&gt; Add&lt;TRecord&gt;(this DatabaseBatch&lt;TRecord&gt; batch, Query query, string recordIdColumnName)
+    <pre><code class="lang-csharp hljs">public static DatabaseBatch&lt;TRecord&gt; Add&lt;TRecord&gt;(this DatabaseBatch&lt;TRecord&gt; batch, Query query, string dataColumnName)
     where TRecord : IComparable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -389,7 +389,7 @@
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">recordIdColumnName</span></td>
+        <td><span class="parametername">dataColumnName</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -429,7 +429,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_DatabaseBatch___1__ArgentSea_Query_ArgentSea_QueryResultModelHandler_System_Int32___0___1____0_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.DatabaseBatch%7B%60%601%7D%2CArgentSea.Query%2CArgentSea.QueryResultModelHandler%7BSystem.Int32%2C%60%600%2C%60%601%7D%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L178">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L201">View Source</a>
   </span>
   <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
   <h4 id="ArgentSea_BatchExtensions_Add__2_ArgentSea_DatabaseBatch___1__ArgentSea_Query_ArgentSea_QueryResultModelHandler_System_Int32___0___1____0_" data-uid="ArgentSea.BatchExtensions.Add``2(ArgentSea.DatabaseBatch{``1},ArgentSea.Query,ArgentSea.QueryResultModelHandler{System.Int32,``0,``1},``0)">Add&lt;TArg, TModel&gt;(DatabaseBatch&lt;TModel&gt;, Query, QueryResultModelHandler&lt;Int32, TArg, TModel&gt;, TArg)</h4>
@@ -511,7 +511,7 @@
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_DatabaseBatch___1__ArgentSea_Query_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32___0___1____0_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.DatabaseBatch%7B%60%601%7D%2CArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CArgentSea.QueryResultModelHandler%7BSystem.Int32%2C%60%600%2C%60%601%7D%2C%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L168">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L191">View Source</a>
   </span>
   <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
   <h4 id="ArgentSea_BatchExtensions_Add__2_ArgentSea_DatabaseBatch___1__ArgentSea_Query_System_Data_Common_DbParameterCollection_ArgentSea_QueryResultModelHandler_System_Int32___0___1____0_" data-uid="ArgentSea.BatchExtensions.Add``2(ArgentSea.DatabaseBatch{``1},ArgentSea.Query,System.Data.Common.DbParameterCollection,ArgentSea.QueryResultModelHandler{System.Int32,``0,``1},``0)">Add&lt;TArg, TModel&gt;(DatabaseBatch&lt;TModel&gt;, Query, DbParameterCollection, QueryResultModelHandler&lt;Int32, TArg, TModel&gt;, TArg)</h4>
@@ -589,6 +589,168 @@
       </tr>
       <tr>
         <td><span class="parametername">TModel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_DatabaseBatch_System_Collections_Generic_IList___1___ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.DatabaseBatch%7BSystem.Collections.Generic.IList%7B%60%601%7D%7D%2CArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L224">View Source</a>
+  </span>
+  <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
+  <h4 id="ArgentSea_BatchExtensions_Add__2_ArgentSea_DatabaseBatch_System_Collections_Generic_IList___1___ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_" data-uid="ArgentSea.BatchExtensions.Add``2(ArgentSea.DatabaseBatch{System.Collections.Generic.IList{``1}},ArgentSea.Query,System.Data.Common.DbParameterCollection,System.String)">Add&lt;TShard, TRecord&gt;(DatabaseBatch&lt;IList&lt;TRecord&gt;&gt;, Query, DbParameterCollection, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DatabaseBatch&lt;IList&lt;TRecord&gt;&gt; Add&lt;TShard, TRecord&gt;(this DatabaseBatch&lt;IList&lt;TRecord&gt;&gt; batch, Query query, DbParameterCollection parameters, string dataColumnName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.DatabaseBatch-1.html">DatabaseBatch</a>&lt;<span class="xref">System.Collections.Generic.IList</span>&lt;TRecord&gt;&gt;</td>
+        <td><span class="parametername">batch</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">dataColumnName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.DatabaseBatch-1.html">DatabaseBatch</a>&lt;<span class="xref">System.Collections.Generic.IList</span>&lt;TRecord&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_DatabaseBatch_System_Collections_Generic_List___1___ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.DatabaseBatch%7BSystem.Collections.Generic.List%7B%60%601%7D%7D%2CArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L229">View Source</a>
+  </span>
+  <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
+  <h4 id="ArgentSea_BatchExtensions_Add__2_ArgentSea_DatabaseBatch_System_Collections_Generic_List___1___ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_" data-uid="ArgentSea.BatchExtensions.Add``2(ArgentSea.DatabaseBatch{System.Collections.Generic.List{``1}},ArgentSea.Query,System.Data.Common.DbParameterCollection,System.String)">Add&lt;TShard, TRecord&gt;(DatabaseBatch&lt;List&lt;TRecord&gt;&gt;, Query, DbParameterCollection, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DatabaseBatch&lt;List&lt;TRecord&gt;&gt; Add&lt;TShard, TRecord&gt;(this DatabaseBatch&lt;List&lt;TRecord&gt;&gt; batch, Query query, DbParameterCollection parameters, string dataColumnName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.DatabaseBatch-1.html">DatabaseBatch</a>&lt;<span class="xref">System.Collections.Generic.List</span>&lt;TRecord&gt;&gt;</td>
+        <td><span class="parametername">batch</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">dataColumnName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.DatabaseBatch-1.html">DatabaseBatch</a>&lt;<span class="xref">System.Collections.Generic.List</span>&lt;TRecord&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -748,6 +910,165 @@
       </tr>
       <tr>
         <td><span class="parametername">TModel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0___1__ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.ShardBatch%7B%60%600%2C%60%601%7D%2CArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L168">View Source</a>
+  </span>
+  <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
+  <h4 id="ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0___1__ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_" data-uid="ArgentSea.BatchExtensions.Add``2(ArgentSea.ShardBatch{``0,``1},ArgentSea.Query,System.Data.Common.DbParameterCollection,System.String)">Add&lt;TShard, TRecord&gt;(ShardBatch&lt;TShard, TRecord&gt;, Query, DbParameterCollection, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ShardBatch&lt;TShard, TRecord&gt; Add&lt;TShard, TRecord&gt;(this ShardBatch&lt;TShard, TRecord&gt; batch, Query query, DbParameterCollection parameters, string dataColumnName)
+    where TShard : IComparable where TRecord : IComparable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, TRecord&gt;</td>
+        <td><span class="parametername">batch</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">dataColumnName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, TRecord&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0___1__ArgentSea_Query_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.ShardBatch%7B%60%600%2C%60%601%7D%2CArgentSea.Query%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L173">View Source</a>
+  </span>
+  <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
+  <h4 id="ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0___1__ArgentSea_Query_System_String_" data-uid="ArgentSea.BatchExtensions.Add``2(ArgentSea.ShardBatch{``0,``1},ArgentSea.Query,System.String)">Add&lt;TShard, TRecord&gt;(ShardBatch&lt;TShard, TRecord&gt;, Query, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ShardBatch&lt;TShard, TRecord&gt; Add&lt;TShard, TRecord&gt;(this ShardBatch&lt;TShard, TRecord&gt; batch, Query query, string dataColumnName)
+    where TShard : IComparable where TRecord : IComparable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, TRecord&gt;</td>
+        <td><span class="parametername">batch</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">dataColumnName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, TRecord&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1102,6 +1423,88 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0_System_Collections_Generic_IList___1___ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.ShardBatch%7B%60%600%2CSystem.Collections.Generic.IList%7B%60%601%7D%7D%2CArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L179">View Source</a>
+  </span>
+  <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
+  <h4 id="ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0_System_Collections_Generic_IList___1___ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_" data-uid="ArgentSea.BatchExtensions.Add``2(ArgentSea.ShardBatch{``0,System.Collections.Generic.IList{``1}},ArgentSea.Query,System.Data.Common.DbParameterCollection,System.String)">Add&lt;TShard, TRecord&gt;(ShardBatch&lt;TShard, IList&lt;TRecord&gt;&gt;, Query, DbParameterCollection, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ShardBatch&lt;TShard, IList&lt;TRecord&gt;&gt; Add&lt;TShard, TRecord&gt;(this ShardBatch&lt;TShard, IList&lt;TRecord&gt;&gt; batch, Query query, DbParameterCollection parameters, string dataColumnName)
+    where TShard : IComparable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, <span class="xref">System.Collections.Generic.IList</span>&lt;TRecord&gt;&gt;</td>
+        <td><span class="parametername">batch</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">dataColumnName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, <span class="xref">System.Collections.Generic.IList</span>&lt;TRecord&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0_System_Collections_Generic_IList_ArgentSea_ShardKey___0___1____ArgentSea_Query_System_Char_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.ShardBatch%7B%60%600%2CSystem.Collections.Generic.IList%7BArgentSea.ShardKey%7B%60%600%2C%60%601%7D%7D%7D%2CArgentSea.Query%2CSystem.Char%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -1425,6 +1828,88 @@
     <tbody>
       <tr>
         <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, <span class="xref">System.Collections.Generic.IList</span>&lt;<a class="xref" href="ArgentSea.ShardKey-2.html">ShardKey</a>&lt;TShard, TRecord&gt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TShard</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRecord</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0_System_Collections_Generic_List___1___ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.BatchExtensions.Add%60%602(ArgentSea.ShardBatch%7B%60%600%2CSystem.Collections.Generic.List%7B%60%601%7D%7D%2CArgentSea.Query%2CSystem.Data.Common.DbParameterCollection%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/BatchExtensions.cs/#L184">View Source</a>
+  </span>
+  <a id="ArgentSea_BatchExtensions_Add_" data-uid="ArgentSea.BatchExtensions.Add*"></a>
+  <h4 id="ArgentSea_BatchExtensions_Add__2_ArgentSea_ShardBatch___0_System_Collections_Generic_List___1___ArgentSea_Query_System_Data_Common_DbParameterCollection_System_String_" data-uid="ArgentSea.BatchExtensions.Add``2(ArgentSea.ShardBatch{``0,System.Collections.Generic.List{``1}},ArgentSea.Query,System.Data.Common.DbParameterCollection,System.String)">Add&lt;TShard, TRecord&gt;(ShardBatch&lt;TShard, List&lt;TRecord&gt;&gt;, Query, DbParameterCollection, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ShardBatch&lt;TShard, List&lt;TRecord&gt;&gt; Add&lt;TShard, TRecord&gt;(this ShardBatch&lt;TShard, List&lt;TRecord&gt;&gt; batch, Query query, DbParameterCollection parameters, string dataColumnName)
+    where TShard : IComparable</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, <span class="xref">System.Collections.Generic.List</span>&lt;TRecord&gt;&gt;</td>
+        <td><span class="parametername">batch</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ArgentSea.Query.html">Query</a></td>
+        <td><span class="parametername">query</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Data.Common.DbParameterCollection</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">dataColumnName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardBatch-2.html">ShardBatch</a>&lt;TShard, <span class="xref">System.Collections.Generic.List</span>&lt;TRecord&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>

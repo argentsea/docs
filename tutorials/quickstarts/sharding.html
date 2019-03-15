@@ -96,7 +96,14 @@
 <h2 id="the-sample-data">The Sample Data</h2>
 <p>Whether you simply downloaded the walkthrough or a creating a new project, you will need to create some sample shards.</p>
 <p>Our sample application is going to track <strong>Customers</strong>. The data set is completely made-up and not especially realistic. <strong>Customers</strong> can have multiple <strong>Locations</strong> (1:∞). <strong>Customers</strong> can also have <strong>Contacts</strong>, but the <strong>Contacts</strong> can belong to more than one <strong>Customer</strong> (∞:∞). The <strong>Contact</strong> may not exist in the same shard as the <strong>Customer</strong>.</p>
-<p>The data is set up this way to illustrate one of the difficulties with sharded data: managing relationships between records that exist on different shards. In this case, a <strong>Customer</strong> may be associated with a Contact on any shard. Consequently, querying the Customer’s <strong>Contacts</strong> may require accessing multiple shards, deleting a <strong>Customer</strong> means removing the <strong>Customer</strong> link from each Contact, which could be on any shard, and updating a Customer’s <strong>Contacts</strong> could also impact multiple shards.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The data is set up this way to illustrate one of the difficulties with sharded data: managing relationships between records that exist on different shards. In this case, a <strong>Customer</strong> may be associated with a Contact on any shard. Managing this — an managing this efficiently — adds substantial complexity.</p>
+</div>
+<p>In our sample model, the ∞:∞ relationship between a <strong>Contact</strong> and a <strong>Customer</strong> is managed by a linking table, <strong>CustomerContacts</strong>. Given the id of a local <strong>Customer</strong>, the table lists the keys of the associated <strong>Contacts</strong>. What happens if instead I have the id of a <strong>Contact</strong> and want to find all of the <strong>Customers</strong>? With only that table, it would be necessary to query <em>every shard</em> to determine whether they have a related <strong>Customer</strong>!</p>
+<p>To better optimize this, the data model creates a second <strong>ContactCustomers</strong> linking table. With this approach, if I have a <strong>Contact</strong> and want to find <strong>Customers</strong> (including those in foreign shards), or <strong>Customers</strong> and want to find <strong>Contacts</strong> (again, even those not local), I can use the appropriate linking table and query only the shards with relevant records data. The downside is that when the <strong>Customer</strong> and <strong>Contact</strong> are on different shards, this relationship must be managed in different tables on different databases.</p>
+<p>In a real implementation, it might be beneficial to include additional information in the linking tables, like including the contact name within the <strong>CustomerContact</strong> table for example, so that common lookups do not require secondary lookups from related shards just to get the contact name. The QuickStart example doesn’t do this so that it can illustrate performing these secondary lookups.</p>
+<p>Naturally, deleting a <strong>Customer</strong> means removing the <strong>ContactCustomers</strong> link from each Contact also, which could be on any shard. This shard list must be retrieved from the <strong>CustomerContacts</strong> list before it is deleted. Updating a Customer’s <strong>Contacts</strong> could also impact multiple shards in two ways: a removed foreign-shard <strong>Contact</strong> must be deleted and a additional foreign-shard <strong>Contacts</strong> must be added.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q">
 <ul role="tablist">
 <li role="presentation">
@@ -137,7 +144,7 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <p>Conceptually, these four databases would correspond to regional data stores in the <em>United States</em>, <em>Brazil</em>, <em>Europe</em>, and <em>China</em>. In my real global application I would replicate the data from each region to each other region. Therefore, each region would have one writable data store and three readable ones. In this way, the “local” shard is writeable, the “foreign” shards are read-only. Writes to a foreign shard must be done across the WAN. Your implementation may vary.<br>
 Our walkthrough, however, only needs four simple databases on one server. We’ll only imagine the rest.</p>
 </div>
-<p>Next, after the databases have been created, <em>connect to each database in turn</em> and run the <em>ShardSetup.sql</em> SQL script. This will create the schemas, tables, stored procedures, reference data, etc. for our sample databases.</p>
+<p>After the databases have been created, <em>connect to each database in turn</em> and run the <em>ShardSetup.sql</em> SQL script. This will create the schemas, tables, stored procedures, reference data, etc. for our sample databases.</p>
 <div class="CAUTION">
 <h5>Caution</h5>
 <p>The database setup create users with weak passwords (that are also published on the Internet), so you might consider changing them.</p>
@@ -148,7 +155,7 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 
 <p>At this point, we should have four database with identical table structures. SQL Server instances should also have a identical set of stored procedures.</p>
 <h2 id="the-shardid">The ShardId</h2>
-<p>Each of the four databases needs an identifier. This is more significant, and perhaps more fraught, than it sounds. ArgentSea uses a “virtual compound key” consisting of the ShardId and the RecordId; this is called a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a>. A thorough discussion of the options and impact is <a href="/tutorials/sharding/shardkey.md">here</a>. The précis is that once established, the type (and values) of the <em>ShardId</em> cannot be easily changed. The ShardId is a part of record identification, so confusion or misconfiguration could result in data corruption.</p>
+<p>Each of the four databases needs an identifier. This is more significant than it sounds. ArgentSea uses a “virtual compound key” consisting of the ShardId and the RecordId; this is called a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a>. A thorough discussion of the options and impact is <a href="/tutorials/sharding/shardkey.md">here</a>. The précis is that once established, the type (and values) of the <em>ShardId</em> cannot be easily changed. The ShardId is a part of record identification, so confusion or misconfiguration could result in data corruption.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
 <ul role="tablist">
 <li role="presentation">
@@ -161,6 +168,7 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <p>In this sample application, the type of the ShardId for SQL Server is a <code>byte</code> (SQL TinyInt). Because ArgentSea uses a generic type to define the ShardId, you can use one of many types in your application; however, the ShardId must be consistent throughout the application.</p>
+<p>Naturally, this mandates an upper maximum  of 256 shards. If there is any possibility of one day needing to exceeding this count, you can use a <code>short</code> data type instead.</p>
 </section>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
@@ -187,31 +195,32 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
     {
       &quot;ShardSetName&quot;: &quot;Customers&quot;,²
       &quot;DataSource&quot;: &quot;.&quot;,³
-      &quot;Write&quot;: {⁴
+      &quot;DefaultShardId&quot;: 1,⁴
+      &quot;Write&quot;: {⁵
         &quot;UserName&quot;: &quot;webWriter&quot;,
         &quot;Password&quot;: &quot;Pwd567890&quot;,
       },
-      &quot;Read&quot;: {⁴
+      &quot;Read&quot;: {⁵
         &quot;ApplicationIntent&quot;: &quot;ReadOnly&quot;,
         &quot;UserName&quot;: &quot;webReader&quot;,
         &quot;Password&quot;: &quot;Pwd123456&quot;
       },
-      &quot;Shards&quot;: [⁵
+      &quot;Shards&quot;: [⁶
         {
-          &quot;ShardId&quot;: 1,⁶
-          &quot;InitialCatalog&quot;: &quot;CustomerShardUS&quot;⁷
+          &quot;ShardId&quot;: 1,⁷
+          &quot;InitialCatalog&quot;: &quot;CustomerShardUS&quot;⁸
         },
         {
-          &quot;ShardId&quot;: 2,⁶
-          &quot;InitialCatalog&quot;: &quot;CustomerShardEU&quot;⁷
+          &quot;ShardId&quot;: 2,⁷
+          &quot;InitialCatalog&quot;: &quot;CustomerShardEU&quot;⁸
         },
         {
-          &quot;ShardId&quot;: 3,⁶
-          &quot;InitialCatalog&quot;: &quot;CustomerShardBR&quot;⁷
+          &quot;ShardId&quot;: 3,⁷
+          &quot;InitialCatalog&quot;: &quot;CustomerShardBR&quot;⁸
         },
         {
-          &quot;ShardId&quot;: 4,⁶
-          &quot;InitialCatalog&quot;: &quot;CustomerShardZH&quot;⁷
+          &quot;ShardId&quot;: 4,⁷
+          &quot;InitialCatalog&quot;: &quot;CustomerShardZH&quot;⁸
         }
       ]
     }
@@ -222,10 +231,11 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <p>¹ <code>SqlShardSets</code> is the root JSON section for all the shard configuration metadata. It contains an array of shard sets.</p>
 <p>² <code>ShardSetName</code> is a <em>required</em> key for this specific shard set. Multiple shard sets are possible and each will be identified by this key. This value must exactly match the value used in your code to invoke this shard set.</p>
 <p>³ <code>DataSourceName</code> is a connection attribute. Connection attributes can appear anywhere in the hierarchy. Because it appears at the “shard set” level, all shards in the shard set will inherit this server name.</p>
-<p>⁴ <code>Read</code> and <code>Write</code> are peculiar, and optional, members of shard set’s “inheritance” chain, as their children are indirect. Any attributes defined in the shard set’s <code>Write</code> section apply only to write connections. Likewise, for <code>Read</code> connections. These values can be overwritten by shard or connection attributes.</p>
-<p>⁵ <code>Shards</code> is an array of shard connections, one for each shard in the shard set.</p>
-<p>⁶ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. If the type of the ShardId is a string, then this value should have quotes around it in the JSON file.</p>
-<p>⁷ <code>InitialCatalog</code> is a connection attribute. Because it appears at the shard level, both read connections and write connections for this shard will inherit this value.</p>
+<p>⁴ <code>DefaultShardId</code> this setting determins which shard is presented as the <code>ShardSet.DefaultShard</code>. This is useful for determining which shard should be actively accepting new records for this client.</p>
+<p>⁵ <code>Read</code> and <code>Write</code> are peculiar, and optional, members of shard set’s “inheritance” chain, as their children are indirect. Any attributes defined in the shard set’s <code>Write</code> section apply only to write connections. Likewise, for <code>Read</code> connections. These values can be overwritten by shard or connection attributes.</p>
+<p>⁶ <code>Shards</code> is an array of shard connections, one for each shard in the shard set.</p>
+<p>⁷ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. If the type of the ShardId is a string, then this value should have quotes around it in the JSON file.</p>
+<p>⁸ <code>InitialCatalog</code> is a connection attribute. Because it appears at the shard level, both read connections and write connections for this shard will inherit this value.</p>
 </section>
 <section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
@@ -233,31 +243,32 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
   &quot;PgShardSets&quot;: [¹
     {
       &quot;ShardSetName&quot;: &quot;Customers&quot;,²
+      &quot;DefaultShardId&quot;: 1,⁴
       &quot;Host&quot;: &quot;localhost&quot;,³
-      &quot;Write&quot;: {⁴
+      &quot;Write&quot;: {⁵
         &quot;UserName&quot;: &quot;webWriter&quot;,
         &quot;Password&quot;: &quot;Pwd567890&quot;
       },
-      &quot;Read&quot;: {⁴
+      &quot;Read&quot;: {⁵
         &quot;UserName&quot;: &quot;webReader&quot;,
         &quot;Password&quot;: &quot;Pwd123456&quot;
       },
-      &quot;Shards&quot;: [⁵
+      &quot;Shards&quot;: [⁶
         {
-          &quot;ShardId&quot;: 1,⁶
-          &quot;Database&quot;: &quot;CustomerShardUS&quot;⁷
+          &quot;ShardId&quot;: 1,⁷
+          &quot;Database&quot;: &quot;CustomerShardUS&quot;⁸
         },
         {
-          &quot;ShardId&quot;: 2,⁶
-          &quot;Database&quot;: &quot;CustomerShardEU&quot;⁷
+          &quot;ShardId&quot;: 2,⁷
+          &quot;Database&quot;: &quot;CustomerShardEU&quot;⁸
         },
         {
-          &quot;ShardId&quot;: 3,⁶
-          &quot;Database&quot;: &quot;CustomerShardBR&quot;⁷
+          &quot;ShardId&quot;: 3,⁷
+          &quot;Database&quot;: &quot;CustomerShardBR&quot;⁸
         },
         {
-          &quot;ShardId&quot;: 4,⁶
-          &quot;Database&quot;: &quot;CustomerShardZH&quot;⁷
+          &quot;ShardId&quot;: 4,⁷
+          &quot;Database&quot;: &quot;CustomerShardZH&quot;⁸
         }
       ]
     }
@@ -268,10 +279,11 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <p>¹ <code>PgShardSets</code> is the root JSON section for all the shard configuration metadata. It contains an array of shard sets.</p>
 <p>² <code>ShardSetName</code> is a <em>required</em> key for this specific shard set. Multiple shard sets are possible and each will be identified by this key. This value must exactly match the value used in your code to invoke this shard set.</p>
 <p>³ <code>Host</code> is a connection attribute. Connection attributes can appear anywhere in the hierarchy. Because it appears at the “shard set” level, all shards in the shard set will inherit this server name.</p>
-<p>⁴ <code>Read</code> and <code>Write</code> are peculiar, and optional, members of shard set’s “inheritance” chain, as their children are indirect. Any attributes defined in the shard set’s <code>Write</code> section apply only to write connections. Likewise, for <code>Read</code> connections. These values can be overwritten by shard or connection attributes.</p>
-<p>⁵ <code>Shards</code> is an array of shard connections, one for each shard in the shard set.</p>
-<p>⁶ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. If the type of the ShardId is a string, then this value should have quotes around it in the JSON file.</p>
-<p>⁷ <code>Database</code> is a connection attribute. Because it appears at the shard level, both read connections and write connections for this shard will inherit this value.</p>
+<p>⁴ <code>DefaultShardId</code> this setting determins which shard is presented as the <code>ShardSet.DefaultShard</code>. This is useful for determining which shard should be actively accepting new records for this client.</p>
+<p>⁵ <code>Read</code> and <code>Write</code> are peculiar, and optional, members of shard set’s “inheritance” chain, as their children are indirect. Any attributes defined in the shard set’s <code>Write</code> section apply only to write connections. Likewise, for <code>Read</code> connections. These values can be overwritten by shard or connection attributes.</p>
+<p>⁶ <code>Shards</code> is an array of shard connections, one for each shard in the shard set.</p>
+<p>⁷ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. If the type of the ShardId is a string, then this value should have quotes around it in the JSON file.</p>
+<p>⁸ <code>Database</code> is a connection attribute. Because it appears at the shard level, both read connections and write connections for this shard will inherit this value.</p>
 </section>
 </div>
 
@@ -450,6 +462,9 @@ public CoordinatesModel Coordinates { get; } = new CoordinatesModel();
     .CreateOutputParameters&lt;CustomerModel&gt;(_logger);
 return await _shardSet[customerKey].Read.MapOutputAsync&lt;CustomerModel, LocationModel, ContactModel&gt;(Queries.CustomerGet, prms, cancellation);
 </code></pre>
+<p>The <code>CustomerModel</code> type in the first generic position tells the Mapper that that is the base object type. The Mapper will automatically create a new instance of the CustomerModel type and populate its properties from the query’s output parameters.</p>
+<p>The <code>LocationModel</code> type in the next generic position indicates that the first data reader result contains this type. The Mapper will build a list of locations, find a property of type <code>List&lt;LocationModel&gt;</code> or <code>IList&lt;LocationModel&gt;</code>, and set the property to the list object.</p>
+<p>Likewise, the third generic argument tells the Mapper that the next data reader result is a list of <strong>Contacts</strong>, which the Mapper will use to populate the <strong>Contacts</strong> property.</p>
 </section>
 <section id="tabpanel_CeZOj-G++Q-6_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
@@ -460,15 +475,15 @@ return await _shardSet[customerKey].Read.MapReaderAsync&lt;CustomerModel, Custom
 </code></pre>
 <div class="WARNING">
 <h5>Warning</h5>
-<p>Although you can also capture database results using output parameters by using <code>MapOutputAsync</code>, this is not recommended. Unlike SQL Server, there is no performance benefit this this approach and this will error if multiple SQL statements are used in the query.</p>
+<p>Although you can also capture database results using output parameters by using <code>MapOutputAsync</code>, this is not recommended. Unlike SQL Server, there is no performance benefit with this approach and this will error if multiple SQL statements are used in the query.</p>
 </div>
+<p>The <code>CustomerModel</code> type in the first generic position tells the Mapper that that is the base object type. The remaining generic arguments inform the mapper of the order in the query results. Because our customer data is returned in the first result, the <code>CustomerModel</code> appears again in the second position of the generic argument list.</p>
+<p>The <code>LocationModel</code> type in the third generic position indicates that the second data reader result contains this type. The Mapper will build a list of locations, find a property of type <code>List&lt;LocationModel&gt;</code> or <code>IList&lt;LocationModel&gt;</code>, and set the property to the list object.</p>
+<p>Likewise, the forth generic argument tells the Mapper that the third data reader result is a list of <strong>Contacts</strong>, which the Mapper will used to populate the Contacts property.</p>
 </section>
 </div>
 
-<p>The <code>CustomerModel</code> type in the first generic position tells the Mapper that that is the base object type. The Mapper will automatically create a new instance of the CustomerModel type and populate its properties from the query’s output parameters.</p>
-<p>The <code>LocationModel</code> type in the next generic position indicates that the first data reader result contains this type. The Mapper will build a list of locations, find a property of type <code>List&lt;LocationModel&gt;</code> or <code>IList&lt;LocationModel&gt;</code>, and set the property to the list object.</p>
-<p>Likewise, the third generic argument tells the Mapper that the next data reader result is a list of <strong>Contacts</strong>, which the Mapper will used to populate the Contacts property.</p>
-<p>These two lines of code are all that is required to manage this complex result.</p>
+<p>Only a few lines of code are all that is required to manage this complex result.</p>
 <h3 id="model-inheritance">Model Inheritance</h3>
 <p>The sample application has a <code>CustomerListItem</code> Model, which contains a record key and a customer name property. The <code>CustomerModel</code> include those same values, plus some others. By inheriting from first Model, the <code>CustomerModel</code> inherits the key and an customer name, including their mapping attributes.</p>
 <p>Because database queries often return subsets of entity columns, this object inheritance technique is useful in allowing the mapping attributes to be defined only once.</p>
@@ -501,7 +516,7 @@ public ShardKey CustomerKey { get; set; }
 
 <div class="NOTE">
 <h5>Note</h5>
-<p>The ShardKey in this example does not specify a ShardId. Because the client knows the ShardId, ArgentSea will populate the ShardId value from this configuration data. You can map the ShardId to a database result or parameter simply by adding a second “[MapTo*]” attribute and specifying the name in the [MapShardKey] attribute argument list.</p>
+<p>The ShardKey in this example does not specify a ShardId data mapping. Because the client knows the ShardId, ArgentSea will populate the ShardId value from this configuration data. If you provide a ShardId mapping (and include the shardid argument in the <code>MapShardKey</code> attribute), ArgentSea will understand that you want the data value instead.</p>
 </div>
 <h3 id="the-shardchild">The ShardChild</h3>
 <p>The ShardChild object supports table compound keys in your sharded data. In this sample application, the Customer <strong>Location</strong> records are identified by a compound key including both a CustomerId and LocationId.</p>
@@ -598,9 +613,23 @@ public ShardChild CustomerLocationKey { get; set; }
 
 <div class="NOTE">
 <h5>Note</h5>
-<p>The <code>ShardSets</code> services implicitly loads the <code>Databases</code> service also.</p>
+<p>The <code>ShardSets</code> services implicitly loads the <code>Databases</code> service also. Of course, if no databases are configured, the collection will be empty.</p>
 </div>
-<p>Obtaining the injectible <code>ShardSets</code> service in you class is straightforward:</p>
+<h2 id="queries-and-data">Queries and Data</h2>
+<p>Our implementation adds two static classes which help describe our data. The first is a simple list of constants, which correspond to the “origin” parameter of <code>ShardKey</code> and <code>ShardChild</code> objects. the “Origin” helps prevent accidental use of, say, an <strong>Inventory</strong> key to delete an <strong>Order</strong> record. By using constants, you cam more explicitly distinguish the “c” used for <strong>Contact</strong> data from the “C” used for <strong>Customer</strong> data, which might otherwise be confusing.</p>
+<p>The second static class consolodates query definitions, as described in the <a href="/querying/sql.md">Creating SQL Queries</a> tutorial. This serves two purposes: first, it becomes easy to determine which queries are actually used by the code (on large projects, this can be difficult). Also, the optional parameter list can limit the parameters that are set when Model attributes have more parameters than the query requires.</p>
+<p>The code for these are in the <code>DataOrigins</code> and <code>Queries</code> classes respectively. The code is self explainitory.</p>
+<h2 id="the-repository-pattern">The Repository Pattern</h2>
+<p>Our sample code uses a <code>CustomerStore</code> class, which implements all of the actual data access logic. The theory of the repository pattern is help contain the coupling between the data layer and application logic. We could theorectically replace the data store by only changing the <code>CustomerStore</code> implementation. Because this is a web service that provides data access, the virtue of this approach is not compelling in our sample. Your milage may vary.</p>
+<p>Because our web service does very little <em>except</em> read and write data, there is actually very little for the controller to do. You will find nearly all of the ArgentSea implemetation in the <code>CustomerStore</code> class.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The code in the <code>CustomerStore</code> would have been even simpler if there was no relationship between <strong>Customers</strong> and <strong>Contacts</strong>. The sample is intended to illustrate handling a challenging sharding scenario, but without this relationship the code would have been half as long.</p>
+</div>
+<p>This class is injected into the controller, so it need to be a registered as a service at startup.</p>
+<pre><code class="lang-csharp">services.AddTransient&lt;Stores.CustomerStore&gt;();
+</code></pre>
+<p>The injectable <code>CustomerStore</code> class in turn uses the injected <code>ShardSets</code> service. Obtaining the injectible <code>ShardSets</code> service in your repository class is straightforward:</p>
 <pre><code class="lang-csharp">public class CustomerStore
 {
     private readonly ShardSets.ShardSet _shardSet;
@@ -613,7 +642,7 @@ public ShardChild CustomerLocationKey { get; set; }
     }
     ....
 </code></pre>
-<p>If you elected to use the ArgentSea shard sets collection instead:</p>
+<p>If you elected to use the ArgentSea shard sets collection instead, things are just a little more verbose:</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-10">
 <ul role="tablist">
 <li role="presentation">
@@ -654,13 +683,134 @@ public ShardChild CustomerLocationKey { get; set; }
 </code></pre>
 </section>
 </div>
-<h2 id="queries">Queries</h2>
-<p>As with the previous QuickStart, created a static Queries class and populated it with queries.</p>
-<h2 id="multiple-records">Multiple records</h2>
-<p>SQL TVP type</p>
-<h2 id="swagger">Swagger</h2>
-<p>If you are creating a new project, open project properties, go to the Debug tab, then change the <em>Launch browser:</em> text value to “swagger”.</p>
-<h2 id="controller">Controller</h2>
+
+<p>Using a <code>ShardSet</code> instance, you generally simply provide a query, set parameters, and invoke a method. You can query across all shards, some shards, or within a single shard instance. Querying across all or some shards can return all results in a unified list or the first valid result.</p>
+<p>The code necessary to query all shards is very simple:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-11">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-11_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-11_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-11_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-11_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-11_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">public async Task&lt;CustomerModel&gt; FindByLogonName(string loginName, CancellationToken cancellation)
+{
+    var prms = new ParameterCollection()
+        .AddSqlNVarCharInputParameter(&quot;@LoginName&quot;, loginName, 255)
+        .CreateOutputParameters&lt;CustomerModel&gt;(_logger);
+    return await _shardSet.ReadFirst.MapOutputAsync&lt;CustomerModel, LocationModel, ContactListItem&gt;(Queries.CustomerFind, prms, cancellation);
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-11_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">```csharp
+public async Task&lt;CustomerModel&gt; FindByLogonName(string loginName, CancellationToken cancellation)
+{
+    var prms = new ParameterCollection()
+        .AddPgVarcharInputParameter(&quot;loginname&quot;, loginName, 255)
+        .CreateOutputParameters&lt;CustomerModel&gt;(_logger);
+    return await _shardSet.ReadFirst.MapOutputAsync&lt;CustomerModel, LocationModel, ContactListItem&gt;(Queries.CustomerFind, prms, cancellation);
+}
+</code></pre>
+</section>
+</div>
+<h3 id="optimizing-multi-record-saves">Optimizing Multi-Record Saves</h3>
+<p>The principal means of optimizing data access is to <em>limit the number of round-trips to the database server</em>. If the need to save ten records generates ten distinct calls to the database, the solution will not be very efficient. Unfortuantely, there is no standard way of handling multi-record saves; fortunately, there are platform-specific ways of managing it.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-12">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-12_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-12_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-12_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-12_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-12_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>SQL Server uses Table Valued Parameters to save multiple records. Our sample data saves a <strong>Customer</strong> with multiple <strong>Locations</strong> and multiple <strong>Contacts</strong>. These are both passed to Table Valued Parameters. This also allows the related records to be managed in a single internally-managed (low oeverhead) transaction.</p>
+<p>Table Valued Parameters require a “User Defined Type”, which defines the column names and types for each row. ArgentSea offers a SQL Server-specific Mapper which converts the metadata attrributes to the correct format for this paramteter. (Like its siblings, it also uses expression trees to to compile a high-performance solution when it is initially run). In our sample implementation, the combined mapping attributes created more columns than the User Defined Type required. To solve this, we can simply provide a list or array of names; then, only those are used.</p>
+<pre><code class="lang-csharp">var prms = new ParameterCollection()
+    .CreateInputParameters(customer, _logger)
+    .AddSqlTableValuedParameter(&quot;@Locations&quot;, customer.Locations, customerLocationTypeColumns, _logger)
+    .AddSqlTableValuedParameter&lt;ContactListItem, byte, int&gt;(&quot;@Contacts&quot;, customer.Contacts, &quot;ShardId&quot;, System.Data.SqlDbType.TinyInt, &quot;RecordId&quot;, System.Data.SqlDbType.Int);
+</code></pre>
+<p>In this example, there are two <code>AddSqlTableValuedParameter</code> overloads, the first uses a Model and maps to the Unser Defined Type using mapping attributes; the second example maps only the key values, using the column names supplied.</p>
+<p>You can learn more in the section on <a href="/querying/multirecord.md">Multi-Record Saves</a>.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-12_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>PostgreSQL uses the COPY statement to quickly load multiple rows into tables or temporary tables. Once these records are loaded, a SQL statement can be run to process them further.</p>
+<p>This process uses ArgentSea’s Batch functionality, which allows multiple steps to execute within a single open and transacted connection. In our sample, the first two steps load the <strong>Contacts</strong> and <strong>Locations</strong> data into temporary tables, then the third batch steps runs a SQL statement to save this data.</p>
+<p>If the table name has a “.” schema seperater, then the target is assumed to a a standard table; without a “.” in the table name, the table is understood to be a temporary table. If the table does not exist it will be created (unless, of course, the client does not have permission to create a table). The table will have all of the coloumns defined by the model’s metadata attributes.</p>
+<pre><code class="lang-csharp">var customerPrms = new ParameterCollection()
+    .CreateInputParameters&lt;CustomerModel&gt;(customer, _logger);
+var shardBatch = new ShardBatch&lt;short, List&lt;short&gt;&gt;()
+    .Add(customer.Contacts, &quot;temp_contacts&quot;)
+    .Add(customer.Locations, &quot;temp_locations&quot;)
+    .Add(Queries.CustomerSave, customerPrms, &quot;contactshardid&quot;);
+</code></pre>
+</section>
+</div>
+<h2 id="using-swagger">Using Swagger</h2>
+<p>when you launch the web API project, it will open to thw Swagger UI by default. If you are creating a new project, open project properties, go to the Debug tab, then change the <em>Launch browser:</em> text value to “swagger”.</p>
+<p>The first GET method returns all customers, across all shards (you don't want to do this in the real world).</p>
+<p>You can selected any ShardKey in the resulting list and provide that to the other GET method, which takes a ShardKey string argument. This methods returns a complex JSON result with extended customer detail.</p>
+<p>You can edit the customer detail and provide that to the PATCH method to update the database values.</p>
+<p>The POST method allows you to create a new customer. If successful, it returns the ShardKey of the created record. To create a new customer you can provide the following JSON:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;New Customer&quot;,
+  &quot;type&quot;: &quot;WalkIn&quot;,
+  &quot;locations&quot;: [
+    {
+      &quot;type&quot;: &quot;RetailStore&quot;,
+      &quot;streetAddress&quot;: &quot;123 Main Street&quot;,
+      &quot;locality&quot;: &quot;Chicago&quot;,
+      &quot;region&quot;: &quot;IL&quot;,
+      &quot;postalCode&quot;: &quot;60612&quot;,
+      &quot;iso3166&quot;: &quot;us&quot;,
+      &quot;coordinates&quot;: {
+        &quot;latitude&quot;: 41.867789,
+        &quot;longitude&quot;: -87.675839
+      }
+    },
+    {
+      &quot;type&quot;: &quot;RetailStore&quot;,
+      &quot;streetAddress&quot;: &quot;456 Oak Avenue&quot;,
+      &quot;locality&quot;: &quot;Dallas&quot;,
+      &quot;region&quot;: &quot;TX&quot;,
+      &quot;postalCode&quot;: &quot;75211&quot;,
+      &quot;iso3166&quot;: &quot;us&quot;,
+      &quot;coordinates&quot;: {
+        &quot;latitude&quot;: 32.730430,
+        &quot;longitude&quot;: -87.675839
+      }
+    }
+  ],
+  &quot;contacts&quot;: [
+    {
+        &quot;origin&quot;: &quot;c&quot;,
+        &quot;shardId&quot;: 1,
+        &quot;recordId&quot;: 7
+    },
+    {
+        &quot;origin&quot;: &quot;c&quot;,
+        &quot;shardId&quot;: 2,
+        &quot;recordId&quot;: 4
+    },
+    {
+        &quot;origin&quot;: &quot;c&quot;,
+        &quot;shardId&quot;: 1,
+        &quot;recordId&quot;: 8
+    }
+  ]
+}
+</code></pre>
+<p>Finally, you can DELETE a customer by providing a ShardKey.</p>
 </article>
           </div>
           
@@ -668,6 +818,9 @@ public ShardChild CustomerLocationKey { get; set; }
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/quickstarts/sharding.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

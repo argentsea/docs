@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Mapper Code | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Mapper Code | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="mapper-code">Mapper Code</h1>
+
+<p>Because the work of the Mapper is compiled on the fly, its operation can seem opaque. When logging in “Debug” mode, it will log the code it is creating. For reference, it is also presented here, with an explanation of its logic. This is just an example of the mapping logic, the actual code generated from a different set of metadata attributes will naturally be different.</p>
+<h2 id="creating-and-setting-in-parameters">Creating and Setting In Parameters</h2>
+<h2 id="creating-out-parameters">Creating Out Parameters</h2>
+<h2 id="reading-out-parameters">Reading Out Parameters</h2>
+<h2 id="data-reader-queries">Data Reader Queries</h2>
+<p>Queries involving the data reader are broken into three parts, two of which use code created by expression trees.</p>
+<p>The first step captures the ordinal position of every column. This code is executed once per query, at the beginning of the retrieval for each result set. This is a performance optimization, since referencing a column name requires a lookup that should not be repeated on every row.</p>
+<p>This means that a change in column order — or additional columns — will not break the code logic. Consequently, the same model class can be used for different queries, each of which may not return exactly the same results. An expected column that is not found will be logged, but subsequently ignored (the type information passed to the GetFieldOrdinal method is for logging).</p>
+<pre><code class="lang-csharp">public int[] GetOrdinals(DbDataReader rdr, ILogger logger)
+{
+    return new[] {
+        GetFieldOrdinal(rdr, &quot;customerid&quot;, &quot;System.Nullable`1[System.Int32]&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;locationid&quot;, &quot;System.Nullable`1[System.Int16]&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;locationtypeid&quot;, &quot;QuickStart2.Pg.Models.LocationModel+LocationType&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;streetaddress&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;locality&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;region&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;postalcode&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;iso3166&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;latitude&quot;, &quot;System.Double&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;longitude&quot;, &quot;System.Double&quot;, logger)
+    };
+}
+</code></pre>
+<p>Next, the data reader handling code iterates through the rows in the result set. Moving through the data reader results is done in standard .NET code, without expression trees. For each new row, the system calls a second delegate, which was also generated and compiled based upon the attribute metadata. The row-handing delegate assesses the current row and returns a model with properties set to data values.</p>
+<pre><code class="lang-csharp">public LocationModel ReadData(short shardId, int[] ordinals, DbDataReader rdr, ILogger logger)
+{
+    var model = new LocationModel();
+    var ordinal = ordinals[0];
+    short? keyShardId = shardId;
+    int? keyRecordId;
+    int? keyChildId;
+    logger.TraceGetOutMapperProperty(&quot;Key_RecordId&quot;);
+
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            keyRecordId = null;
+        }
+        else
+        {
+            keyRecordId = (int?)rdr.GetFieldValue&lt;int&gt;(ordinal);
+        }
+    }
+    logger.TraceGetOutMapperProperty(&quot;Key_ChildId&quot;);
+    ordinal = ordinals[1];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            keyChildId = null;
+        }
+        else
+        {
+            keyChildId = (int?)rdr.GetFieldValue&lt;short&gt;(ordinal);
+        }
+    }
+    if (keyShardId != null &amp;&amp; keyRecordId != null &amp;&amp; keyChildId != null)
+    {
+        model.Key = new ShardChild&lt;short, int, short&gt;('L', keyShardId.Value, keyRecordId.Value, keyChildId.Value);
+    }
+    else
+    {
+        model.Key = ShardChild&lt;short, int, short&gt;().Empty;
+    }
+    logger.TraceRdrMapperProperty(&quot;Type&quot;);
+    ordinal = ordinals[2];
+    if (ordinal != -1)
+    {
+        model.Type = (LocationType)rdr.GetFieldValue&lt;short&gt;(ordinal);
+    }
+    logger.TraceRdrMapperProperty(&quot;StreetAddress&quot;);
+    ordinal = ordinals[3];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.StreetAddress = null;
+        }
+        else
+        {
+            model.StreetAddress = rdr.GetString(ordinal);
+        }
+    };
+    logger.TraceRdrMapperProperty(&quot;Locality&quot;);
+    ordinal = ordinals[4];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.Locality = null;
+        }
+        else
+        {
+            model.Locality = rdr.GetString(ordinal);
+        }
+    }
+    logger.TraceRdrMapperProperty(&quot;Region&quot;);
+    ordinal = ordinals[5];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.Region = null;
+        }
+        else
+        {
+            model.Region = rdr.GetString(ordinal);
+        }
+    };
+    logger.TraceRdrMapperProperty(&quot;PostalCode&quot;);
+    ordinal = ordinals[6];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.PostalCode = null;
+        }
+        else
+        {
+            model.PostalCode = rdr.GetString(ordinal);
+        }
+    };
+    logger.TraceRdrMapperProperty(&quot;Iso3166&quot;);
+    ordinal = ordinals[7];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.Iso3166 = null;
+        }
+        else
+        {
+            model.Iso3166 = rdr.GetString(ordinal);
+        }
+    }
+    logger.TraceRdrMapperProperty(&quot;Latitude&quot;);
+    ordinal = ordinals[8];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            (model.Coordinates).Latitude = double.NaN;
+        }
+        else
+        {
+            (model.Coordinates).Latitude = rdr.GetFieldValue&lt;double&gt;(ordinal);
+        }
+    };
+    logger.TraceRdrMapperProperty(&quot;Longitude&quot;);
+    ordinal = ordinals[9];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            (model.Coordinates).Longitude = double.NaN;
+        }
+        else
+        {
+            (model.Coordinates).Longitude = rdr.GetFieldValue&lt;double&gt;(ordinal)
+        }
+    };
+    return model;
+}
+</code></pre>
+<p>In this example, the ShardId is obtained from the connection’s property. If the <code>MapToShardChild</code> attribute had specified a ShardId column, the code would instead obtained a value from a database column.</p>
+<h2 id="create-a-complex-result">Create a Complex Result</h2>
+<p>Some of the Mapper’s methods allow you to specify multiple generic arguments. These specify both the base return type and the types for various List properties. This complex model construction is broken down into component steps:</p>
+<ul>
+<li>Create a base model object, either from a single-record data reader result or from output parameters.</li>
+<li>Get one or more list results from subsequent data reader results.</li>
+<li>Assign the list results to the corresponding model properties.</li>
+</ul>
+<p>ArgentSea uses reflection to determine which assignable properties match the expected list types, then it builds and compiles a delegate that performs the assignment. This avoids reflection overhead in future cases.</p>
+<p>In this example, the Customer model has two list properties: Locations and Contacts. The generated code is straightforward:</p>
+<pre><code class="lang-csharp">public CustomerModel CreateComplexModel(
+    string queryName,
+    DbDataReader,
+    IList&lt;CustomerModel&gt; rstResult0,
+    IList&lt;LocationModel&gt; rstResult1,
+    IList&lt;ContactModel&gt; rstResult2,
+    ILogger logger)
+{
+    var model = AssignRootToResult&lt;TModel&gt;(queryName, rstResult0, logger);
+    if (model == null)
+    {
+        return null;
+    }
+    model.Locations = rstResult1;
+    model.Contacts = rstResult2;
+    return model;
+}
+</code></pre>
+<h2 id="loading-multiple-records">Loading Multiple Records</h2>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Mapping/process.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -119,7 +119,7 @@
   <h6><strong>Assembly</strong>: ArgentSea.Sql.dll</h6>
   <h5 id="ArgentSea_Sql_TvpMapper_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TvpMapper</code></pre>
+    <pre><code class="lang-csharp hljs">public static class TvpMapper</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -139,7 +139,6 @@ To convert an object list to an table-value input parameter, use: var prm = lst.
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static SqlDataRecord ToTvpRecord&lt;TModel&gt;(TModel model, ILogger logger)
-
     where TModel : class, new()</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -194,6 +193,79 @@ To convert an object list to an table-value input parameter, use: var prm = lst.
         <td><span class="parametername">TModel</span></td>
         <td><p>The type of the model object. The &quot;MapTo&quot; attributes are used to create the Sql metadata and columns. The object property order become the column order.</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_TvpMapper_ToTvpRecord__1___0_System_Collections_Generic_IList_System_String__Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.TvpMapper.ToTvpRecord%60%601(%60%600%2CSystem.Collections.Generic.IList%7BSystem.String%7D%2CMicrosoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/sql/blob/master/src/TvpMapper.cs/#L264">View Source</a>
+  </span>
+  <a id="ArgentSea_Sql_TvpMapper_ToTvpRecord_" data-uid="ArgentSea.Sql.TvpMapper.ToTvpRecord*"></a>
+  <h4 id="ArgentSea_Sql_TvpMapper_ToTvpRecord__1___0_System_Collections_Generic_IList_System_String__Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Sql.TvpMapper.ToTvpRecord``1(``0,System.Collections.Generic.IList{System.String},Microsoft.Extensions.Logging.ILogger)">ToTvpRecord&lt;TModel&gt;(TModel, IList&lt;String&gt;, ILogger)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SqlDataRecord ToTvpRecord&lt;TModel&gt;(TModel model, IList&lt;string&gt; columnList, ILogger logger)
+    where TModel : class, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">columnList</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
+        <td><span class="parametername">logger</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.SqlServer.Server.SqlDataRecord</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TModel</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

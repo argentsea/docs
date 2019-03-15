@@ -77,7 +77,7 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h2 id="creating-sql-queries">Creating SQL Queries</h2>
+<h1 id="creating-sql-queries">Creating SQL Queries</h1>
 
 <p>Every ArgentSea data access method takes a <code>Query</code> argument. ArgentSea offers two implementations:</p>
 <ul>
@@ -98,7 +98,7 @@
     // add a new static properties for each additional query...
 }
 </code></pre>
-<p>Now, it is easy to reference the statement batch or procedure like this:</p>
+<p>Once this is done, it is easy to reference the statement batch or procedure like this:</p>
 <pre><code class="lang-csharp">return await db.Read.MapReaderAsync&lt;Subscriber&gt;(Queries.GetSubscriber, parameters, cancellation);
 </code></pre>
 <h3 id="queryprocedures">QueryProcedures</h3>
@@ -170,6 +170,10 @@
 <li>Set the <em>Copy to Output Directory</em> attribute to “Copy if newer” for each SQL file.</li>
 </ul>
 <p>This will ensure that the files are copied to the output/publish directory.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>This step is critical and often overlook on new query files. If you get an error that the query file was not found, this is probably the reason.</p>
+</div>
 <h4 id="4-add-a-corresponding-property-to-the-queries-static-class">4. Add a corresponding property to the Queries static class</h4>
 <p>The <code>QueryStatement</code> class does not have a default constructor; use the <code>Create</code> factory method instead. The <code>Create</code> factory method returns a <code>Lazy&lt;QueryStatement&gt;</code>. This allows the SQL file to be loaded only when first requested, and then cached for all subsequent requests.</p>
 <p>Each static method takes only two lines:</p>
@@ -201,7 +205,7 @@ public static QueryStatement GetSubscriber =&gt; _getSubscriber.Value;
 {'
 DECLARE @Parameters nvarchar(max), @ObjectId int, @SchemaName sysname, @SprocName sysname, @ParameterName sysname;
 
-DECLARE curProcedures CURSOR FOR 
+DECLARE curProcedures CURSOR FOR
 SELECT procedures.object_id, schemas.name, procedures.name 
 FROM sys.procedures 
 	INNER JOIN sys.schemas 
@@ -263,6 +267,9 @@ PRINT N'}'
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Querying/sql.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
