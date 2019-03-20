@@ -234,7 +234,7 @@ public struct ShardKey&lt;TShard, TRecord&gt; : IEquatable&lt;ShardKey&lt;TShard
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_Empty.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.Empty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L597">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L605">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_Empty_" data-uid="ArgentSea.ShardKey`2.Empty*"></a>
   <h4 id="ArgentSea_ShardKey_2_Empty" data-uid="ArgentSea.ShardKey`2.Empty">Empty</h4>
@@ -386,7 +386,7 @@ public struct ShardKey&lt;TShard, TRecord&gt; : IEquatable&lt;ShardKey&lt;TShard
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_Equals_ArgentSea_ShardKey__0__1__.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.Equals(ArgentSea.ShardKey%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L498">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L506">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_Equals_" data-uid="ArgentSea.ShardKey`2.Equals*"></a>
   <h4 id="ArgentSea_ShardKey_2_Equals_ArgentSea_ShardKey__0__1__" data-uid="ArgentSea.ShardKey`2.Equals(ArgentSea.ShardKey{`0,`1})">Equals(ShardKey&lt;TShard, TRecord&gt;)</h4>
@@ -433,7 +433,7 @@ public struct ShardKey&lt;TShard, TRecord&gt; : IEquatable&lt;ShardKey&lt;TShard
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_Equals_System_Object_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L502">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L510">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_Equals_" data-uid="ArgentSea.ShardKey`2.Equals*"></a>
   <h4 id="ArgentSea_ShardKey_2_Equals_System_Object_" data-uid="ArgentSea.ShardKey`2.Equals(System.Object)">Equals(Object)</h4>
@@ -477,6 +477,124 @@ public struct ShardKey&lt;TShard, TRecord&gt; : IEquatable&lt;ShardKey&lt;TShard
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_ForeignShards_System_Collections_Generic_IList_ArgentSea_ShardKey__0__1___.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.ForeignShards(System.Collections.Generic.IList%7BArgentSea.ShardKey%7B%600%2C%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L494">View Source</a>
+  </span>
+  <a id="ArgentSea_ShardKey_2_ForeignShards_" data-uid="ArgentSea.ShardKey`2.ForeignShards*"></a>
+  <h4 id="ArgentSea_ShardKey_2_ForeignShards_System_Collections_Generic_IList_ArgentSea_ShardKey__0__1___" data-uid="ArgentSea.ShardKey`2.ForeignShards(System.Collections.Generic.IList{ArgentSea.ShardKey{`0,`1}})">ForeignShards(IList&lt;ShardKey&lt;TShard, TRecord&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Given a list of ShardKey values, returns a distinct list of shard Ids, except for the shard Id of the current shard.
+Useful for querying foreign shards after the primary shard has returned results.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ShardsValues&lt;TShard&gt; ForeignShards(IList&lt;ShardKey&lt;TShard, TRecord&gt;&gt; records)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList</span>&lt;<a class="xref" href="ArgentSea.ShardKey-2.html">ShardKey</a>&lt;TShard, TRecord&gt;&gt;</td>
+        <td><span class="parametername">records</span></td>
+        <td><p>The list of ShardKeys to evaluate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardsValues-1.html">ShardsValues</a>&lt;TShard&gt;</td>
+        <td><p>A ShardsValues collection, with the shards listed. The values dictionary will be null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_ForeignShards__1_System_Collections_Generic_IList___0__.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.ForeignShards%60%601(System.Collections.Generic.IList%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L503">View Source</a>
+  </span>
+  <a id="ArgentSea_ShardKey_2_ForeignShards_" data-uid="ArgentSea.ShardKey`2.ForeignShards*"></a>
+  <h4 id="ArgentSea_ShardKey_2_ForeignShards__1_System_Collections_Generic_IList___0__" data-uid="ArgentSea.ShardKey`2.ForeignShards``1(System.Collections.Generic.IList{``0})">ForeignShards&lt;TModel&gt;(IList&lt;TModel&gt;)</h4>
+  <div class="markdown level1 summary"><p>Given a list of Models with ShardKey keys, returns a distinct list of shard Ids, except for the shard Id of the current shard.
+Useful for querying foreign shards after the primary shard has returned results.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ShardsValues&lt;TShard&gt; ForeignShards&lt;TModel&gt;(IList&lt;TModel&gt; records)
+    where TModel : IKeyedModel&lt;TShard, TRecord&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList</span>&lt;TModel&gt;</td>
+        <td><span class="parametername">records</span></td>
+        <td><p>The list of ShardKeys to evaluate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ArgentSea.ShardsValues-1.html">ShardsValues</a>&lt;TShard&gt;</td>
+        <td><p>A ShardsValues collection, with the shards listed. The values dictionary will be null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TModel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_FromExternalString_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.FromExternalString(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -529,7 +647,7 @@ public struct ShardKey&lt;TShard, TRecord&gt; : IEquatable&lt;ShardKey&lt;TShard
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_GetHashCode.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L512">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L520">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_GetHashCode_" data-uid="ArgentSea.ShardKey`2.GetHashCode*"></a>
   <h4 id="ArgentSea_ShardKey_2_GetHashCode" data-uid="ArgentSea.ShardKey`2.GetHashCode">GetHashCode()</h4>
@@ -561,7 +679,7 @@ public struct ShardKey&lt;TShard, TRecord&gt; : IEquatable&lt;ShardKey&lt;TShard
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.GetObjectData(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L604">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L612">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_GetObjectData_" data-uid="ArgentSea.ShardKey`2.GetObjectData*"></a>
   <h4 id="ArgentSea_ShardKey_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="ArgentSea.ShardKey`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">GetObjectData(SerializationInfo, StreamingContext)</h4>
@@ -914,7 +1032,7 @@ public struct ShardKey&lt;TShard, TRecord&gt; : IEquatable&lt;ShardKey&lt;TShard
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_ShardListForeign__0_System_Collections_Generic_IList_ArgentSea_ShardKey__0__1___.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.ShardListForeign(%600%2CSystem.Collections.Generic.IList%7BArgentSea.ShardKey%7B%600%2C%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L485">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L475">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_ShardListForeign_" data-uid="ArgentSea.ShardKey`2.ShardListForeign*"></a>
   <h4 id="ArgentSea_ShardKey_2_ShardListForeign__0_System_Collections_Generic_IList_ArgentSea_ShardKey__0__1___" data-uid="ArgentSea.ShardKey`2.ShardListForeign(`0,System.Collections.Generic.IList{ArgentSea.ShardKey{`0,`1}})">ShardListForeign(TShard, IList&lt;ShardKey&lt;TShard, TRecord&gt;&gt;)</h4>
@@ -944,63 +1062,6 @@ Useful for querying foreign shards after the primary shard has returned results.
       </tr>
       <tr>
         <td><span class="xref">System.Collections.Generic.IList</span>&lt;<a class="xref" href="ArgentSea.ShardKey-2.html">ShardKey</a>&lt;TShard, TRecord&gt;&gt;</td>
-        <td><span class="parametername">records</span></td>
-        <td><p>The list of ShardKeys to evaluate.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="ArgentSea.ShardsValues-1.html">ShardsValues</a>&lt;TShard&gt;</td>
-        <td><p>A ShardsValues collection, with the shards listed. The values dictionary will be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_ShardListForeign__0_System_Collections_Generic_List_ArgentSea_ShardKey__0__1___.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.ShardListForeign(%600%2CSystem.Collections.Generic.List%7BArgentSea.ShardKey%7B%600%2C%601%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L475">View Source</a>
-  </span>
-  <a id="ArgentSea_ShardKey_2_ShardListForeign_" data-uid="ArgentSea.ShardKey`2.ShardListForeign*"></a>
-  <h4 id="ArgentSea_ShardKey_2_ShardListForeign__0_System_Collections_Generic_List_ArgentSea_ShardKey__0__1___" data-uid="ArgentSea.ShardKey`2.ShardListForeign(`0,System.Collections.Generic.List{ArgentSea.ShardKey{`0,`1}})">ShardListForeign(TShard, List&lt;ShardKey&lt;TShard, TRecord&gt;&gt;)</h4>
-  <div class="markdown level1 summary"><p>Given a list of ShardKey values, returns a distinct list of shard Ids, except for the shard Id specified.
-Useful for querying foreign shards after the primary shard has returned results.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ShardsValues&lt;TShard&gt; ShardListForeign(TShard shardId, List&lt;ShardKey&lt;TShard, TRecord&gt;&gt; records)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">TShard</span></td>
-        <td><span class="parametername">shardId</span></td>
-        <td><p>The shard id of the shard to exclude. This is typically the current shard and this function is used to determine if any records are foreign to it.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="ArgentSea.ShardKey-2.html">ShardKey</a>&lt;TShard, TRecord&gt;&gt;</td>
         <td><span class="parametername">records</span></td>
         <td><p>The list of ShardKeys to evaluate.</p>
 </td>
@@ -1174,7 +1235,7 @@ Useful for querying foreign shards after the primary shard has returned results.
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_ThrowIfInvalidOrigin_System_Char_.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.ThrowIfInvalidOrigin(System.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L611">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L619">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_ThrowIfInvalidOrigin_" data-uid="ArgentSea.ShardKey`2.ThrowIfInvalidOrigin*"></a>
   <h4 id="ArgentSea_ShardKey_2_ThrowIfInvalidOrigin_System_Char_" data-uid="ArgentSea.ShardKey`2.ThrowIfInvalidOrigin(System.Char)">ThrowIfInvalidOrigin(Char)</h4>
@@ -1338,7 +1399,7 @@ Useful for querying foreign shards after the primary shard has returned results.
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_op_Equality_ArgentSea_ShardKey__0__1__ArgentSea_ShardKey__0__1__.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.op_Equality(ArgentSea.ShardKey%7B%600%2C%601%7D%2CArgentSea.ShardKey%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L589">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L597">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_op_Equality_" data-uid="ArgentSea.ShardKey`2.op_Equality*"></a>
   <h4 id="ArgentSea_ShardKey_2_op_Equality_ArgentSea_ShardKey__0__1__ArgentSea_ShardKey__0__1__" data-uid="ArgentSea.ShardKey`2.op_Equality(ArgentSea.ShardKey{`0,`1},ArgentSea.ShardKey{`0,`1})">Equality(ShardKey&lt;TShard, TRecord&gt;, ShardKey&lt;TShard, TRecord&gt;)</h4>
@@ -1390,7 +1451,7 @@ Useful for querying foreign shards after the primary shard has returned results.
     <a href="https://github.com/argentsea/shared/new/master/apiSpec/new?filename=ArgentSea_ShardKey_2_op_Inequality_ArgentSea_ShardKey__0__1__ArgentSea_ShardKey__0__1__.md&amp;value=---%0Auid%3A%20ArgentSea.ShardKey%602.op_Inequality(ArgentSea.ShardKey%7B%600%2C%601%7D%2CArgentSea.ShardKey%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L593">View Source</a>
+    <a href="https://github.com/argentsea/shared/blob/master/src/ShardKey.cs/#L601">View Source</a>
   </span>
   <a id="ArgentSea_ShardKey_2_op_Inequality_" data-uid="ArgentSea.ShardKey`2.op_Inequality*"></a>
   <h4 id="ArgentSea_ShardKey_2_op_Inequality_ArgentSea_ShardKey__0__1__ArgentSea_ShardKey__0__1__" data-uid="ArgentSea.ShardKey`2.op_Inequality(ArgentSea.ShardKey{`0,`1},ArgentSea.ShardKey{`0,`1})">Inequality(ShardKey&lt;TShard, TRecord&gt;, ShardKey&lt;TShard, TRecord&gt;)</h4>

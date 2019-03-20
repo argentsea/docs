@@ -85,6 +85,7 @@
 <li>Model Properties, via the <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> attribute</li>
 <li>List Properties</li>
 <li>Shard Identifiers, via the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> attributes</li>
+<li>Models that inherit from parent Models</li>
 </ul>
 <h2 id="the-maptomodel-attribute">The <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> Attribute</h2>
 <p>Some Model objects may have properties that are objects with their <em>own</em> properties, which also need to be mapped to the underlying data.</p>
@@ -202,6 +203,7 @@ public class Address
 
 <p>In this example, the Vendor, Store, and Customer Models each have a property with an Address Model type. When mapping Vendor database results, the Mapper will map the StreetAddress column or parameter to Vendor.VendorAddress.StreetAddress. Likewise for the Store and Customer Models.</p>
 <p>In each case, the Address properties and attributes are simply included in the properties that the Mapper expects to see in the data results or parameters.</p>
+<p>In short, <code>MapToModel</code> simply extends the expected parameter or column lists with further values, but it offers the capability to reuse or encapsulate a column/parameter set in your code.</p>
 <h3 id="null-values">Null Values</h3>
 <p>The Mapper will automatically set the property to a new instance of the model object, if:</p>
 <ul>

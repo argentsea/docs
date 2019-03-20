@@ -10255,6 +10255,33 @@ references:
   fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).Equals
   nameWithType: ShardChild<TShard, TRecord, TChild>.Equals
   nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).Equals
+- uid: ArgentSea.ShardChild`3.ForeignShards(System.Collections.Generic.IList{ArgentSea.ShardChild{`0,`1,`2}})
+  name: ForeignShards(IList<ShardChild<TShard, TRecord, TChild>>)
+  href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_ForeignShards_System_Collections_Generic_IList_ArgentSea_ShardChild__0__1__2___
+  commentId: M:ArgentSea.ShardChild`3.ForeignShards(System.Collections.Generic.IList{ArgentSea.ShardChild{`0,`1,`2}})
+  name.vb: ForeignShards(IList(Of ShardChild(Of TShard, TRecord, TChild)))
+  fullName: ArgentSea.ShardChild<TShard, TRecord, TChild>.ForeignShards(System.Collections.Generic.IList<ArgentSea.ShardChild<TShard, TRecord, TChild>>)
+  fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ForeignShards(System.Collections.Generic.IList(Of ArgentSea.ShardChild(Of TShard, TRecord, TChild)))
+  nameWithType: ShardChild<TShard, TRecord, TChild>.ForeignShards(IList<ShardChild<TShard, TRecord, TChild>>)
+  nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ForeignShards(IList(Of ShardChild(Of TShard, TRecord, TChild)))
+- uid: ArgentSea.ShardChild`3.ForeignShards*
+  name: ForeignShards
+  href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_ForeignShards_
+  commentId: Overload:ArgentSea.ShardChild`3.ForeignShards
+  isSpec: "True"
+  fullName: ArgentSea.ShardChild<TShard, TRecord, TChild>.ForeignShards
+  fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ForeignShards
+  nameWithType: ShardChild<TShard, TRecord, TChild>.ForeignShards
+  nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ForeignShards
+- uid: ArgentSea.ShardChild`3.ForeignShards``1(System.Collections.Generic.IList{``0})
+  name: ForeignShards<TModel>(IList<TModel>)
+  href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_ForeignShards__1_System_Collections_Generic_IList___0__
+  commentId: M:ArgentSea.ShardChild`3.ForeignShards``1(System.Collections.Generic.IList{``0})
+  name.vb: ForeignShards(Of TModel)(IList(Of TModel))
+  fullName: ArgentSea.ShardChild<TShard, TRecord, TChild>.ForeignShards<TModel>(System.Collections.Generic.IList<TModel>)
+  fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ForeignShards(Of TModel)(System.Collections.Generic.IList(Of TModel))
+  nameWithType: ShardChild<TShard, TRecord, TChild>.ForeignShards<TModel>(IList<TModel>)
+  nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ForeignShards(Of TModel)(IList(Of TModel))
 - uid: ArgentSea.ShardChild`3.FromExternalString(System.String)
   name: FromExternalString(String)
   href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_FromExternalString_System_String_
@@ -10481,15 +10508,6 @@ references:
   fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ShardListForeign(TShard, System.Collections.Generic.IList(Of ArgentSea.ShardChild(Of TShard, TRecord, TChild)))
   nameWithType: ShardChild<TShard, TRecord, TChild>.ShardListForeign(TShard, IList<ShardChild<TShard, TRecord, TChild>>)
   nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ShardListForeign(TShard, IList(Of ShardChild(Of TShard, TRecord, TChild)))
-- uid: ArgentSea.ShardChild`3.ShardListForeign(`0,System.Collections.Generic.List{ArgentSea.ShardChild{`0,`1,`2}})
-  name: ShardListForeign(TShard, List<ShardChild<TShard, TRecord, TChild>>)
-  href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_ShardListForeign__0_System_Collections_Generic_List_ArgentSea_ShardChild__0__1__2___
-  commentId: M:ArgentSea.ShardChild`3.ShardListForeign(`0,System.Collections.Generic.List{ArgentSea.ShardChild{`0,`1,`2}})
-  name.vb: ShardListForeign(TShard, List(Of ShardChild(Of TShard, TRecord, TChild)))
-  fullName: ArgentSea.ShardChild<TShard, TRecord, TChild>.ShardListForeign(TShard, System.Collections.Generic.List<ArgentSea.ShardChild<TShard, TRecord, TChild>>)
-  fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ShardListForeign(TShard, System.Collections.Generic.List(Of ArgentSea.ShardChild(Of TShard, TRecord, TChild)))
-  nameWithType: ShardChild<TShard, TRecord, TChild>.ShardListForeign(TShard, List<ShardChild<TShard, TRecord, TChild>>)
-  nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ShardListForeign(TShard, List(Of ShardChild(Of TShard, TRecord, TChild)))
 - uid: ArgentSea.ShardChild`3.ShardListForeign*
   name: ShardListForeign
   href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_ShardListForeign_
@@ -10508,15 +10526,6 @@ references:
   fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ShardListForeign(Of TModel)(TShard, System.Collections.Generic.IList(Of TModel))
   nameWithType: ShardChild<TShard, TRecord, TChild>.ShardListForeign<TModel>(TShard, IList<TModel>)
   nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ShardListForeign(Of TModel)(TShard, IList(Of TModel))
-- uid: ArgentSea.ShardChild`3.ShardListForeign``1(`0,System.Collections.Generic.List{``0})
-  name: ShardListForeign<TModel>(TShard, List<TModel>)
-  href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_ShardListForeign__1__0_System_Collections_Generic_List___0__
-  commentId: M:ArgentSea.ShardChild`3.ShardListForeign``1(`0,System.Collections.Generic.List{``0})
-  name.vb: ShardListForeign(Of TModel)(TShard, List(Of TModel))
-  fullName: ArgentSea.ShardChild<TShard, TRecord, TChild>.ShardListForeign<TModel>(TShard, System.Collections.Generic.List<TModel>)
-  fullName.vb: ArgentSea.ShardChild(Of TShard, TRecord, TChild).ShardListForeign(Of TModel)(TShard, System.Collections.Generic.List(Of TModel))
-  nameWithType: ShardChild<TShard, TRecord, TChild>.ShardListForeign<TModel>(TShard, List<TModel>)
-  nameWithType.vb: ShardChild(Of TShard, TRecord, TChild).ShardListForeign(Of TModel)(TShard, List(Of TModel))
 - uid: ArgentSea.ShardChild`3.ThrowIfInvalidOrigin(System.Char)
   name: ThrowIfInvalidOrigin(Char)
   href: api/ArgentSea.ShardChild-3.html#ArgentSea_ShardChild_3_ThrowIfInvalidOrigin_System_Char_
@@ -10663,6 +10672,33 @@ references:
   fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).Equals
   nameWithType: ShardKey<TShard, TRecord>.Equals
   nameWithType.vb: ShardKey(Of TShard, TRecord).Equals
+- uid: ArgentSea.ShardKey`2.ForeignShards(System.Collections.Generic.IList{ArgentSea.ShardKey{`0,`1}})
+  name: ForeignShards(IList<ShardKey<TShard, TRecord>>)
+  href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_ForeignShards_System_Collections_Generic_IList_ArgentSea_ShardKey__0__1___
+  commentId: M:ArgentSea.ShardKey`2.ForeignShards(System.Collections.Generic.IList{ArgentSea.ShardKey{`0,`1}})
+  name.vb: ForeignShards(IList(Of ShardKey(Of TShard, TRecord)))
+  fullName: ArgentSea.ShardKey<TShard, TRecord>.ForeignShards(System.Collections.Generic.IList<ArgentSea.ShardKey<TShard, TRecord>>)
+  fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).ForeignShards(System.Collections.Generic.IList(Of ArgentSea.ShardKey(Of TShard, TRecord)))
+  nameWithType: ShardKey<TShard, TRecord>.ForeignShards(IList<ShardKey<TShard, TRecord>>)
+  nameWithType.vb: ShardKey(Of TShard, TRecord).ForeignShards(IList(Of ShardKey(Of TShard, TRecord)))
+- uid: ArgentSea.ShardKey`2.ForeignShards*
+  name: ForeignShards
+  href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_ForeignShards_
+  commentId: Overload:ArgentSea.ShardKey`2.ForeignShards
+  isSpec: "True"
+  fullName: ArgentSea.ShardKey<TShard, TRecord>.ForeignShards
+  fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).ForeignShards
+  nameWithType: ShardKey<TShard, TRecord>.ForeignShards
+  nameWithType.vb: ShardKey(Of TShard, TRecord).ForeignShards
+- uid: ArgentSea.ShardKey`2.ForeignShards``1(System.Collections.Generic.IList{``0})
+  name: ForeignShards<TModel>(IList<TModel>)
+  href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_ForeignShards__1_System_Collections_Generic_IList___0__
+  commentId: M:ArgentSea.ShardKey`2.ForeignShards``1(System.Collections.Generic.IList{``0})
+  name.vb: ForeignShards(Of TModel)(IList(Of TModel))
+  fullName: ArgentSea.ShardKey<TShard, TRecord>.ForeignShards<TModel>(System.Collections.Generic.IList<TModel>)
+  fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).ForeignShards(Of TModel)(System.Collections.Generic.IList(Of TModel))
+  nameWithType: ShardKey<TShard, TRecord>.ForeignShards<TModel>(IList<TModel>)
+  nameWithType.vb: ShardKey(Of TShard, TRecord).ForeignShards(Of TModel)(IList(Of TModel))
 - uid: ArgentSea.ShardKey`2.FromExternalString(System.String)
   name: FromExternalString(String)
   href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_FromExternalString_System_String_
@@ -10872,15 +10908,6 @@ references:
   fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).ShardListForeign(TShard, System.Collections.Generic.IList(Of ArgentSea.ShardKey(Of TShard, TRecord)))
   nameWithType: ShardKey<TShard, TRecord>.ShardListForeign(TShard, IList<ShardKey<TShard, TRecord>>)
   nameWithType.vb: ShardKey(Of TShard, TRecord).ShardListForeign(TShard, IList(Of ShardKey(Of TShard, TRecord)))
-- uid: ArgentSea.ShardKey`2.ShardListForeign(`0,System.Collections.Generic.List{ArgentSea.ShardKey{`0,`1}})
-  name: ShardListForeign(TShard, List<ShardKey<TShard, TRecord>>)
-  href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_ShardListForeign__0_System_Collections_Generic_List_ArgentSea_ShardKey__0__1___
-  commentId: M:ArgentSea.ShardKey`2.ShardListForeign(`0,System.Collections.Generic.List{ArgentSea.ShardKey{`0,`1}})
-  name.vb: ShardListForeign(TShard, List(Of ShardKey(Of TShard, TRecord)))
-  fullName: ArgentSea.ShardKey<TShard, TRecord>.ShardListForeign(TShard, System.Collections.Generic.List<ArgentSea.ShardKey<TShard, TRecord>>)
-  fullName.vb: ArgentSea.ShardKey(Of TShard, TRecord).ShardListForeign(TShard, System.Collections.Generic.List(Of ArgentSea.ShardKey(Of TShard, TRecord)))
-  nameWithType: ShardKey<TShard, TRecord>.ShardListForeign(TShard, List<ShardKey<TShard, TRecord>>)
-  nameWithType.vb: ShardKey(Of TShard, TRecord).ShardListForeign(TShard, List(Of ShardKey(Of TShard, TRecord)))
 - uid: ArgentSea.ShardKey`2.ShardListForeign*
   name: ShardListForeign
   href: api/ArgentSea.ShardKey-2.html#ArgentSea_ShardKey_2_ShardListForeign_
