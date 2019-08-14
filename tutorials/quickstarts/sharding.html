@@ -8,7 +8,7 @@
     <title>QuickStart Two | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="QuickStart Two | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.40.0.0">
+    <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -82,7 +82,7 @@
 <p>The <a href="configuration.html">previous QuickStart</a> introduced configuration and mapping. This tutorial extends that information while working with a sharded data set. This tutorial also extends the mapping functionality to include list and object properties on the model class.</p>
 <p>Sharded data introduces two complexities:</p>
 <ul>
-<li>How do I uniquely identify and locate a record, which could be on any shard?</li>
+<li>How do I uniquely identify and locate a record, which might be on any shard?</li>
 <li>How do I manage data on one shard and related data on a foreign shard?</li>
 </ul>
 <p>This walkthrough illustrates how both challenges can be met.</p>
@@ -154,8 +154,13 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 </div>
 
 <p>At this point, we should have four database with identical table structures. SQL Server instances should also have a identical set of stored procedures.</p>
-<h2 id="the-shardid">The ShardId</h2>
-<p>Each of the four databases needs an identifier. This is more significant than it sounds. ArgentSea uses a “virtual compound key” consisting of the ShardId and the RecordId; this is called a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a>. A thorough discussion of the options and impact is <a href="/tutorials/sharding/shardkey.md">here</a>. The précis is that once established, the type (and values) of the <em>ShardId</em> cannot be easily changed. The ShardId is a part of record identification, so confusion or misconfiguration could result in data corruption.</p>
+<h2 id="the-shard-set-record-key">The Shard Set Record Key</h2>
+<p>Each of the four databases needs an identifier. ArgentSea uses a <code>short</code> (Int32/tinyint) to identify each shard, and a generic type as a record id. The combination of shard id and record id becomes a “virtual compound key”, which is called a <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a>. A thorough discussion of the options and impact is <a href="/tutorials/sharding/shardkey.md">here</a>.</p>
+<p>Some tables may require a compound key themselves. For these, ArgentSea offers the <a href="/api/ArgentSea.ShardChild-2.html">ShardChild</a>, which consists of a shard id, record id, and child id. Because the record id, and child id are generic types, they can accommodate most data column types.</p>
+<h2 id="configuring-connections">Configuring Connections</h2>
+<p>Because sharded data may require a large number of data connections, ArgentSea offers a more flexible way of managing this than by using connection strings. ArgentSea offers the “Hereditary Configuration Hierarchy”. This allows you to set an attribute at the parent level and all children will inherit this value, unless overwritten by a child. A more thorough discussion is <a href="/tutorials/configuration/hierarchy.md">here</a>.</p>
+<p>In our sample application, we can use the same server or host for all connections; each shard connection only changes the database name. (In a production deployment, the configuration might be exactly backwards: the databases have identical names, but each is on a different host). We also want to use the <em>webWriter</em> user for write connections and <em>webReader</em> for read connections.</p>
+<p>So the configuration settings looks like this (with annotations):</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
 <ul role="tablist">
 <li role="presentation">
@@ -166,29 +171,6 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 </li>
 </ul>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<p>In this sample application, the type of the ShardId for SQL Server is a <code>byte</code> (SQL TinyInt). Because ArgentSea uses a generic type to define the ShardId, you can use one of many types in your application; however, the ShardId must be consistent throughout the application.</p>
-<p>Naturally, this mandates an upper maximum  of 256 shards. If there is any possibility of one day needing to exceeding this count, you can use a <code>short</code> data type instead.</p>
-</section>
-<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-
-<p>In this sample application, the type of the ShardId for PostgreSQL is a <code>short</code> (SQL SmallInt). Because ArgentSea uses a generic type to define the ShardId, you can use one of many types in your application; however, the ShardId must be consistent throughout the application.</p>
-</section>
-</div>
-<h2 id="configuring-connections">Configuring Connections</h2>
-<p>Because sharded data may require a large number of data connections, ArgentSea offers a more flexible way of managing this than by using connection strings. ArgentSea offers the “Hereditary Configuration Hierarchy”. This allows you to set an attribute at the parent level and all children will inherit this value, unless overwritten by a child. A more thorough discussion is <a href="/tutorials/configuration/hierarchy.md">here</a>.</p>
-<p>In our sample application, we can use the same server or host for all connections; each shard connection only changes the database name. (In a production deployment, the configuration might be exactly backwards: the databases have identical names, but each is on a different host). We also want to use the <em>webWriter</em> user for write connections and <em>webReader</em> for read connections.</p>
-<p>So the configuration settings looks like this (with annotations):</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <pre><code class="lang-json">{
   &quot;SqlShardSets&quot;: [¹
@@ -234,10 +216,10 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <p>⁴ <code>DefaultShardId</code> this setting determins which shard is presented as the <code>ShardSet.DefaultShard</code>. This is useful for determining which shard should be actively accepting new records for this client.</p>
 <p>⁵ <code>Read</code> and <code>Write</code> are peculiar, and optional, members of shard set’s “inheritance” chain, as their children are indirect. Any attributes defined in the shard set’s <code>Write</code> section apply only to write connections. Likewise, for <code>Read</code> connections. These values can be overwritten by shard or connection attributes.</p>
 <p>⁶ <code>Shards</code> is an array of shard connections, one for each shard in the shard set.</p>
-<p>⁷ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. If the type of the ShardId is a string, then this value should have quotes around it in the JSON file.</p>
+<p>⁷ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. The value must be a number.</p>
 <p>⁸ <code>InitialCatalog</code> is a connection attribute. Because it appears at the shard level, both read connections and write connections for this shard will inherit this value.</p>
 </section>
-<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <pre><code class="lang-json">{
   &quot;PgShardSets&quot;: [¹
@@ -282,7 +264,7 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <p>⁴ <code>DefaultShardId</code> this setting determins which shard is presented as the <code>ShardSet.DefaultShard</code>. This is useful for determining which shard should be actively accepting new records for this client.</p>
 <p>⁵ <code>Read</code> and <code>Write</code> are peculiar, and optional, members of shard set’s “inheritance” chain, as their children are indirect. Any attributes defined in the shard set’s <code>Write</code> section apply only to write connections. Likewise, for <code>Read</code> connections. These values can be overwritten by shard or connection attributes.</p>
 <p>⁶ <code>Shards</code> is an array of shard connections, one for each shard in the shard set.</p>
-<p>⁷ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. If the type of the ShardId is a string, then this value should have quotes around it in the JSON file.</p>
+<p>⁷ <code>ShardId</code> is a <em>required</em> identifier for the shard. This value is essential for finding and identifying a sharded record. It cannot be duplicated within a shard set. The value must be a number.</p>
 <p>⁸ <code>Database</code> is a connection attribute. Because it appears at the shard level, both read connections and write connections for this shard will inherit this value.</p>
 </section>
 </div>
@@ -290,16 +272,16 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <p>This hierarchy, then, defines a server name once, to be used for the entire shard set. The read and write logins are also defined once, to be used by all read or write connections in the shard set. Each shard has a distinct database name. ArgentSea can build read and write connections to each data store without the need to configure any of this data redundantly — the login, server name, and database names are each managed only once.</p>
 <p>When you save this configuration to project’s appsettings file, be sure to update the JSON to the appropriate server references.</p>
 <p>You might consider moving the login password information to the UserSecrets store, which is a best practice. Simply remove the password entries from the appsettings.json hierarchy and add them to the usersecrets.json file. Ideally, the password should also be changed to a different value.</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
 </li>
 </ul>
-<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 <h3 id="user-secrets-entry">User Secrets Entry</h3>
 <pre><code class="lang-json">{
   &quot;SqlShardSets&quot;: [
@@ -315,7 +297,7 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 }
 </code></pre>
 </section>
-<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 <h3 id="user-secrets-entry-1">User Secrets Entry</h3>
 <pre><code class="lang-json">{
   &quot;PgShardSets&quot;: [
@@ -340,6 +322,33 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <h2 id="creating-the-models">Creating the Models</h2>
 <p>The process of creating a model class was introduced in <a href="configuration.html">Quickstart 1</a>. Essentially, it simply requires adding attributes to properties, which the Mapper can then use. This QuickStart adds four new wrinkles: shard keys, object properties, list properties, and inheritance.</p>
 <p>The complete code is on GitHub, at <a href="https://github.com/argentsea/quickstarts/tree/master/QuickStart2.Sql/QuickStart2.Sql">https://github.com/argentsea/quickstarts/tree/master/QuickStart2.Sql/QuickStart2.Sql</a> for SQL Server, or <a href="https://github.com/argentsea/quickstarts/tree/master/QuickStart2.Pg/QuickStart2.Pg">https://github.com/argentsea/quickstarts/tree/master/QuickStart2.Pg/QuickStart2.Pg</a> for PostgreSQL. The classes and SQL you need are located there; it is not fully reproduced here.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>To use the attributes, each Model class should include a <code>using ArgentSea.Sql</code> statement.</p>
+<pre><code class="lang-csharp">using ArgentSea.Sql;
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>To use the attributes, each Model class should include a <code>using ArgentSea.Pg;</code> statement.</p>
+<pre><code class="lang-csharp">using ArgentSea.Pg;
+</code></pre>
+</section>
+</div>
+<h2 id="advanced-model-mapping">Advanced Model Mapping</h2>
+<p>The previous walthrough demonstrated mapping to standard .NET types like strings, numbers, and dates. This walkthrough illustrates mapping to objects, lists, and child classes.</p>
+<h3 id="properties-with-object-types">Properties with Object Types</h3>
+<p>Our data contains <strong>Location</strong> data with <em>latitude</em> and <em>longitude</em> values. Generally, these are usually managed as a value pair. Geographic functions would likely expect a single geographic <em>coordinates</em> argument, rather than the two separate values. It would be handy to map data directly to/from a coordinates class, which would be a property of the <strong>Location</strong> class.</p>
+<p>That is exactly what the <code>MapToModel</code> attribute does. This attribute tells the mapper that the property is a child object that also has properties to be included in the mapping.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-4">
 <ul role="tablist">
 <li role="presentation">
@@ -350,43 +359,6 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 </li>
 </ul>
 <section id="tabpanel_CeZOj-G++Q-4_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<p>To use the attributes, each Model class should include a <code>using ArgentSea.Sql</code> statement.</p>
-<p>Optionally, a second <code>using</code> statement can reduce the redundancy of declaring generic arguments throughout the Model class.</p>
-<pre><code class="lang-csharp">using ArgentSea.Sql;
-using ShardKey = ArgentSea.ShardKey&lt;byte, int&gt;;
-</code></pre>
-<p>Because the generic ShardId type cannot change within an application, this second <code>using</code> statement can simplify the Model code. Of course, this simplification won't work if you use different data types for the record id (integer vs bigint) in different sharded tables in the same model.</p>
-<p>You can implement an equivalent practice for the <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> object too.</p>
-<p>(While it might seem even better to declare a subclass that inherits from ShardKey or ShardChild which defines the ShardId type for your entire project, unfortunately, the ShardKey and ShardChild are <em>structs</em>, so inheritance is not an option.)</p>
-</section>
-<section id="tabpanel_CeZOj-G++Q-4_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-
-<p>To use the attributes, each Model class should include a <code>using ArgentSea.Pg;</code> statement.</p>
-<p>Optionally, a second <code>using</code> statement can reduce the redundancy of declaring generic arguments throughout the Model class.</p>
-<pre><code class="lang-csharp">using ArgentSea.Pg;
-using ShardKey = ArgentSea.ShardKey&lt;short, int&gt;;
-</code></pre>
-<p>Because the generic ShardId type cannot change within an application, this second <code>using</code> statement can simplify the Model code. Of course, this simplification won't work if you use different data types for the record id (integer vs bigint) in different sharded tables in the same model.</p>
-<p>You can implement an equivalent practice for the <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> object too.</p>
-<p>(While it might seem even better to declare a subclass that inherits from ShardKey or ShardChild which defines the ShardId type for your entire project, unfortunately, the ShardKey and ShardChild are <em>structs</em>, so inheritance is not an option.)</p>
-</section>
-</div>
-<h2 id="advanced-model-mapping">Advanced Model Mapping</h2>
-<p>The previous walthrough demonstrated mapping to standard .NET types like strings, numbers, and dates. This walkthrough illustrates mapping to objects, lists, and child classes.</p>
-<h3 id="properties-with-object-types">Properties with Object Types</h3>
-<p>Our data contains <strong>Location</strong> data with <em>latitude</em> and <em>longitude</em> values. Generally, these are usually managed as a value pair. Geographic functions would likely expect a single geographic <em>coordinates</em> argument, rather than the two separate values. It would be handy to map data directly to/from a coordinates class, which would be a property of the <strong>Location</strong> class.</p>
-<p>That is exactly what the <code>MapToModel</code> attribute does. This attribute tells the mapper that the property is a child object that also has properties to be included in the mapping.</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-5">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-5_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-5_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-5_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-5_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-5_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <pre><code class="lang-csharp">// The coordinates class:
 public class CoordinatesModel
@@ -409,7 +381,7 @@ public class LocationModel
 
 </code></pre>
 </section>
-<section id="tabpanel_CeZOj-G++Q-5_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-4_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <pre><code class="lang-csharp">// The coordinates class:
 public class CoordinatesModel
@@ -441,16 +413,16 @@ public CoordinatesModel Coordinates { get; } = new CoordinatesModel();
 <h3 id="properties-with-list-types">Properties with List Types</h3>
 <p>One of the most expensive activities an application can do is reach out to another server. Our high-performance application should do everything possible to minimize database server round-trips. This means getting all the data necessary to populate our <strong>Customer</strong> model in a single request. The ArgentSea Mapper can automatically handle multiple results from a single request.</p>
 <p>Our <strong>Customer</strong> can have any number of <strong>Locations</strong>. Our <strong>Customer</strong> can also have any number of <strong>Contacts</strong>. Our query returns the <strong>Customer</strong>, <strong>Location</strong> <em>and</em> <strong>Contact</strong> information in a single round-trip.</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-6">
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-5">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-6_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-6_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+<a href="#tabpanel_CeZOj-G++Q-5_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-5_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-6_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-6_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+<a href="#tabpanel_CeZOj-G++Q-5_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-5_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
 </li>
 </ul>
-<section id="tabpanel_CeZOj-G++Q-6_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<section id="tabpanel_CeZOj-G++Q-5_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <div class="TIP">
 <h5>Tip</h5>
@@ -466,7 +438,7 @@ return await _shardSet[customerKey].Read.MapOutputAsync&lt;CustomerModel, Locati
 <p>The <code>LocationModel</code> type in the next generic position indicates that the first data reader result contains this type. The Mapper will build a list of locations, find a property of type <code>List&lt;LocationModel&gt;</code> or <code>IList&lt;LocationModel&gt;</code>, and set the property to the list object.</p>
 <p>Likewise, the third generic argument tells the Mapper that the next data reader result is a list of <strong>Contacts</strong>, which the Mapper will use to populate the <strong>Contacts</strong> property.</p>
 </section>
-<section id="tabpanel_CeZOj-G++Q-6_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-5_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <p>To map the multiple data reader results to the Model, we tell the Mapper the order of the results when we fetch:</p>
 <pre><code class="lang-csharp">var prms = new ParameterCollection()
@@ -488,7 +460,38 @@ return await _shardSet[customerKey].Read.MapReaderAsync&lt;CustomerModel, Custom
 <p>The sample application has a <code>CustomerListItem</code> Model, which contains a record key and a customer name property. The <code>CustomerModel</code> include those same values, plus some others. By inheriting from first Model, the <code>CustomerModel</code> inherits the key and an customer name, including their mapping attributes.</p>
 <p>Because database queries often return subsets of entity columns, this object inheritance technique is useful in allowing the mapping attributes to be defined only once.</p>
 <h3 id="the-shardkey">The ShardKey</h3>
-<p>The final object type which may combine multiple data records is the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> types. These are described in detail <a href="/tutorials/sharding/shardkey.md">here</a>.</p>
+<p>The final object type which may combine multiple data records is the <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-2.html">ShardChild</a> types. These are described in detail <a href="/tutorials/sharding/shardkey.md">here</a>.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-6">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-6_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-6_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-6_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-6_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-6_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">[MapShardKey('c', &quot;@CustomerId&quot;)]
+[MapToSqlInt(&quot;@CustomerId&quot;)]
+public ShardKey&lt;int&gt; CustomerKey { get; set; }
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-6_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">[MapShardKey('c', &quot;customerid&quot;)]
+[MapToPgInteger(&quot;customerid&quot;)]
+public ShardKey&lt;int&gt; CustomerKey { get; set; }
+</code></pre>
+</section>
+</div>
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>The ShardKey in this example does not specify a ShardId data mapping. Because the client knows the ShardId, ArgentSea will populate the ShardId value from this configuration data. If you provide a ShardId mapping (and include the shardid argument in the <code>MapShardKey</code> attribute), ArgentSea will understand that you want to use the data value instead.</p>
+</div>
+<h3 id="the-shardchild">The ShardChild</h3>
+<p>The ShardChild object supports table compound keys in your sharded data. In this sample application, the Customer <strong>Location</strong> records are identified by a compound key including both a CustomerId and LocationId.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-7">
 <ul role="tablist">
 <li role="presentation">
@@ -500,26 +503,25 @@ return await _shardSet[customerKey].Read.MapReaderAsync&lt;CustomerModel, Custom
 </ul>
 <section id="tabpanel_CeZOj-G++Q-7_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">[MapShardKey('c', &quot;@CustomerId&quot;)]
-[MapToSqlInt(&quot;@CustomerId&quot;)]
-public ShardKey CustomerKey { get; set; }
+<pre><code class="lang-csharp">[MapShardChild('L', &quot;CustomerId&quot;, &quot;LocationId&quot;)]
+[MapToSqlInt(&quot;CustomerId&quot;)]
+[MapToSqlSmallInt(&quot;LocationId&quot;)]
+public ShardChild&lt;int, int&gt; CustomerLocationKey { get; set; }
 </code></pre>
 </section>
 <section id="tabpanel_CeZOj-G++Q-7_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">[MapShardKey('c', &quot;customerid&quot;)]
+<pre><code class="lang-csharp">[MapShardChild('L', &quot;customerid&quot;, &quot;locationid&quot;)]
 [MapToPgInteger(&quot;customerid&quot;)]
-public ShardKey CustomerKey { get; set; }
+[MapToPgSmallint(&quot;locationid&quot;)]
+public ShardChild&lt;int, int&gt; CustomerLocationKey { get; set; }
 </code></pre>
 </section>
 </div>
 
-<div class="NOTE">
-<h5>Note</h5>
-<p>The ShardKey in this example does not specify a ShardId data mapping. Because the client knows the ShardId, ArgentSea will populate the ShardId value from this configuration data. If you provide a ShardId mapping (and include the shardid argument in the <code>MapShardKey</code> attribute), ArgentSea will understand that you want the data value instead.</p>
-</div>
-<h3 id="the-shardchild">The ShardChild</h3>
-<p>The ShardChild object supports table compound keys in your sharded data. In this sample application, the Customer <strong>Location</strong> records are identified by a compound key including both a CustomerId and LocationId.</p>
+<p>It would be possible for ArgentSea to include a “ShardGrandChild” struct, for three-column compound keys, (or even a “ShardGreatGrandChild”) but the need for this hasn’t arisen.</p>
+<h2 id="loading-the-shard-service">Loading the Shard Service</h2>
+<p>Loading and injecting the ArgentSea ShardSets service is identical to the Databases services explained in the last tutorial.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-8">
 <ul role="tablist">
 <li role="presentation">
@@ -531,82 +533,27 @@ public ShardKey CustomerKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-8_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">[MapShardChild('L', &quot;CustomerId&quot;, &quot;LocationId&quot;)]
-[MapToSqlInt(&quot;CustomerId&quot;)]
-[MapToSqlSmallInt(&quot;LocationId&quot;)]
-public ShardChild CustomerLocationKey { get; set; }
+<p>Calling the ArgentSea <code>AddSqlService</code> extension method will load both the ArgentSea sharding and database services.</p>
+<pre><code class="lang-csharp">using ArgentSea.Sql;
+...
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    services.AddSqlServices(this.Configuration);
+    ...
+}
 </code></pre>
 </section>
 <section id="tabpanel_CeZOj-G++Q-8_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">[MapShardChild('L', &quot;customerid&quot;, &quot;locationid&quot;)]
-[MapToPgInteger(&quot;customerid&quot;)]
-[MapToPgSmallint(&quot;locationid&quot;)]
-public ShardChild CustomerLocationKey { get; set; }
-</code></pre>
-</section>
-</div>
-
-<p>It would be possible for ArgentSea to include a “ShardGrandChild” struct, for three-column compound keys, (or even a “ShardGreatGrandChild”) but the need for this hasn’t arisen.</p>
-<h2 id="loading-the-shard-service">Loading the Shard Service</h2>
-<p>Loading and injecting the ArgentSea ShardSets service is similar to the Databases services explained in the last tutorial. However, because the ShardSets’ shard id type is generic, it can get tiresome to repeatedly include the generic type. We can simplify using the ShardSet type by declaring a child instance which defines the shard id type.</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-9">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-9_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-9_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-9_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-9_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-9_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<pre><code class="lang-csharp">public class ShardSets : SqlShardSets&lt;byte&gt;
+<p>Calling the ArgentSea <code>AddPgService</code> extension method will load both the ArgentSea sharding and database services.</p>
+<pre><code class="lang-csharp">using ArgentSea.Pg;
+...
+public void ConfigureServices(IServiceCollection services)
 {
-    public ShardSets(
-        IOptions&lt;SqlShardConnectionOptions&lt;byte&gt;&gt; configOptions,
-        IOptions&lt;SqlGlobalPropertiesOptions&gt; globalOptions,
-        ILogger&lt;ShardSets&gt; logger
-    ) : base(configOptions, globalOptions, logger)
-    {
-        //
-    }
+    ...
+    services.AddPgServices(this.Configuration);
 }
-</code></pre>
-<p>Calling the ArgentSea <code>AddSqlService&lt;&gt;</code> (note the generic argument) extension method will load both the ArgentSea sharding and database services, <em>except</em> the ShardSet. The <code>AddSqlService</code> method does not automatically load the <code>SqlShardSets&lt;&gt;</code> service in order to to allow a locally defined, typed ShardSets collection to be loaded instead.</p>
-<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSqlServices&lt;byte&gt;(this.Configuration);
-    services.AddSingleton&lt;ShardSets&gt;(); //Load locally defined service.
-}
-</code></pre>
-<p>If you prefer to simply use the extant <code>ArgentSea.SqlShardSets</code> collection, you can load that instead:</p>
-<pre><code class="lang-csharp">services.AddSingleton&lt;SqlShardSets&lt;byte&gt;&gt;(); //Load ArgentSea.ShardSets with generic parameter.
-</code></pre>
-</section>
-<section id="tabpanel_CeZOj-G++Q-9_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-
-<pre><code class="lang-csharp">public class ShardSets : PgShardSets&lt;byte&gt;
-{
-    public ShardSets(
-        IOptions&lt;SqlShardConnectionOptions&lt;short&gt;&gt; configOptions,
-        IOptions&lt;SqlGlobalPropertiesOptions&gt; globalOptions,
-        ILogger&lt;ShardSets&gt; logger
-    ) : base(configOptions, globalOptions, logger)
-    {
-        //
-    }
-}
-</code></pre>
-<p>Calling the ArgentSea <code>AddPgService&lt;&gt;</code> (note the generic argument) extension method will load both the ArgentSea sharding and database services, <em>except</em> the ShardSet. To allow a locally defined, typed ShardSets collection to be a service, you have to load it separately.</p>
-<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
-{
-    services.AddPgServices&lt;byte&gt;(this.Configuration);
-    services.AddSingleton&lt;ShardSets&gt;(); //Load locally defined service.
-}
-</code></pre>
-<p>If you prefer to simply use the extant <code>ArgentSea.PgShardSets</code> collection, you can load that instead:</p>
-<pre><code class="lang-csharp">services.AddSingleton&lt;PgShardSets&lt;short&gt;&gt;(); //Load ArgentSea.ShardSets with generic parameter.
 </code></pre>
 </section>
 </div>
@@ -643,16 +590,16 @@ public ShardChild CustomerLocationKey { get; set; }
     ....
 </code></pre>
 <p>If you elected to use the ArgentSea shard sets collection instead, things are just a little more verbose:</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-10">
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-9">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-10_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-10_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+<a href="#tabpanel_CeZOj-G++Q-9_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-9_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-10_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-10_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+<a href="#tabpanel_CeZOj-G++Q-9_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-9_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
 </li>
 </ul>
-<section id="tabpanel_CeZOj-G++Q-10_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<section id="tabpanel_CeZOj-G++Q-9_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <pre><code class="lang-csharp">public class CustomerStore
 {
@@ -667,7 +614,7 @@ public ShardChild CustomerLocationKey { get; set; }
     ....
 </code></pre>
 </section>
-<section id="tabpanel_CeZOj-G++Q-10_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-9_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <pre><code class="lang-csharp">public class CustomerStore
 {
@@ -686,16 +633,16 @@ public ShardChild CustomerLocationKey { get; set; }
 
 <p>Using a <code>ShardSet</code> instance, you generally simply provide a query, set parameters, and invoke a method. You can query across all shards, some shards, or within a single shard instance. Querying across all or some shards can return all results in a unified list or the first valid result.</p>
 <p>The code necessary to query all shards is very simple:</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-11">
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-10">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-11_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-11_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+<a href="#tabpanel_CeZOj-G++Q-10_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-10_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-11_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-11_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+<a href="#tabpanel_CeZOj-G++Q-10_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-10_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
 </li>
 </ul>
-<section id="tabpanel_CeZOj-G++Q-11_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<section id="tabpanel_CeZOj-G++Q-10_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <pre><code class="lang-csharp">public async Task&lt;CustomerModel&gt; FindByLogonName(string loginName, CancellationToken cancellation)
 {
@@ -706,7 +653,7 @@ public ShardChild CustomerLocationKey { get; set; }
 }
 </code></pre>
 </section>
-<section id="tabpanel_CeZOj-G++Q-11_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-10_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <pre><code class="lang-csharp">```csharp
 public async Task&lt;CustomerModel&gt; FindByLogonName(string loginName, CancellationToken cancellation)
@@ -721,16 +668,16 @@ public async Task&lt;CustomerModel&gt; FindByLogonName(string loginName, Cancell
 </div>
 <h3 id="optimizing-multi-record-saves">Optimizing Multi-Record Saves</h3>
 <p>The principal means of optimizing data access is to <em>limit the number of round-trips to the database server</em>. If the need to save ten records generates ten distinct calls to the database, the solution will not be very efficient. Unfortuantely, there is no standard way of handling multi-record saves; fortunately, there are platform-specific ways of managing it.</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-12">
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-11">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-12_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-12_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+<a href="#tabpanel_CeZOj-G++Q-11_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-11_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-12_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-12_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+<a href="#tabpanel_CeZOj-G++Q-11_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-11_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
 </li>
 </ul>
-<section id="tabpanel_CeZOj-G++Q-12_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+<section id="tabpanel_CeZOj-G++Q-11_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
 <p>SQL Server uses Table Valued Parameters to save multiple records. Our sample data saves a <strong>Customer</strong> with multiple <strong>Locations</strong> and multiple <strong>Contacts</strong>. These are both passed to Table Valued Parameters. This also allows the related records to be managed in a single internally-managed (low oeverhead) transaction.</p>
 <p>Table Valued Parameters require a “User Defined Type”, which defines the column names and types for each row. ArgentSea offers a SQL Server-specific Mapper which converts the metadata attrributes to the correct format for this paramteter. (Like its siblings, it also uses expression trees to to compile a high-performance solution when it is initially run). In our sample implementation, the combined mapping attributes created more columns than the User Defined Type required. To solve this, we can simply provide a list or array of names; then, only those are used.</p>
@@ -742,7 +689,7 @@ public async Task&lt;CustomerModel&gt; FindByLogonName(string loginName, Cancell
 <p>In this example, there are two <code>AddSqlTableValuedParameter</code> overloads, the first uses a Model and maps to the Unser Defined Type using mapping attributes; the second example maps only the key values, using the column names supplied.</p>
 <p>You can learn more in the section on <a href="/querying/multirecord.md">Multi-Record Saves</a>.</p>
 </section>
-<section id="tabpanel_CeZOj-G++Q-12_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+<section id="tabpanel_CeZOj-G++Q-11_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
 <p>PostgreSQL uses the COPY statement to quickly load multiple rows into tables or temporary tables. Once these records are loaded, a SQL statement can be run to process them further.</p>
 <p>This process uses ArgentSea’s Batch functionality, which allows multiple steps to execute within a single open and transacted connection. In our sample, the first two steps load the <strong>Contacts</strong> and <strong>Locations</strong> data into temporary tables, then the third batch steps runs a SQL statement to save this data.</p>

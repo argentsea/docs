@@ -8,7 +8,7 @@
     <title>Simplifying Your Data Access Code | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Simplifying Your Data Access Code | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.40.0.0">
+    <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -94,20 +94,41 @@
 
 <pre><code class="lang-csharp">public class MyDataAccessStore
 {
+  private readonly SqlDatabases _dbs;
+
   public MyDataAccessStore(SqlDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
   {
      _dbs = dbs;  // capturing injected SqlDatabases collection
     ...
 </code></pre>
-<p>The injected data access component allows the class to access any database in the SqlDatabases connection. This means that you would need to specify the collection key to access a particular database or shard set.</p>
-<p>In most cases, a class will only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
+<p>Likewise, access to the entire collection of shard sites via injection:</p>
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+  private readonly SqlShardSets _shardSets;
+
+  public MyDataAccessStore(SqlShardSets shardsets, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+     _shardSets = shardSets;  // capturing injected SqlShardSets collection
+    ...
+</code></pre>
+<p>In most cases, your repository class would not require access to all shard sets or all databases. Capturing the entire collection also requires specifying the collection key for every data access. A class will generally only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
 <pre><code class="lang-csharp">public class MyDataAccessStore
 {
     private readonly SqlDatabases.DataConnection _data;
 
     public MyDataAccessStore(SqlDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
     {
-      _data = dbs[&quot;MyConnectionKey&quot;];  // capturing relevant database
+      _data = dbs[&quot;MyConnectionKey&quot;];  // capturing only the relevant database
+      ...
+</code></pre>
+<p>Or</p>
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+    private readonly SqlShardSets.ShardDataSet _shards;
+
+    public MyDataAccessStore(SqlShardSets shardSets, ILogger&lt;MyDataAccessStore&gt; logger)
+    {
+      _shards = shardSets[&quot;MyShardSetKey&quot;];  // capturing only the relevant shard set
       ...
 </code></pre>
 <p>Setup this way, subsequent calls to the SQL database can be on methods directly on the <code>_data</code> object. Now, calls within the class do not need to specify a key.</p>
@@ -124,153 +145,40 @@
     ...
 
 </code></pre>
-<p>The injected data access component allows the class to access any database in the PgDatabases connection. This means that you would need to specify the collection key to access a particular database or shard set.</p>
-<p>In most cases, a class will only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
+<p>Likewise, access to the entire collection of shard sites via injection:</p>
 <pre><code class="lang-csharp">public class MyDataAccessStore
 {
-  private readonly PgDatabases.DataConnection _data;
+  private readonly PgShardSets _shardSets;
 
-  public MyDataAccessStore(PgDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+  public MyDataAccessStore(PgShardSets shardsets, ILogger&lt;MyDataAccessStore&gt; logger)
   {
-    _data = dbs[&quot;MyConnectionName&quot;]; // capturing relevant database
+     _shardSets = shardSets;  // capturing injected SqlShardSets collection
     ...
 </code></pre>
-<p>Setup this way, calls to the SQL database (or shard set) can be on methods directly on the <code>_data</code> object. Now, calls within the class do not need to specify a key.</p>
-</section>
-</div>
-<h2 id="simplifying-the-shardid-generic-type">Simplifying The ShardId Generic Type</h2>
-<p>The <code>ShardSets</code> object has even more need of simplification. As with Databases, a single class typically does not need to access multiple ShardSets, so one can follow the same approach as with the Databases example to reference only the relevant ShardSet within your class.</p>
-<p>The other ShardSet complexity is the need to repeatedly declare the <em>ShardId</em> type. Within your project, this will always be the same value, but programming against the ArgentSea library directly means declaring the type over and over again.</p>
-<p>There are two solutions to this:</p>
-<ul>
-<li>Use the <code>using</code> statement to alias the ShardSet declaration.</li>
-<li>Declare classes in your project which inherit from ShardSet, ShardKey, and ShardChild, but with the generic defined. Use these classes in your project.</li>
-</ul>
-<h3 id="using-using">Using “using”</h3>
-<p>As an example of the first approach, to simplify calling a ShardSet <em>within a single file</em>, simply add these <code>using</code> statements:</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<pre><code class="lang-csharp">using ShardSets = ArgentSea.Sql.SqlShardSets&lt;byte&gt;;
-// and/or
-using ShardSet = ArgentSea.Sql.SqlShardSets&lt;byte&gt;.ShardDataSet;
-</code></pre>
-<p>This example assumes a ShardId type of <em>byte</em>; replace this as appropriate.</p>
-<p>An example of how this might be used in the same class we showed before:</p>
-<pre><code class="lang-csharp">using ShardSets = ArgentSea.Sql.SqlShardSets&lt;byte&gt;;
-using ShardSet = ArgentSea.Sql.SqlShardSets&lt;byte&gt;.ShardDataSet;
-
-public class MyDataAccessStore
+<p>In most cases, your repository class would not require access to all shard sets or all databases. Capturing the entire collection also requires specifying the collection key for every data access. A class will generally only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
+<pre><code class="lang-csharp">public class MyDataAccessStore
 {
-  private readonly ShardSet _data;
+    private readonly PgDatabases.DataConnection _data;
 
-  public MyDataAccessStore(ShardSets shards, ILogger&lt;MyDataAccessStore&gt; logger)
-  {
-    _data = shards[&quot;MyShardSetName&quot;]; //select relevant shard set
-    ...
-
-</code></pre>
-</section>
-<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-
-<pre><code class="lang-csharp">using ShardSets = ArgentSea.Pg.PgShardSets&lt;short&gt;;
-// and/or
-using ShardSet = ArgentSea.Pg.PgShardSets&lt;short&gt;.ShardDataSet;
-</code></pre>
-<p>This example assumes a ShardId type of <em>short</em>; replace this as appropriate.</p>
-<p>An example of how this might be used in the same class we showed before:</p>
-<pre><code class="lang-csharp">using ShardSets = ArgentSea.Pg.PgShardSets&lt;short&gt;;
-using ShardSet = ArgentSea.Pg.PgShardSets&lt;short&gt;.ShardDataSet;
-
-public class MyDataAccessStore
-{
-  private readonly ShardSet _data;
-
-  public MyDataAccessStore(ShardSets shards, ILogger&lt;MyDataAccessStore&gt; logger)
-  {
-    _data = shards[&quot;MyShardSetName&quot;]; //select relevant shard set
-    ...
-
-</code></pre>
-</section>
-</div>
-
-<p>The downside to the <code>using</code> approach is that it works for only the current file.</p>
-<h3 id="child-classes">Child Classes</h3>
-<p>By creating a local class that inherits from the ArgentSea generic class, you can simplify the shard set reference throughout your project.</p>
-<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
-</li>
-</ul>
-<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
-
-<p>These are the classes you might create in your SQL project to simplify the ShardSet within our project.</p>
-<pre><code class="lang-csharp">public class MyShardSets : SqlShardSets&lt;byte&gt;
-{
-  public SqlShardSets(
-    IOptions&lt;SqlShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
-    IOptions&lt;SqlGlobalPropertiesOptions&gt; globalOptions,
-    ILogger&lt;SqlShardSets&lt;TShard&gt;&gt; logger
-  ) : base(configOptions, globalOptions, logger)
+    public MyDataAccessStore(PgDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
     {
-        //
-    }
-}
-
-public class MyShardKey : ShardKey&lt;byte&gt;
-{
-    //
-}
-
-public class MyShardChild : ShardChild&lt;byte&gt;
-{
-    //
-}
-
+      _data = dbs[&quot;MyConnectionKey&quot;];  // capturing only the relevant database
+      ...
 </code></pre>
-</section>
-<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
-
-<pre><code class="lang-csharp">public class MyShardSets : PgShardSets&lt;short&gt;
+<p>Or</p>
+<pre><code class="lang-csharp">public class MyDataAccessStore
 {
-  public SqlShardSets(
-    IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
-    IOptions&lt;PgGlobalPropertiesOptions&gt; globalOptions,
-    ILogger&lt;PgShardSets&lt;TShard&gt;&gt; logger
-  ) : base(configOptions, globalOptions, logger)
+    private readonly PgShardSets.ShardDataSet _shards;
+
+    public MyDataAccessStore(PgShardSets shardSets, ILogger&lt;MyDataAccessStore&gt; logger)
     {
-        //
-    }
-}
-
-public class MyShardKey : ShardKey&lt;short&gt;
-{
-    //
-}
-
-public class MyShardChild : ShardChild&lt;short&gt;
-{
-    //
-}
-
+      _shards = shardSets[&quot;MyShardSetKey&quot;];  // capturing only the relevant shard set
+      ...
 </code></pre>
+<p>Setup this way, subsequent calls to the SQL database can be on methods directly on the <code>_data</code> object. Now, calls within the class do not need to specify a key.</p>
 </section>
 </div>
 
-<p>This approach will be helpful in reducing the number of times the generic <em>ShardId</em> type must be specified in your project code.</p>
 <p>Next: <a href="../Mapping/mapping.html">Data Mapping</a></p>
 </article>
           </div>

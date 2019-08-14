@@ -8,7 +8,7 @@
     <title>Loading the Configuration | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Loading the Configuration | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.40.0.0">
+    <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -79,7 +79,9 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="loading-the-configuration">Loading the Configuration</h1>
 
-<p>ArgentSea fully leverages the configuration architecture of .NET Core. If this architecture is new to you, it essentially consists of two parts:</p>
+<p>ArgentSea fully leverages the configuration architecture of .NET Core. In brief, ArgentSea requires one or more configuration files and offers a simple extension method to load the entire framework at start up.</p>
+<h2 id="about-net-configuration">About .NET Configuration</h2>
+<p>If the .NET Core configuration architecture is new to you, it essentially consists of two parts:</p>
 <ul>
 <li>A configuration <em>Dictionary</em>, which can be loaded from multiple sources — one of which is typically a file called <em>appsettings.json</em></li>
 <li>An “Options” architecture, which casts the configuration entries into a strongly-typed configuration objects.</li>
@@ -454,15 +456,13 @@
 </ul>
 <section id="tabpanel_CeZOj-G++Q-4_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<p>This example assumes that your ShardId type is <em>byte</em>. If you use any other type, change the generic parameter.</p>
-<p>If you use ArgentSea database connections <em>without</em> sharding, simply remove the generic declaration altogether (i.e. <code>services.AddPgServices(Configuration);</code> only).</p>
 <pre><code class="lang-csharp">        public void ConfigureServices(IServiceCollection services)
         {
             ...
             // add your injectable logging provider
             services.AddLogging();
-            // add the ArgentSea SQL database connections (ShardId type: byte)
-            services.AddSqlServices&lt;byte&gt;(Configuration);
+            // add the ArgentSea SQL database connections
+            services.AddSqlServices(Configuration);
             // now add your custom data classes, which use the data components
             services.AddSingleton&lt;MyDataStore&gt;();
             ...
@@ -474,15 +474,13 @@
 </section>
 <section id="tabpanel_CeZOj-G++Q-4_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<p>This example assumes that your ShardId type is <em>short</em>. If you use any other type, change the generic parameter.</p>
-<p>If you use ArgentSea database connections <em>without</em> sharding, simply remove the generic declaration altogether (i.e. <code>services.AddPgServices(Configuration);</code> only).</p>
 <pre><code class="lang-csharp">        public void ConfigureServices(IServiceCollection services)
         {
             ...
             // add your injectable logging provider
             services.AddLogging();
-            // add the ArgentSea SQL database connections (ShardId type: short)
-            services.AddPgServices&lt;short&gt;(Configuration);
+            // add the ArgentSea SQL database connections
+            services.AddPgServices(Configuration);
             // now add your custom data classes, which use the data components
             services.AddSingleton&lt;MyDataStore&gt;();
             ...

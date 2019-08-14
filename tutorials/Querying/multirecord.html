@@ -8,7 +8,7 @@
     <title>Multi-record Saves | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Multi-record Saves | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.40.0.0">
+    <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -114,7 +114,7 @@ var prms = new ParameterCollection()
 //...
 var customerPrms = new ParameterCollection()
     .AddPgVarcharInputParameter(&quot;customername&quot;, customer.Name, 255);
-var shardBatch = new ShardBatch&lt;short, ShardKey&lt;short, int&gt;&gt;()
+var shardBatch = new ShardBatch&lt;ShardKey&lt;short, int&gt;&gt;()
     .Add(customer.Locations, &quot;t-locations&quot;)
     .Add(Queries.CustomerSave, customerPrms, DataOrigins.Customer, &quot;customerid&quot;);
 var custKey = await _shardSet.DefaultShard.Write.RunAsync(shardBatch, cancellation);
