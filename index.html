@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="logo.svg" alt="">
               </a>
             </div>
@@ -70,36 +70,31 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="argentsea-documentation">ArgentSea Documentation</h1>
 
+<p><img src="/images/ArgentSeaTitle.jpg" alt="ArgentSea"></p>
+<h1 id="argentsea-documentation">ArgentSea Documentation</h1>
+<p>Modern web applications need to be built for performance and scalability, as well as security, monitoring, and configuration. ArgentSea offers a framework that consistently represents best practices for all of these concerns.</p>
+<p>The goal of ArgentSea is to simplify the development process for delivering highly scalable and supportable applications.</p>
+<h2 id="massive-scalability">Massive Scalability</h2>
+<p>The essential ingredients for building a service that can scale to any demand include highly efficient code, reducing server round-trips, and the scale-out of reads and writes.</p>
+<p>Highly scalable data typically means data “<a href="tutorials/Sharding/sharding.html">sharding</a>” — the practice of spreading data across many database servers. <a href="tutorials/Sharding/sharding.html">Data sharding</a> offers the most cost effective way to scale your data application as demand grows. To scale your application globally, data sharding offers the ability locate copies of your data across regional datacenters, so that data is located closer to your customers.</p>
+<p>ArgentSea uses explicit read and write connections to enable further scale-out. By directing read activity to a mirror or cloned data set, the data load can be spread among multiple servers. Examples include <a href="https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/active-secondaries-readable-secondary-replicas-always-on-availability-groups">SQL Server Availability Groups</a>, <a href="https://www.postgresql.org/docs/11/hot-standby.html">PostgreSQL Hot Standby</a>, <a href="https://aws.amazon.com/rds/details/read-replicas/">Amazon RDS Read Replicas</a>, <a href="https://docs.microsoft.com/en-us/azure/sql-database/sql-database-active-geo-replication">Azure SQL Geo-Replication</a>, <a href="https://aws.amazon.com/rds/aurora/details/postgresql-details/">Amazon Aurora Low-Latency Read Replicas</a>, etc.</p>
+<p>ArgentSea helps deliver highly optimized data access through data-to-object mapping without the overhead of reflection. The consistent use of stored procedures (SQL Server) or prepared statements (PostgreSQL) reduces both SQL compilation overhead and support/maintenance costs. Because ArgentSea can handle multiple results from the same query, the number of server round-trips can be reduced — a huge performance win.</p>
+<p>While the genesis of ArgentSea was to support the complex requirements of data sharding, it will likely be useful for high-performance data access even if you are not accessing sharded data. Especially with a cloud infrastructure, more efficient code requires fewer resources and this translates into ongoing cost savings.</p>
+<h2 id="mission-critical-supportability">Mission Critical Supportability</h2>
+<p>ArgentSea also addresses production concerns with built-in features like monitoring/logging, automatic retries after failures, controlling cascading failures (circuit breaking), security best-practices, and an elegant approach to managing connection configuration.</p>
+<p>The data framework will attempt to recover from transient errors by automatically retrying the data access; you have control over how long and how often. If repeated failures occur, the system will “circuit break”, so that data failures have less chance of bringing down the whole application.</p>
+<p>The robust logging implementation allows you to log to any provider, including <a href="https://docs.microsoft.com/en-us/azure/application-insights/app-insights-asp-net-core">Application Insights</a>, <a href="https://github.com/aws/aws-logging-dotnet#aspnet-core-logging">CloudWatch</a>, the file system, Windows event logs, and more.</p>
+<p>Database passwords can be secured using <a href="https://azure.microsoft.com/en-us/services/key-vault/">Key Vault</a>, <a href="https://aws.amazon.com/secrets-manager/">Secrets Manager</a>, <a href="https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets">User Secrets</a>, <a href="https://docs.docker.com/engine/swarm/secrets/">Docker secrets</a>, or other secure storage.</p>
+<p>The configuration architecture simplifies the management of large numbers of data connections, reducing redundancy while making it easy to deploy a release though staging environments.</p>
+<h2 id="maintainability-via-code-clarity">Maintainability via Code Clarity</h2>
+<p>Supportability is about more than managing the operational burden. It also includes simplicity in understanding application behavior, ease in extending it with new features and requirements, and a discoverable path to resolving bugs. When long-lived applications must be supported by teams that are not the original authors, this becomes especially critical.</p>
+<p>The ArgentSea Mapper helps reduce the burden of code maintenance by simplifying and reducing data access code. This makes the code easier to understand and therefore easier to enhance and maintain. Further, the framework helps consolidate and segregate the SQL data access statements so that they can be more easily managed and optimized.</p>
+<p>The logging functionality can also provide substantial insight to developers, including the dynamic code compilation behind the Mapper, misconfigurations, and data errors.</p>
 <h2 id="getting-started">Getting Started</h2>
-<p>If you want to understand everything first, explore the <a href="#deep-dives">deep dives</a>; if you prefer to learn by getting your hands dirty, jump into the <a href="#walkthroughs">walkthroughs</a>.</p>
-<h2 id="overview">Overview</h2>
-<p>In essence, ArgentSea data library consists of four areas of functionality. These are complementary but independent enough to be able to use some without the others:</p>
-<ul>
-<li><strong>Configuring connections</strong> - is particularly useful with the large number of connections necessary for sharded data.</li>
-<li><strong>Querying data</strong> - in a way that supports multi-threaded concurrent queries on multiple shards.</li>
-<li><strong>Mapping</strong> - simplifies and dramatically shortens the code required to map data (result sets and/or parameters) to or from .NET objects.</li>
-<li><strong>Tooling</strong> - a simple UI to generate starter model classes and/or CRUD procedures based on a table or view. A time saver for generating boilerplate code.</li>
-</ul>
-<div class="TIP">
-<h5>Tip</h5>
-<p>Because ArgentSea enhances the familiar ADO.NET data access classes, you can still use ADO.NET to resolve any capability gaps or distinctive query requirements.</p>
-</div>
-<h2 id="deep-dives">Deep Dives</h2>
-<ol>
-<li>Installing ArgentSea (coming soon).</li>
-<li><a href="tutorials/configuration.html">Setting up your configuration</a></li>
-<li><a href="tutorials/mapping.html">Mapping</a></li>
-<li><a href="tutorials/sharding.html">Using shards</a></li>
-</ol>
-<h2 id="walkthroughs">Walkthroughs</h2>
-<ol>
-<li><a href="tutorials/quickstart1.html">QuickStart 1</a> - Setting up and configuring an initial project</li>
-<li><a href="tutorials/quickstart2.html">QuickStart 2</a> - Adding shard handling and queries</li>
-</ol>
-<h2 id="reference">Reference</h2>
-<p>You can find the most information in the <a href="/reference/apis.html">APIsection</a>.</p>
+<p>Explore the <a href="tutorials/index.html">deep dives</a> to understand the logic and services of ArgentSea. An ArgentSea implementation consists of the <a href="tutorials/setup.html">NuGet library packages</a>, loading the <a href="tutorials/Configuration/configuration.html">configuration and services</a> at startup, decorating the models classes with <a href="tutorials/Mapping/mapping.html">data attributes</a>, and calling the various <a href="tutorials/Querying/querying.html">query methods</a>.</p>
+<p>If you prefer to learn by getting your hands dirty, jump into the <a href="tutorials/quickstarts/configuration.html">walkthroughs</a>. You can find the most detailed information in the <a href="/reference/apis.html">API section</a>.</p>
+<p>Next: <a href="tutorials/index.html">Explore ArgentSea’s functionality</a></p>
 </article>
           </div>
           

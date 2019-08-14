@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -79,31 +79,27 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="argentsea-setup">ArgentSea Setup</h1>
 
-<h3 id="nuget-package">Nuget Package</h3>
-<p>The first, obvious step is to add a reference to the relevant ArgentSea nuget package.
-These are provider-specific. Current there are two:</p>
+<p>ArgentSea is a <em>.NET Standard</em> application, which means it should work with .NET Core, Xamarin, and the .NET Framework 4.6.1 or higher. However, ArgentSea depends on services provided by .NET Core — like logging and dependency injection — that may require “coercion” in the other environments. Because data sharding is difficult to add to an existing application, the general assumption is that consumers would be new applications created using .Net Core. If you use another framework, please help with the documentation! (And tell us if there is demand for a NuGet package targeting your framework).</p>
+<h2 id="setup-steps">Setup Steps</h2>
+<p>Only a few steps are necessary to use ArgentSea in your project:</p>
 <ul>
-<li>ArgentSea for SQL Server</li>
-<li>ArgentSea for PostgreSQL</li>
+<li>Install the appropriate NuGet package.</li>
+<li>Define the configuration metadata, usually in appsettings.json</li>
+<li>Load the configuration and injectable Services in your Startup class.</li>
+<li>Decorate your model classes with data attributes (optional).</li>
+<li>Invoke data access methods from the <code>Databases</code> or <code>ShardSets</code> services.</li>
 </ul>
-<p>Both packages include a reference to the base ArgentSea shared package,
-so it is not necessary to include that separately, though you may need to referece it
-in your code.</p>
-<p>You <em>may</em> be able to include multiple provider packages in your progress (this is not
-a tested scenario), but you cannot have a single class that includes provider
-attributes from different providers. If you need to reference different database providers
-(i.e. both SQL Server and PostgreSQL), it would be best to use different projects.</p>
-<h3 id="simplifying-object-references">Simplifying Object References</h3>
-<p>Of course, the ArgentSea framework does not know in advance the data types used in your
-architecture. You provide this information using generics when you compile your project.
-Since the ArgentSea objects are used frequently, however, this can be unnecessarily verbose.</p>
-<p>To simplify accessing the ArgentSea objects in your code, we suggest either</p>
-<ul>
-<li>Creating a derived class that declares your data types</li>
-<li>Or adding a <em>using</em> statement in each data access class</li>
-</ul>
-<h4 id="using-derived-classes">Using Derived classes</h4>
-<h4 id="using-using">Using using</h4>
+<h2 id="nuget">NuGet</h2>
+<p>There are currently two versions of ArgentSea: one for SQL Server and the other for PostgreSQL. To include ArgentSea into your project, simply search NuGet for ArgentSea.Sql (SQL Server) or ArgentSea.Pg (PostgreSQL).</p>
+<p>Both packages install a shared ArgentSea package (which has most of the actual code). Consequently, there are two namespaces; some objects will be in the <code>ArgentSea</code> namespace; others will be in the <code>ArgentSea.Sql</code> or <code>ArgentSea.Pg</code> namespace.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>You <em>may</em> be able to include multiple provider packages in your project  (i.e. both PostgreSQL and SQL Server), but this is not a tested scenario.<br>
+You <em>cannot</em> have a single model class that includes provider attributes from different providers; this is, you can’t use the same model class to read/write to both SQL Server and PostgreSQL. If you need to reference different database providers, the practical solution would be to use different projects (microservices).</p>
+</div>
+<h2 id="dependencies">Dependencies</h2>
+<p>ArgentSea has very few dependencies. Other than a few Microsoft packages (logging, configuration, options, and immutable collections), the only dependency is upon <a href="http://www.thepollyproject.org">Polly</a>. Of course, the data platform libraries each take a dependency upon their respective ADO.NET libraries, <a href="https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient?view=netcore-2.2">SqlClient</a> and <a href="https://www.npgsql.org/">Npgsql</a>.</p>
+<p>Next: <a href="Configuration/configuration.html">Configuration</a></p>
 </article>
           </div>
           
