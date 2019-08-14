@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class SqlConnectionConfiguration
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -83,40 +83,121 @@
   
   <h1 id="ArgentSea_Sql_SqlConnectionConfiguration" data-uid="ArgentSea.Sql.SqlConnectionConfiguration" class="text-break">Class SqlConnectionConfiguration
   </h1>
-  <div class="markdown level0 summary"><p>This class represents is a (non-sharded) database connection.
-Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match as key in the DataResilienceOptions array.
-If the ResilienceKey is not defined, a default data resilience strategy will be used.</p>
+  <div class="markdown level0 summary"><p>This class represents a single database connection — a database connection or a shard instance read or write connection.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html">DataConnectionConfiguration</a></div>
-    <div class="level2"><span class="xref">SqlConnectionConfiguration</span></div>
+    <div class="level1"><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></div>
+    <div class="level2"><a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html">SqlConnectionPropertiesBase</a></div>
+    <div class="level3"><span class="xref">SqlConnectionConfiguration</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="../api/ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a></div>
+    <div><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+    <div><a class="xref" href="../api/ArgentSea.IDataConnection.html">IDataConnection</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_hasConnectionPropertyChanged">DataConnectionConfiguration.hasConnectionPropertyChanged</a>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_ApplicationIntent">SqlConnectionPropertiesBase.ApplicationIntent</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_SetConfigurationOptions_ArgentSea_DataSecurityOptions_ArgentSea_DataResilienceOptions_">DataConnectionConfiguration.SetConfigurationOptions(DataSecurityOptions, DataResilienceOptions)</a>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_ApplicationName">SqlConnectionPropertiesBase.ApplicationName</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetResilienceStrategy_Microsoft_Extensions_Logging_ILogger_">DataConnectionConfiguration.GetResilienceStrategy(ILogger)</a>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_ConnectTimeout">SqlConnectionPropertiesBase.ConnectTimeout</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetSecurityConfiguration">DataConnectionConfiguration.GetSecurityConfiguration()</a>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_CurrentLanguage">SqlConnectionPropertiesBase.CurrentLanguage</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_SecurityKey">DataConnectionConfiguration.SecurityKey</a>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_DataSource">SqlConnectionPropertiesBase.DataSource</a>
     </div>
     <div>
-      <a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_ResilienceKey">DataConnectionConfiguration.ResilienceKey</a>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_Encrypt">SqlConnectionPropertiesBase.Encrypt</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_FailoverPartner">SqlConnectionPropertiesBase.FailoverPartner</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_InitialCatalog">SqlConnectionPropertiesBase.InitialCatalog</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_LoadBalanceTimeout">SqlConnectionPropertiesBase.LoadBalanceTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_MaxPoolSize">SqlConnectionPropertiesBase.MaxPoolSize</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_MinPoolSize">SqlConnectionPropertiesBase.MinPoolSize</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_MultipleActiveResultSets">SqlConnectionPropertiesBase.MultipleActiveResultSets</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_MultiSubnetFailover">SqlConnectionPropertiesBase.MultiSubnetFailover</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_PacketSize">SqlConnectionPropertiesBase.PacketSize</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_PersistSecurityInfo">SqlConnectionPropertiesBase.PersistSecurityInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_Pooling">SqlConnectionPropertiesBase.Pooling</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_Replication">SqlConnectionPropertiesBase.Replication</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_TransactionBinding">SqlConnectionPropertiesBase.TransactionBinding</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_TrustServerCertificate">SqlConnectionPropertiesBase.TrustServerCertificate</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_TypeSystemVersion">SqlConnectionPropertiesBase.TypeSystemVersion</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_UserInstance">SqlConnectionPropertiesBase.UserInstance</a>
+    </div>
+    <div>
+      <a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html#ArgentSea_Sql_SqlConnectionPropertiesBase_WorkstationID">SqlConnectionPropertiesBase.WorkstationID</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_GetRetryTimespan_System_Int32_">DataConnectionConfigurationBase.GetRetryTimespan(Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RaisePropertyChanged_System_String_">DataConnectionConfigurationBase.RaisePropertyChanged(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_UserName">DataConnectionConfigurationBase.UserName</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_Password">DataConnectionConfigurationBase.Password</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_WindowsAuth">DataConnectionConfigurationBase.WindowsAuth</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RetryCount">DataConnectionConfigurationBase.RetryCount</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RetryInterval">DataConnectionConfigurationBase.RetryInterval</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_RetryLengthening">DataConnectionConfigurationBase.RetryLengthening</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_CircuitBreakerFailureCount">DataConnectionConfigurationBase.CircuitBreakerFailureCount</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_CircuitBreakerTestInterval">DataConnectionConfigurationBase.CircuitBreakerTestInterval</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html#ArgentSea_DataConnectionConfigurationBase_PropertyChanged">DataConnectionConfigurationBase.PropertyChanged</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -144,78 +225,33 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <h6><strong>Assembly</strong>: ArgentSea.Sql.dll</h6>
   <h5 id="ArgentSea_Sql_SqlConnectionConfiguration_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SqlConnectionConfiguration : DataConnectionConfiguration, IConnectionConfiguration</code></pre>
+    <pre><code class="lang-csharp hljs">public class SqlConnectionConfiguration : SqlConnectionPropertiesBase, INotifyPropertyChanged, IDataConnection</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration__ctor.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L25">View Source</a>
+  </span>
+  <a id="ArgentSea_Sql_SqlConnectionConfiguration__ctor_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.#ctor*"></a>
+  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration__ctor" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.#ctor">SqlConnectionConfiguration()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SqlConnectionConfiguration()</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ApplicationIntent.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ApplicationIntent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L56">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_ApplicationIntent_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ApplicationIntent*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ApplicationIntent" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ApplicationIntent">ApplicationIntent</h4>
-  <div class="markdown level1 summary"><p>Declares the application workload type when connecting to a database in an SQL Server Availability Group.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ApplicationIntent ApplicationIntent { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Data.SqlClient.ApplicationIntent</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ApplicationName.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ApplicationName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L69">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_ApplicationName_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ApplicationName*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ApplicationName" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ApplicationName">ApplicationName</h4>
-  <div class="markdown level1 summary"><p>The optional application name parameter to be sent to the backend during connection initiation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ApplicationName { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ConnectionDescription.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ConnectionDescription%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L24">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L204">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectionDescription_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectionDescription*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectionDescription" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectionDescription">ConnectionDescription</h4>
@@ -223,629 +259,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ConnectionDescription { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_ConnectionDescription">DataConnectionConfiguration.ConnectionDescription</a></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ConnectRetryCount.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ConnectRetryCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L81">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectRetryCount_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectRetryCount*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectRetryCount" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectRetryCount">ConnectRetryCount</h4>
-  <div class="markdown level1 summary"><p>The number of reconnections attempted after identifying that there was an idle connection failure. This must be an integer between 0 and 255. Default is 1. Set to 0 to disable reconnecting on idle connection failures.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ConnectRetryCount { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ConnectRetryInterval.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ConnectRetryInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L93">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectRetryInterval_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectRetryInterval*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectRetryInterval" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectRetryInterval">ConnectRetryInterval</h4>
-  <div class="markdown level1 summary"><p>Amount of time (in seconds) between each reconnection attempt after identifying that there was an idle connection failure. This must be an integer between 1 and 60. The default is 10 seconds.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ConnectRetryInterval { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ConnectTimeout.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ConnectTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L105">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectTimeout_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectTimeout*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ConnectTimeout" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ConnectTimeout">ConnectTimeout</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the length of time (in seconds) to wait for a connection to the server before terminating the attempt and generating an error.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ConnectTimeout { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_CurrentLanguage.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.CurrentLanguage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L117">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_CurrentLanguage_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.CurrentLanguage*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_CurrentLanguage" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.CurrentLanguage">CurrentLanguage</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the SQL Server Language record name.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string CurrentLanguage { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_DataSource.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.DataSource%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L129">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_DataSource_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.DataSource*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_DataSource" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.DataSource">DataSource</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the name or network address of the instance of SQL Server to connect to.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string DataSource { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Encrypt.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Encrypt%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L141">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_Encrypt_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Encrypt*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Encrypt" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Encrypt">Encrypt</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a Boolean value that indicates whether SQL Server uses SSL encryption for all data sent between the client and server if the server has a certificate installed.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Encrypt { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_FailoverPartner.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.FailoverPartner%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L153">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_FailoverPartner_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.FailoverPartner*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_FailoverPartner" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.FailoverPartner">FailoverPartner</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the name or address of the partner server to connect to if the primary server is down.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FailoverPartner { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_InitialCatalog.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.InitialCatalog%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L165">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_InitialCatalog_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.InitialCatalog*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_InitialCatalog" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.InitialCatalog">InitialCatalog</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the name of the database associated with the connection.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string InitialCatalog { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_LoadBalanceTimeout.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.LoadBalanceTimeout%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L177">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_LoadBalanceTimeout_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.LoadBalanceTimeout*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_LoadBalanceTimeout" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.LoadBalanceTimeout">LoadBalanceTimeout</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the minimum time, in seconds, for the connection to live in the connection pool before being destroyed.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int LoadBalanceTimeout { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_MaxPoolSize.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.MaxPoolSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L189">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_MaxPoolSize_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.MaxPoolSize*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_MaxPoolSize" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.MaxPoolSize">MaxPoolSize</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the maximum number of connections allowed in the connection pool for this specific connection string.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MaxPoolSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_MinPoolSize.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.MinPoolSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L201">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_MinPoolSize_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.MinPoolSize*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_MinPoolSize" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.MinPoolSize">MinPoolSize</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the minimum number of connections allowed in the connection pool for this specific connection string.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MinPoolSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_MultipleActiveResultSets.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.MultipleActiveResultSets%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L213">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_MultipleActiveResultSets_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.MultipleActiveResultSets*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_MultipleActiveResultSets" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.MultipleActiveResultSets">MultipleActiveResultSets</h4>
-  <div class="markdown level1 summary"><p>When true, an application can maintain multiple active result sets (MARS). When false, an application must process or cancel all result sets from one batch before it can execute any other batch on that connection.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool MultipleActiveResultSets { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_MultiSubnetFailover.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.MultiSubnetFailover%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L225">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_MultiSubnetFailover_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.MultiSubnetFailover*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_MultiSubnetFailover" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.MultiSubnetFailover">MultiSubnetFailover</h4>
-  <div class="markdown level1 summary"><p>If your application is connecting to an AlwaysOn availability group (AG) on different subnets, setting MultiSubnetFailover=true provides faster detection of and connection to the (currently) active server.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool MultiSubnetFailover { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_PacketSize.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.PacketSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L237">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_PacketSize_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.PacketSize*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_PacketSize" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.PacketSize">PacketSize</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the size in bytes of the network packets used to communicate with an instance of SQL Server.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int PacketSize { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_PersistSecurityInfo.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.PersistSecurityInfo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L249">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_PersistSecurityInfo_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.PersistSecurityInfo*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_PersistSecurityInfo" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.PersistSecurityInfo">PersistSecurityInfo</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a Boolean value that indicates if security-sensitive information, such as the password, is not returned as part of the connection if the connection is open or has ever been in an open state.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool PersistSecurityInfo { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Pooling.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Pooling%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L261">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_Pooling_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Pooling*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Pooling" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Pooling">Pooling</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a Boolean value that indicates whether the connection will be pooled or explicitly opened every time that the connection is requested.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Pooling { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Replication.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Replication%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L273">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_Replication_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Replication*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Replication" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Replication">Replication</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a Boolean value that indicates whether replication is supported using the connection.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Replication { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_TrustServerCertificate.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.TrustServerCertificate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L281">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_TrustServerCertificate_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.TrustServerCertificate*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_TrustServerCertificate" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.TrustServerCertificate">TrustServerCertificate</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value that indicates whether the channel will be encrypted while bypassing walking the certificate chain to validate trust.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TrustServerCertificate { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_TypeSystemVersion.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.TypeSystemVersion%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L293">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_TypeSystemVersion_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.TypeSystemVersion*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_TypeSystemVersion" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.TypeSystemVersion">TypeSystemVersion</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a string value that indicates the type system the application expects.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string TypeSystemVersion { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_WorkstationID.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.WorkstationID%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L305">View Source</a>
-  </span>
-  <a id="ArgentSea_Sql_SqlConnectionConfiguration_WorkstationID_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.WorkstationID*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_WorkstationID" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.WorkstationID">WorkstationID</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the name of the workstation connecting to SQL Server.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string WorkstationID { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string ConnectionDescription { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -869,7 +283,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Add(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L347">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L213">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_Add_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Add*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Add(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -902,7 +316,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_ContainsKey_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.ContainsKey(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L354">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L220">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_ContainsKey_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ContainsKey*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_ContainsKey_System_String_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.ContainsKey(System.String)">ContainsKey(String)</h4>
@@ -947,19 +361,36 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_GetConnectionString.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.GetConnectionString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_GetConnectionString_Microsoft_Extensions_Logging_ILogger_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.GetConnectionString(Microsoft.Extensions.Logging.ILogger)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L29">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L146">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_GetConnectionString_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.GetConnectionString*"></a>
-  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_GetConnectionString" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.GetConnectionString">GetConnectionString()</h4>
+  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_GetConnectionString_Microsoft_Extensions_Logging_ILogger_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.GetConnectionString(Microsoft.Extensions.Logging.ILogger)">GetConnectionString(ILogger)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string GetConnectionString()</code></pre>
+    <pre><code class="lang-csharp hljs">public string GetConnectionString(ILogger logger)</code></pre>
   </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span></td>
+        <td><span class="parametername">logger</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -975,14 +406,12 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="../api/ArgentSea.DataConnectionConfiguration.html#ArgentSea_DataConnectionConfiguration_GetConnectionString">DataConnectionConfiguration.GetConnectionString()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Object%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L362">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L228">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_Remove_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Remove*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Remove(KeyValuePair&lt;String, Object&gt;)</h4>
@@ -1015,7 +444,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_Remove_System_String_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.Remove(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L370">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L236">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_Remove_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Remove*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_Remove_System_String_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.Remove(System.String)">Remove(String)</h4>
@@ -1045,10 +474,57 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_SetAmbientConfiguration_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.SetAmbientConfiguration(ArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase%2CArgentSea.DataConnectionConfigurationBase)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L179">View Source</a>
+  </span>
+  <a id="ArgentSea_Sql_SqlConnectionConfiguration_SetAmbientConfiguration_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.SetAmbientConfiguration*"></a>
+  <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_SetAmbientConfiguration_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_ArgentSea_DataConnectionConfigurationBase_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.SetAmbientConfiguration(ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase,ArgentSea.DataConnectionConfigurationBase)">SetAmbientConfiguration(DataConnectionConfigurationBase, DataConnectionConfigurationBase, DataConnectionConfigurationBase, DataConnectionConfigurationBase)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAmbientConfiguration(DataConnectionConfigurationBase globalProperties, DataConnectionConfigurationBase shardSetProperties, DataConnectionConfigurationBase readWriteProperties, DataConnectionConfigurationBase shardProperties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></td>
+        <td><span class="parametername">globalProperties</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></td>
+        <td><span class="parametername">shardSetProperties</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></td>
+        <td><span class="parametername">readWriteProperties</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../api/ArgentSea.DataConnectionConfigurationBase.html">DataConnectionConfigurationBase</a></td>
+        <td><span class="parametername">shardProperties</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration_TryGetValue_System_String_System_Object__.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration.TryGetValue(System.String%2CSystem.Object%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L375">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L241">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlConnectionConfiguration_TryGetValue_" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.TryGetValue*"></a>
   <h4 id="ArgentSea_Sql_SqlConnectionConfiguration_TryGetValue_System_String_System_Object__" data-uid="ArgentSea.Sql.SqlConnectionConfiguration.TryGetValue(System.String,System.Object@)">TryGetValue(String, out Object)</h4>
@@ -1097,7 +573,10 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="../api/ArgentSea.IConnectionConfiguration.html">IConnectionConfiguration</a>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <a class="xref" href="../api/ArgentSea.IDataConnection.html">IDataConnection</a>
   </div>
 </article>
           </div>
@@ -1110,7 +589,7 @@ If the ResilienceKey is not defined, a default data resilience strategy will be 
                     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlConnectionConfiguration.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlConnectionConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L18" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/sql/blob/master/src/SqlConnectionConfiguration.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace ArgentSea.Pg
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -87,6 +87,8 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="ArgentSea.Pg.CopyMapper.html">CopyMapper</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.DataProviderServiceFactory.html">DataProviderServiceFactory</a></h4>
       <section><p>This class is a provider-specific resouce to enable provider-neutral code to execute. It is unlikely that you would reference this in consumer code.</p>
 </section>
@@ -118,7 +120,7 @@
       <section><p>This attribute maps a model property to/from a PostgreSQL Integer parameter or column.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Pg.MapToPgInternalCharAttribute.html">MapToPgInternalCharAttribute</a></h4>
-      <section><p>This attribute maps a model property to/from a PostgreSQL InternalChar parameter or column.</p>
+      <section><p>This attribute maps a model property to/from a PostgreSQL (internal) &quot;char&quot; parameter or column. This data type is not intendeted for general use.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Pg.MapToPgIntervalAttribute.html">MapToPgIntervalAttribute</a></h4>
       <section><p>This attribute maps a model property to/from a PostgreSQL Interval parameter or column.</p>
@@ -153,28 +155,31 @@
       <h4><a class="xref" href="ArgentSea.Pg.MapToPgUuidAttribute.html">MapToPgUuidAttribute</a></h4>
       <section><p>This attribute maps a model property to/from a PostgreSQL Uuid parameter or column.</p>
 </section>
-      <h4><a class="xref" href="ArgentSea.Pg.MapToPgVarCharAttribute.html">MapToPgVarCharAttribute</a></h4>
-      <section><p>This attribute maps a model property to/from a PostgreSQL VarChar parameter or column.</p>
+      <h4><a class="xref" href="ArgentSea.Pg.MapToPgVarcharAttribute.html">MapToPgVarcharAttribute</a></h4>
+      <section><p>This attribute maps a model property to/from a PostgreSQL Varchar parameter or column.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Pg.PgConnectionConfiguration.html">PgConnectionConfiguration</a></h4>
       <section><p>This class represents is a (non-sharded) database connection.
 Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match as key in the DataResilienceOptions array.
 If the ResilienceKey is not defined, a default data resilience strategy will be used.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.Pg.PgConnectionPropertiesBase.html">PgConnectionPropertiesBase</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.PgDatabases.html">PgDatabases</a></h4>
-      <section><p>This class manages the non-sharded SQL database connections.</p>
+      <section><p>This class manages the non-sharded PosgreSQL database connections.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Pg.PgDbConnectionConfiguration.html">PgDbConnectionConfiguration</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.PgDbConnectionOptions.html">PgDbConnectionOptions</a></h4>
-      <section><p>This configuration class defines an array of database <see cref="!:SqlConnectionConfiguration">connection configurations</see>.
+      <section><p>This configuration class defines an array of database <a class="xref" href="ArgentSea.Pg.PgConnectionConfiguration.html">PgConnectionConfiguration</a>.
 <example>
 For example, you might configure your appsettings.json like this:<p>
 <pre><code>&quot;PgDbConnections&quot;: [
   {
     &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
-    &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
       &quot;DataConnection&quot;: {
+        &quot;UserName&quot;: &quot;webUser&quot;,
+        &quot;Password&quot;: &quot;pwd1234&quot;,
         &quot;Host&quot;: &quot;localhost&quot;,
         &quot;Database&quot;: &quot;MyDb&quot;
     }
@@ -183,9 +188,16 @@ For example, you might configure your appsettings.json like this:<p>
 <p>Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match a key in the DataResilienceOptions array.
 </example></p>
 </section>
+      <h4><a class="xref" href="ArgentSea.Pg.PgGlobalPropertiesOptions.html">PgGlobalPropertiesOptions</a></h4>
+      <section></section>
+      <h4><a class="xref" href="ArgentSea.Pg.PgLoggingExtensions.html">PgLoggingExtensions</a></h4>
+      <section><p>This static class provides the logging extension methods for handling table-valued parameter (TVP) mapping.</p>
+</section>
       <h4><a class="xref" href="ArgentSea.Pg.PgParameterCollectionExtensions.html">PgParameterCollectionExtensions</a></h4>
       <section><p>This class adds extension methods which simplify setting PostgreSQL parameter values from .NET types.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.Pg.PgParameterExtensions.html">PgParameterExtensions</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.PgParameterMapAttribute.html">PgParameterMapAttribute</a></h4>
       <section><p>This abstract class is a PostgreSQL-specific implementation of the ParameterMapAttribute class.</p>
 </section>
@@ -197,7 +209,7 @@ For example, you might configure your appsettings.json like this:<p>
       <h4><a class="xref" href="ArgentSea.Pg.PgShardConnectionOptions-1.PgShardConnectionsConfiguration.html">PgShardConnectionOptions&lt;TShard&gt;.PgShardConnectionsConfiguration</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.Pg.PgShardSets-1.html">PgShardSets&lt;TShard&gt;</a></h4>
-      <section><p>This configuration class contains the configuration information for a shard set.</p>
+      <section><p>A collection of ShardSets.</p>
 </section>
 </article>
           </div>

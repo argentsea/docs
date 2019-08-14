@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Creating SQL Queries | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Creating SQL Queries | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="creating-sql-queries">Creating SQL Queries</h2>
+
+<p>Every ArgentSea data access method takes a <code>Query</code> argument. ArgentSea offers two implementations:</p>
+<ul>
+<li><code>QueryProcedure</code> - which names a procedure (or function). This also sets the DbCommandType to “StoredProcedure”. Of course, the actual SQL implementation is hosted on the server, giving DBAs or SQL developers the ability to revise the implementation, if needed.</li>
+<li><code>QueryStatement</code> - which presents a parameterized SQL statement which is loaded from a file. This sets the DbCommandType to “Text”.</li>
+</ul>
+<p>ArgentSea recommends creating a single, static class which contains <em>all</em> defined procedures or SQL statements.</p>
+<p>As large applications evolve, it can become difficult to determine procedures or commands are actually used by the application. There is a substantial cost to maintaining an application’s dead code. Using static properties, as in this example, allows the Visual Studio UI to provide a “reference count” for each procedure, and even where it is called. A count of zero means that the query no longer in use. This can be helpful as you prune different data procedures that seem to do the same thing.</p>
+<pre><code class="lang-csharp">public static class Queries
+{
+    public static QueryProcedure ListSubscribers
+    {
+        get =&gt; new QueryProcedure(&quot;ws.ListSubscribers&quot;);
+    }
+    public static QueryStatement GetSubscriber
+    {
+        get =&gt; new QueryStatement(new[] { &quot;subscriberid&quot; });
+    }
+    // add a new static property for each additional query.
+}
+</code></pre>
+<p>Now, it is easy to reference the statement batch or procedure like this:</p>
+<pre><code class="lang-csharp">return await db.Read.MapReaderAsync&lt;Subscriber&gt;(Queries.GetSubscriber, parameters, cancellation);
+</code></pre>
+<h3 id="queryprocedures">QueryProcedures</h3>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The recommended way to query SQL Server is via stored procedures. This offers performance benefits, the advantage of consolidating SQL in a single repository (SQL Server itself), and the ability to tinker with SQL without changing application code. The defined inputs and output of the stored procedure becomes the defined “interface” to the underlying data.</p>
+<p>A <code>QueryProcedure</code> class requires a stored procedure name in its constructor. Optionally, you can add parameter names. The advantage of providing parameters names is described below.</p>
+<p>If you are referencing a database where creating stored procedures would be problematic (say, you don’t control the target database), then the <code>Statement</code> class allows SQL strings to be used instead.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>PostgreSQL clients are generally advised to use the <code>QueryStatement</code> class, rather than <code>QueryProcedure</code>.</p>
+</div>
+<p>You can use the <code>QueryProcedure</code> type to call a PostgreSQL function. The longstanding behavior of the <a href="http://www.npgsql.org/">Npgsql</a> provider is to implicitly change the query to “SELECT * FROM &lt;functionName&gt;”. Consequently, this class can only invoke <em>functions</em>, not stored procedures. To invoke stored procedures, use “CALL &lt;sprocName&gt;” in the <code>QueryStatement</code> class instead.</p>
+<p>A <code>QueryProcedure</code> class requires the function name in its constructor. Optionally, you can add parameter names. The advantage of providing parameters names is described below.</p>
+</section>
+</div>
+<h3 id="querystatements">QueryStatements</h3>
+<p>A <code>QueryStatement</code> class loads a text file containing SQL commands. The file contains the batch of SQL commands to execute. This helps avoid immutable SQL that is compiled within the application.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The default steps to implement this are:</p>
+<ol>
+<li>Create a project folder called “SQL”.</li>
+<li>In this folder, add a new file for each statement. The file name should be the same name as the property in your <code>Queries</code> class, followed by a “.sql” extension.</li>
+<li>In your IDE (Visual Studio), access the file’s <em>Properties</em> pane, then ensure the <em>Build Action</em> attribute is “None” and set the <em>Copy to Output Directory</em> attribute to “Copy if newer” for each .sql file.</li>
+</ol>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>The default steps to implement this are:</p>
+<ol>
+<li>Create a project folder called “SQL”.</li>
+<li>In this folder, add a new file for each statement. The file name should be the same name as the property in your <code>Queries</code> class, followed by a “.psql” extension.</li>
+<li>In your IDE (Visual Studio), access the file’s <em>Properties</em> pane, then ensure the <em>Build Action</em> attribute is “None” and set the <em>Copy to Output Directory</em> attribute to “Copy if newer” for each .psql file.</li>
+</ol>
+</section>
+</div>
+
+<p>For example, this property references a file named “SQL\ListSubscribers.psql”.</p>
+<pre><code class="lang-csharp">    public static QueryStatement ListSubscribers
+    {
+        get =&gt; new QueryStatement();
+    }
+</code></pre>
+<p>The <code>QueryStatement</code> class defaults to the calling property name for the file name. If you need to specify a specific file name, just provide an argument value to override the default.</p>
+<h3 id="changing-the-defaults">Changing the Defaults</h3>
+<p>By default, <code>QueryStatement</code> objects expect to find files in a folder called “SQL”, with a standard extension (the default extension is “.sql” for SQL Server and “.psql” for PostgreSQL). These defaults can be changed in your Startup class:</p>
+<pre><code class="lang-csharp">QueryStatement.Folder = &quot;MySQLFolderToUseInstead&quot;;
+QueryStatement.Extension = &quot;xsql&quot;;
+</code></pre>
+<h2 id="parameter-names">Parameter Names</h2>
+<p>Both <code>QueryProcedure</code> and <code>QueryStatement</code> constructors take an optional string array of parameter names. If not provided, the Mapper will set/write/read all the parameters defined on the Model class. If the query requires fewer parameters, this will generate an error. However, if the parameter names are provided in the definition of the query object, the Mapper will only use those parameters who names match.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>SQL parameter names are always implicitly normalized to include a “@” prefix, so parameters names should match even if the Model’s property attribute does not include the “@” sign. Casing does matter though.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>PostgreSQL parameter names are always converted to lowercase, so parameters names should match even if the Model’s property attribute includes mixed casing.</p>
+</section>
+</div>
+
+<p>Next: <a href="sequence.html">Coding Queries with ArgentSea</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Querying/sqlquery.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

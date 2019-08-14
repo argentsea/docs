@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Multi-record Saves | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Multi-record Saves | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="multi-record-saves">Multi-record Saves</h1>
+
+<p>One of the best ways to improve performance is to simply reduce the number of server round-trips. When transactions need to save a list of order items, or customer locations, or other related data, the entire data set should be loaded and committed as a batch. Unfortunately, ADO.Net makes this a little more difficult because it doesn’t offer consistency across platforms.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>Although SQL Server can accept multi-valued parameters via XML or JSON or even parsable strings, the standard, recommended approach is to use Table Valued Parameters. ArgentSea offers a Mapper for TVPs too.</p>
+<p>The TVP Mapper accepts a Model object and returns a <code>SqlDataRecord</code> build from the mapping attributes. The Table Valued Parameters accepts a collection (list, array, etc.) or the <code>SqlDataRecord</code> objects. Like all Mapper processes, the conversion logic is extracted and compiled on the first call, offering native-compiliation performance on subsequent calls.</p>
+<p>An implementation, then, simply iterates the list of Model objects, creating the corresponding list of <code>SqlDataRecords</code>. The list of records is a assigned to a parameter like any other value. Like this:</p>
+<pre><code class="lang-csharp">var contactRecords = new List&lt;SqlDataRecord&gt;();
+customer.Contacts.ForEach(contact =&gt;
+{
+    contactRecords.Add(TvpMapper.ToTvpRecord&lt;ContactModel&gt;(contact, _logger));
+});
+var prms = new ParameterCollection()
+    .AddSqlIntInputParameter(&quot;@CustomerId&quot;)
+    .AddSqlTableValuedParameter(&quot;@Contacts&quot;, contactRecords);
+</code></pre>
+<p>For higher performance with very large data sets, the Batch functionality could allow someone to implement a BatchStep that uses the SqlBulkCopy class. This would be similar to the approach used by the PostgreSQL implementation.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>ArgentSea supports PostgreSQL’s COPY functionality using the NpgsqlBinaryImporter. This is how data sets can be efficiently loaded into PostgreSQL.</p>
+<p>ArgentSea’s <a href="batches.html">Batch</a> functionality is used to load data into PostgreSQL tables or temporary tables, then a SQL statement is used to process and commit these values. The Batch automatically ensures that both steps share the same transaction.</p>
+<p>This example creates a batch, then adds a step to push a series of values to a temporary table called “t-locations”. The next step runs a SQL statement that uses both the SQL parameters and the temporary table to save the data.</p>
+<pre><code class="lang-csharp">using ArgentSea.Pg;
+//...
+var customerPrms = new ParameterCollection()
+    .AddPgVarcharInputParameter(&quot;customername&quot;, customer.Name, 255);
+var shardBatch = new ShardBatch&lt;short, ShardKey&lt;short, int&gt;&gt;()
+    .Add(customer.Locations, &quot;t-locations&quot;)
+    .Add(Queries.CustomerSave, customerPrms, DataOrigins.Customer, &quot;customerid&quot;);
+var custKey = await _shardSet.DefaultShard.Write.RunAsync(shardBatch, cancellation);
+</code></pre>
+</section>
+</div>
+
+<p>Next: <a href="../Sharding/sharding.html">Sharding</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Querying/multirecord.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Complex Attributes | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Complex Attributes | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="complex-attributes">Complex Attributes</h1>
+
+<p>The <a href="attributes.html">Attribute tutorial</a> described how the Mapper populates simple Model class properties, like numbers, strings, etc. This guide extends this information to account for complex objects that combine mapped values into a new object.</p>
+<p>There are three types of complex objects handled by the Mapper:</p>
+<ul>
+<li>Model Properties, via the <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> attribute</li>
+<li>List Properties</li>
+<li>Shard Identifiers, via the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> attributes</li>
+<li>Models that inherit from parent Models</li>
+</ul>
+<h2 id="the-maptomodel-attribute">The <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> Attribute</h2>
+<p>Some Model objects may have properties that are objects with their <em>own</em> properties, which also need to be mapped to the underlying data.</p>
+<p>For example, you might have an Address object that contains street address, city, region, etc. Since this data is used for customer addresses, store addresses, vendor addresses, etc. you might have a single, shared Address model. The Customer, Store, and Vendor Models would all have an Address property of type Address Model.</p>
+<p>The <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> attribute tells the Mapper that this property contains an object that should also be mapped.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">public class Vendor
+{
+    [MapToSqlInt(&quot;VendorId&quot;)]
+    public int VendorId  { get; set; }
+
+    //include other properties...
+
+    [MapToModel]
+    public Address VendorAddress { get; set; }
+}
+public class Store
+{
+    [MapToSqlInt(&quot;StoreId&quot;)]
+    public int StoreId  { get; set; }
+
+    //include other properties...
+
+    [MapToModel]
+    public Address StoreAddress { get; set; }
+}
+public class Customer
+{
+    [MapToSqlInt(&quot;CustomerId&quot;)]
+    public int CustomerId  { get; set; }
+
+    //include other properties...
+
+    [MapToModel]
+    public Address CustomerAddress { get; set; }
+}
+
+public class Address
+{
+        [MapToSqlNVarChar(&quot;StreetAddress&quot;, 255)]
+        public string StreetAddress { get; set; }
+
+        [MapToSqlNVarChar(&quot;Locality&quot;, 100)]
+        public string Locality { get; set; }
+
+        [MapToSqlNVarChar(&quot;Region&quot;, 100)]
+        public string Region { get; set; }
+
+        [MapToSqlNVarChar(&quot;PostalCode&quot;, 25)]
+        public string PostalCode { get; set; }
+}
+
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">public class Vendor
+{
+    [MapToPgInteger(&quot;VendorId&quot;)]
+    public int VendorId  { get; set; }
+
+    //include other properties...
+
+    [MapToModel]
+    public Address VendorAddress { get; set; }
+}
+public class Store
+{
+    [MapToPgInteger(&quot;StoreId&quot;)]
+    public int StoreId  { get; set; }
+
+    //include other properties...
+
+    [MapToModel]
+    public Address StoreAddress { get; set; }
+}
+public class Customer
+{
+    [MapToPgInteger(&quot;CustomerId&quot;)]
+    public int CustomerId  { get; set; }
+
+    //include other properties...
+
+    [MapToModel]
+    public Address CustomerAddress { get; set; }
+}
+
+public class Address
+{
+        [MapToPgVarchar(&quot;StreetAddress&quot;, 255)]
+        public string StreetAddress { get; set; }
+
+        [MapToPgVarchar(&quot;Locality&quot;, 100)]
+        public string Locality { get; set; }
+
+        [MapToPgVarchar(&quot;Region&quot;, 100)]
+        public string Region { get; set; }
+
+        [MapToPgVarchar(&quot;PostalCode&quot;, 25)]
+        public string PostalCode { get; set; }
+}
+</code></pre>
+</section>
+</div>
+
+<p>In this example, the Vendor, Store, and Customer Models each have a property with an Address Model type. When mapping Vendor database results, the Mapper will map the StreetAddress column or parameter to Vendor.VendorAddress.StreetAddress. Likewise for the Store and Customer Models.</p>
+<p>In each case, the Address properties and attributes are simply included in the properties that the Mapper expects to see in the data results or parameters.</p>
+<p>In short, <code>MapToModel</code> simply extends the expected parameter or column lists with further values, but it offers the capability to reuse or encapsulate a column/parameter set in your code.</p>
+<h3 id="null-values">Null Values</h3>
+<p>The Mapper will automatically set the property to a new instance of the model object, if:</p>
+<ul>
+<li>The property value is null</li>
+<li>The property is settable (not readonly)</li>
+<li>The property model class has a default constructor</li>
+</ul>
+<p>Otherwise, simply instantiate the property’s object when the base Model class is created.</p>
+<pre><code class="lang-csharp">public class Customer
+{
+    [MapToModel]
+    public Address CustomerAddress { get;  } = new Address();
+}
+</code></pre>
+<p>As <a href="attributes.html#required">discussed earlier</a>, the mapping attributes have a <em>required</em> argument — when set to <em>true</em>, a database null will cause the entire object to be null. This may not behave like you expect in this context: this does <em>not</em> cause the <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> property to become null; the entire parent model will be null.</p>
+<p>Essentially, a <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> property simply extends the Model with additional properties. Consequently, a “required” column that has a null database value will cause the entire Model to be null, not just the <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> property.</p>
+<h3 id="chaining-maptomodel-properties">Chaining MapToModel Properties</h3>
+<p>In the example above, suppose the Address Model <em>also</em> had a <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> property — perhaps a <code>Coordinates</code> Model object. Theoretically, the <code>Coordinates</code> Model itself could also have a <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> property; the Mapper should be able to resolve nearly any number of chained <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> properties. All of these attributes are included in the data mapping.</p>
+<h2 id="lists">Lists</h2>
+<p>The Mapper can also map to properties that contain lists (<code>List&lt;Model&gt;</code> or <code>IList&lt;Model&gt;</code>) of Model objects. This allows for one-to-many relationships.</p>
+<p>Mapping to a List works quite differently than <a href="/api/ArgentSea.MapToModel.html">MapToModel</a>. The List data can only come from a data reader result. Because data readers can contain multiple results — which might be mapped to different list properties — the mapping and result order is specified at query time. For this reason, no attribute is required.</p>
+<p>Models in a List may themselves have child lists, but unlike <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> properties, they will be ignored by the Mapper. In cases where a result set must be transformed into a complete Model hierarchy, you can use the <a href="../Querying/handling.html">Query</a> methods to bypass the Mapper. This allows you to hydrate the results in your own code, optionally invoking Mapper on parts of the result stream.</p>
+<p>List properties cannot be read-only.</p>
+<p>For the details on how to populate Models with <code>List&lt;Model&gt;</code> properties, see the discussion on <a href="../Querying/fetching.html#the-mapreader-and-mapoutput-methods">querying</a>.</p>
+<h2 id="mapshardkey-and-mapshardchild-attributes"><a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> Attributes</h2>
+<p>A <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> is a record identifier containing a shard Id and a record Id. A <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> is a compound key consisting of a shard Id, a record Id, and a child Id.</p>
+<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attributes are used to decorate properties of type <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> respectively.</p>
+<p>These are special types are reviewed in detail in the <a href="../Sharding/shardkey.html">sharding</a> section.</p>
+<p>Next: <a href="targets.html">Mapping Targets</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Mapping/complexattributes.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

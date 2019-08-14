@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class PgShardSets&lt;TShard&gt;
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -83,19 +83,39 @@
   
   <h1 id="ArgentSea_Pg_PgShardSets_1" data-uid="ArgentSea.Pg.PgShardSets`1" class="text-break">Class PgShardSets&lt;TShard&gt;
   </h1>
-  <div class="markdown level0 summary"><p>This configuration class contains the configuration information for a shard set.</p>
+  <div class="markdown level0 summary"><p>A collection of ShardSets.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><a class="xref" href="../api/ArgentSea.ShardDataStores-2.html">ShardDataStores</a>&lt;TShard, <a class="xref" href="ArgentSea.Pg.PgShardConnectionOptions-1.html">PgShardConnectionOptions</a>&lt;TShard&gt;&gt;</div>
+    <div class="level1"><a class="xref" href="../api/ArgentSea.ShardSetsBase-2.html">ShardSetsBase</a>&lt;TShard, <a class="xref" href="ArgentSea.Pg.PgShardConnectionOptions-1.html">PgShardConnectionOptions</a>&lt;TShard&gt;&gt;</div>
     <div class="level2"><span class="xref">PgShardSets&lt;TShard&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.Collections.ICollection</span></div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="../api/ArgentSea.ShardDataStores-2.html#ArgentSea_ShardDataStores_2_ShardSets">ShardDataStores&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt;.ShardSets</a>
+      <a class="xref" href="../api/ArgentSea.ShardSetsBase-2.html#ArgentSea_ShardSetsBase_2_CopyTo_System_Array_System_Int32_">ShardSetsBase&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt;.CopyTo(Array, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.ShardSetsBase-2.html#ArgentSea_ShardSetsBase_2_GetEnumerator">ShardSetsBase&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt;.GetEnumerator()</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.ShardSetsBase-2.html#ArgentSea_ShardSetsBase_2_Item_System_String_">ShardSetsBase&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt;.Item[String]</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.ShardSetsBase-2.html#ArgentSea_ShardSetsBase_2_Count">ShardSetsBase&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.ShardSetsBase-2.html#ArgentSea_ShardSetsBase_2_IsSynchronized">ShardSetsBase&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt;.IsSynchronized</a>
+    </div>
+    <div>
+      <a class="xref" href="../api/ArgentSea.ShardSetsBase-2.html#ArgentSea_ShardSetsBase_2_SyncRoot">ShardSetsBase&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt;.SyncRoot</a>
     </div>
     <div>
       <span class="xref">System.Object.Equals(System.Object)</span>
@@ -123,7 +143,7 @@
   <h6><strong>Assembly</strong>: ArgentSea.Pg.dll</h6>
   <h5 id="ArgentSea_Pg_PgShardSets_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PgShardSets&lt;TShard&gt; : ShardDataStores&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt; where TShard : IComparable</code></pre>
+    <pre><code class="lang-csharp hljs">public class PgShardSets&lt;TShard&gt; : ShardSetsBase&lt;TShard, PgShardConnectionOptions&lt;TShard&gt;&gt;, ICollection, IEnumerable where TShard : IComparable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -136,7 +156,8 @@
     <tbody>
       <tr>
         <td><span class="parametername">TShard</span></td>
-        <td></td>
+        <td><p>The type of the shardId index value.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -144,18 +165,18 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgShardSets_1__ctor_Microsoft_Extensions_Options_IOptions_ArgentSea_Pg_PgShardConnectionOptions__0___Microsoft_Extensions_Options_IOptions_ArgentSea_DataSecurityOptions__Microsoft_Extensions_Options_IOptions_ArgentSea_DataResilienceOptions__Microsoft_Extensions_Logging_ILogger_ArgentSea_Pg_PgShardSets__0___.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgShardSets%601.%23ctor(Microsoft.Extensions.Options.IOptions%7BArgentSea.Pg.PgShardConnectionOptions%7B%600%7D%7D%2CMicrosoft.Extensions.Options.IOptions%7BArgentSea.DataSecurityOptions%7D%2CMicrosoft.Extensions.Options.IOptions%7BArgentSea.DataResilienceOptions%7D%2CMicrosoft.Extensions.Logging.ILogger%7BArgentSea.Pg.PgShardSets%7B%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgShardSets_1__ctor_Microsoft_Extensions_Options_IOptions_ArgentSea_Pg_PgShardConnectionOptions__0___Microsoft_Extensions_Options_IOptions_ArgentSea_Pg_PgGlobalPropertiesOptions__Microsoft_Extensions_Logging_ILogger_ArgentSea_Pg_PgShardSets__0___.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgShardSets%601.%23ctor(Microsoft.Extensions.Options.IOptions%7BArgentSea.Pg.PgShardConnectionOptions%7B%600%7D%7D%2CMicrosoft.Extensions.Options.IOptions%7BArgentSea.Pg.PgGlobalPropertiesOptions%7D%2CMicrosoft.Extensions.Logging.ILogger%7BArgentSea.Pg.PgShardSets%7B%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/pg/blob/master/src/PgShardSets.cs/#L14">View Source</a>
+    <a href="https://github.com/argentsea/pg/blob/master/src/PgShardSets.cs/#L17">View Source</a>
   </span>
   <a id="ArgentSea_Pg_PgShardSets_1__ctor_" data-uid="ArgentSea.Pg.PgShardSets`1.#ctor*"></a>
-  <h4 id="ArgentSea_Pg_PgShardSets_1__ctor_Microsoft_Extensions_Options_IOptions_ArgentSea_Pg_PgShardConnectionOptions__0___Microsoft_Extensions_Options_IOptions_ArgentSea_DataSecurityOptions__Microsoft_Extensions_Options_IOptions_ArgentSea_DataResilienceOptions__Microsoft_Extensions_Logging_ILogger_ArgentSea_Pg_PgShardSets__0___" data-uid="ArgentSea.Pg.PgShardSets`1.#ctor(Microsoft.Extensions.Options.IOptions{ArgentSea.Pg.PgShardConnectionOptions{`0}},Microsoft.Extensions.Options.IOptions{ArgentSea.DataSecurityOptions},Microsoft.Extensions.Options.IOptions{ArgentSea.DataResilienceOptions},Microsoft.Extensions.Logging.ILogger{ArgentSea.Pg.PgShardSets{`0}})">PgShardSets(IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt;, IOptions&lt;DataSecurityOptions&gt;, IOptions&lt;DataResilienceOptions&gt;, ILogger&lt;PgShardSets&lt;TShard&gt;&gt;)</h4>
+  <h4 id="ArgentSea_Pg_PgShardSets_1__ctor_Microsoft_Extensions_Options_IOptions_ArgentSea_Pg_PgShardConnectionOptions__0___Microsoft_Extensions_Options_IOptions_ArgentSea_Pg_PgGlobalPropertiesOptions__Microsoft_Extensions_Logging_ILogger_ArgentSea_Pg_PgShardSets__0___" data-uid="ArgentSea.Pg.PgShardSets`1.#ctor(Microsoft.Extensions.Options.IOptions{ArgentSea.Pg.PgShardConnectionOptions{`0}},Microsoft.Extensions.Options.IOptions{ArgentSea.Pg.PgGlobalPropertiesOptions},Microsoft.Extensions.Logging.ILogger{ArgentSea.Pg.PgShardSets{`0}})">PgShardSets(IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt;, IOptions&lt;PgGlobalPropertiesOptions&gt;, ILogger&lt;PgShardSets&lt;TShard&gt;&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PgShardSets(IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt; configOptions, IOptions&lt;DataSecurityOptions&gt; securityOptions, IOptions&lt;DataResilienceOptions&gt; resilienceStrategiesOptions, ILogger&lt;PgShardSets&lt;TShard&gt;&gt; logger)</code></pre>
+    <pre><code class="lang-csharp hljs">public PgShardSets(IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt; configOptions, IOptions&lt;PgGlobalPropertiesOptions&gt; globalOptions, ILogger&lt;PgShardSets&lt;TShard&gt;&gt; logger)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -173,13 +194,8 @@
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">Microsoft.Extensions.Options.IOptions</span>&lt;<a class="xref" href="../api/ArgentSea.DataSecurityOptions.html">DataSecurityOptions</a>&gt;</td>
-        <td><span class="parametername">securityOptions</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Microsoft.Extensions.Options.IOptions</span>&lt;<a class="xref" href="../api/ArgentSea.DataResilienceOptions.html">DataResilienceOptions</a>&gt;</td>
-        <td><span class="parametername">resilienceStrategiesOptions</span></td>
+        <td><span class="xref">Microsoft.Extensions.Options.IOptions</span>&lt;<a class="xref" href="ArgentSea.Pg.PgGlobalPropertiesOptions.html">PgGlobalPropertiesOptions</a>&gt;</td>
+        <td><span class="parametername">globalOptions</span></td>
         <td></td>
       </tr>
       <tr>
@@ -189,6 +205,13 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.Collections.ICollection</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
 </article>
           </div>
           
@@ -200,7 +223,7 @@
                     <a href="https://github.com/argentsea/pg/new/master/apiSpec/new?filename=ArgentSea_Pg_PgShardSets_1.md&amp;value=---%0Auid%3A%20ArgentSea.Pg.PgShardSets%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/pg/blob/master/src/PgShardSets.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/pg/blob/master/src/PgShardSets.cs/#L15" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

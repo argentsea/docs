@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace ArgentSea.Sql
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -157,10 +157,10 @@
       <section><p>This attributes maps a model property to/from a SQL VarChar parameter or column.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Sql.SqlConnectionConfiguration.html">SqlConnectionConfiguration</a></h4>
-      <section><p>This class represents is a (non-sharded) database connection.
-Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match as key in the DataResilienceOptions array.
-If the ResilienceKey is not defined, a default data resilience strategy will be used.</p>
+      <section><p>This class represents a single database connection — a database connection or a shard instance read or write connection.</p>
 </section>
+      <h4><a class="xref" href="ArgentSea.Sql.SqlConnectionPropertiesBase.html">SqlConnectionPropertiesBase</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.Sql.SqlDatabases.html">SqlDatabases</a></h4>
       <section><p>This class manages the non-sharded SQL database connections.</p>
 </section>
@@ -173,8 +173,9 @@ For example, you might configure your appsettings.json like this:<p>
 <pre><code>  &quot;SqlDbConnections&quot;: [
   {
     &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
-    &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
     &quot;DataConnection&quot;: {
+      &quot;UserName&quot;: &quot;webUser&quot;,
+      &quot;Password&quot;: &quot;pwd1234&quot;,
       &quot;DataSource&quot;: &quot;localhost&quot;,
       &quot;InitialCatalog&quot;: &quot;MyDb&quot;
       }
@@ -183,6 +184,8 @@ For example, you might configure your appsettings.json like this:<p>
 <p>Note that the SecurityKey must match a defined key in the DataSecurityOptions; likewise, a ResilienceKey (if defined) must match a key in the DataResilienceOptions array.
 </example></p>
 </section>
+      <h4><a class="xref" href="ArgentSea.Sql.SqlGlobalPropertiesOptions.html">SqlGlobalPropertiesOptions</a></h4>
+      <section></section>
       <h4><a class="xref" href="ArgentSea.Sql.SqlLoggingExtensions.html">SqlLoggingExtensions</a></h4>
       <section><p>This static class provides the logging extension methods for handling table-valued parameter (TVP) mapping.</p>
 </section>
@@ -200,7 +203,7 @@ For example, you might configure your appsettings.json like this:<p>
       <h4><a class="xref" href="ArgentSea.Sql.SqlShardConnectionOptions-1.SqlShardConnectionsConfiguration.html">SqlShardConnectionOptions&lt;TShard&gt;.SqlShardConnectionsConfiguration</a></h4>
       <section></section>
       <h4><a class="xref" href="ArgentSea.Sql.SqlShardSets-1.html">SqlShardSets&lt;TShard&gt;</a></h4>
-      <section><p>This configuration class contains the configuration information for a shard set.</p>
+      <section><p>A collection of ShardSets.</p>
 </section>
       <h4><a class="xref" href="ArgentSea.Sql.TvpMapper.html">TvpMapper</a></h4>
       <section><p>This class adds the ability to map model properties to SQL table-valued parameters.</p>

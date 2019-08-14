@@ -1,0 +1,881 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Mapper Code | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Mapper Code | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="mapper-code">Mapper Code</h1>
+
+<p>Because the work of the Mapper is compiled on the fly, its operation can seem opaque, especially when you are trying to debug problems. The Visual Studio debugger offers almost no help. Consequently, ArgentSea offers extensive tracing-level logging and also captures a rendering of the generated code as each model is compiled. This should assist in identifying any problems. In the sample applications, the default logger will write to the Visual Studio output window.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Tracing requires a logging level of “Trace”; the generated code is only logged with the logging level of “Debug” or “Trace”.</p>
+</div>
+<p>If you are curious about the mapping logic, examples are presented here which is based upon a sample Model. Or course, the actual code generated from a different Model or different set of metadata attributes will be different. The general logic, however, will be largely intact.</p>
+<h2 id="creating-and-setting-input-parameters">Creating and Setting Input Parameters</h2>
+<p>Some overloads of the CreateInputParameters methods allow you to specify parameters that should not be set. Any parameters <em>already</em> set are added to this list, so that this delegate does not attempt to add them again. This allows you to, say, set an output parameter before setting all the remaining input parameters with this method.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">public void CreateAndSetInputParameter(LocationModel model, DbParameterCollection parameters, HashSet&lt;string&gt; ignoreParameters, ILogger logger)
+{
+    int? keyRecordId;
+    short? keyChildId;
+
+    logger.TraceInMapperProperty(&quot;Key&quot;);
+    if (model.Key != ShardChild&lt;short, int, short&gt;.Empty)
+    {
+        keyRecordId = model.Key.RecordId;
+        keyChildId = model.Key.ChildId;
+    }
+    else
+    {
+        keyRecordId = null;
+        keyChildId = null;
+    }
+
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@CustomerId&quot;, ignoreParameters))
+    {
+        parameters.AddSqlIntInputParameter(&quot;@CustomerId&quot;, keyRecordId)
+    }
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@LocationId&quot;, ignoreParameters))
+    {
+        parameters.AddSqlSmallIntInputParameter(&quot;@LocationId&quot;, keyChildId)
+    }
+
+    logger.TraceInMapperProperty(&quot;Type&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@LocationTypeId&quot;, ignoreParameters))
+    {
+        parameters.AddSqlTinyIntInputParameter(&quot;@LocationTypeId&quot;, (byte)model.Type)
+    }
+
+    logger.TraceInMapperProperty(&quot;StreetAddress&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@StreetAddress&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNVarCharInputParameter(&quot;@StreetAddress&quot;, model.StreetAddress, 255)
+    }
+
+    logger.TraceInMapperProperty(&quot;Locality&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Locality&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNVarCharInputParameter(&quot;@Locality&quot;, model.Locality, 100)
+    }
+
+    logger.TraceInMapperProperty(&quot;Region&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Region&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNVarCharInputParameter(&quot;@Region&quot;, model.Region, 100)
+    }
+
+    logger.TraceInMapperProperty(&quot;PostalCode&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@PostalCode&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNVarCharInputParameter(&quot;@PostalCode&quot;, model.PostalCode, 25)
+    }
+
+    logger.TraceInMapperProperty(&quot;Iso3166&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Iso3166&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNCharInputParameter(&quot;@Iso3166&quot;, model.Iso3166, 2)
+    }
+
+    logger.TraceInMapperProperty(&quot;Latitude&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Latitude&quot;, ignoreParameters))
+    {
+        parameters.AddSqlFloatInputParameter(&quot;@Latitude&quot;, model.Latitude)
+    }
+
+    logger.TraceInMapperProperty(&quot;Longitude&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Longitude&quot;, ignoreParameters))
+    {
+        parameters.AddSqlFloatInputParameter(&quot;@Longitude&quot;, model.Longitude)
+    }
+}
+
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">public void CreateAndSetInputParameter(LocationModel model, DbParameterCollection parameters, HashSet&lt;string&gt; ignoreParameters, ILogger logger)
+{
+    int? keyRecordId;
+    short? keyChildId;
+
+    logger.TraceInMapperProperty(&quot;Key&quot;);
+    if (model.Key != ShardChild&lt;short, int, short&gt;.Empty)
+    {
+        keyRecordId = model.Key.RecordId;
+        keyChildId = model.Key.ChildId;
+    }
+    else
+    {
+        keyRecordId = null;
+        keyChildId = null;
+    }
+
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;customerid&quot;, ignoreParameters))
+    {
+        parameters.AddPgIntegerInputParameter(&quot;customerid&quot;, keyRecordId)
+    }
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;locationid&quot;, ignoreParameters))
+    {
+        parameters.AddPgSmallintInputParameter(&quot;locationid&quot;, keyChildId)
+    }
+
+    logger.TraceInMapperProperty(&quot;Type&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;locationtypeid&quot;, ignoreParameters))
+    {
+        parameters.AddPgSmallintInputParameter(&quot;locationtypeid&quot;, (short)model.Type)
+    }
+
+    logger.TraceInMapperProperty(&quot;StreetAddress&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;streetaddress&quot;, ignoreParameters))
+    {
+        parameters.AddPgVarcharInputParameter(&quot;streetaddress&quot;, model.StreetAddress, 255)
+    }
+
+    logger.TraceInMapperProperty(&quot;Locality&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;locality&quot;, ignoreParameters))
+    {
+        parameters.AddPgVarcharInputParameter(&quot;locality&quot;, model.Locality, 100)
+    }
+
+    logger.TraceInMapperProperty(&quot;Region&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;region&quot;, ignoreParameters))
+    {
+        parameters.AddPgVarcharInputParameter(&quot;region&quot;, model.Region, 100)
+    }
+
+    logger.TraceInMapperProperty(&quot;PostalCode&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;postalcode&quot;, ignoreParameters))
+    {
+        parameters.AddPgVarcharInputParameter(&quot;postalcode&quot;, model.PostalCode, 25)
+    }
+
+    logger.TraceInMapperProperty(&quot;Iso3166&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;iso3166&quot;, ignoreParameters))
+    {
+        parameters.AddPgCharInputParameter(&quot;iso3166&quot;, model.Iso3166, 2)
+    }
+
+    logger.TraceInMapperProperty(&quot;Latitude&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;latitude&quot;, ignoreParameters))
+    {
+        parameters.AddPgDoubleInputParameter(&quot;latitude&quot;, model.Latitude)
+    }
+
+    logger.TraceInMapperProperty(&quot;Longitude&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;longitude&quot;, ignoreParameters))
+    {
+        parameters.AddPgDoubleInputParameter(&quot;longitude&quot;, model.Longitude)
+    }
+}
+
+</code></pre>
+</section>
+</div>
+<h2 id="creating-out-parameters">Creating Out Parameters</h2>
+<p>The code generated to set output parameters is very straightforward. This example is SQL Server-specific, but if you chose to use output parameters on another platform, the logic would be the same.</p>
+<pre><code class="lang-csharp">public void CreateOutParameters (DbParameterCollection parameters, HashSet&lt;string&gt; ignoreParameters, ILogger logger)
+{
+    logger.TraceSetOutMapperProperty(&quot;Key&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@CustomerId&quot;, ignoreParameters))
+    {
+        parameters.AddSqlIntOutputParameter(&quot;@CustomerId&quot;);
+    }
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@LocationId&quot;, ignoreParameters))
+    {
+        parameters.AddSqlSmallIntOutputParameter(&quot;@LocationId&quot;);
+    }
+
+    logger.TraceSetOutMapperProperty(&quot;Type&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@LocationTypeId&quot;, ignoreParameters))
+    {
+        parameters.AddSqlIntOutputParameter(&quot;@LocationTypeId&quot;);
+    }
+
+    logger.TraceSetOutMapperProperty(&quot;StreetAddress&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@StreetAddress&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNVarCharOutputParameter(&quot;@StreetAddress&quot;, 255);
+    }
+
+    logger.TraceSetOutMapperProperty(&quot;Locality&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Locality&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNVarCharOutputParameter(&quot;@Locality&quot;, 100);
+    }
+
+    logger.TraceSetOutMapperProperty(&quot;Region&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Region&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNVarCharOutputParameter(&quot;@Region&quot;, 100);
+    }
+
+    logger.TraceSetOutMapperProperty(&quot;PostalCode&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@PostalCode&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNVarCharOutputParameter(&quot;@PostalCode&quot;, 25);
+    }
+
+    logger.TraceSetOutMapperProperty(&quot;Iso3166&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Iso3166&quot;, ignoreParameters))
+    {
+        parameters.AddSqlNCharOutputParameter(&quot;@Iso3166&quot;, 2);
+    }
+
+    logger.TraceSetOutMapperProperty(&quot;Latitude&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Latitude&quot;, ignoreParameters))
+    {
+        parameters.AddSqlFloatOutputParameter(&quot;@Latitude&quot;);
+    }
+
+    logger.TraceSetOutMapperProperty(&quot;Longitude&quot;);
+    if (ExpressionHelpers.DontIgnoreThisParameter(&quot;@Longitude&quot;, ignoreParameters))
+    {
+        parameters.AddSqlFloatOutputParameter(&quot;@Longitude&quot;);
+    }
+}
+</code></pre>
+<h2 id="reading-out-parameters">Reading Out Parameters</h2>
+<p>This example evaluates only a few output parameters: Customer key, CustomerType, and Customer Name. The Key and Name properties are required, so we consider database Null values to represent no record.</p>
+<p>Notably, this example handles a ShardKey value. If the ShardId parameter had been specified, it would have been captured and evaluated like the RecordId parameter; if either were null then the ShardKey value would be empty. However, since no ShardId parameter was specified, the code uses the shardId of the current shard, which is provided to the procedure as an argument.</p>
+<pre><code class="lang-csharp">public Customer ReadOutParameters(short shardId, DbParameterCollection parameters, ILogger logger)
+{
+    var model = new CustomerModel();
+    DbParameter prm;
+    short? keyShardId;
+    int? keyRecordId;
+
+    logger.TraceGetOutMapperProperty(&quot;Key_RecordId&quot;);
+    prm = ExpressionHelpers.GetParameter(parameters, &quot;CustomerId&quot;);
+    if (prm != null)
+    {
+        keyShardId = prm.GetNullableInteger();
+    }
+    else
+    {
+        logger.SqlParameterNotFound(&quot;@CustomerId&quot;, typeof(int?));
+    };
+    if (ExpressionHelpers.IsRequiredParameterDbNull(prm, &quot;CustomerModel&quot;, &quot;@CustomerId&quot;, logger))
+    {
+        return null;
+    }
+
+    logger.TraceGetOutMapperProperty(&quot;Name&quot;);
+    prm = ExpressionHelpers.GetParameter(parameters, &quot;@Name&quot;);
+    if (ExpressionHelpers.IsRequiredParameterDbNull(prm, &quot;CustomerModel&quot;, &quot;@Name&quot;, logger))
+    {
+        return null;
+    }
+    if (prm != null)
+    {
+        model.Name = prm.GetString();
+    }
+
+    logger.TraceGetOutMapperProperty(&quot;Type&quot;);
+    prm = ExpressionHelpers.GetParameter(parameters, &quot;@CustomerTypeId&quot;);
+    if (prm != null)
+    {
+        model.Type = (CustomerType)prm.GetShort();
+    }
+    else
+    {
+        logger.SqlParameterNotFound(&quot;@CustomerTypeId&quot;, typeof(CustomerType));
+    }
+
+    keyShardId = shardId;
+    if (keyShardId != null &amp;&amp; keyRecordId != null)
+    {
+        model.Key = ShardKey&lt;short, int&gt;('C', keyShardId.Value, keyRecordId.Value);
+    }
+    else
+    {
+        model.Key = ShardKey&lt;short, int&gt;.Empty;
+    };
+}
+</code></pre>
+<h2 id="data-reader-queries">Data Reader Queries</h2>
+<p>Queries involving the data reader follows these steps for each result set:</p>
+<ul>
+<li>Use generated code to build an array of column ordinal positions based on the expected column names.</li>
+<li>Create a list result, then loop through each record in the result set.</li>
+<li>For each record in the result set, call a generated function which returns a new Model object with property values set to the corresponding columns values.</li>
+<li>Return a list of the new Model objects.</li>
+</ul>
+<p>The initial capture of ordinal positions is a performance optimization, since the column positions will not change and accessing a column by name always requires a ordinal lookup. This also means that a change in column order — or additional columns — will not break the code logic. Consequently, the same model class can be used for different queries, each of which may not return exactly the same results. An expected column that is not found will be logged (at “Debug” logging level), but subsequently ignored. (If you are curious, the type information passed to the GetFieldOrdinal method is for logging).</p>
+<p>The code looks like this:</p>
+<pre><code class="lang-csharp">public int[] GetOrdinals(DbDataReader rdr, ILogger logger)
+{
+    return new[] {
+        GetFieldOrdinal(rdr, &quot;customerid&quot;, &quot;System.Nullable`1[System.Int32]&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;locationid&quot;, &quot;System.Nullable`1[System.Int16]&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;locationtypeid&quot;, &quot;QuickStart2.Pg.Models.LocationModel+LocationType&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;streetaddress&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;locality&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;region&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;postalcode&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;iso3166&quot;, &quot;System.String&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;latitude&quot;, &quot;System.Double&quot;, logger),
+        GetFieldOrdinal(rdr, &quot;longitude&quot;, &quot;System.Double&quot;, logger)
+    };
+}
+</code></pre>
+<p>Reading through the DataReader rows does not require Mapper generated code.</p>
+<p>For each new row, the system calls a second delegate, which was also generated and compiled based upon the attribute metadata. The row-handing delegate assesses the current row and returns a model with properties set to data values.</p>
+<p>Here are a few notes about the code:</p>
+<ul>
+<li>Ordinal values of -1 indicate that the column was not found, in which case the property will be ignored.</li>
+<li>The Trace logging commands might be useful in determining the Mapper’s last operation before an unexpected failure.</li>
+<li>In this example, the ShardId is obtained from the connection’s property. If the <code>MapToShardChild</code> attribute had specified a ShardId column, the code would instead be obtained a value from a database column.</li>
+</ul>
+<pre><code class="lang-csharp">public LocationModel ReadData(short shardId, int[] ordinals, DbDataReader rdr, ILogger logger)
+{
+    var model = new LocationModel();
+    var ordinal = ordinals[0];
+    short? keyShardId = shardId;
+    int? keyRecordId;
+    int? keyChildId;
+    logger.TraceGetOutMapperProperty(&quot;Key_RecordId&quot;);
+
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            keyRecordId = null;
+        }
+        else
+        {
+            keyRecordId = (int?)rdr.GetFieldValue&lt;int&gt;(ordinal);
+        }
+    }
+    logger.TraceGetOutMapperProperty(&quot;Key_ChildId&quot;);
+    ordinal = ordinals[1];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            keyChildId = null;
+        }
+        else
+        {
+            keyChildId = (int?)rdr.GetFieldValue&lt;short&gt;(ordinal);
+        }
+    }
+    if (keyShardId != null &amp;&amp; keyRecordId != null &amp;&amp; keyChildId != null)
+    {
+        model.Key = new ShardChild&lt;short, int, short&gt;('L', keyShardId.Value, keyRecordId.Value, keyChildId.Value);
+    }
+    else
+    {
+        model.Key = ShardChild&lt;short, int, short&gt;().Empty;
+    }
+    logger.TraceRdrMapperProperty(&quot;Type&quot;);
+    ordinal = ordinals[2];
+    if (ordinal != -1)
+    {
+        model.Type = (LocationType)rdr.GetFieldValue&lt;short&gt;(ordinal);
+    }
+    logger.TraceRdrMapperProperty(&quot;StreetAddress&quot;);
+    ordinal = ordinals[3];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.StreetAddress = null;
+        }
+        else
+        {
+            model.StreetAddress = rdr.GetString(ordinal);
+        }
+    };
+    logger.TraceRdrMapperProperty(&quot;Locality&quot;);
+    ordinal = ordinals[4];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.Locality = null;
+        }
+        else
+        {
+            model.Locality = rdr.GetString(ordinal);
+        }
+    }
+    logger.TraceRdrMapperProperty(&quot;Region&quot;);
+    ordinal = ordinals[5];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.Region = null;
+        }
+        else
+        {
+            model.Region = rdr.GetString(ordinal);
+        }
+    };
+    logger.TraceRdrMapperProperty(&quot;PostalCode&quot;);
+    ordinal = ordinals[6];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.PostalCode = null;
+        }
+        else
+        {
+            model.PostalCode = rdr.GetString(ordinal);
+        }
+    };
+    logger.TraceRdrMapperProperty(&quot;Iso3166&quot;);
+    ordinal = ordinals[7];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            model.Iso3166 = null;
+        }
+        else
+        {
+            model.Iso3166 = rdr.GetString(ordinal);
+        }
+    }
+    logger.TraceRdrMapperProperty(&quot;Latitude&quot;);
+    ordinal = ordinals[8];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            (model.Coordinates).Latitude = double.NaN;
+        }
+        else
+        {
+            (model.Coordinates).Latitude = rdr.GetFieldValue&lt;double&gt;(ordinal);
+        }
+    };
+    logger.TraceRdrMapperProperty(&quot;Longitude&quot;);
+    ordinal = ordinals[9];
+    if (ordinal != -1)
+    {
+        if (rdr.IsDBNull(ordinal))
+        {
+            (model.Coordinates).Longitude = double.NaN;
+        }
+        else
+        {
+            (model.Coordinates).Longitude = rdr.GetFieldValue&lt;double&gt;(ordinal)
+        }
+    };
+    return model;
+}
+</code></pre>
+<h2 id="create-a-complex-result">Create a Complex Result</h2>
+<p>Some of the Mapper’s methods allow you to specify multiple generic arguments. These specify both the base return type and the types for various List properties. This complex model construction is broken down into component steps:</p>
+<ul>
+<li>Create a base model object, either from a single-record data reader result, from output parameters, or (failing those options) by creating a new instance.</li>
+<li>Match the type of each List parameter to any Model property of the same type, and assign the property to the List parameter value.</li>
+<li>Repeat the List matching until all parameters have been assigned.</li>
+</ul>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Note that due to this logic, the Mapper cannot manage multiple List properties of the same type.</p>
+</div>
+<p>ArgentSea uses reflection to determine which assignable properties match the expected list types, then it builds and compiles a delegate that performs the assignment. This avoids reflection overhead in future cases.</p>
+<p>In this example, the Customer model has two list properties: Locations and Contacts. The generated code is straightforward:</p>
+<pre><code class="lang-csharp">public CustomerModel CreateComplexModel(
+    string queryName,
+    DbDataReader,
+    IList&lt;CustomerModel&gt; rstResult0,
+    IList&lt;LocationModel&gt; rstResult1,
+    IList&lt;ContactModel&gt; rstResult2,
+    ILogger logger)
+{
+    var model = AssignRootToResult&lt;TModel&gt;(queryName, rstResult0, logger);
+    if (model == null)
+    {
+        return null;
+    }
+    model.Locations = rstResult1;
+    model.Contacts = rstResult2;
+    return model;
+}
+</code></pre>
+<h2 id="loading-multiple-records">Loading Multiple Records</h2>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>SQL Server used Table Valued Parameters to send multple records to a stored procedure. The logic that iterates over the Model list does not require generated code. However, for each item in the Model list, the system calls a generated delegate to convert the Model instance to a <code>SqlDataRecord</code>.</p>
+<pre><code class="lang-csharp">public SqlDataRecord SetTvpRow(LocationModel model, IList&lt;string&gt; columnList, ILogger logger)
+{
+    int? keyRecordId;
+    short? keyChildId;
+    var fields = new SqlMetaData[10] {
+            new SqlMetaData(&quot;CustomerId&quot;, SqlDbType.Int),
+            new SqlMetaData(&quot;LocationId&quot;, SqlDbType.SmallInt),
+            new SqlMetaData(&quot;LocationTypeId&quot;, SqlDbType.TinyInt),
+            new SqlMetaData(&quot;StreetAddress&quot;, SqlDbType.NVarChar, 255L),
+            new SqlMetaData(&quot;Locality&quot;, SqlDbType.NVarChar, 100L),
+            new SqlMetaData(&quot;Region&quot;, SqlDbType.NVarChar, 100L),
+            new SqlMetaData(&quot;PostalCode&quot;, SqlDbType.NVarChar, 25L),
+            new SqlMetaData(&quot;Iso3166&quot;, SqlDbType.NChar, 2L),
+            new SqlMetaData(&quot;Latitude&quot;, SqlDbType.Float),
+            new SqlMetaData(&quot;Longitude&quot;, SqlDbType.Float)
+        };
+    var result = new SqlDataRecord(GetRecordDataFields(fields, columnList));
+
+    logger.TraceTvpMapperProperty(&quot;Key&quot;);
+    if (model.Key != ShardChild&lt;short, int, short&gt;.Empty)
+    {
+        keyRecordId = model.Key.RecordId;
+    }
+    else
+    {
+        keyRecordId = null;
+    }
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;CustomerId&quot;, columnList))
+    {
+        if (keyRecordId.HasValue)
+        {
+            result.SetInt32(TvpExpressionHelpers.GetOrdinal(0, &quot;CustomerId&quot;, columnList), keyRecordId.Value);
+        }
+        else
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(0, &quot;CustomerId&quot;, columnList));
+        }
+    }
+    if (model.Key != ArgentSea.ShardChild&lt;short, int, short&gt;.Empty)
+    {
+        KeyChildId = model.Key.ChildId;
+    }
+    else
+    {
+        keyChildId = null;
+    }
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;LocationId&quot;, columnList))
+    {
+        if (keyChildId.HasValue))
+        {
+            result.SetInt16(TvpExpressionHelpers.GetOrdinal(1, &quot;LocationId&quot;, columnList), keyChildId.Value);
+        }
+        else
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(1, &quot;LocationId&quot;, columnList));
+        }
+    }
+
+    logger.TraceTvpMapperProperty(&quot;Type&quot;);
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;LocationTypeId&quot;, columnList))
+    {
+        result.SetByte(TvpExpressionHelpers.GetOrdinal(2, &quot;LocationTypeId&quot;, columnList), (byte)model.Type);
+    }
+
+    logger.TraceTvpMapperProperty(&quot;StreetAddress&quot;);
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;StreetAddress&quot;, columnList))
+    {
+        if (model.StreetAddress == null)
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(3, &quot;StreetAddress&quot;, columnList));
+        }
+        else
+        {
+            result.SetString(TvpExpressionHelpers.GetOrdinal(3, &quot;StreetAddress&quot;, columnList), model.StreetAddress);
+        }
+    }
+
+
+    logger.TraceTvpMapperProperty(&quot;Locality&quot;);
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;Locality&quot;, columnList))
+    {
+        if (model.Locality == null)
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(4, &quot;Locality&quot;, columnList));
+        }
+        else
+        {
+            result.SetString(TvpExpressionHelpers.GetOrdinal(4, &quot;Locality&quot;, columnList), model.Locality);
+        }
+    }
+
+    logger.TraceTvpMapperProperty(&quot;Region&quot;);
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;Region&quot;, columnList))
+    {
+        if (model.Region == null)
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(5, &quot;Region&quot;, columnList));
+        }
+        else
+        {
+            result.SetString(TvpExpressionHelpers.GetOrdinal(5, &quot;Region&quot;, columnList), model.Region);
+        }
+    }
+
+    logger.TraceTvpMapperProperty(&quot;PostalCode&quot;);
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;PostalCode&quot;, columnList))
+    {
+        if (model.PostalCode == null)
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(6, &quot;PostalCode&quot;, columnList));
+        }
+        else
+        {
+            result.SetString(TvpExpressionHelpers.GetOrdinal(6, &quot;PostalCode&quot;, columnList), model.PostalCode);
+        }
+    }
+
+    logger.TraceTvpMapperProperty(&quot;Iso3166&quot;);
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;Iso3166&quot;, columnList))
+    {
+        if (model.Iso3166 == null)
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(7, &quot;Iso3166&quot;, columnList));
+        }
+        else
+        {
+            result.SetString(TvpExpressionHelpers.GetOrdinal(7, &quot;Iso3166&quot;, columnList), model.Iso3166);
+        }
+    }
+
+    logger.TraceTvpMapperProperty(&quot;Latitude&quot;);
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;Latitude&quot;, columnList))
+    {
+        if (Double.IsNaN(model.Coordinates.Latitude))
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(8, &quot;Latitude&quot;, columnList));
+        }
+        else
+        {
+            result.SetDouble(TvpExpressionHelpers.GetOrdinal(8, &quot;Latitude&quot;, columnList), model.Coordinates.Latitude);
+        }
+    }
+
+    logger.TraceTvpMapperProperty(&quot;Longitude&quot;);
+    if (TvpExpressionHelpers.IncludeThisColumn(&quot;Longitude&quot;, columnList))
+    {
+        if (Double.IsNaN(model.Coordinates.Longitude))
+        {
+            result.SetDBNull(TvpExpressionHelpers.GetOrdinal(9, &quot;Longitude&quot;, columnList));
+        }
+        else
+        {
+            result.SetDouble(TvpExpressionHelpers.GetOrdinal(9, &quot;Longitude&quot;, columnList), model.Coordinates.Longitude);
+        }
+    }
+    return result;
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>PostgreSQL uses the Npgsql COPY functionality to send multple records to the database. The COPY function may use an new, existing, or temporary table. If a period (schema specifier) exists in the table name, then a “CREATE TABLE IF NOT EXISTS” command is used, otherwise the Mapper uses “CREATE TEMP TABLE”.</p>
+<pre><code class="lang-SQL">CREATE TEMP TABLE  &quot;temp_locations&quot; (
+    &quot;locationid&quot; smallint NULL,
+    &quot;locationtypeid&quot; smallint NULL,
+    &quot;streetaddress&quot; varchar(255) NULL,
+    &quot;locality&quot; varchar(100) NULL,
+    &quot;region&quot; varchar(100) NULL,
+    &quot;postalcode&quot; varchar(25) NULL,
+    &quot;iso3166&quot; varchar(2) NULL,
+    &quot;latitude&quot; double precision NULL,
+    &quot;longitude&quot; double precision NULL); 
+
+</code></pre>
+<p>Once the table is created (if necessary), the Mapper sends the SQL command to initiate the PostgreSQL COPY command:</p>
+<pre><code class="lang-SQL">COPY &quot;temp_locations&quot; (&quot;locationid&quot;,&quot;locationtypeid&quot;,&quot;streetaddress&quot;,&quot;locality&quot;,&quot;region&quot;,&quot;postalcode&quot;,&quot;iso3166&quot;,&quot;latitude&quot;,&quot;longitude&quot;) FROM STDIN BINARY;
+</code></pre>
+<p>Finally, the Mapper opens a <code>NpgsqlDataImporter</code>. For each item in the Model List, the Mapper invokes this generated code:</p>
+<pre><code class="lang-csharp">public void SetRow(NpgsqlDataImporter importer, CustomerLocation model)
+    importer.StartRow();
+    importer.Write(model.Sequence, NpgsqlDbType.Smallint);
+    importer.Write(model.Type, NpgsqlDbType.Smallint);
+    if (model.StreetAddress == null)
+    {
+        importer.WriteNull();
+    }
+    else
+    {
+        importer.Write(model.StreetAddress, NpgsqlDbType.Varchar);
+    }
+    if (model.Locality == null)
+    {
+        importer.WriteNull();
+    }
+    else
+    {
+        importer.Write(model.Locality, NpgsqlDbType&gt;(Varchar);
+    }
+    if (model.Region == null)
+    {
+        importer.WriteNull();
+    }
+    else
+    {
+        importer.Write(model.Region, NpgsqlDbType&gt;(Varchar);
+    }
+    if (model.PostalCode == null)
+    {
+        importer.WriteNull();
+    }
+    else
+    {
+        importer.Write(model.PostalCode, NpgsqlDbType.Varchar);
+    }
+    if (model.Iso3166 == null)
+    {
+        importer.WriteNull();
+    }
+    else
+    {
+        importer.Write(model.Iso3166, NpgsqlDbType.Varchar);
+    }
+    if (Double.IsNaN((model.Coordinates.Latitude))
+    {
+        importer.WriteNull();
+    }
+    else
+    {
+        importer.Write(model.Coordinates.Latitude, NpgsqlDbType.Double)
+    };
+    if (Double.IsNaN((model.Coordinates.Longitude)
+    {
+        importer.WriteNull();
+    }
+    else
+    {
+        importer.Write(model.Coordinates.Longitude, NpgsqlDbType&gt;(Double);
+    }
+}
+</code></pre>
+<p>Now that the table “temp_locations” has the corresponding records, it only takes a straightforward SQL statement to write these values into the final table (presuming that the COPY function isn’t writing to the final destination). ArgentSea’s Batch functionality allows multiple steps to operation on the same transaction, so temporary tables are not dropped prior to SQL statement execution.</p>
+</section>
+</div>
+
+<p>Next: <a href="logging.html">Logging</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Mapping/process.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

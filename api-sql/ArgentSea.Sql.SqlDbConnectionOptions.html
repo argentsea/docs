@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class SqlDbConnectionOptions
    | ArgentSea Docs ">
-    <meta name="generator" content="docfx 2.36.2.0">
+    <meta name="generator" content="docfx 2.40.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
+              <a class="navbar-brand" href="http://www.argentsea.com">
                 <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
@@ -89,8 +89,9 @@ For example, you might configure your appsettings.json like this:<p>
 <pre><code>  &quot;SqlDbConnections&quot;: [
   {
     &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
-    &quot;SecurityKey&quot;: &quot;SecKey1&quot;,
     &quot;DataConnection&quot;: {
+      &quot;UserName&quot;: &quot;webUser&quot;,
+      &quot;Password&quot;: &quot;pwd1234&quot;,
       &quot;DataSource&quot;: &quot;localhost&quot;,
       &quot;InitialCatalog&quot;: &quot;MyDb&quot;
       }
@@ -107,7 +108,7 @@ For example, you might configure your appsettings.json like this:<p>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="../api/ArgentSea.IDbDataConfigurationOptions.html">IDbDataConfigurationOptions</a></div>
+    <div><a class="xref" href="../api/ArgentSea.IDatabaseConfigurationOptions.html">IDatabaseConfigurationOptions</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -137,7 +138,7 @@ For example, you might configure your appsettings.json like this:<p>
   <h6><strong>Assembly</strong>: ArgentSea.Sql.dll</h6>
   <h5 id="ArgentSea_Sql_SqlDbConnectionOptions_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SqlDbConnectionOptions : IDbDataConfigurationOptions</code></pre>
+    <pre><code class="lang-csharp hljs">public class SqlDbConnectionOptions : IDatabaseConfigurationOptions</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -146,7 +147,7 @@ For example, you might configure your appsettings.json like this:<p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlDbConnectionOptions_DbConnectionsInternal.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlDbConnectionOptions.DbConnectionsInternal%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlDbConnectionOptions.cs/#L30">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlDbConnectionOptions.cs/#L34">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlDbConnectionOptions_DbConnectionsInternal_" data-uid="ArgentSea.Sql.SqlDbConnectionOptions.DbConnectionsInternal*"></a>
   <h4 id="ArgentSea_Sql_SqlDbConnectionOptions_DbConnectionsInternal" data-uid="ArgentSea.Sql.SqlDbConnectionOptions.DbConnectionsInternal">DbConnectionsInternal</h4>
@@ -154,7 +155,7 @@ For example, you might configure your appsettings.json like this:<p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IDbConnectionConfiguration[] DbConnectionsInternal { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IDatabaseConnectionConfiguration[] DbConnectionsInternal { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -166,7 +167,7 @@ For example, you might configure your appsettings.json like this:<p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="../api/ArgentSea.IDbConnectionConfiguration.html">IDbConnectionConfiguration</a>[]</td>
+        <td><a class="xref" href="../api/ArgentSea.IDatabaseConnectionConfiguration.html">IDatabaseConnectionConfiguration</a>[]</td>
         <td></td>
       </tr>
     </tbody>
@@ -176,7 +177,7 @@ For example, you might configure your appsettings.json like this:<p>
     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlDbConnectionOptions_SqlDbConnections.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlDbConnectionOptions.SqlDbConnections%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/argentsea/sql/blob/master/src/SqlDbConnectionOptions.cs/#L28">View Source</a>
+    <a href="https://github.com/argentsea/sql/blob/master/src/SqlDbConnectionOptions.cs/#L32">View Source</a>
   </span>
   <a id="ArgentSea_Sql_SqlDbConnectionOptions_SqlDbConnections_" data-uid="ArgentSea.Sql.SqlDbConnectionOptions.SqlDbConnections*"></a>
   <h4 id="ArgentSea_Sql_SqlDbConnectionOptions_SqlDbConnections" data-uid="ArgentSea.Sql.SqlDbConnectionOptions.SqlDbConnections">SqlDbConnections</h4>
@@ -203,7 +204,7 @@ For example, you might configure your appsettings.json like this:<p>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="../api/ArgentSea.IDbDataConfigurationOptions.html">IDbDataConfigurationOptions</a>
+      <a class="xref" href="../api/ArgentSea.IDatabaseConfigurationOptions.html">IDatabaseConfigurationOptions</a>
   </div>
 </article>
           </div>
@@ -216,7 +217,7 @@ For example, you might configure your appsettings.json like this:<p>
                     <a href="https://github.com/argentsea/sql/new/master/apiSpec/new?filename=ArgentSea_Sql_SqlDbConnectionOptions.md&amp;value=---%0Auid%3A%20ArgentSea.Sql.SqlDbConnectionOptions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/argentsea/sql/blob/master/src/SqlDbConnectionOptions.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/argentsea/sql/blob/master/src/SqlDbConnectionOptions.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

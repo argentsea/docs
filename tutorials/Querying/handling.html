@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Handling Data Results | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Handling Data Results | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="handling-data-results">Handling Data Results</h1>
+
+<p>If you are using data mapping attributes in your Model classes, the <strong>MapReader*</strong>, <strong>MapOutput*</strong>, and <strong>MapList*</strong> methods make handling data results unnecessary. This section is for queries that use the <strong>Query*</strong> methods, which allow you to return an arbitrary object from the data input.</p>
+<p>If you are familiar with ADO.NET programming, this will be very familiar. The delegate simply receives the standard ADO.NET query results and processes them like it would in most other ADO.NET scenarios.</p>
+<p>As an example, a method with the correct signature for returning a Store model looks like this:</p>
+<pre><code class="lang-csharp">public static Store MyStoreHandler (
+    short shardId,
+    string sprocName,
+    Department department, // this is an optional custom argument
+    DbDataReader reader,
+    DbParameterCollection parameters,
+    string connectionDescription,
+    ILogger logger)
+{
+    var result = new Store();
+    // use the reader argument and/or parameters collection to set your result properties.
+    return result;
+}
+</code></pre>
+<h2 id="the-arguments">The Arguments</h2>
+<p>Both the return type (“Store”, in the example) and the optional data argument (“Department”, in the example) are generic, so they can be of any type.</p>
+<h3 id="tshard-shardid">(TShard) shardId</h3>
+<p>The shardId argument will be a default value, like null or zero, when not using a ShardSet; otherwise it will be set to the current ShardId. This value is essential when building ShardKey or ShardChild types, where the shard identity is a component of the record identity.</p>
+<h3 id="string-sprocname">(string) sprocName</h3>
+<p>This is the name of the stored procedure or SQL statement that was executed. It is provided to the procedure for logging purposes.</p>
+<h3 id="targ-optionalargument">(TArg) optionalArgument</h3>
+<p>The third argument type is a generic parameter; the type is defined when you declare the delegate. This object provides whatever external data or context that many be necessary or useful in order to create your result.</p>
+<p>If it not needed (i.e. most cases), define the type as <code>object</code>. This allows you to use the <strong>Query*</strong> overloads that do not require this parameter; in those cases, this value will be null.</p>
+<h3 id="dbdatareader-reader">(DbDataReader) reader</h3>
+<p>The reader argument is a standard data reader. You can call <code>reader.MoveNext()</code> to get the next row and <code>reader.NextResult()</code> to get the next result set. You do not need to dispose of it when you are done.</p>
+<h3 id="dbparametercollection-parameters">(DbParameterCollection) parameters</h3>
+<p>The parameters collection contains the input and output parameters for the query. ArgentSea offers a set of extension methods to simplify converting parameter values to .NET types. These are extension methods on the parameter object (not the collection).</p>
+<pre><code class="lang-csharp">var transactionId = parameters[&quot;@TransactionId&quot;].GetInteger();
+var amount = parameters[&quot;@Amount&quot;].GetNullableDecimal();
+var name = parameters[&quot;@Name&quot;].GetString();
+</code></pre>
+<h3 id="string-connectiondescription">(string) connectionDescription</h3>
+<p>The connectionDescription argument allows the logger to include the connection that raised the error or event. You should include this (and also the stored procedure or statement name) in any logging or errors in your procedures. Because your delegate could run on multiple connections, this can be essential debugging information.</p>
+<h3 id="ilogger-logger">(ILogger) logger</h3>
+<p>Finally, the logger argument allows you to write debugging, warning, and error information to the application logs. This is the same logger instance as is passed in through the various query methods.</p>
+<p>Next: <a href="batches.html">The Query Batch</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

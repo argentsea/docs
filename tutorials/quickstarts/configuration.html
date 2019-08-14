@@ -1,0 +1,491 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>QuickStart One | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="QuickStart One | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="quickstart-one">QuickStart One</h1>
+
+<p>This article will step you through a simple setup of ArgentSea for non-sharded data access. This presentation introduces concepts which are further elaborated in the <a href="sharding.html">subsequent article</a>, so this is a good orientation prior that that walkthrough too.</p>
+<p>If you get stuck or have questions, click on one of the links to the in-depth tutorial articles.</p>
+<h2 id="1-create-a-project-or-use-an-existing-one">1. Create a Project (or use an existing one)</h2>
+<p>The sample QuickStart project is <a href="https://github.com/argentsea/quickstarts">here</a>. You can reproduce the starting point by creating a new ASP.NET API project type. If you prefer to start by creating a new, empty project, ensure that appsettings.json is added.</p>
+<h2 id="2-setup-your-database">2. Setup your Database</h2>
+<p>If you are using the QuickStart1 project, a setup SQL script is including in the project; otherwise you can access it on <a href="https://github.com/argentsea/quickstarts">GitHub</a>. You can run the SQL script against the database server to create the sample databases, tables, data, etc.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>The best way to use ArgentSea is to exclusively use stored procedures, and to enforce least-privileged access by granting the logon <em>only</em> EXECUTE permissions.</p>
+<p>Going further, you might consider creating distinct schemas, one for SELECT (read) procedures and one for INSERT, UPDATE, DELETE (write) procedures. Create two users and grant each EXECUTE to one or the other schema. Besides adding additional security, this may also help validate scale-out read-only endpoints during development and testing.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>As part of a general approach to lease-privileged access, you might consider creating two database users — one for read access and the other for writes. This approach can also help validate scale-out read-only endpoints during development and testing.</p>
+</section>
+</div>
+
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>A password is embedded in the setup script (and corresponds to the credential sections below); you might consider changing this value. However, this is also a low-privileged user, so it is not a high risk if you leave things as they are.</p>
+</div>
+<h2 id="3-add-argentsea-to-your-project">3. Add ArgentSea to your project</h2>
+<p>If you have loaded the QuickStart project, you can skip this step. If you are creating a new project, use NuGet to add ArgentSea to your project by selected the package that corresponds to your database platform:</p>
+<ul>
+<li>For Microsoft SQL Server databases, use <strong>ArgentSea.Sql</strong></li>
+<li>For PostgreSQL, use <strong>ArgentSea.Pg</strong></li>
+</ul>
+<p>Both packages will automatically include the shared ArgentSea package and any other dependencies. Using both packages in the same project may work but is not a tested scenario.</p>
+<p>You can learn more about adding a reference to ArgentSea <a href="https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio">here</a>.</p>
+<h2 id="4-define-your-login-information">4. Define your Login Information</h2>
+<p>ArgentSea leverages the .NET Core configuration architecture, which means that the configuration information is combined from multiple providers. In this example, we will store most connection information in the <em>appsettings.json</em> file, but store the login password securely in a separate store.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Because the new configuration architecture in .NET core allows values to be hosted in multiple places, we can also use environment variables — which can be very useful for managing a release pipeline. In that case, we might store the server or database information there instead of <em>appsettings.json</em>. Again, the details are described in the <a href="/tutorials/configuration/configuration.md">configuration</a> tutorial.</p>
+</div>
+<p>Open the <a href="https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets">User Secrets</a> JSON configuration file by right-clicking on the project node and selecting it from the popup menu. If a User Secrets option does not appear, you may need to add the <em>Microsoft.Extensions.Configuration.UserSecrets</em> NuGet package to your project. User Secrets provides a means of keeping passwords out of your source control files.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Because the QuickStart1 sample application uses User Secrets, those following along at home with the downloaded project will still need to manually copy the credentials to the User Secrets in the sample app.</p>
+</div>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>To connect using username and password authentication, add this to your User Secrets:</p>
+<pre><code class="lang-json">{
+  &quot;SqlDbConnections&quot;: [
+    {
+      &quot;Password&quot;: &quot;Pwd123456&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Change the values, as appropriate, to represent a valid login.</p>
+<p>Configure the <em>DataSource</em> and <em>InitialCatalog</em> properties in your <em>appsettings.json</em> configuration file:</p>
+<pre><code class="lang-json">{
+  &quot;SqlDbConnections&quot;: [
+    {
+      &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
+      &quot;UserName&quot;: &quot;webUser&quot;,
+      &quot;DataSource&quot;: &quot;localhost&quot;,
+      &quot;InitialCatalog&quot;: &quot;MyDb&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Note that if you are using Windows authentication, you can just specify this in <em>appsettings.json</em> and <em>you don’t need to manage User Secrets</em>:</p>
+<pre><code class="lang-json">{
+  &quot;SqlDbConnections&quot;: [
+    {
+      &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
+      &quot;WindowsAuth&quot;: true,
+      &quot;DataSource&quot;: &quot;localhost&quot;,
+      &quot;InitialCatalog&quot;: &quot;MyDb&quot;
+    }
+  ]
+}
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>To connect using username and password authentication, add this to your User Secrets:</p>
+<pre><code class="lang-json">{
+  &quot;PgDbConnections&quot;: [
+    {
+      &quot;Password&quot;: &quot;Pwd123456&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Configure the <em>Host</em> and <em>Database</em> properties in your <em>appsettings.json</em> configuration file:</p>
+<pre><code class="lang-json">{
+  &quot;PgDbConnections&quot;: [
+    {
+      &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
+      &quot;Host&quot;: &quot;localhost&quot;,
+      &quot;Database&quot;: &quot;MyDb&quot;,
+      &quot;UserName&quot;: &quot;webuser&quot;
+    }
+  ]
+}
+
+</code></pre>
+<p>Note that if you are using Windows authentication, you can just specify this in <em>appsettings.json</em> and you don’t need to manage secrets:</p>
+<pre><code class="lang-json">{
+  &quot;PgDbConnections&quot;: [
+    {
+      &quot;DatabaseKey&quot;: &quot;MyDatabase&quot;,
+      &quot;Host&quot;: &quot;localhost&quot;,
+      &quot;Database&quot;: &quot;MyDb&quot;,
+      &quot;WindowsAuth&quot;: true
+    }
+  ]
+}
+</code></pre>
+</section>
+</div>
+
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>In a production deployment, the Credential section — entries currently placed in <a href="https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets">User Secrets</a> — should be hosted in <a href="https://aws.amazon.com/secrets-manager/">AWS Secrets Manager</a>, <a href="https://azure.microsoft.com/en-us/services/key-vault/">Azure Key Vault</a>, a secure file share, or some other secure resource.</p>
+</div>
+<h2 id="7-load-argentsea-on-application-start">7. Load ArgentSea on Application Start</h2>
+<p>ArgentSea is an injectable service, so it needs to be registered on application startup.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>Open your project’s <em>Startup</em> class. At the top, there should be the following <em>using</em> statement:</p>
+<pre><code class="lang-csharp">using ArgentSea.Sql;
+</code></pre>
+<p>Then, in the <code>Startup</code> class’ <code>ConfigureServices</code> method, add:</p>
+<pre><code class="lang-csharp">services.AddSqlServices(Configuration);
+</code></pre>
+<p>This step creates an injectable <em>SqlServices</em> object that we can consume in all of our data access clients.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>Open your project’s <em>Startup</em> class. At the top, there should be the following <em>using</em> statement:</p>
+<pre><code class="lang-csharp">using ArgentSea.Pg;
+</code></pre>
+<p>Then, in the <code>Startup</code> class’ <code>ConfigureServices</code> method, add:</p>
+<pre><code class="lang-csharp">services.AddPgServices(Configuration);
+</code></pre>
+<p>This step creates an injectable <em>SqlServices</em> object that we can consume in all of our data access clients.</p>
+</section>
+</div>
+<h2 id="8-create-a-model-class">8. Create a Model Class</h2>
+<p>A model class has properties that correspond the the fields of a data entity. ArgentSea can automatically map these properties to input or output parameters, the columns of a DataReader object, or (in SQL Server) a table-valued parameter.</p>
+<p>For example, suppose your subscriber data can be represented by a class like this:</p>
+<pre><code class="lang-csharp">using System;
+
+public class Subscriber
+{
+    public int SubscriberId { get; set; }
+
+    public string Name { get; set; }
+
+    public DateTime Expiration { get; set; }
+}
+</code></pre>
+<p>We can simply add mapping attributes to this class:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-3_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-3_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">using System;
+using ArgentSea.Sql;
+
+public class Subscriber
+{
+    [MapToSqlInt(&quot;@SubID&quot;)]
+    public int SubscriberId { get; set; }
+
+    [MapToSqlNVarChar(&quot;@SubscriberName&quot;, 255)]
+    public string Name { get; set; }
+
+    [MapToSqlDateTime2(&quot;@EndDate&quot;)]
+    public DateTime Expiration { get; set; }
+}
+</code></pre>
+<p>The “@” parameter prefix is optional — ArgentSea will add the “@” automatically for parameters and remove it automatically when reading data reader columns.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-3_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">using System;
+using ArgentSea.Pg;
+
+public class Subscriber
+{
+    [MapToPgInteger(&quot;subid&quot;)]
+    public int SubscriberId { get; set; }
+
+    [MapToPgVarchar(&quot;subname&quot;, 255, true)]
+    public string Name { get; set; }
+
+    [MapToPgTimestamp(&quot;enddate&quot;)]
+    public DateTime? Expiration { get; set; }
+}
+</code></pre>
+</section>
+</div>
+
+<p>Note that the property name <em>does not</em> need to match the parameter or column name. It is not uncommon for database naming conventions to differ from .NET property naming conventions.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>ArgentSea assumes consistent naming in your data parameters and results. A project with “consistently inconsistent” parameters or column names will find the ArgentSea Mapper of little practical use.</p>
+</div>
+<h2 id="5-define-the-sql-implementation">5. Define the SQL implementation</h2>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-4">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-4_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-4_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-4_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-4_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-4_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>In the sample <a href="https://github.com/argentsea/quickstarts/blob/master/QuickStart1.Sql/QuickStart1.Sql/Sql/SetupDB.sql">QuickStart</a>, the stored procedure looks like this:</p>
+<pre><code class="lang-SQL">CREATE PROCEDURE ws.GetSubscriber
+  @SubId int,
+  @SubName nvarchar(255) OUTPUT,
+  @EndDate datetime2 OUTPUT
+AS
+BEGIN
+  SELECT @SubName = Subscribers.SubName, 
+    @EndDate = Subscribers.EndDate
+  FROM dbo.Subscribers
+  WHERE Subscribers.SubId = @SubId;
+END;
+</code></pre>
+<p>ArgentSea deliberately tries minimize mixing SQL and .NET code; ideally, only stored procedure names are compiled into the project. Further, to help track which procedures are in use, ArgentSea recommends centralizing the procedure names in a single static <code>Queries</code> class:</p>
+<pre><code class="lang-csharp">public static class Queries
+{
+    public static QueryProcedure GetSubscriber =&gt; new QueryProcedure(&quot;ws.GetSubscriber&quot;, new[] { &quot;@SubId&quot;, &quot;SubName&quot;, &quot;EndDate&quot; });
+}
+</code></pre>
+<p>Finally, the application needs a repository class to actually retrieve the data. In the sample application, this is called the <em>SubscriberStore</em>. This is the class that will call the database stored procedure or SQL statement and return the specified subscriber. If you are creating your own project, you need to construct something similar.</p>
+<p>Our implementation of the data access code requires only a few lines:</p>
+<pre><code class="lang-csharp">public class SubscriberStore
+{
+    private readonly SqlDatabases _dbs;
+    private readonly ILogger&lt;SubscriberStore&gt; _logger;
+    public SubscriberStore(SqlDatabases dbs, ILogger&lt;SubscriberStore&gt; logger)
+    {
+        _dbs = dbs;
+        _logger = logger;
+    }
+
+    public async Task&lt;Subscriber&gt; GetSubscriber(int subscriberId, CancellationToken cancellation)
+    {
+        var db = _dbs[&quot;MyDatabase&quot;];
+        var prms = new ParameterCollection()
+            .AddSqlIntInputParameter(&quot;@SubId&quot;, subscriberId)
+            .CreateOutputParameters&lt;Subscriber&gt;(_logger);
+        return await db.Read.MapOutputAsync&lt;Subscriber&gt;(Queries.GetSubscriber, prms, cancellation);
+    }
+}
+</code></pre>
+<p>Because the “@SubId” parameter was manually created, the when the Mapper is enlisted to automatically create all the output parameters, it knows not to duplicate the “@SubId” parameter.</p>
+<p>The <code>MapOutputAsync</code> method retrieves the data and creates the model instance automatically.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q-4_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>Create a new folder call “SQL” in your project. In that folder, create a new file named “GetSubscriber.psql”. In Visual Studio, open the file properties and ensure the <em>Build Action</em> attribute is set to “None” and the <em>Copy to Output Directory</em> attribute is set to “Copy if newer”.</p>
+<p>In the simple <a href="https://github.com/argentsea/quickstarts/blob/master/QuickStart1.Pg/QuickStart1.Pg/Sql/GetCustomer.psql">QuickStart query</a>, the statement looks like this:</p>
+<pre><code class="lang-SQL">SELECT subscribers.subid, subscribers.subname, subscribers.enddate 
+FROM qs1.subscribers 
+WHERE subscribers.subid = @subid;
+</code></pre>
+<p>ArgentSea deliberately tries minimize mixing SQL and .NET code by storing SQL in files loaded at runtime. To help track which SQL statements are in use, ArgentSea recommends centralizing the procedure names in a single static <code>Queries</code> class:</p>
+<pre><code class="lang-csharp">public static class Queries
+{
+    public static QueryStatement GetSubscriber =&gt; _getSubscriber.Value;
+    private static readonly Lazy&lt;QueryStatement&gt; _getSubscriber = QueryStatement.Create(&quot;GetSubscriber&quot;, new[] { &quot;subid&quot; });
+}
+</code></pre>
+<p>Because want to load the file only when it’s needed and we need cache the file without multiple thread all doing the same thing, our declaration of each SQL statement requires two lines of code.</p>
+<p>Finally, the application needs a repository class to actually retrieve the data. In the sample application, this is called the <em>SubscriberStore</em>. This is the class that will invoke the query and return the specified subscriber. If you are creating your own project, you need to construct something similar.</p>
+<p>Our implementation of the data access code requires only a few lines:</p>
+<pre><code class="lang-csharp">public class SubscriberStore
+{
+    private readonly PgDatabases.Database _db;
+    private readonly ILogger&lt;SubscriberStore&gt; _logger;
+
+    public SubscriberStore(PgDatabases dbs, ILogger&lt;SubscriberStore&gt; logger)
+    {
+        _db = dbs[&quot;MyDatabase&quot;];
+        _logger = logger;
+    }
+
+    public async Task&lt;Subscriber&gt; GetSubscriber(int subscriberId, CancellationToken cancellation)
+    {
+        var prms = new ParameterCollection()
+            .AddPgIntegerInputParameter(&quot;subid&quot;, subscriberId);
+        return await _db.Read.MapReaderAsync&lt;Subscriber&gt;(Queries.GetSubscriber, prms, cancellation);
+    }
+}
+</code></pre>
+<p>Because the “subid” parameter was manually created, the when the Mapper is enlisted to automatically create all the output parameters, it knows not to duplicate the “subid” parameter.</p>
+<p>The <code>MapReaderAsync</code> method retrieves the data and creates the model instance automatically.</p>
+</section>
+</div>
+
+<p>The ArgentSea database service is injected into the <em>SubscriberStore</em> class by the .NET framework. The <em>SubscriberStore</em> itself is in turn injected into the controller. Don’t forget to add the <em>SubscriberStore</em> class to <code>services.Configure()</code> in Startup, so that injection works.</p>
+<pre><code class="lang-csharp">public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    services.AddSingleton&lt;SubscriberStore&gt;();
+    ...
+}
+</code></pre>
+<p>The controller for a web API example, can be very simple:</p>
+<pre><code class="lang-csharp">[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class SubscriberController : ControllerBase
+{
+    private readonly SubscriberStore _store;
+    private readonly ILogger&lt;SubscriberController&gt; _logger;
+
+    public SubscriberController(SubscriberStore store, ILogger&lt;SubscriberController&gt; logger)
+    {
+        _store = store;
+        _logger = logger;
+    }
+
+    // GET api/subscriber/5
+    [HttpGet(&quot;{id}&quot;)]
+    public async Task&lt;ActionResult&lt;Subscriber&gt;&gt; Get(int id, CancellationToken cancellation)
+    {
+        var result = await _store.GetSubscriber(id, cancellation);
+        if (result is null)
+        {
+            return NotFound();
+        }
+        return result;
+    }
+}
+</code></pre>
+<p>Due to the work of the Mapper, the controller code would not increase in complexity even if the model had a <em>many</em> more properties, each mapped to a parameter or result column.</p>
+<p>You should be able to build and run your project. You can test the web service by specifying http://&lt;projectUrl&amp;gr;/api/subscriber/1.</p>
+<p>The QuickStart code has a test project that validates that the web service returns the expected results.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

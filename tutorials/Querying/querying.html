@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Queries | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Queries | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="queries">Queries</h1>
+
+<p>The twin goals of performance and supportability help drive ArgentSea’s approach to SQL queries. One of the areas in which ArgentSea’s design is most distinctive is its attempt to avoid <em>tight coupling</em> between the application and the database.</p>
+<div>
+    <div style="padding-left:10px;padding-right:10px;display:flex;flex-flow:row wrap;justify-content:space-around;">
+        <div style="display:flex;flex-direction:column;">
+            <div style="display:flex;flex-direction:row;">
+                <img style="height:75px;width:75px;" src="/images/tightly-coupled.svg">
+                <div>
+                    <h4>Tight Coupling</h4>
+                    <p>
+                        <i>Tight coupling</i> describes when a system’s integration with a second system depends on the <i>internal implementation</i> of the other system. Often the result of haphazard design, this interdependency makes it nearly impossible to change systems or even improve the implementation due to the difficulty of fully accounting for potential inter-system impact.
+                    </p>
+                    <p>
+                        When your database client code depends upon how tables and columns are implemented, the application layer and database layer have a type of tight coupling. ArgentSea tries to minimize this by ensuring that SQL is segregated and explicit.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div style="display:flex;width:98%;flex-direction:column;">
+            <div style="display:flex;flex-direction:row;">
+                <img style="height:75px;width:75px;" src="/images/loosely-coupled.svg">
+                <div>
+                    <h4>Loose Coupling</h4>
+                    <p>
+                    <i>Loosely coupled</i> systems have well-defined interfaces. Because of this, you can change the <i>implementation</i> as long as you maintain the interface “contract”. These systems are more robust, testable, and manageable. Because of the well-defined interface between services, systems can be optimized without concern about inadvertent downstream impacts.
+                    </p><p>
+                    ArgentSea’s use of static, parameterized queries are intended to make the data “contract” as explicit as possible, and managed independently of application code. The goal is to enable the changing of database structures — you can rewrite queries, partition tables, add hints, materialize views, and more — and as long as the same parameters are provided and the same results returned, the application should not break.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>To keep database interactions as manageable as possible, ArgentSea seeks to keep SQL <em>static</em>, <em>consolidated</em>, and <em>segregated</em>.</p>
+<h4 id="static">Static</h4>
+<p>ArgentSea discourages dynamic SQL queries. Dynamic SQL may have slightly poorer performance due to the overhead of a SQL compiler, and the potential for <a href="https://www.owasp.org/index.php/SQL_injection">SQL injection</a> may make some dynamic SQL less secure. Primarily, though, it can be difficult to parse, understand, and — especially — improve SQL created from a C# object model. This is why ArgentSea is intended to work with static SQL and <a href="setparameters.html">parameters</a>.</p>
+<h4 id="consolidated">Consolidated</h4>
+<p>Large applications routinely have “orphaned” procedures, tables, views, etc. As functionality changes, once necessary objects are no longer required. Application developers often have no easy way to confidently drop these objects, yet there is a continuing maintenance cost to preserving them. By consolidating SQL queries, ArgentSea helps provide visibility to query usage. Especially helpful is Visual Studio’s reference count: if the count is zero, the query is no longer in use.</p>
+<h4 id="segregated">Segregated</h4>
+<p>ArgentSea avoids compiling SQL implementation code into application binaries. Well-written application code, running in the same environment, will likely continue to run well indefinitely; however, a query that initially worked efficiently may need to be rewritten as the data set grows or cardinality changes. By separating SQL and C# files, queries can be adapted as data changes over the lifetime of an application.</p>
+<p>This also encourages SQL for data-domain work, and .NET for application work. People expert at optimizing SQL do not always welcome dealing with C# projects and concomitant build processes.</p>
+<p>Next: <a href="sql.html">Creating SQL Queries</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

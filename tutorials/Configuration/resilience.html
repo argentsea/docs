@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Resilience Strategies | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Resilience Strategies | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="resilience-strategies">Resilience Strategies</h1>
+
+<p>Unexpected failures happen, and business-critical applications must be able to recover gracefully. ArgentSea uses <a href="http://www.thepollyproject.org/">Polly</a> to offer a combination of retry logic and circuit breaking.</p>
+<p>The properties specific to a resilience strategy are:</p>
+<pre><code class="lang-json">{
+  &quot;CircuitBreakerFailureCount&quot;: 20,
+  &quot;CircuitBreakerTestInterval&quot;: 5000,
+  &quot;ConnectTimeout&quot;: 5,
+  &quot;RetryCount&quot;: 6,
+  &quot;RetryInterval&quot;: 256,
+  &quot;RetryLengthening&quot;: &quot;Fibonacci&quot;,
+}
+</code></pre>
+<p>If no retry or circuit breaking properties are configured, ArgentSea uses a default resilience strategy using automatic retries and circuit breaking. Like everything else, these values participate in the ArgentSea Hereditary Configuration Hierarchy — you can set these values globally (most likely) or at any level down to the individual Read or Write connection.</p>
+<h2 id="retries">Retries</h2>
+<p>Retries occur on errors that are defined as <em>transient</em>. A network interruption may quickly resolve itself, so it makes sense to retry after a short interval; it doesn’t make sense to retry after a permission exception. (The list of errors defined as <em>transient</em> is in the provider-specific implementation of IDataProviderServiceFactory. You can view this in the source code).</p>
+<p>The properties that define the retry behavior are:</p>
+<ul>
+<li>The <code>RetryCount</code> setting determines how many times the connection retries before aborting and raising an error back to the caller.</li>
+<li>The <code>RetryInterval</code> determines the length of time (in milliseconds) between retries.</li>
+<li>The <code>RetryLengthening</code> value can add an additional pause between subsequent retries.</li>
+</ul>
+<p>Presumably, if the system encounters a transient error, it should retry quickly, then, if the retry is not successful, it should wait a bit longer for the error to clear before retrying again. The <code>RetryLengthening</code> value is what determines how much longer it will pause on subsequent retries before giving up.</p>
+<p>The <a href="/api/ArgentSea.DataResilienceConfiguration.SequenceLengthening.html">Retry Sequence Lengthening</a> values are:</p>
+<ul>
+<li><strong>Linear</strong> - each retry is the same duration as specified in <code>RetryInterval</code></li>
+<li><strong>Fibonacci</strong> - The first retry is at <code>RetryInterval</code>, each subsequent retry interval pauses for the duration of the previous two combined.</li>
+<li><strong>HalfSquare</strong> - the retry count number is squared, then divided by two, then multiplied by <code>RetryInterval</code></li>
+<li><strong>Squaring</strong> - each retry attempt doubles the duration of the previous one.</li>
+</ul>
+<p>You can visualize the impact of <code>RetryLengthening</code> with these charts:</p>
+<p><img src="../../images/retrygraphs/linear.jpg" alt="Linear"></p>
+<p><img src="../../images/retrygraphs/halfsquare.jpg" alt="HalfSquare"></p>
+<p><img src="../../images/retrygraphs/fibonacci.jpg" alt="Fibonacci"></p>
+<p><img src="../../images/retrygraphs/doubling.jpg" alt="Doubling"></p>
+<p>If a Resilience Strategy is not defined, ArgentSea will use a default strategy. Currently, this is:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RetryCount</td>
+<td>6 tries</td>
+</tr>
+<tr>
+<td>RetryInterval</td>
+<td>256 milliseconds</td>
+</tr>
+<tr>
+<td>Lengthening</td>
+<td>Fibonacci</td>
+</tr>
+<tr>
+<td>(Connect) Timeout</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>SQL Server’s ADO.NET provider also offers automatic retries. ArgentSea disables this in lieu of its own functionality, which logs these automatic retries. This valuable environment diagnostic information should not be invisible.</p>
+</div>
+<h3 id="connection-timeout">Connection Timeout</h3>
+<p>The connection timeout value is critical to determining the duration of connection attempts before failure. The ADO.NET default of 15 seconds is far too long, so the ArgentSea default is 2 seconds. Datacenter connections are generally resolved in that time unless something is wrong. If you have a WAN or high-latency connection, you should consider increasing this value.</p>
+<p>It is not guaranteed that any defaults will remain unchanged in future versions.</p>
+<p>Note that a high <code>RetryCount</code> and/or connection timeout could create a very long delay before a connection is allowed to ultimately fail.</p>
+<h2 id="circuit-breaking">Circuit Breaking</h2>
+<p>When a database connection is unavailable, this can cause serious downstream problems. Processes may pile-on further requests even while earlier requests are simply waiting
+to time out. As this continues, the queue of backlogged requests becomes so large that the caller itself can manage no more. The bottleneck will then start blocking other systems too. What started as a broken connection to a single database eventually becomes fatal to the entire system!</p>
+<p>This is the reason to add a “circuit breaker” — a fail-fast mechanism to ensure that callers do not wait needlessly for queued connections that are unlikely to succeed, and which are blocking other processes too.</p>
+<p>Once the circuit breaker is tripped, subsequent connections will fail <em>immediately</em>. This prevents queuing, bottleneck blocking, and downstream failures. While tripped, the circuit breaker will periodically allow a single transaction to proceed; if it successful the circuit breaker is reopened. In this way, a system restoration will automatically close the circuit breaker too so that connections can resume.</p>
+<p>The <code>CircuitBreakerFailureCount</code> value determines how many sequential failures will trigger the circuit breaker. The <code>CircuitBreakerTestInterval</code> value determines how often (in milliseconds) the circuit breaker will allow a single transaction through.</p>
+<h2 id="data-failover-for-high-availability-and-disaster-recovery">Data Failover for High-Availability and Disaster Recovery</h2>
+<p>ArgentSea itself does not currently include specific functionality that enables an automatic failover to a standby database server. This is not to say that high-availability or disaster-recovery solutions cannot be used, only that ArgentSea is not opinionated about whatever approach you choose.</p>
+<p>Often, failover is managed through DNS changes or via configuration of the .NET data provider (such as the <em>FailoverPartner</em> property), which may not even require client connection string changes. It would be difficult to build a robust strategy that predictably worked well with the variations of approaches possible. Furthermore, business continuity plans typically do not expect disaster recovery plans to be fully “automatic” at the individual client level; a lot of infrastructure must be coordinated in a robust failover, and a rogue client should not failover without a coordinated signal.</p>
+<p>Consequently, ArgentSea makes it <em>possible</em> to easily build failover capability, but does not natively offer this. All of the connection properties in the configuration hierarchy are updatable. This allows you to build failover logic that updates the connection information — server endpoints, database names, etc. — given whatever trigger you prefer.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Once created, both the <a href="https://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">ShardSets</a> and <a href="https://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases</a> singleton collections themselves are immutable, although any connection property in the configuration hierarchy can still be updated. In other words, after the Hereditary Configuration Hierarchy is created, you cannot change the layout of the hierarchy, but the connection properties of the members can still be changed and will update the client connections. Child objects will also continue to inherit any updates from their parents. Of course, updating connection properties is not fully thread-safe, but it will not impact queries that have already started.</p>
+</div>
+<p>The configuration objects are <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-2.1">.NET Options</a> classes, which are obtained through an <code>IOptions&lt;&gt;</code> injection. One possible point of confusion is that the you reference objects in the <a href="https://docs.argentsea.com/api/ArgentSea.ShardSetsBase-2.DataConnection.html">ShardSets</a> and <a href="https://docs.argentsea.com/api/ArgentSea.DatabasesBase-1.html">Databases</a> <em>collections</em> by their (string) key; however, the Options objects themselves originate as <em>arrays</em> that reflect your configuration layout. You must use an integer index to reference a shard set or connection. The value of this index depends on the order in your configuration files and the order in which they are loaded. In other words, you can verify the configuration options object by checking the key property, but you cannot use the key as an indexer.</p>
+<p>Next: <a href="loading.html">Loading the Configuration</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Configuration/resilience.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

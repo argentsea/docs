@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Setting Parameters | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Setting Parameters | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="setting-parameters">Setting Parameters</h1>
+
+<p>With the ArgentSea framework, you need to set parameter values <em>before</em> a connection or command is created. The ADO.NET standard parameter collections cannot be created without a command object host. To fill this need, ArgentSea provides a <a href="/api/ArgentSea.QueryParameterCollection.html">QueryParameterCollection</a> object, which is simply a collection of ADO.NET DbParameters. This object allow you to create an instance with a simple <code>new</code> statement.</p>
+<pre><code class="lang-csharp">var parameters = new QueryParameterCollection();
+</code></pre>
+<p>ArgentSea provides a variety of extension methods to work with the parameters collection.</p>
+<ul>
+<li>Methods to easily add parameters to any parameters collection</li>
+<li>Methods to simplify obtaining values from parameters.</li>
+<li>Methods to Map Models properties to parameters.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Parameter names are implicitly normalized. On SQL Server this means always ensuring a “@” prefix. On PostgreSQL, future versions might automatically convert to lowercase.</p>
+</div>
+<h2 id="creating-parameters-with-extension-methods">Creating Parameters with Extension Methods</h2>
+<p>ArgentSea offers a set of extension methods that simplify the code required to optimally create and populate parameters and also handle database nulls.</p>
+<p>The methods to add parameters to a collection are provider-specific, since they are converting .NET types to database types. This means that the extension methods won’t appear unless you have a <code>using</code> statement referencing the provider.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>The QueryParameterCollection and SqlParameterCollection inherit from the same base class. Not only can you use these methods on ArgentSea’s <code>QueryParameterCollection</code>, but you can also use them on the standard ADO.NET <code>SqlCommand.Parameters</code> property.</p>
+</div>
+<p>To access the extension methods, you need the following <code>using</code> statement:</p>
+<pre><code class="lang-csharp">using ArgentSea.Sql;
+</code></pre>
+<p>Adding a correctly typed parameter now requires only one line:</p>
+<pre><code class="lang-csharp">parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId);
+parameters.AddSqlDecimalInputParameter(&quot;@Amount&quot;, amount, 16, 2);
+parameters.AddSqlNVarCharInputParameter(&quot;@Name&quot;, name, 255);
+parameters.AddSqlFloatOutputParameter(&quot;@Temperature&quot;);
+</code></pre>
+<p>These methods all support a fluent api, so these can be written instead as:</p>
+<pre><code class="lang-csharp">var parameters = new QueryParameterCollection()
+    .AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId)
+    .AddSqlDecimalInputParameter(&quot;@Amount&quot;, amount, 16, 2)
+    .AddSqlNVarCharInputParameter(&quot;@Name&quot;, name, 255)
+    .AddSqlRealOutputParameter(&quot;@Temperature&quot;);
+</code></pre>
+<p>And these methods also work directly on the data provider’s command parameters collection.</p>
+<pre><code class="lang-csharp">cmd.Parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId)
+    .AddSqlDecimalInputParameter(&quot;@Amount&quot;, amount, 16, 2)
+    .AddSqlNVarCharInputParameter(&quot;@Name&quot;, name, 255)
+    .AddSqlRealOutputParameter(&quot;@Temperature&quot;);
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<div class="NOTE">
+<h5>Note</h5>
+<p>The QueryParameterCollection and NpgsqlParameterCollection inherit from the same base class. Not only can you use these methods on ArgentSea’s <code>QueryParameterCollection</code>, but you can also use them on the standard ADO.NET <code>NpgsqlCommand.Parameters</code> property.</p>
+</div>
+<p>To access the extension methods, you need the following <code>using</code> statement:</p>
+<pre><code class="lang-csharp">using ArgentSea.Pg;
+</code></pre>
+<p>Adding a correctly typed parameter now requires only one line:</p>
+<pre><code class="lang-csharp">parameters.AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId);
+parameters.AddPgDecimalInputParameter(&quot;amount&quot;, amount, 16, 4);
+parameters.AddPgVarcharInputParameter(&quot;name&quot;, name, 255);
+parameters.AddPgDoubleOutputParameter(&quot;temperature&quot;);
+</code></pre>
+<p>These methods all support a fluent api, so these can be written instead as:</p>
+<pre><code class="lang-csharp">var parameters = new QueryParameterCollection()
+    .AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId)
+    .AddPgDecimalInputParameter(&quot;amount&quot;, amount, 16, 2)
+    .AddPgVarcharInputParameter(&quot;name&quot;, name, 255)
+    .AddPgDoubleOutputParameter(&quot;temperature&quot;);
+</code></pre>
+<p>And these methods also work directly on the data provider’s command parameters collection.</p>
+<pre><code class="lang-csharp">cmd.Parameters..AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId)
+    .AddPgDecimalInputParameter(&quot;amount&quot;, amount, 16, 2)
+    .AddPgVarcharInputParameter(&quot;name&quot;, name, 255)
+    .AddPgDoubleOutputParameter(&quot;temperature&quot;);
+</code></pre>
+</section>
+</div>
+
+<p>Where appropriate, the methods have overloads that accept nullable value types. When the nullable type is null, the parameter will be set to a database Null value. If you are not using the Nullable overloads, then the values Guid.Empty, double.NaN, and float.NaN will also be saved as database Nulls. Likewise, null strings will be set to database Nulls, but empty strings will save as zero-length strings. The extension methods accepting string values have a max length argument, and those converting to Ansi database values have a code page parameter. The decimal methods have arguments for specifying precision and scale.</p>
+<h2 id="creating-parameters-with-the-mapper">Creating Parameters with the Mapper</h2>
+<p>The Mapper uses Model property attributes to automatically generate code that is much like what would be created in the previous section.</p>
+<p>Assuming that the Model (in this example, a “Store” class) has Mapping attributes associated with each of its properties, you can render all the corresponding input parameters and set their respective values with:</p>
+<pre><code class="lang-csharp">parameters.CreateInputParameters&lt;Store&gt;(store, logger);
+</code></pre>
+<p>This one line of code is much easier than individually coding the creation of each parameter and setting each value.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>You can do something similar with output parameters. Because you will probably need at least one input parameter (likely a key), set that first. Then, when you generate the output parameters the Mapper will not duplicate this existing parameter with a redundant output parameter.</p>
+<pre><code class="lang-csharp">parameters.AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId);
+parameters.CreateOutputParameters&lt;Store&gt;(logger);
+// Again, these methods all support a fluent api, so this can be written instead as:
+var parameters = new QueryParameterCollection()
+    .AddSqlIntInputParameter(&quot;@TransactionId&quot;, transactionId)
+    .CreateOutputParameters&lt;Store&gt;(logger);
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<p>Although ArgentSea can set and retrieve PostgreSQL output parameters, it is <a href="http://www.npgsql.org/doc/basic-usage.html#stored-functions-and-procedures">not a recommended practice</a>.</p>
+<p>If you are determined to use output parameters, here is an example:</p>
+<pre><code class="lang-csharp">parameters.AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId);
+parameters.CreateOutputParameters&lt;Store&gt;(logger);
+// Again, these methods all support a fluent api, so this can be written instead as:
+var parameters = new QueryParameterCollection()
+    .AddPgIntegerInputParameter(&quot;transactionid&quot;, transactionId)
+    .CreateOutputParameters&lt;Store&gt;(logger);
+</code></pre>
+</section>
+</div>
+
+<p>Of course, you can always add parameters using standard ADO.NET syntax.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">var parameter = new System.Data.SqlClient.SqlParameter();
+parameter.SqlDbType = System.Data.SqlDbType.Int;
+parameter.Value = transactionId;
+command.Parameters.Add(parameter);
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">var parameter = new Npgsql.NpgsqlParameter();
+parameter.NpgsqlDbType = NpgsqlType.Integer;
+parameter.Value = transactionId;
+command.Parameters.Add(parameter);
+</code></pre>
+</section>
+</div>
+
+<p>This may be useful for types not yet supported by ArgentSea.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>As you define parameters in your queries, naming them as consistently as possible will make using the Mapper easy.</p>
+</div>
+<p>Next: <a href="fetching.html">Fetching Data</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Querying/setparameters.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

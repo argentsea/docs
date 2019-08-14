@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Simplifying Your Data Access Code | ArgentSea Docs </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Simplifying Your Data Access Code | ArgentSea Docs ">
+    <meta name="generator" content="docfx 2.40.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="http://www.argentsea.com">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="simplifying-your-data-access-code">Simplifying Your Data Access Code</h1>
+
+<p>As per standard practice in .NET Core, any data repository class can use the ArgentSea data access component by having the service injected into its constructor.</p>
+<p>For example, requesting the databases collection in your data access class is straightforward:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+  public MyDataAccessStore(SqlDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+     _dbs = dbs;  // capturing injected SqlDatabases collection
+    ...
+</code></pre>
+<p>The injected data access component allows the class to access any database in the SqlDatabases connection. This means that you would need to specify the collection key to access a particular database or shard set.</p>
+<p>In most cases, a class will only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+    private readonly SqlDatabases.DataConnection _data;
+
+    public MyDataAccessStore(SqlDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+    {
+      _data = dbs[&quot;MyConnectionKey&quot;];  // capturing relevant database
+      ...
+</code></pre>
+<p>Setup this way, subsequent calls to the SQL database can be on methods directly on the <code>_data</code> object. Now, calls within the class do not need to specify a key.</p>
+</section>
+<section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+  private readonly PgDatabases  _dbs;
+
+  public MyDataAccessStore(PgDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+     _dbs = dbs;   // capturing injected PgDatabases collection
+    ...
+
+</code></pre>
+<p>The injected data access component allows the class to access any database in the PgDatabases connection. This means that you would need to specify the collection key to access a particular database or shard set.</p>
+<p>In most cases, a class will only access a <em>single</em> data source, so, to simplify the data access code, you can instead store only the relevant connection instance:</p>
+<pre><code class="lang-csharp">public class MyDataAccessStore
+{
+  private readonly PgDatabases.DataConnection _data;
+
+  public MyDataAccessStore(PgDatabases dbs, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+    _data = dbs[&quot;MyConnectionName&quot;]; // capturing relevant database
+    ...
+</code></pre>
+<p>Setup this way, calls to the SQL database (or shard set) can be on methods directly on the <code>_data</code> object. Now, calls within the class do not need to specify a key.</p>
+</section>
+</div>
+<h2 id="simplifying-the-shardid-generic-type">Simplifying The ShardId Generic Type</h2>
+<p>The <code>ShardSets</code> object has even more need of simplification. As with Databases, a single class typically does not need to access multiple ShardSets, so one can follow the same approach as with the Databases example to reference only the relevant ShardSet within your class.</p>
+<p>The other ShardSet complexity is the need to repeatedly declare the <em>ShardId</em> type. Within your project, this will always be the same value, but programming against the ArgentSea library directly means declaring the type over and over again.</p>
+<p>There are two solutions to this:</p>
+<ul>
+<li>Use the <code>using</code> statement to alias the ShardSet declaration.</li>
+<li>Declare classes in your project which inherit from ShardSet, ShardKey, and ShardChild, but with the generic defined. Use these classes in your project.</li>
+</ul>
+<h3 id="using-using">Using “using”</h3>
+<p>As an example of the first approach, to simplify calling a ShardSet <em>within a single file</em>, simply add these <code>using</code> statements:</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-1_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-1_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<pre><code class="lang-csharp">using ShardSets = ArgentSea.Sql.SqlShardSets&lt;byte&gt;;
+// and/or
+using ShardSet = ArgentSea.Sql.SqlShardSets&lt;byte&gt;.ShardDataSet;
+</code></pre>
+<p>This example assumes a ShardId type of <em>byte</em>; replace this as appropriate.</p>
+<p>An example of how this might be used in the same class we showed before:</p>
+<pre><code class="lang-csharp">using ShardSets = ArgentSea.Sql.SqlShardSets&lt;byte&gt;;
+using ShardSet = ArgentSea.Sql.SqlShardSets&lt;byte&gt;.ShardDataSet;
+
+public class MyDataAccessStore
+{
+  private readonly ShardSet _data;
+
+  public MyDataAccessStore(ShardSets shards, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+    _data = shards[&quot;MyShardSetName&quot;]; //select relevant shard set
+    ...
+
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">using ShardSets = ArgentSea.Pg.PgShardSets&lt;short&gt;;
+// and/or
+using ShardSet = ArgentSea.Pg.PgShardSets&lt;short&gt;.ShardDataSet;
+</code></pre>
+<p>This example assumes a ShardId type of <em>short</em>; replace this as appropriate.</p>
+<p>An example of how this might be used in the same class we showed before:</p>
+<pre><code class="lang-csharp">using ShardSets = ArgentSea.Pg.PgShardSets&lt;short&gt;;
+using ShardSet = ArgentSea.Pg.PgShardSets&lt;short&gt;.ShardDataSet;
+
+public class MyDataAccessStore
+{
+  private readonly ShardSet _data;
+
+  public MyDataAccessStore(ShardSets shards, ILogger&lt;MyDataAccessStore&gt; logger)
+  {
+    _data = shards[&quot;MyShardSetName&quot;]; //select relevant shard set
+    ...
+
+</code></pre>
+</section>
+</div>
+
+<p>The downside to the <code>using</code> approach is that it works for only the current file.</p>
+<h3 id="child-classes">Child Classes</h3>
+<p>By creating a local class that inherits from the ArgentSea generic class, you can simplify the shard set reference throughout your project.</p>
+<div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-sql" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-sql" data-tab="tabid-sql" tabindex="0" aria-selected="true">SQL Server</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_CeZOj-G++Q-2_tabid-pg" role="tab" aria-controls="tabpanel_CeZOj-G++Q-2_tabid-pg" data-tab="tabid-pg" tabindex="-1">PostgreSQL</a>
+</li>
+</ul>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
+
+<p>These are the classes you might create in your SQL project to simplify the ShardSet within our project.</p>
+<pre><code class="lang-csharp">public class MyShardSets : SqlShardSets&lt;byte&gt;
+{
+  public SqlShardSets(
+    IOptions&lt;SqlShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
+    IOptions&lt;SqlGlobalPropertiesOptions&gt; globalOptions,
+    ILogger&lt;SqlShardSets&lt;TShard&gt;&gt; logger
+  ) : base(configOptions, globalOptions, logger)
+    {
+        //
+    }
+}
+
+public class MyShardKey : ShardKey&lt;byte&gt;
+{
+    //
+}
+
+public class MyShardChild : ShardChild&lt;byte&gt;
+{
+    //
+}
+
+</code></pre>
+</section>
+<section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
+
+<pre><code class="lang-csharp">public class MyShardSets : PgShardSets&lt;short&gt;
+{
+  public SqlShardSets(
+    IOptions&lt;PgShardConnectionOptions&lt;TShard&gt;&gt; configOptions,
+    IOptions&lt;PgGlobalPropertiesOptions&gt; globalOptions,
+    ILogger&lt;PgShardSets&lt;TShard&gt;&gt; logger
+  ) : base(configOptions, globalOptions, logger)
+    {
+        //
+    }
+}
+
+public class MyShardKey : ShardKey&lt;short&gt;
+{
+    //
+}
+
+public class MyShardChild : ShardChild&lt;short&gt;
+{
+    //
+}
+
+</code></pre>
+</section>
+</div>
+
+<p>This approach will be helpful in reducing the number of times the generic <em>ShardId</em> type must be specified in your project code.</p>
+<p>Next: <a href="../Mapping/mapping.html">Data Mapping</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/argentsea/docfx/blob/master/tutorials/Configuration/simplifying.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
