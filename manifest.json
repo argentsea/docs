@@ -831,7 +831,7 @@
       "output": {
         ".html": {
           "relative_path": "reference/apis.html",
-          "hash": "A8W2jhr5Fxp9nxUQdC4IeQ=="
+          "hash": "cFZxrIlypyU4nlyVijWAkQ=="
         }
       },
       "is_incremental": false,
@@ -951,7 +951,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Mapping/complexattributes.html",
-          "hash": "xD0AncF/xSXuLt1IuGXAFA=="
+          "hash": "AeQHXaM2EeWQvM8LYdRXhA=="
         }
       },
       "is_incremental": false,
@@ -963,7 +963,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Mapping/logging.html",
-          "hash": "0hO1AwtsZLOTm3OqtjrwLA=="
+          "hash": "4bZKzDhie3sXLVGlykH54g=="
         }
       },
       "is_incremental": false,
@@ -987,7 +987,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Mapping/process.html",
-          "hash": "jaI9ML51iEmMss0kwRRDLQ=="
+          "hash": "ET6Omd2YvE9BJDnGoZeW5g=="
         }
       },
       "is_incremental": false,
@@ -1011,7 +1011,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Querying/batches.html",
-          "hash": "/E1L6jbIcQAFnaBjpEAldQ=="
+          "hash": "hck5xjp1ClzMaAcfcd3EyQ=="
         }
       },
       "is_incremental": false,
@@ -1023,7 +1023,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Querying/fetching.html",
-          "hash": "dskJQDku10eC2fRszs1Xkw=="
+          "hash": "a2sm6gpOEZ8A9CKTpBP1gg=="
         }
       },
       "is_incremental": false,
@@ -1035,7 +1035,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Querying/handling.html",
-          "hash": "bBXwmzdab93QNG85+gSCUA=="
+          "hash": "HNginuqtrrbF/TGNIjSWnA=="
         }
       },
       "is_incremental": false,
@@ -1107,7 +1107,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Sharding/sharding.html",
-          "hash": "UF0oSryar4djwHurg+RLGg=="
+          "hash": "qFK1a3mwz2HqLqfJDMkh4g=="
         }
       },
       "is_incremental": false,
@@ -1119,7 +1119,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Sharding/shardkey.html",
-          "hash": "R4+ArEjMcbIJow/jQYskUw=="
+          "hash": "aPuaDyuYtTeky2W3d7Lz3Q=="
         }
       },
       "is_incremental": false,
@@ -1131,7 +1131,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/Sharding/shardsets.html",
-          "hash": "I3P3sIbjwGRKXZ6NJXbVyw=="
+          "hash": "3j9/ygqLbqorpZ5mzWIXmA=="
         }
       },
       "is_incremental": false,
@@ -1155,7 +1155,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/quickstarts/configuration.html",
-          "hash": "71VytpeXr0QM2jkxCJhxxQ=="
+          "hash": "uL8lxdADnb/di07Fyx4AcA=="
         }
       },
       "is_incremental": false,
@@ -1167,7 +1167,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/quickstarts/sharding.html",
-          "hash": "pjLEV6l7noUt8PV8LzEHIA=="
+          "hash": "c03gXNSUg6safgPrrabG9Q=="
         }
       },
       "is_incremental": false,
@@ -1191,7 +1191,7 @@
       "output": {
         ".html": {
           "relative_path": "tutorials/toc.html",
-          "hash": "88AYPCJkfXKEC1qmQq+DSg=="
+          "hash": "som07mEdAHceHQlEij21Mw=="
         }
       },
       "is_incremental": false,
@@ -1201,7 +1201,8 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because docfx version changed from 2.40.0.0 to 2.36.2.0.",
         "incrementalPhase": "build"
       },
       "processors": {
@@ -1215,12 +1216,12 @@
           "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
           "incrementalPhase": "build"
         }
       }

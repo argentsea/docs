@@ -143,7 +143,7 @@ await _shardSet.Write.RunAsync(batch, cancellation);
 <p>The <code>ShardSetBatch</code> will likely perform more poorly than a single SQL command. The main circumstance where this would be useful is when the client application must dynamically assemble the Query set. Really, the <code>ShardSetBatch</code> seems to have a fairly limited number of use cases.</p>
 </div>
 <h3 id="the-shard-batch">The Shard Batch</h3>
-<p>The <code>ShardBatch</code> can execute a query and return a Model result (using the Mapper), a ShardKey, a ShardChild, or a list of ShardKeys or ShardChilds. For example, a batch that inserts records with identity columns might need to return the ShardKey(s) or ShardChild(s) containing the identifiers of the newly inserted records. You can use <code>ShardKey</code>, <code>ShardChild</code> for a single record key result, or <code>List&lt;ShardKey&gt;</code>, <code>List&lt;ShardChild&gt;</code>, <code>IList&lt;ShardKey&gt;</code> and <code>IList&lt;ShardChild&gt;</code> for a multi-record key result.</p>
+<p>The <code>ShardBatch</code> can execute a query and return a Model result (using the Mapper), a ShardKey or a list of ShardKeys. For example, a batch that inserts records with identity columns might need to return the ShardKey(s) containing the identifiers of the newly inserted records. You can use <code>ShardKey</code> for a single record key result, or <code>List&lt;ShardKey&gt;</code> or <code>IList&lt;ShardKey&gt;</code> for a multi-record key result.</p>
 <p>The <code>ShardBatch</code> has two generic parameters. The first is the ubiquitous shard id type; the second is the return type.</p>
 <div class="NOTE">
 <h5>Note</h5>
@@ -188,9 +188,9 @@ var customerKeys = await _shardSet.DefaultShard.Write.RunAsync(batch, cancellati
 <td>ShardKey</td>
 </tr>
 <tr>
-<td>new ShardBatch&lt;TShard, ShardChild&lt;TShard, TRecord, TChild&gt;&gt;()</td>
+<td>new ShardBatch&lt;TShard, ShardKey&lt;TShard, TRecord, TChild&gt;&gt;()</td>
 <td>Query</td>
-<td>ShardChild</td>
+<td>ShardKey</td>
 </tr>
 <tr>
 <td>new ShardBatch&lt;TShard, List&lt;ShardKey&lt;TShard, TRecord&gt;&gt;&gt;()</td>
@@ -198,9 +198,9 @@ var customerKeys = await _shardSet.DefaultShard.Write.RunAsync(batch, cancellati
 <td>ShardKey List</td>
 </tr>
 <tr>
-<td>new ShardBatch&lt;TShard, List&lt;ShardChild&lt;TShard, TRecord, TChild&gt;&gt;&gt;()</td>
+<td>new ShardBatch&lt;TShard, List&lt;ShardKey&lt;TShard, TRecord, TChild&gt;&gt;&gt;()</td>
 <td>Query</td>
-<td>ShardChild List</td>
+<td>ShardKey List</td>
 </tr>
 <tr>
 <td>new ShardBatch&lt;TShard, IList&lt;ShardKey&lt;TShard, TRecord&gt;&gt;&gt;()</td>
@@ -208,9 +208,9 @@ var customerKeys = await _shardSet.DefaultShard.Write.RunAsync(batch, cancellati
 <td>ShardKey List</td>
 </tr>
 <tr>
-<td>new ShardBatch&lt;TShard, IList&lt;ShardChild&lt;TShard, TRecord, TChild&gt;&gt;&gt;()</td>
+<td>new ShardBatch&lt;TShard, IList&lt;ShardKey&lt;TShard, TRecord, TChild&gt;&gt;&gt;()</td>
 <td>Query</td>
-<td>ShardChild List</td>
+<td>ShardKey List</td>
 </tr>
 <tr>
 <td>new ShardBatch&lt;TShard, Model&gt;()</td>

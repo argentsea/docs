@@ -222,14 +222,14 @@
 <p>When working with output parameters in standard ADO.NET, you may habitually maintain a variable reference to any output parameters you created before adding it to the collection. This makes it easy to get the output parameter value after the query is executed.<br>
 This approach will not work with sharded data, because ArgentSea will <em>copy</em> the parameter set before executing the query. Any referenced output parameters will <em>not</em> contain a data result.</p>
 </div>
-<h3 id="optional-shardset-argument-ienumerableshardparametervaluetshard-shardparametervalues">Optional ShardSet Argument: (IEnumerable&lt;ShardParameterValue&lt;TShard&gt;&gt;) shardParameterValues</h3>
+<h3 id="optional-shardset-argument-ienumerableshardparametervalue-shardparametervalues">Optional ShardSet Argument: (IEnumerable&lt;ShardParameterValue&gt;) shardParameterValues</h3>
 <p>Some shard query method overloads accept a <code>ShardParameterValue</code> object. This object allows you to specify which shards should be queried and even provide distinct parameter values to each shard.</p>
 <p>For example, suppose your User record returns a list of “Friends”. The Friend detail data may be hosted on other shards, but not on <em>every</em> shard. Building a list of <code>ShardParameterValue</code> objects from the User results would limit the subsequent queries to just the relevant shards.</p>
 <p>The <code>ShardParameterValue</code> type has a ShardId and an optional parameter name and value. Only shards with at least one listed ShardId will be queried. If a parameter name is also specified, the corresponding parameter will be set to that value on the indicated shard. You can include multiple parameters/values on the same shard by repeating the shardId.</p>
 <h3 id="optional-shardset-argument-string-shardparametername">Optional ShardSet Argument: (string) shardParameterName</h3>
 <p>Some shard query overloads also accept the name of the parameter that represents the name of the parameter that should be set to shardId value. If specified, ArgentSea will set this parameter value to the current shardId value as it executes each query.</p>
 <p>For example, a query for a list of records that spans shards could be enhanced if the query new the value of its own ShardId. Alternatively, because a shard misconfiguration might result in catastrophic data corruption (due to the high likelihood of duplicate record identities between shards), you might require that queries that write to the database also have a ShardId parameter that they validate is correct.</p>
-<h3 id="optional-argument-queryresultmodelhandlertshard-targ-tmodel-resulthandler">Optional Argument: (QueryResultModelHandler&lt;TShard, TArg, TModel&gt;&gt;) resultHandler</h3>
+<h3 id="optional-argument-queryresultmodelhandlertarg-tmodel-resulthandler">Optional Argument: (QueryResultModelHandler&lt;TArg, TModel&gt;&gt;) resultHandler</h3>
 <p>This is only used in the QueryAsync methods. As described earlier, the data query process is divided into two processes. The resultHandler is a delegate that may be invoked concurrently by distinct, shard-specific threads.</p>
 <p>If you use a data access method prefixed with Map*, this argument is not required because the delegate provided by the Mapper is used. If the Mapper does not suit your purpose, then a custom delegate must be provided to a Query* method.</p>
 <p>Your custom delegate can have an argument that provides additional data or context information. Information on how to build a custom delegate is provided below.</p>
@@ -277,12 +277,12 @@ _database.MapReaderAsync&lt;Store, OrderHistory, Store, Locations, Contact&gt;(Q
 <li>The rendering a complex return value is beyond the capabilities of the Mapper.</li>
 </ul>
 <p>The delegate even has a parameter that allows you to provide custom data (through the query method) with which to construct your result object.</p>
-<p>The delegate must be thread-safe.  The <a href="/api/ArgentSea.ShardSetsBase-2.ShardSet.html">ShardSet</a> manages the complexity of initializing multiple queries on multiple connections and multiple results, but it is the delegate that takes the database results (from each connection/thread) and creates an object result.</p>
+<p>The delegate must be thread-safe.  The <a href="/api/ArgentSea.ShardSetsBase-1.ShardSet.html">ShardSet</a> manages the complexity of initializing multiple queries on multiple connections and multiple results, but it is the delegate that takes the database results (from each connection/thread) and creates an object result.</p>
 <div class="NOTE">
 <h5>Note</h5>
 <p>The Mapper provides several thread-safe, high-performance <a href="/api/ArgentSea.QueryResultModelHandler-3.html">QueryResultModelHandler</a> delegates. In fact, providing a Mapper delegate to the <strong>Query*</strong> method is exactly how the <strong>MapOutput*</strong> an <strong>MapOutput*</strong> methods are implemented. You can use this yourself to extend the Mapper; just provide your own delegate that calls the Mapper in turn.</p>
 </div>
-<p>Details on implementing the <a href="/api/ArgentSea.QueryResultModelHandler-3.html">QueryResultModelHandler</a> delegate is in the next section.</p>
+<p>Details on implementing the <a href="/api/ArgentSea.QueryResultModelHandler-2.html">QueryResultModelHandler</a> delegate is in the next section.</p>
 <p>Next: <a href="handling.html">Handling Data Results</a></p>
 </article>
           </div>

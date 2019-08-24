@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>The ShardKey and ShardChild | ArgentSea Docs </title>
+    <title>The ShardKey | ArgentSea Docs </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="The ShardKey and ShardChild | ArgentSea Docs ">
+    <meta name="title" content="The ShardKey | ArgentSea Docs ">
     <meta name="generator" content="docfx 2.36.2.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,7 +77,7 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="the-shardkey-and-shardchild">The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a></h1>
+<h1 id="the-shardkey">The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a></h1>
 
 <p>All databases need a way to uniquely identify a record — a record key. With sharded data sets, a record key need to be unique across all the shards. Within a single database, uniqueness is easily managed; across a shard set, database engines can no longer enforce uniqueness for data they don’t know about. Additionally, on the client side, the query dispatcher needs to be able to use the record key in order to know to which shard connection to use.</p>
 <p>There are two approaches to maintaining a unique key across multiple databases:</p>
@@ -85,38 +85,41 @@
 <li><strong>Use distinct identity ranges for each database in the shard set.</strong> The upside of this approach is that it is possible to combine data sets without conflicts; the downside is that configuration is complicated — on both the client and database servers — so mistakes are more likely, and some mistakes can be <em>very</em> hard to fix. The query dispatcher must know the various identity ranges hosted by each server in order to select the right connection.</li>
 <li><strong>Combine the <em>shard connection key</em> and the <em>record key</em> into a larger “compound key”.</strong> With this approach, finding the right shard connection is easy because the value is embedded in the compound record key. The database servers do not need to be configured with separate identity ranges, which in some case may allow smaller, more efficient key sizes (i.e. int vs bigint). Combining or splitting shards could be more complicated, however.</li>
 </ul>
-<p>ArgentSea will work with either design. The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> objects offer support for the second approach.</p>
+<p>ArgentSea will work with either design. The <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> object offers support for the second approach.</p>
 <h2 id="components">Components</h2>
-<p>A <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> consists of three components: a <em>DataOrigin</em> char value, a <em>ShardId</em>, and a <em>RecordId</em>. A <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> has the same values plus an additional <em>ChildId</em>.</p>
+<p>A <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> consists of three essential components: a <em>DataOrigin</em> char value, a <em>ShardId</em>, and a <em>RecordId</em>. ShardKey instances with additional generic types can be used for compound table keys; these will had the additional <em>ChildId</em>, <em>GrandChildId</em>, and <em>GreatGrandChildId</em> values.</p>
 <table border="0" margin="0" padding="0"><tr><td width="43%"><img src="/images/shardkey.svg"></td><td width="57%"><img src="/images/shardchild.svg"></td></tr></table>
 <h3 id="the-dataorigin">The DataOrigin</h3>
-<p>Both the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> have a <em>DataOrigin</em> value. The purpose of this value is to represent a data source. It is simply a character value that you can choose to differentiate the data source.</p>
-<p>For example, keys representing a <em>Customer</em> record might have a <em>DataOrigin</em> of “c”, whereas keys representing a <em>Product</em> record might have a <em>DataOrigin</em> of “p”. Because this simple tag identifies the data source, two different <a href="/api/ArgentSea.ShardKey-2.html">ShardKeys</a> from the same shard and with the same record number will still not be equal because they represent different source data.</p>
+<p><a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> types have a <em>DataOrigin</em> value. The purpose of this value is to represent a distinct data source (table). It is simply a character value that you can choose to differentiate them.</p>
+<p>For example, keys representing a <em>Customer</em> record might have a <em>DataOrigin</em> of “c”, whereas keys representing a <em>Product</em> record might have a <em>DataOrigin</em> of “p”. Because this simple tag identifies the data source, two different <a href="/api/ArgentSea.ShardKey-1.html">ShardKeys</a> from the same shard and with the same record number will still not be equal because they represent different source data.</p>
 <div class="IMPORTANT">
 <h5>Important</h5>
 <p>One <em>DataOrigin</em> character value is reserved: “0” (Unicode character Zero, Unicode numeric value 30).</p>
-<p>This is used for the <em>DataOrigin</em> of <code>ShardKey.Empty</code> and <code>ShardChild.Empty</code>. Creating a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> with a “zero” <em>DataOrigin</em> character but non-default (i.e. not zero or not null) <em>ShardId</em> or <em>RecordId</em> values will throw an <a href="/api/ArgentSea.InvalidShardArgumentsException.html">InvalidShardArgumentsException</a> error.</p>
+<p>This is used for the <em>DataOrigin</em> of <code>ShardKey.Empty</code>. Creating a <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> with a “zero” <em>DataOrigin</em> character but non-default (i.e. not zero or not null) <em>ShardId</em> or <em>RecordId</em> values will throw an <a href="/api/ArgentSea.InvalidShardArgumentsException.html">InvalidShardArgumentsException</a> error.</p>
 </div>
 <p>This capability is useful for helping prevent data from being accessed with the wrong type of key — like an inventory key inadvertently passed to fetch an account record. Also, this may be helpful for caching data, since you can use the same dictionary to cache objects of different types without key collision.</p>
 <div class="CAUTION">
 <h5>Caution</h5>
-<p>Although the <em>DataOrigin</em> is a char, it is serialized as an 8-bit ANSI charactor value. You should avoid using non-alphanumeric charactors for this value. And definately no emojis.</p>
+<p>Although the <em>DataOrigin</em> is a char, it is serialized as an 8-bit ANSI character value. You should avoid using non-alphanumeric characters for this value. And definitely no emojis.</p>
 </div>
 <h3 id="the-shardid">The ShardId</h3>
-<p>The ShardId is used to identify a particular shard in the ShardSet. The core ArgentSea framework uses a generic type for the ShardId because the ideal data type will depend upon your requirements. Technically, the ShardId can be any of the types available to a RecordId (see below). Practically, however, it makes sense to avoid types without a corresponding SQL type and also avoid unnecessarily large data sizes. This leaves <em>byte</em> (SQL Server only), <em>short</em>, <em>char</em> as the most storage-efficient choices; <em>int</em>, <em>string</em> are viable choices if your ShardId has other requirements — like needing to integrate with external systems.</p>
-<p>In essence, the most efficient ShardId type for SQL Server is byte/Tinyint, and for PostgreSQL is Int16(short)/Smalllint.</p>
-<p>If you really can’t decide and have no particular requirements, a simple starting place is to use <em>byte</em> if are using SQL Server and you have confidence that you will never need more than 256 shards in a <a href="/api/ArgentSea.ShardSetsBase-2.ShardSet.html">ShardSet</a>, otherwise start with <em>short</em>.</p>
-<p>Because the ShardId value is used in configuration, queries, and also for saving foreign shard references in your databases, once your project is established this value cannot be easily changed. The same ShardId type is used across all <a href="/api/ArgentSea.ShardSetsBase-2.html">ShardSets</a>.</p>
+<p>The ShardId is used to identify a particular shard in the ShardSet. This is a 16-bit integer, also called Int16, short, or Smallint in SQL. Because it only requires two bytes, it is very compact in storage and memory, yet it can theoretically support over 65,000 shards.</p>
 <div class="NOTE">
 <h5>Note</h5>
-<p>The database itself may not know what its own <em>ShardId</em> is. This sounds absurd until you realize that it is genuinely difficult to keep scores or even hundreds of database schemas and procedures in sync while preserving a programmatic ShardId value. Your continuous delivery tooling will keep detecting any differences and trying to overwrite them! Fortunately, your connection <em>does</em> know this and can set the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values correctly.</p>
+<p>The earliest versions of the ArgentSea framework used a generic type for the ShardId — similar to that used for the RecordId, ChildId, etc. — which allowed the shard identifier to be a string, byte, Guid, etc. However, this created a verbose object model where the consuming code had to endlessly declare the ShardId type. Within a given project this type could never change, so this created a lot of redundancy.
+Given the types available in both .Net and SQL, the efficiency of data storage, and the likely maximum number of shards, one type was clearly optimal: ArgentSea was rewritten so that the ShardId type was always a 16-bit integer.</p>
+</div>
+<div class="CAUTION">
+<h5>Caution</h5>
+<p>The database shards themselves may not know what their own <em>ShardId</em> is! The ShardId comes only from the connection information in the local configuration file. This means that a misconfiguration can corrupt data! For example, if a user attempts to update the record with Id 2 on shard 4 but a misconfiguration directs the connection to the wrong shard, the command will overwrite the record with id 4 — in the wrong database!
+Consider using optimistic concurrency practices like a rowversion or timestamp. This validation will also protect against updating the wrong database.</p>
 </div>
 <h3 id="the-recordid">The RecordId</h3>
 <p>Like the ShardId, the RecordId is also an generic type, which can be one of the following:</p>
 <table>
 <thead>
 <tr>
-<th>RecordId (and ChildId) Possible Data Types</th>
+<th>RecordId (and ChildId/GrandChildId/GreatGrandChildId) Possible Data Types</th>
 </tr>
 </thead>
 <tbody>
@@ -125,21 +128,18 @@
 </tr>
 </tbody>
 </table>
-<p>If you have a data key that is not one of these types, the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> objects will not know how to serialize the values.</p>
-<p>Unlike the ShardId, the data type of the RecordId (and/or ChildId) need not be universal; it <em>can</em> be different for each table.</p>
-<h3 id="the-childid">The ChildId</h3>
-<p>The <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> type gets its name from the parent-child relationship that is typical of a two-column compound key. The <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> includes the <em>RecordId</em> of the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> along with a new generic <em>ChildId</em> value. A <em>ShardGrandChild</em> could also be created to support three-level compound record keys, but, so far, there hasn’t been demand for that.</p>
-<p>The ChildId can be any of the types listed in the previous section and the data type can also vary from table to table.</p>
-<h2 id="using-the-shardkey-and-shardchild">Using The <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a></h2>
+<p>If you have a data key that is not one of these types, the <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> class will not know how to serialize the values.</p>
+<h3 id="the-childid-grandchildid-and-greatgrandchildid">The ChildId, GrandChildId, and GreatGrandChildId</h3>
+<p>The <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> type gets its name from the parent-child relationship that is typical of a two-column compound key. By specifying additional generic arguments, you can extend the object to accommodate a compound key of up to four columns!</p>
+<h2 id="using-the-shardkey">Using The <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a></h2>
 <p>Having a single object represent a compound record key adds only a little convenience. The real value comes from three capabilities: The shard Mapping attributes and the External key string.</p>
 <h3 id="tostring-toexternalstring-and-fromexternalstring">ToString(), ToExternalString(), and FromExternalString()</h3>
-<p>Calling <code>ToString()</code> on a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> returns a list of the constituent values.</p>
-<p>The <code>ToExternalKey()</code> function serializes the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> values into a URL-safe string. This string also has a small amount of tampering protection. This is also the value returned when the model is serialized (i.e. in JSON results).</p>
-<p>As you would expect, the <code>FromExternalString()</code> function reverses the operation, returning a ShardKey or ShardChild instance from a valid string.</p>
+<p>Calling <code>ToString()</code> on a <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> returns a json-formatted list of the constituent values.</p>
+<p>The <code>ToExternalKey()</code> function serializes the <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> values into a URL-safe string. This string also has a small amount of tampering protection. This is also the value returned when the model is serialized (i.e. in JSON results).</p>
+<p>As you would expect, the <code>FromExternalString()</code> function reverses the operation, returning a ShardKey instance from a valid input string.</p>
 <p>The <em>External String</em> value can be used with, say, REST endpoints to specify a sharded record using a single argument.</p>
-<h2 id="the-mapshardkey-and-mapshardchild-attributes">The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> Attributes</h2>
-<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attributes map the shard information, record key, and (as appropriate) the child record value to a new <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> instance respectively.</p>
-<p>The simplest implementation is to simply add the <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> or <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attribute and the type-appropriate <em>MapTo</em> attribute(s).</p>
+<h2 id="the-mapshardkey-attribute">The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> Attribute</h2>
+<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and attribute maps the shard information, record key, and (as appropriate) the child record values to a new <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> instance. The simplest implementation is to simply add the <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and the type-appropriate <em>MapTo</em> attribute(s).</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q">
 <ul role="tablist">
 <li role="presentation">
@@ -159,15 +159,15 @@ public ShardKey&lt;byte, int&gt; CustomerKey { get; set; }
 </section>
 <section id="tabpanel_CeZOj-G++Q_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">[MapShardKey('c', &quot;CustomerId&quot;)]
-[MapToPgInteger(&quot;CustomerId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey('c', &quot;customer_id&quot;)]
+[MapToPgInteger(&quot;customer_id&quot;)]
 public ShardKey&lt;short, int&gt; CustomerKey { get; set; }
 </code></pre>
 </section>
 </div>
 
-<p>This example sets the property to a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> instance with a <em>DataOrigin</em> of “c”, the <em>ShardId</em> to the value of the data connection, and the <em>RecordId</em> the “CustomerId” column or parameter value.</p>
-<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> attribute’s first argument is a <em>DataOrigin</em> char value. The second argument is the name of the data parameter or column. This name must <em>exactly</em> match the name in the data <em>MapTo</em> attribute. The <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attribute is nearly identical, except for the additional <em>ChildId</em> parameter:</p>
+<p>This example sets the property to a <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> instance with a <em>DataOrigin</em> of “c”, the <em>ShardId</em> to the value of the data connection, and the <em>RecordId</em> the “CustomerId” column or parameter value.</p>
+<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> attribute’s first argument is a <em>DataOrigin</em> char value. The second argument is the name of the data parameter or column. This name must <em>exactly</em> match the name in the data <em>MapTo</em> attribute. If <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> has child columns, include those column definition too (ensuring that these names also exactly match).</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-1">
 <ul role="tablist">
 <li role="presentation">
@@ -179,24 +179,24 @@ public ShardKey&lt;short, int&gt; CustomerKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">[MapShardChild('O', &quot;@OrderId&quot;, &quot;@OrderItemId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey('O', &quot;@OrderId&quot;, &quot;@OrderItemId&quot;)]
 [MapToSqlBigInt(&quot;@OrderId&quot;)]
 [MapToSqlSmallInt(&quot;@OrderItemId&quot;)]
-public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
+public ShardKey&lt;byte, long, short&gt; OrderItemKey { get; set; }
 
 </code></pre>
 </section>
 <section id="tabpanel_CeZOj-G++Q-1_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">[MapShardChild('O', &quot;OrderId&quot;, &quot;OrderItemId&quot;)]
-[MapToPgBigint(&quot;OrderId&quot;)]
-[MapToPgInteger(&quot;OrderItemId&quot;)]
-public ShardChild&lt;short, long, int&gt; OrderItemKey { get; set; }
+<pre><code class="lang-csharp">[MapShardKey('O', &quot;order_id&quot;, &quot;order_item_id&quot;)]
+[MapToPgBigint(&quot;order_id&quot;)]
+[MapToPgInteger(&quot;order_item_id&quot;)]
+public ShardKey&lt;short, long, int&gt; OrderItemKey { get; set; }
 </code></pre>
 </section>
 </div>
 
-<p>In both previous examples, the ShardId will be <em>implicitly</em> obtained from the connection’s ShardId. In the case of results that include then primary key column, this works well. However, when a data record references the primary key of a sharded table, the <em>ShardId</em> of the ShardKey or ShardChild must <em>explicitly</em> come from the database record. To do this, just add a <em>ShardID</em> parameter to the <em>MapShard</em> attribute and the additional <em>MapTo</em> data attribute:</p>
+<p>In both previous examples, the ShardId will be <em>implicitly</em> obtained from the <em>connection’s</em> ShardId. In the case of results that include the primary key column, this works well. However, when a data record references a table belonging to a foreign shard, the <em>ShardId</em> must be <em>explicitly</em> set by the database record. To do this, just add a <em>ShardID</em> column name to the first argument of the <em>MapShardKey</em> attribute:</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-2">
 <ul role="tablist">
 <li role="presentation">
@@ -208,41 +208,38 @@ public ShardChild&lt;short, long, int&gt; OrderItemKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-2_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">[MapShardKey('c', &quot;@CustomerShardId&quot;, &quot;@CustomerId&quot;)]
-[MapToSqlTinyInt(&quot;@CustomerShardId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey(&quot;@CustomerShardId&quot;, 'c', &quot;@CustomerId&quot;)]
 [MapToSqlInt(&quot;@CustomerId&quot;)]
 public ShardKey&lt;byte, int&gt; CustomerKey { get; set; }
 
-[MapShardChild('O', &quot;@OrderShardId&quot;, &quot;@OrderId&quot;, &quot;@OrderItemId&quot;)]
-[MapToSqlTinyInt(&quot;@OrderShardId&quot;)]
+[MapShardKey(&quot;@OrderShardId&quot;, 'O', &quot;@OrderId&quot;, &quot;@OrderItemId&quot;)]
 [MapToSqlBigInt(&quot;@OrderId&quot;)]
 [MapToSqlSmallInt(&quot;@OrderItemId&quot;)]
-public ShardChild&lt;byte, long, short&gt; OrderItemKey { get; set; }
+public ShardKey&lt;long, short&gt; OrderItemKey { get; set; }
 
 </code></pre>
 </section>
 <section id="tabpanel_CeZOj-G++Q-2_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">[MapShardKey('c', &quot;CustomerId&quot;)]
-[MapToSqlTinyint(&quot;CustomerShardId&quot;)]
-[MapToPgInteger(&quot;CustomerId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey(&quot;customer_shard_id&quot;, 'c', &quot;customer_id&quot;)]
+[MapToPgInteger(&quot;customer_id&quot;)]
 public ShardKey&lt;short, int&gt; CustomerKey { get; set; }
 
-[MapShardChild('O', &quot;OrderShardId&quot;, &quot;OrderId&quot;, &quot;OrderItemId&quot;)]
-[MapToPgSmallint(&quot;OrderShardId&quot;)]
-[MapToPgBigint(&quot;OrderId&quot;)]
-[MapToPgSmallint(&quot;OrderItemId&quot;)]
-public ShardChild&lt;short, long, short&gt; OrderItemKey { get; set; }
+[MapShardKey(&quot;order_shard_id&quot;, , 'O', &quot;order_id&quot;, &quot;order_item_id&quot;)]
+[MapToPgBigint(&quot;order_id&quot;)]
+[MapToPgSmallint(&quot;order_item_id&quot;)]
+public ShardKey&lt;long, short&gt; OrderItemKey { get; set; }
 </code></pre>
 </section>
 </div>
 <h2 id="null-values">Null Values</h2>
-<p>Because both <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> are structs, a variable or property of this type <em>cannot</em> be null. <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> objects are initialized to ShardKey.Empty or ShardChild.Empty respectively.</p>
-<p>If a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> represents a database field that might be Null, the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> property or variable should be wrapped in the <code>Nullable&lt;&gt;</code> type. The <em>MapTo</em> attribute will set the <code>Nullable&lt;ShardKey&lt;&gt;&gt;</code> or <code>Nullable&lt;ShardChild&lt;&gt;&gt;</code> property to null if any of the constituent database column values are Null. If the underlying type is not <code>Nullable&lt;&gt;</code> and the database value is Null, the Mapper with throw an error (except as described in the next paragraph).</p>
-<p>In most cases, a <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> represents a primary key, so a database Null value really represents a non-existent record. In this case, the desired behavior is probably to return the entire parent object as null. Marking the <em>MapTo</em> attribute(s) as <em>required</em> implements this behavior. When the <em>required</em> parameter is set, the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> property does not need to be <code>Nullable&lt;&gt;</code> since a Null database value will return a null result object.</p>
+<p>Because a <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> is a  struct, a variable or property of this type <em>cannot</em> be null. <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> objects are initialized to ShardKey.Empty.</p>
+<p>If a <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> represents a database field that might be Null, the <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> property or variable should be wrapped in the <code>Nullable&lt;&gt;</code> type. The <em>MapToShardKey</em> attribute will set <code>Nullable&lt;ShardKey&lt;&gt;&gt;</code> or <code>ShardKey&lt;&gt;?</code> properties to null if any of the constituent database column values are Null. If the underlying type is not <code>Nullable&lt;&gt;</code> and the database value is Null, the Mapper with throw an error (except as described in the next paragraph).</p>
+<p>In many cases, a <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> will represent a primary key, so a database Null value really represents a non-existent record. In this case, the desired behavior is probably to return the entire parent object as null. Marking the <em>MapToShardKey</em> attribute(s) as <em>required</em> implements this behavior. When the <em>required</em> parameter is set, the <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> property does not need to be <code>Nullable&lt;&gt;</code> since a Null database value will return a null result object.</p>
 <h2 id="keyed-models">Keyed Models</h2>
-<p>If your Model class uses a ShardKey or ShardChild key, you might consider implementing <code>IKeyedModel&lt;,&gt;</code> or <code>IKeyedChildModel&lt;, ,&gt;</code> respectively. These interfaces require a property named “Key” of ShardKey or ShardChild type. Models that implement this interface can leverage some additional ArgentSea utility functions.</p>
-<p>For example, both the ShardKey and ShardChild structs have a static <code>Merge</code> method which can combine model sets, comparing the records by the key value. Both structs also have a <code>ForeignShards</code> method which returns a list of shards that are not local to the specified shard, which simplifies the problem of identifying records that need to be updated of foreign shards. Also, the SQL Server implementation also allows convertion of the Model keys directly to a Table Valued Parameter.</p>
+<p>If your Model class uses a ShardKey key, you might consider implementing <code>IKeyedModel&lt;,&gt;</code> or <code>IKeyedChildModel&lt;, ,&gt;</code> respectively. These interfaces require a property named “Key” of ShardKey type.</p>
+<p>Models that implement this interface can leverage some additional ArgentSea utility functions. For example, the ShardKey struct has a static <code>Merge</code> method which can combine model sets, comparing the records by the key value. Both structs also have a <code>ForeignShards</code> method which returns a list of shards that are not local to the specified shard, which simplifies the problem of identifying records that need to be updated of foreign shards.</p>
+<p>Also, the SQL Server implementation also allows conversion of the Model keys directly to a Table Valued Parameter. Likewise, the PostgreSQL implementation can use model keys to write values into a temporary table.</p>
 <p>Next: <a href="shardsets.html">ShardSets</a></p>
 </article>
           </div>

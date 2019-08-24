@@ -156,7 +156,7 @@ Our walkthrough, however, only needs four simple databases on one server. We’l
 <p>At this point, we should have four database with identical table structures. SQL Server instances should also have a identical set of stored procedures.</p>
 <h2 id="the-shard-set-record-key">The Shard Set Record Key</h2>
 <p>Each of the four databases needs an identifier. ArgentSea uses a <code>short</code> (Int32/tinyint) to identify each shard, and a generic type as a record id. The combination of shard id and record id becomes a “virtual compound key”, which is called a <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a>. A thorough discussion of the options and impact is <a href="/tutorials/sharding/shardkey.md">here</a>.</p>
-<p>Some tables may require a compound key themselves. For these, ArgentSea offers the <a href="/api/ArgentSea.ShardChild-2.html">ShardChild</a>, which consists of a shard id, record id, and child id. Because the record id, and child id are generic types, they can accommodate most data column types.</p>
+<p>Some tables may require a compound key themselves. For these, ArgentSea offers <a href="/api/ArgentSea.ShardKey-2.html">ShardKeys</a> with generic overloads, which may consist of a shard id, record id, child id, grandchild id, and even great grandchild id! Because all the the record and child id types are generic, they can accommodate most data column types.</p>
 <h2 id="configuring-connections">Configuring Connections</h2>
 <p>Because sharded data may require a large number of data connections, ArgentSea offers a more flexible way of managing this than by using connection strings. ArgentSea offers the “Hereditary Configuration Hierarchy”. This allows you to set an attribute at the parent level and all children will inherit this value, unless overwritten by a child. A more thorough discussion is <a href="/tutorials/configuration/hierarchy.md">here</a>.</p>
 <p>In our sample application, we can use the same server or host for all connections; each shard connection only changes the database name. (In a production deployment, the configuration might be exactly backwards: the databases have identical names, but each is on a different host). We also want to use the <em>webWriter</em> user for write connections and <em>webReader</em> for read connections.</p>
@@ -460,7 +460,8 @@ return await _shardSet[customerKey].Read.MapReaderAsync&lt;CustomerModel, Custom
 <p>The sample application has a <code>CustomerListItem</code> Model, which contains a record key and a customer name property. The <code>CustomerModel</code> include those same values, plus some others. By inheriting from first Model, the <code>CustomerModel</code> inherits the key and an customer name, including their mapping attributes.</p>
 <p>Because database queries often return subsets of entity columns, this object inheritance technique is useful in allowing the mapping attributes to be defined only once.</p>
 <h3 id="the-shardkey">The ShardKey</h3>
-<p>The final object type which may combine multiple data records is the <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-2.html">ShardChild</a> types. These are described in detail <a href="/tutorials/sharding/shardkey.md">here</a>.</p>
+<p>The final object type which may combine multiple data records is the <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> type.
+This type is described in detail <a href="/tutorials/sharding/shardkey.md">here</a>.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-6">
 <ul role="tablist">
 <li role="presentation">
@@ -490,8 +491,7 @@ public ShardKey&lt;int&gt; CustomerKey { get; set; }
 <h5>Note</h5>
 <p>The ShardKey in this example does not specify a ShardId data mapping. Because the client knows the ShardId, ArgentSea will populate the ShardId value from this configuration data. If you provide a ShardId mapping (and include the shardid argument in the <code>MapShardKey</code> attribute), ArgentSea will understand that you want to use the data value instead.</p>
 </div>
-<h3 id="the-shardchild">The ShardChild</h3>
-<p>The ShardChild object supports table compound keys in your sharded data. In this sample application, the Customer <strong>Location</strong> records are identified by a compound key including both a CustomerId and LocationId.</p>
+<p>The ShardKey type supports table compound keys in your sharded data. In this sample application, the Customer <strong>Location</strong> records are identified by a compound key including both a CustomerId and LocationId.</p>
 <div class="tabGroup" id="tabgroup_CeZOj-G++Q-7">
 <ul role="tablist">
 <li role="presentation">
@@ -503,18 +503,18 @@ public ShardKey&lt;int&gt; CustomerKey { get; set; }
 </ul>
 <section id="tabpanel_CeZOj-G++Q-7_tabid-sql" role="tabpanel" data-tab="tabid-sql">
 
-<pre><code class="lang-csharp">[MapShardChild('L', &quot;CustomerId&quot;, &quot;LocationId&quot;)]
+<pre><code class="lang-csharp">[MapShardKey('L', &quot;CustomerId&quot;, &quot;LocationId&quot;)]
 [MapToSqlInt(&quot;CustomerId&quot;)]
 [MapToSqlSmallInt(&quot;LocationId&quot;)]
-public ShardChild&lt;int, int&gt; CustomerLocationKey { get; set; }
+public ShardKey&lt;int, int&gt; CustomerLocationKey { get; set; }
 </code></pre>
 </section>
 <section id="tabpanel_CeZOj-G++Q-7_tabid-pg" role="tabpanel" data-tab="tabid-pg" aria-hidden="true" hidden="hidden">
 
-<pre><code class="lang-csharp">[MapShardChild('L', &quot;customerid&quot;, &quot;locationid&quot;)]
+<pre><code class="lang-csharp">[MapShardKey'L', &quot;customerid&quot;, &quot;locationid&quot;)]
 [MapToPgInteger(&quot;customerid&quot;)]
 [MapToPgSmallint(&quot;locationid&quot;)]
-public ShardChild&lt;int, int&gt; CustomerLocationKey { get; set; }
+public ShardKey&lt;int, int&gt; CustomerLocationKey { get; set; }
 </code></pre>
 </section>
 </div>
@@ -563,7 +563,7 @@ public void ConfigureServices(IServiceCollection services)
 <p>The <code>ShardSets</code> services implicitly loads the <code>Databases</code> service also. Of course, if no databases are configured, the collection will be empty.</p>
 </div>
 <h2 id="queries-and-data">Queries and Data</h2>
-<p>Our implementation adds two static classes which help describe our data. The first is a simple list of constants, which correspond to the “origin” parameter of <code>ShardKey</code> and <code>ShardChild</code> objects. the “Origin” helps prevent accidental use of, say, an <strong>Inventory</strong> key to delete an <strong>Order</strong> record. By using constants, you cam more explicitly distinguish the “c” used for <strong>Contact</strong> data from the “C” used for <strong>Customer</strong> data, which might otherwise be confusing.</p>
+<p>Our implementation adds two static classes which help describe our data. The first is a simple list of constants, which correspond to the “origin” parameter of <code>ShardKey</code> object. the “Origin” helps prevent accidental use of, say, an <strong>Inventory</strong> key to delete an <strong>Order</strong> record. By using constants, you cam more explicitly distinguish the “c” used for <strong>Contact</strong> data from the “C” used for <strong>Customer</strong> data, which might otherwise be confusing.</p>
 <p>The second static class consolodates query definitions, as described in the <a href="/querying/sql.md">Creating SQL Queries</a> tutorial. This serves two purposes: first, it becomes easy to determine which queries are actually used by the code (on large projects, this can be difficult). Also, the optional parameter list can limit the parameters that are set when Model attributes have more parameters than the query requires.</p>
 <p>The code for these are in the <code>DataOrigins</code> and <code>Queries</code> classes respectively. The code is self explainitory.</p>
 <h2 id="the-repository-pattern">The Repository Pattern</h2>

@@ -84,7 +84,7 @@
 <ul>
 <li>Model Properties, via the <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> attribute</li>
 <li>List Properties</li>
-<li>Shard Identifiers, via the <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> and <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> attributes</li>
+<li>Shard Identifiers, via the <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> attributes</li>
 <li>Models that inherit from parent Models</li>
 </ul>
 <h2 id="the-maptomodel-attribute">The <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> Attribute</h2>
@@ -228,9 +228,9 @@ public class Address
 <p>Models in a List may themselves have child lists, but unlike <a href="/api/ArgentSea.MapToModel.html">MapToModel</a> properties, they will be ignored by the Mapper. In cases where a result set must be transformed into a complete Model hierarchy, you can use the <a href="../Querying/handling.html">Query</a> methods to bypass the Mapper. This allows you to hydrate the results in your own code, optionally invoking Mapper on parts of the result stream.</p>
 <p>List properties cannot be read-only.</p>
 <p>For the details on how to populate Models with <code>List&lt;Model&gt;</code> properties, see the discussion on <a href="../Querying/fetching.html#the-mapreader-and-mapoutput-methods">querying</a>.</p>
-<h2 id="mapshardkey-and-mapshardchild-attributes"><a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> Attributes</h2>
-<p>A <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> is a record identifier containing a shard Id and a record Id. A <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> is a compound key consisting of a shard Id, a record Id, and a child Id.</p>
-<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> and <a href="/api/ArgentSea.MapShardChildAttribute.html">MapShardChild</a> attributes are used to decorate properties of type <a href="/api/ArgentSea.ShardKey-2.html">ShardKey</a> or <a href="/api/ArgentSea.ShardChild-3.html">ShardChild</a> respectively.</p>
+<h2 id="mapshardkey-attributes"><a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> Attributes</h2>
+<p>A <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a> is a record identifier containing a shard Id and one or more record Ids. Essentially, it uniquely identifies a sharded record by combining the table key with the shard Id. Because the record identifier type is generic, you can use the ShardKey for any primary key or unique identity value. The shard id is always short/Int16/tinyint. ShardKey classes with multiple generic definitions can be used for tables that use up to four columns as compound keys.</p>
+<p>The <a href="/api/ArgentSea.MapShardKeyAttribute.html">MapShardKey</a> attribute is used to decorate properties of type <a href="/api/ArgentSea.ShardKey-1.html">ShardKey</a>.</p>
 <p>These are special types are reviewed in detail in the <a href="../Sharding/shardkey.html">sharding</a> section.</p>
 <p>Next: <a href="targets.html">Mapping Targets</a></p>
 </article>

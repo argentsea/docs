@@ -141,12 +141,11 @@
 <li><em>Queries across all shards</em> - when you need a combined list or when don’t know the specific shard(s) to search.</li>
 </ul>
 <h3 id="accessing-a-shard">Accessing a Shard</h3>
-<p>Access any shard in the ShardSet collection using a shardId key value, just like you would with any other collection. The ShardId value often comes from the ShardId property of a <code>ShardKey</code> or <code>ShardChild</code>; for convenience, you can simply provide the <code>ShardKey</code> or <code>ShardChild</code> object instead.</p>
+<p>Access any shard in the ShardSet collection using a shardId key value, just like you would with any other collection. The ShardId value often comes from the ShardId property of a <code>ShardKey</code>; for convenience, you can simply provide the <code>ShardKey</code> object instead.</p>
 <pre><code class="lang-csharp">/// all of these are equally valid:
 var shard = myShardSet[myShardId];
 var shard = myShardSet[myShardKey.ShardId];
 var shard = myShardSet[myShardKey];
-var shard = myShardSet[myShardChild];
 </code></pre>
 <p>If you have implemented a solution using identity ranges, just call your custom resolver to get the shard index.</p>
 <h3 id="the-default-shard">The Default Shard</h3>
@@ -216,7 +215,7 @@ You might also consider using different database schemas for read-only and write
 <p>Executes a stored procedure or SQL statement without returning a result — other than an Exception if it is not successful. Presumably, this method would only be called on the Write connection but nothing prevents running a query on the Read connection.</p>
 <p>This method also supports running a <em>Batch</em>, which is a set of statements which run within the same transaction. Batches on ShardSets do not return results, but batches on databases or shard instances can.</p>
 <h4 id="returnvalueasync"><em>ReturnValueAsync</em></h4>
-<p>Executes a query and returns the value (string, number, etc.) of either the return result, output parameter, or first-row column. The result can also be a ShardKey or ShardChild.</p>
+<p>Executes a query and returns the value (string, number, etc.) of either the return result, output parameter, or first-row column. The result can also be a ShardKey.</p>
 <p>This method might be useful to lookup a single value from the shard rather than an entire record. Its principle and essential role, however, is to enable the return of inserted keys when identity columns are used.</p>
 <p>This method is available on individual shards, but not across the ShardSet.</p>
 <h4 id="listasync"><em>ListAsync</em></h4>
